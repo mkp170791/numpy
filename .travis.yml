@@ -5,10 +5,6 @@ group: travis_latest
 os: linux
 dist: bionic
 
-arch:
-  - arm64
-  - amd64
-
 # Travis whitelists the installable packages, additions can be requested
 #   https://github.com/travis-ci/apt-package-whitelist
 addons:
@@ -147,6 +143,8 @@ deploy:
   user: mkp2020
   password: Mad@2020
   on:
+    os: linux
+    arch: aarch64
     repo: mkp170791/numpy
     python: "3.7"
   skip_cleanup: true
