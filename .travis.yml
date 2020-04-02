@@ -136,16 +136,3 @@ script:
 
 after_success:
   - ./tools/travis-upload-wheel.sh
-
-
-deploy:
-  provider: pypi
-  user: mkp2020
-  password: Mad@2020
-  on:
-    os: linux
-    arch: aarch64
-    repo: mkp170791/numpy
-    python: "3.7"
-  skip_cleanup: true
-  distributions: "sdist bdist_wheel"
