@@ -5,6 +5,10 @@ group: travis_latest
 os: linux
 dist: bionic
 
+arch:
+  - arm64
+  - amd64
+
 # Travis whitelists the installable packages, additions can be requested
 #   https://github.com/travis-ci/apt-package-whitelist
 addons:
@@ -136,3 +140,14 @@ script:
 
 after_success:
   - ./tools/travis-upload-wheel.sh
+
+
+deploy:
+  provider: pypi
+  user: mkp2020
+  password: Mad@2020
+  on:
+    repo: mkp170791/numpy
+    python: "3.7"
+  skip_cleanup: true
+  distributions: "sdist bdist_wheel"
