@@ -130,6 +130,7 @@ jobs:
 
 before_install:
   - ./tools/travis-before-install.sh
+  - pip install cython
 
 script:
   - ./tools/travis-test.sh
