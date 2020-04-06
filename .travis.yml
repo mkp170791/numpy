@@ -4,7 +4,7 @@ language: python
 group: travis_latest
 os: linux
 dist: bionic
-
+arc: arm64
 # Travis whitelists the installable packages, additions can be requested
 #   https://github.com/travis-ci/apt-package-whitelist
 addons:
