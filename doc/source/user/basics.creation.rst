@@ -6,4 +6,4 @@ Array creation
 
 .. seealso:: :ref:`Array creation routines <routines.array-creation>`
 
-.. automodule:: numpy.doc.creation
+.. automodule:: numpy_demo.doc.creation

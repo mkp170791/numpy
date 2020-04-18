@@ -5,7 +5,7 @@ Indexing routines
 
 .. seealso:: :ref:`Indexing <arrays.indexing>`
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 Generating index arrays
 -----------------------

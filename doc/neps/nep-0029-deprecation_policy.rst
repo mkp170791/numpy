@@ -7,7 +7,7 @@ NEP 29 — Recommend Python and Numpy version support as a community policy stan
 :Status: Final
 :Type: Informational
 :Created: 2019-07-13
-:Resolution: https://mail.python.org/pipermail/numpy-discussion/2019-October/080128.html
+:Resolution: https://mail.python.org/pipermail/numpy_demo-discussion/2019-October/080128.html
 
 
 Abstract
@@ -139,7 +139,7 @@ development guidelines:
 
    - All minor versions of Python released 42 months prior to the
      project, and at minimum the two latest minor versions.
-   - All minor versions of ``numpy`` released in the 24 months prior
+   - All minor versions of ``numpy_demo`` released in the 24 months prior
      to the project, and at minimum the last three minor versions.
 
    In ``setup.py``, the ``python_requires`` variable should be set to
@@ -264,7 +264,7 @@ Code to generate support and drop schedule tables ::
       date, project_version = line.split(':')
       project, version = project_version.strip().split(' ')
       release = datetime.strptime(date, '%b %d, %Y')
-      if project.lower() == 'numpy':
+      if project.lower() == 'numpy_demo':
           drop = release + plus24
       else:
           drop = release + plus42
@@ -283,7 +283,7 @@ Code to generate support and drop schedule tables ::
           f'On {df} drop support for {p} {v} '
           f'(initially released on {r.strftime("%b %d, %Y")})')
       toprint_support_table.append(f'{df} {minpy:<6} {minnum:<5}')
-      if p.lower() == 'numpy':
+      if p.lower() == 'numpy_demo':
           minnum = v+'+'
       else:
           minpy = v+'+'

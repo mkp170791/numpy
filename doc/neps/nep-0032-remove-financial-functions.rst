@@ -6,7 +6,7 @@ NEP 32 — Remove the financial functions from NumPy
 :Status: Accepted
 :Type: Standards Track
 :Created: 2019-08-30
-:Resolution: https://mail.python.org/pipermail/numpy-discussion/2019-September/080074.html
+:Resolution: https://mail.python.org/pipermail/numpy_demo-discussion/2019-September/080074.html
 
 
 Abstract
@@ -15,7 +15,7 @@ Abstract
 We propose deprecating and ultimately removing the financial functions [1]_
 from NumPy.  The functions will be moved to an independent repository,
 and provided to the community as a separate package with the name
-``numpy_financial``.
+``numpy_demo_financial``.
 
 
 Motivation and scope
@@ -38,7 +38,7 @@ implementations of some of the financial functions [4]_.  It was suggested then
 to move the financial functions out of NumPy to an independent package.
 
 In a GitHub issue in 2013 [5]_, Nathaniel Smith suggested moving the financial
-functions from the top-level namespace to ``numpy.financial``.  He also
+functions from the top-level namespace to ``numpy_demo.financial``.  He also
 suggested giving the functions better names.  Responses at that time included
 the suggestion to deprecate them and move them from NumPy to a separate
 package.  This issue is still open.
@@ -60,7 +60,7 @@ The arguments for the removal of these functions from NumPy:
 The main arguments for keeping the functions in NumPy are:
 
 * Removing these functions will be disruptive for some users.  Current users
-  will have to add the new ``numpy_financial`` package to their dependencies,
+  will have to add the new ``numpy_demo_financial`` package to their dependencies,
   and then modify their code to use the new package.
 * The functions provided, while not "industrial strength", are apparently
   similar to functions provided by spreadsheets and some calculators.  Having
@@ -82,7 +82,7 @@ the functions outweigh the costs.  For example, from [5]_::
     someone feels the need for that.
     -- Ralf Gommers
 
-    I feel pretty strongly that we should deprecate these. If nobody on numpy’s
+    I feel pretty strongly that we should deprecate these. If nobody on numpy_demo’s
     core team is interested in maintaining them, then it is purely a drag on
     development for NumPy.
     -- Stephan Hoyer
@@ -108,7 +108,7 @@ But not everyone was in favor of removal::
 
 For an idea of the maintenance burden of the financial functions, one can
 look for all the GitHub issues [7]_ and pull requests [8]_ that have the tag
-``component: numpy.lib.financial``.
+``component: numpy_demo.lib.financial``.
 
 One method for measuring the effect of removing these functions is to find
 all the packages on GitHub that use them.  Such a search can be performed
@@ -120,11 +120,11 @@ in [5]_ for the actual SQL query.)
 Implementation
 --------------
 
-* Create a new Python package, ``numpy_financial``, to be maintained in the
+* Create a new Python package, ``numpy_demo_financial``, to be maintained in the
   top-level NumPy github organization.  This repository will contain the
   definitions and unit tests for the financial functions.  The package will
   be added to PyPI so it can be installed with ``pip``.
-* Deprecate the financial functions in the ``numpy`` namespace, beginning in
+* Deprecate the financial functions in the ``numpy_demo`` namespace, beginning in
   NumPy version 1.18. Remove the financial functions from NumPy version 1.20.
 
 
@@ -132,7 +132,7 @@ Backward compatibility
 ----------------------
 
 The removal of these functions breaks backward compatibility, as explained
-earlier.  The effects are mitigated by providing the ``numpy_financial``
+earlier.  The effects are mitigated by providing the ``numpy_demo_financial``
 library.
 
 
@@ -147,7 +147,7 @@ The following alternatives were mentioned in [5]_:
   belong in NumPy.  When that sentiment is combined with the history of bug
   reports and the ongoing questions about the correctness of the functions, the
   conclusion is that the cleanest solution is deprecation and removal.
-* *Move the functions from the ``numpy`` namespace to ``numpy.financial``.*
+* *Move the functions from the ``numpy_demo`` namespace to ``numpy_demo.financial``.*
   This was the initial suggestion in [5]_.  Such a change does not address the
   maintenance issues, and doesn't change the misfit that many developers see
   between these functions and NumPy.  It causes disruption for the current
@@ -170,35 +170,35 @@ References and footnotes
 ------------------------
 
 .. [1] Financial functions,
-   https://numpy.org/doc/1.17/reference/routines.financial.html
+   https://numpy_demo.org/doc/1.17/reference/routines.financial.html
 
 .. [2] Numpy-discussion mailing list, "Simple financial functions for NumPy",
-   https://mail.python.org/pipermail/numpy-discussion/2008-April/032353.html
+   https://mail.python.org/pipermail/numpy_demo-discussion/2008-April/032353.html
 
-.. [3] Numpy-discussion mailing list, "add xirr to numpy financial functions?",
-   https://mail.python.org/pipermail/numpy-discussion/2009-May/042645.html
+.. [3] Numpy-discussion mailing list, "add xirr to numpy_demo financial functions?",
+   https://mail.python.org/pipermail/numpy_demo-discussion/2009-May/042645.html
 
 .. [4] Numpy-discussion mailing list, "Definitions of pv, fv, nper, pmt, and rate",
-   https://mail.python.org/pipermail/numpy-discussion/2009-June/043188.html
+   https://mail.python.org/pipermail/numpy_demo-discussion/2009-June/043188.html
 
 .. [5] Get financial functions out of main namespace,
-   https://github.com/numpy/numpy/issues/2880
+   https://github.com/numpy_demo/numpy_demo/issues/2880
 
 .. [6] Numpy-discussion mailing list, "Deprecation of financial routines",
-   https://mail.python.org/pipermail/numpy-discussion/2013-August/067409.html
+   https://mail.python.org/pipermail/numpy_demo-discussion/2013-August/067409.html
 
-.. [7] ``component: numpy.lib.financial`` issues,
-   https://github.com/numpy/numpy/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3A%22component%3A+numpy.lib.financial%22+
+.. [7] ``component: numpy_demo.lib.financial`` issues,
+   https://github.com/numpy_demo/numpy_demo/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3A%22component%3A+numpy_demo.lib.financial%22+
 
-.. [8] ``component: numpy.lib.financial`` pull requests,
-   https://github.com/numpy/numpy/pulls?utf8=%E2%9C%93&q=is%3Apr+label%3A%22component%3A+numpy.lib.financial%22+
+.. [8] ``component: numpy_demo.lib.financial`` pull requests,
+   https://github.com/numpy_demo/numpy_demo/pulls?utf8=%E2%9C%93&q=is%3Apr+label%3A%22component%3A+numpy_demo.lib.financial%22+
 
 .. [9] Quansight-Labs/python-api-inspect,
    https://github.com/Quansight-Labs/python-api-inspect/
 
 .. [10] Numpy-discussion mailing list, "NEP 32: Remove the financial functions
    from NumPy"
-   https://mail.python.org/pipermail/numpy-discussion/2019-September/079965.html
+   https://mail.python.org/pipermail/numpy_demo-discussion/2019-September/079965.html
 
 .. [11] PyData mailing list (pydata@googlegroups.com), "NumPy proposal to
    remove the financial functions.
@@ -206,7 +206,7 @@ References and footnotes
 
 .. [12] Numpy-discussion mailing list, "Proposal to accept NEP 32: Remove the
    financial functions from NumPy"
-   https://mail.python.org/pipermail/numpy-discussion/2019-September/080074.html
+   https://mail.python.org/pipermail/numpy_demo-discussion/2019-September/080074.html
 
 Copyright
 ---------

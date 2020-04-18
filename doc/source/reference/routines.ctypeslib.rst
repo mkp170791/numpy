@@ -1,10 +1,10 @@
-.. module:: numpy.ctypeslib
+.. module:: numpy_demo.ctypeslib
 
 ***********************************************************
-C-Types Foreign Function Interface (:mod:`numpy.ctypeslib`)
+C-Types Foreign Function Interface (:mod:`numpy_demo.ctypeslib`)
 ***********************************************************
 
-.. currentmodule:: numpy.ctypeslib
+.. currentmodule:: numpy_demo.ctypeslib
 
 .. autofunction:: as_array
 .. autofunction:: as_ctypes

@@ -1,7 +1,7 @@
 Statistics
 ==========
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 
 Order statistics

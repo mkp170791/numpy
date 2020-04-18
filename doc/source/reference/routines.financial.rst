@@ -1,7 +1,7 @@
 Financial functions
 *******************
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 Simple financial functions
 --------------------------

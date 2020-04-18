@@ -1,7 +1,7 @@
 Mathematical functions
 **********************
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 Trigonometric functions
 -----------------------

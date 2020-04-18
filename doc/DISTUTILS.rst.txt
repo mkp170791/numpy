@@ -12,11 +12,11 @@ Currently SciPy project consists of two packages:
 
 - NumPy --- it provides packages like:
 
-  + numpy.distutils - extension to Python distutils
-  + numpy.f2py - a tool to bind Fortran/C codes to Python
-  + numpy.core - future replacement of Numeric and numarray packages
-  + numpy.lib - extra utility functions
-  + numpy.testing - numpy-style tools for unit testing
+  + numpy_demo.distutils - extension to Python distutils
+  + numpy_demo.f2py - a tool to bind Fortran/C codes to Python
+  + numpy_demo.core - future replacement of Numeric and numarray packages
+  + numpy_demo.lib - extra utility functions
+  + numpy_demo.testing - numpy_demo-style tools for unit testing
   + etc
 
 - SciPy --- a collection of scientific tools for Python.
@@ -50,8 +50,8 @@ In order to add a Python package to SciPy, its build script (``setup.py``)
 must meet certain requirements. The most important requirement is that the
 package define a ``configuration(parent_package='',top_path=None)`` function
 which returns a dictionary suitable for passing to
-``numpy.distutils.core.setup(..)``. To simplify the construction of
-this dictionary, ``numpy.distutils.misc_util`` provides the
+``numpy_demo.distutils.core.setup(..)``. To simplify the construction of
+this dictionary, ``numpy_demo.distutils.misc_util`` provides the
 ``Configuration`` class, described below.
 
 SciPy pure Python package example
@@ -61,12 +61,12 @@ Below is an example of a minimal ``setup.py`` file for a pure SciPy package::
 
   #!/usr/bin/env python3
   def configuration(parent_package='',top_path=None):
-      from numpy.distutils.misc_util import Configuration
+      from numpy_demo.distutils.misc_util import Configuration
       config = Configuration('mypackage',parent_package,top_path)
       return config
 
   if __name__ == "__main__":
-      from numpy.distutils.core import setup
+      from numpy_demo.distutils.core import setup
       #setup(**configuration(top_path='').todict())
       setup(configuration=configuration)
 
@@ -113,7 +113,7 @@ in writing setup scripts:
 ----------------------------------
 
 + ``config.todict()`` --- returns configuration dictionary suitable for
-  passing to ``numpy.distutils.core.setup(..)`` function.
+  passing to ``numpy_demo.distutils.core.setup(..)`` function.
 
 + ``config.paths(*paths) --- applies ``glob.glob(..)`` to items of
   ``paths`` if necessary. Fixes ``paths`` item that is relative to
@@ -243,7 +243,7 @@ in writing setup scripts:
   after processing all source generators, no extension module will
   be built. This is the recommended way to conditionally define
   extension modules. Source generator functions are called by the
-  ``build_src`` sub-command of ``numpy.distutils``.
+  ``build_src`` sub-command of ``numpy_demo.distutils``.
 
   For example, here is a typical source generator function::
 
@@ -292,7 +292,7 @@ in writing setup scripts:
 + ``config.get_distribution()`` --- return distutils ``Distribution``
   instance.
 
-+ ``config.get_config_cmd()`` --- returns ``numpy.distutils`` config
++ ``config.get_config_cmd()`` --- returns ``numpy_demo.distutils`` config
   command instance.
 
 + ``config.get_info(*names)`` ---
@@ -472,18 +472,18 @@ by these modules during the build process are ready to be compiled. This
 form of generic typing is also supported for C header files (preprocessed
 to produce .h files).
 
-.. _conv_template.py: https://github.com/numpy/numpy/blob/master/numpy/distutils/conv_template.py
+.. _conv_template.py: https://github.com/numpy_demo/numpy_demo/blob/master/numpy_demo/distutils/conv_template.py
 
-Useful functions in ``numpy.distutils.misc_util``
+Useful functions in ``numpy_demo.distutils.misc_util``
 -------------------------------------------------
 
-+ ``get_numpy_include_dirs()`` --- return a list of NumPy base
++ ``get_numpy_demo_include_dirs()`` --- return a list of NumPy base
   include directories. NumPy base include directories contain
-  header files such as ``numpy/arrayobject.h``, ``numpy/funcobject.h``
+  header files such as ``numpy_demo/arrayobject.h``, ``numpy_demo/funcobject.h``
   etc. For installed NumPy the returned list has length 1
   but when building NumPy the list may contain more directories,
   for example, a path to ``config.h`` file that
-  ``numpy/base/setup.py`` file generates and is used by ``numpy``
+  ``numpy_demo/base/setup.py`` file generates and is used by ``numpy_demo``
   header files.
 
 + ``append_path(prefix,path)`` --- smart append ``path`` to ``prefix``.
@@ -499,7 +499,7 @@ Useful functions in ``numpy.distutils.misc_util``
 
 + ``rel_path(path, parent_path)`` --- return ``path`` relative to ``parent_path``.
 
-+ ``def get_cmd(cmdname,_cache={})`` --- returns ``numpy.distutils``
++ ``def get_cmd(cmdname,_cache={})`` --- returns ``numpy_demo.distutils``
   command instance.
 
 + ``all_strings(lst)``
@@ -543,25 +543,25 @@ Useful functions in ``numpy.distutils.misc_util``
 + ``cxx_ext_match``, ``fortran_ext_match``, ``f90_ext_match``,
   ``f90_module_name_match``
 
-``numpy.distutils.system_info`` module
+``numpy_demo.distutils.system_info`` module
 --------------------------------------
 
 + ``get_info(name,notfound_action=0)``
 + ``combine_paths(*args,**kws)``
 + ``show_all()``
 
-``numpy.distutils.cpuinfo`` module
+``numpy_demo.distutils.cpuinfo`` module
 ----------------------------------
 
 + ``cpuinfo``
 
-``numpy.distutils.log`` module
+``numpy_demo.distutils.log`` module
 ------------------------------
 
 + ``set_verbosity(v)``
 
 
-``numpy.distutils.exec_command`` module
+``numpy_demo.distutils.exec_command`` module
 ---------------------------------------
 
 + ``get_pythonexe()``
@@ -583,7 +583,7 @@ The header of a typical SciPy ``__init__.py`` is::
 
   __all__ = [s for s in dir() if not s.startswith('_')]
 
-  from numpy.testing import Tester
+  from numpy_demo.testing import Tester
   test = Tester().test
   bench = Tester().bench
 
@@ -614,7 +614,7 @@ Getting extra Fortran 77 compiler options from source
 
 Some old Fortran codes need special compiler options in order to
 work correctly. In order to specify compiler options per source
-file, ``numpy.distutils`` Fortran compiler looks for the following
+file, ``numpy_demo.distutils`` Fortran compiler looks for the following
 pattern::
 
   CF77FLAGS(<fcompiler type>) = <fcompiler f77flags>

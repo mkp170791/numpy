@@ -2,4 +2,4 @@
 Miscellaneous
 *************
 
-.. automodule:: numpy.doc.misc
+.. automodule:: numpy_demo.doc.misc

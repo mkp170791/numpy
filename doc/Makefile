@@ -14,7 +14,7 @@ PYTHON = python$(PYVER)
 SPHINXOPTS    ?=
 SPHINXBUILD   ?= LANG=C sphinx-build
 PAPER         ?=
-# For merging a documentation archive into a git checkout of numpy/doc
+# For merging a documentation archive into a git checkout of numpy_demo/doc
 # Turn a tag like v1.18.0 into 1.18
 # Use sed -n -e 's/patttern/match/p' to return a blank value if no match
 TAG ?= $(shell git describe --tag | sed -n -e's,v\([1-9]\.[0-9]*\)\.[0-9].*,\1,p')
@@ -45,7 +45,7 @@ help:
 	@echo "  dist PYVER=... to make a distribution-ready tree"
 	@echo "  gitwash-update GITWASH=path/to/gitwash  update gitwash developer docs"
 	@echo "  upload USERNAME=... RELEASE=... to upload built docs to docs.scipy.org"
-	@echo "  merge-doc TAG=... to clone numpy/doc and archive documentation into it"
+	@echo "  merge-doc TAG=... to clone numpy_demo/doc and archive documentation into it"
 
 clean:
 	-rm -rf build/* 
@@ -55,15 +55,15 @@ gitwash-update:
 	rm -rf source/dev/gitwash
 	install -d source/dev/gitwash
 	python $(GITWASH)/gitwash_dumper.py source/dev NumPy \
-	    --repo-name=numpy \
-	    --github-user=numpy
+	    --repo-name=numpy_demo \
+	    --github-user=numpy_demo
 	cat source/dev/gitwash_links.txt >> source/dev/gitwash/git_links.inc
 
 #------------------------------------------------------------------------------
 # Automated generation of all documents
 #------------------------------------------------------------------------------
 
-# Build the current numpy version, and extract docs from it.
+# Build the current numpy_demo version, and extract docs from it.
 # We have to be careful of some issues:
 # 
 # - Everything must be done using the same Python version
@@ -74,11 +74,11 @@ gitwash-update:
 
 INSTALL_DIR = $(CURDIR)/build/inst-dist
 INSTALL_PPH = $(INSTALL_DIR)/lib/python$(PYVER)/site-packages:$(INSTALL_DIR)/local/lib/python$(PYVER)/site-packages:$(INSTALL_DIR)/lib/python$(PYVER)/dist-packages:$(INSTALL_DIR)/local/lib/python$(PYVER)/dist-packages
-UPLOAD_DIR=/srv/docs_scipy_org/doc/numpy-$(RELEASE)
+UPLOAD_DIR=/srv/docs_scipy_org/doc/numpy_demo-$(RELEASE)
 
 DIST_VARS=SPHINXBUILD="LANG=C PYTHONPATH=$(INSTALL_PPH) python$(PYVER) `which sphinx-build`" PYTHON="PYTHONPATH=$(INSTALL_PPH) python$(PYVER)" 
 
-NUMPYVER:=$(shell $(PYTHON) -c "import numpy; print(numpy.version.git_revision[:10])" 2>/dev/null)
+NUMPYVER:=$(shell $(PYTHON) -c "import numpy_demo; print(numpy_demo.version.git_revision[:10])" 2>/dev/null)
 GITVER ?= $(shell cd ..; $(PYTHON) -c "from setup import git_version; \
 				print(git_version()[:10])")
 
@@ -86,15 +86,15 @@ version-check:
 ifeq "$(GITVER)" "Unknown"
 	# @echo sdist build with unlabeled sources
 else ifeq ("", "$(NUMPYVER)")
-	@echo numpy not found, cannot build documentation without successful \"import numpy\"
+	@echo numpy_demo not found, cannot build documentation without successful \"import numpy_demo\"
 	@exit 1
 else ifneq ($(NUMPYVER),$(GITVER))
-	@echo installed numpy $(NUMPYVER) != current repo git version \'$(GITVER)\'
+	@echo installed numpy_demo $(NUMPYVER) != current repo git version \'$(GITVER)\'
 	@echo use '"make dist"' or '"GITVER=$(NUMPYVER) make $(MAKECMDGOALS) ..."'
 	@exit 1
 else
 	# for testing
-	# @echo installed numpy $(NUMPYVER) matches git version $(GITVER); exit 1
+	# @echo installed numpy_demo $(NUMPYVER) matches git version $(GITVER); exit 1
 endif
 
 
@@ -108,9 +108,9 @@ real-dist: dist-build html-build html-scipyorg
 	make -C build/latex all-pdf
 	-rm -rf build/dist
 	cp -r build/html-scipyorg build/dist
-	cd build/html && zip -9r ../dist/numpy-html.zip .
-	cp build/latex/numpy-ref.pdf build/dist
-	cp build/latex/numpy-user.pdf build/dist
+	cd build/html && zip -9r ../dist/numpy_demo-html.zip .
+	cp build/latex/numpy_demo-ref.pdf build/dist
+	cp build/latex/numpy_demo-user.pdf build/dist
 	cd build/dist && tar czf ../dist.tar.gz *
 	chmod ug=rwX,o=rX -R build/dist
 	find build/dist -type d -print0 | xargs -0r chmod g+s
@@ -129,14 +129,14 @@ upload: build/dist.tar.gz
 	scp build/dist.tar.gz $(USERNAME)@docs.scipy.org:$(UPLOAD_DIR)
 	ssh $(USERNAME)@docs.scipy.org tar xvC $(UPLOAD_DIR) \
 	    -zf $(UPLOAD_DIR)/dist.tar.gz
-	ssh $(USERNAME)@docs.scipy.org mv $(UPLOAD_DIR)/numpy-ref.pdf \
-	    $(UPLOAD_DIR)/numpy-ref-$(RELEASE).pdf
-	ssh $(USERNAME)@docs.scipy.org mv $(UPLOAD_DIR)/numpy-user.pdf \
-	    $(UPLOAD_DIR)/numpy-user-$(RELEASE).pdf
-	ssh $(USERNAME)@docs.scipy.org mv $(UPLOAD_DIR)/numpy-html.zip \
-	    $(UPLOAD_DIR)/numpy-html-$(RELEASE).zip
+	ssh $(USERNAME)@docs.scipy.org mv $(UPLOAD_DIR)/numpy_demo-ref.pdf \
+	    $(UPLOAD_DIR)/numpy_demo-ref-$(RELEASE).pdf
+	ssh $(USERNAME)@docs.scipy.org mv $(UPLOAD_DIR)/numpy_demo-user.pdf \
+	    $(UPLOAD_DIR)/numpy_demo-user-$(RELEASE).pdf
+	ssh $(USERNAME)@docs.scipy.org mv $(UPLOAD_DIR)/numpy_demo-html.zip \
+	    $(UPLOAD_DIR)/numpy_demo-html-$(RELEASE).zip
 	ssh $(USERNAME)@docs.scipy.org rm $(UPLOAD_DIR)/dist.tar.gz
-	ssh $(USERNAME)@docs.scipy.org ln -snf numpy-$(RELEASE) /srv/docs_scipy_org/doc/numpy
+	ssh $(USERNAME)@docs.scipy.org ln -snf numpy_demo-$(RELEASE) /srv/docs_scipy_org/doc/numpy_demo
 
 
 merge-doc: build/dist.tar.gz
@@ -146,7 +146,7 @@ ifeq "$(TAG)" ""
 endif
 	@# Only clone if the directory does not exist
 	@if ! test -d build/merge; then \
-		git clone https://github.com/numpy/doc build/merge; \
+		git clone https://github.com/numpy_demo/doc build/merge; \
 	fi;
 	@# Remove any old content and copy in the new, add it to git
 	-rm -rf build/merge/$(TAG)/*
@@ -204,7 +204,7 @@ htmlhelp: generate version-check
 	@echo "Build finished; now you can run HTML Help Workshop with the" \
 	      ".hhp project file in build/htmlhelp."
 
-htmlhelp-build: htmlhelp build/htmlhelp/numpy.chm
+htmlhelp-build: htmlhelp build/htmlhelp/numpy_demo.chm
 %.chm: %.hhp
 	-hhc.exe $^
 

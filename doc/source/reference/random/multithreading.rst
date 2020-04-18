@@ -6,7 +6,7 @@ The four core distributions (:meth:`~.Generator.random`,
 and :meth:`~.Generator.standard_gamma`) all allow existing arrays to be filled
 using the ``out`` keyword argument. Existing arrays need to be contiguous and
 well-behaved (writable and aligned). Under normal circumstances, arrays
-created using the common constructors such as :meth:`numpy.empty` will satisfy
+created using the common constructors such as :meth:`numpy_demo.empty` will satisfy
 these requirements.
 
 This example makes use of Python 3 :mod:`concurrent.futures` to fill an array
@@ -19,10 +19,10 @@ change.
 
 .. code-block:: ipython
 
-    from numpy.random import default_rng, SeedSequence
+    from numpy_demo.random import default_rng, SeedSequence
     import multiprocessing
     import concurrent.futures
-    import numpy as np
+    import numpy_demo as np
 
     class MultithreadedRNG:
         def __init__(self, n, seed=None, threads=None):

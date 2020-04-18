@@ -1,11 +1,11 @@
-import numpy as np
+import numpy_demo as np
 import gc
 import inspect
 from alloc_hook import NumpyAllocHook
 
 class AllocationTracker:
     def __init__(self, threshold=0):
-        '''track numpy allocations of size threshold bytes or more.'''
+        '''track numpy_demo allocations of size threshold bytes or more.'''
 
         self.threshold = threshold
 
@@ -24,14 +24,14 @@ class AllocationTracker:
         # frees, maximum memory usage, long-lived bytes allocated)
         self.allocation_trace = []
 
-        self.numpy_hook = NumpyAllocHook(self.hook)
+        self.numpy_demo_hook = NumpyAllocHook(self.hook)
 
     def __enter__(self):
-        self.numpy_hook.__enter__()
+        self.numpy_demo_hook.__enter__()
 
     def __exit__(self, type, value, traceback):
         self.check_line_changed()  # forces pending events to be handled
-        self.numpy_hook.__exit__()
+        self.numpy_demo_hook.__exit__()
 
     def hook(self, inptr, outptr, size):
         # minimize the chances that the garbage collector kicks in during a

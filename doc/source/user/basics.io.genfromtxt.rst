@@ -1,24 +1,24 @@
 .. sectionauthor:: Pierre Gerard-Marchant <pierregmcode@gmail.com>
 
 *********************************************
-Importing data with :func:`~numpy.genfromtxt`
+Importing data with :func:`~numpy_demo.genfromtxt`
 *********************************************
 
 NumPy provides several functions to create arrays from tabular data.
-We focus here on the :func:`~numpy.genfromtxt` function.
+We focus here on the :func:`~numpy_demo.genfromtxt` function.
 
-In a nutshell, :func:`~numpy.genfromtxt` runs two main loops.  The first
+In a nutshell, :func:`~numpy_demo.genfromtxt` runs two main loops.  The first
 loop converts each line of the file in a sequence of strings.  The second
 loop converts each string to the appropriate data type.  This mechanism is
 slower than a single loop, but gives more flexibility.  In particular,
-:func:`~numpy.genfromtxt` is able to take missing data into account, when
-other faster and simpler functions like :func:`~numpy.loadtxt` cannot.
+:func:`~numpy_demo.genfromtxt` is able to take missing data into account, when
+other faster and simpler functions like :func:`~numpy_demo.loadtxt` cannot.
 
 .. note::
 
    When giving examples, we will use the following conventions::
 
-       >>> import numpy as np
+       >>> import numpy_demo as np
        >>> from io import StringIO
 
 
@@ -26,7 +26,7 @@ other faster and simpler functions like :func:`~numpy.loadtxt` cannot.
 Defining the input
 ==================
 
-The only mandatory argument of :func:`~numpy.genfromtxt` is the source of
+The only mandatory argument of :func:`~numpy_demo.genfromtxt` is the source of
 the data. It can be a string, a list of strings, a generator or an open
 file-like object with a :meth:`read` method, for example, a file or 
 :class:`io.StringIO` object. If a single string is provided, it is assumed
@@ -49,7 +49,7 @@ Splitting the lines into columns
 The ``delimiter`` argument
 --------------------------
 
-Once the file is defined and open for reading, :func:`~numpy.genfromtxt`
+Once the file is defined and open for reading, :func:`~numpy_demo.genfromtxt`
 splits each non-empty line into a sequence of strings.  Empty or commented
 lines are just skipped.  The ``delimiter`` keyword is used to define
 how the splitting should take place.
@@ -65,7 +65,7 @@ example, comma-separated files (CSV) use a comma (``,``) or a semicolon
 
 Another common separator is ``"\t"``, the tabulation character.  However,
 we are not limited to a single character, any string will do.  By default,
-:func:`~numpy.genfromtxt` assumes ``delimiter=None``, meaning that the line
+:func:`~numpy_demo.genfromtxt` assumes ``delimiter=None``, meaning that the line
 is split along white spaces (including tabs) and that consecutive white
 spaces are considered as a single white space.
 
@@ -110,7 +110,7 @@ The ``comments`` argument
 
 The optional argument ``comments`` is used to define a character
 string that marks the beginning of a comment.  By default,
-:func:`~numpy.genfromtxt` assumes ``comments='#'``.  The comment marker may
+:func:`~numpy_demo.genfromtxt` assumes ``comments='#'``.  The comment marker may
 occur anywhere on the line.  Any character present after the comment
 marker(s) is simply ignored::
 
@@ -211,13 +211,13 @@ Acceptable values for this argument are:
   The output will be 2D with the given dtype, unless a name has been
   associated with each column with the use of the ``names`` argument
   (see below).  Note that ``dtype=float`` is the default for
-  :func:`~numpy.genfromtxt`.
+  :func:`~numpy_demo.genfromtxt`.
 * a sequence of types, such as ``dtype=(int, float, float)``.
 * a comma-separated string, such as ``dtype="i4,f8,|U3"``.
 * a dictionary with two keys ``'names'`` and ``'formats'``.
 * a sequence of tuples ``(name, type)``, such as
   ``dtype=[('A', int), ('B', float)]``.
-* an existing :class:`numpy.dtype` object.
+* an existing :class:`numpy_demo.dtype` object.
 * the special value ``None``.
   In that case, the type of the columns will be determined from the data
   itself (see below).
@@ -233,7 +233,7 @@ boolean (that is, if the string matches ``true`` or ``false`` in lower
 cases); then whether it can be converted to an integer, then to a float,
 then to a complex and eventually to a string.  This behavior may be changed
 by modifying the default mapper of the
-:class:`~numpy.lib._iotools.StringConverter` class.
+:class:`~numpy_demo.lib._iotools.StringConverter` class.
 
 The option ``dtype=None`` is provided for convenience.  However, it is
 significantly slower than setting the dtype explicitly.
@@ -327,11 +327,11 @@ Validating names
 ----------------
 
 NumPy arrays with a structured dtype can also be viewed as
-:class:`~numpy.recarray`, where a field can be accessed as if it were an
+:class:`~numpy_demo.recarray`, where a field can be accessed as if it were an
 attribute.  For that reason, we may need to make sure that the field name
 doesn't contain any space or invalid character, or that it does not
 correspond to the name of a standard attribute (like ``size`` or
-``shape``), which would confuse the interpreter.  :func:`~numpy.genfromtxt`
+``shape``), which would confuse the interpreter.  :func:`~numpy_demo.genfromtxt`
 accepts three optional arguments that provide a finer control on the names:
 
    ``deletechars``
@@ -505,7 +505,7 @@ We may also want to keep track of the occurrence of missing data by
 constructing a boolean mask, with ``True`` entries where data was missing
 and ``False`` otherwise.  To do that, we just have to set the optional
 argument ``usemask`` to ``True`` (the default is ``False``).  The
-output array will then be a :class:`~numpy.ma.MaskedArray`.
+output array will then be a :class:`~numpy_demo.ma.MaskedArray`.
 
 
 .. unpack=None, loose=True, invalid_raise=True)
@@ -514,15 +514,15 @@ output array will then be a :class:`~numpy.ma.MaskedArray`.
 Shortcut functions
 ==================
 
-In addition to :func:`~numpy.genfromtxt`, the :mod:`numpy.lib.io` module
+In addition to :func:`~numpy_demo.genfromtxt`, the :mod:`numpy_demo.lib.io` module
 provides several convenience functions derived from
-:func:`~numpy.genfromtxt`.  These functions work the same way as the
+:func:`~numpy_demo.genfromtxt`.  These functions work the same way as the
 original, but they have different default values.
 
-:func:`~numpy.recfromtxt`
-   Returns a standard :class:`numpy.recarray` (if ``usemask=False``) or a
-   :class:`~numpy.ma.MaskedRecords` array (if ``usemaske=True``).  The
+:func:`~numpy_demo.recfromtxt`
+   Returns a standard :class:`numpy_demo.recarray` (if ``usemask=False``) or a
+   :class:`~numpy_demo.ma.MaskedRecords` array (if ``usemaske=True``).  The
    default dtype is ``dtype=None``, meaning that the types of each column
    will be automatically determined.
-:func:`~numpy.recfromcsv`
-   Like :func:`~numpy.recfromtxt`, but with a default ``delimiter=","``.
+:func:`~numpy_demo.recfromcsv`
+   Like :func:`~numpy_demo.recfromtxt`, but with a default ``delimiter=","``.

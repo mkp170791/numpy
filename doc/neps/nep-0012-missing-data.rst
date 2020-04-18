@@ -20,7 +20,7 @@ Abstract
 
 Users interested in dealing with missing data within NumPy are generally
 pointed to the masked array subclass of the ndarray, known
-as 'numpy.ma'. This class has a number of users who depend strongly
+as 'numpy_demo.ma'. This class has a number of users who depend strongly
 on its capabilities, but people who are accustomed to the deep integration
 of the missing data placeholder "NA" in the R project and others who
 find the programming interface challenging or inconsistent tend not
@@ -72,7 +72,7 @@ an optional parameter "skipna=" can be added.
 
 For people who want the other interpretation to be default, a mechanism
 proposed elsewhere for customizing subclass ufunc behavior with a
-_numpy_ufunc_ member function would allow a subclass with a different
+_numpy_demo_ufunc_ member function would allow a subclass with a different
 default to be created.
 
 Unknown Yet Existing Data (NA)
@@ -197,7 +197,7 @@ mask
     boolean or enum array parallel to the data array is used to signal
     which elements are NA or IGNORE.
 
-numpy.ma
+numpy_demo.ma
     The existing implementation of a particular form of masked arrays,
     which is part of the NumPy codebase.
 
@@ -219,10 +219,10 @@ Missing Values as Seen in Python
 Working With Missing Values
 ===========================
 
-NumPy will gain a global singleton called numpy.NA, similar to None,
+NumPy will gain a global singleton called numpy_demo.NA, similar to None,
 but with semantics reflecting its status as a missing value. In particular,
 trying to treat it as a boolean will raise an exception, and comparisons
-with it will produce numpy.NA instead of True or False. These basics are
+with it will produce numpy_demo.NA instead of True or False. These basics are
 adopted from the behavior of the NA value in the R project. To dig
 deeper into the ideas, https://en.wikipedia.org/wiki/Ternary_logic#Kleene_logic
 provides a starting point.
@@ -252,7 +252,7 @@ Here's what this looks like::
     NA(dtype='NA[<f8]')
 
 Assigning a value to an array always causes that element to not be NA,
-transparently unmasking it if necessary. Assigning numpy.NA to the array
+transparently unmasking it if necessary. Assigning numpy_demo.NA to the array
 masks that element or assigns the NA bitpattern for the particular dtype.
 In the mask-based implementation, the storage behind a missing value may never
 be accessed in any way, other than to unmask it by assigning its value.
@@ -411,7 +411,7 @@ a mask.
 New ndarray Methods
 ===================
 
-New functions added to the numpy namespace are::
+New functions added to the numpy_demo namespace are::
 
     np.isna(arr) [IMPLEMENTED]
         Returns a boolean array with True wherever the array is masked
@@ -527,7 +527,7 @@ Some examples::
     >>> np.mean(a)
     NA(dtype='<f8')
     >>> np.mean(a, skipna=True)
-    /home/mwiebe/virtualenvs/dev/lib/python2.7/site-packages/numpy/core/fromnumeric.py:2374: RuntimeWarning: invalid value encountered in double_scalars
+    /home/mwiebe/virtualenvs/dev/lib/python2.7/site-packages/numpy_demo/core/fromnumeric.py:2374: RuntimeWarning: invalid value encountered in double_scalars
       return mean(axis, dtype, out)
     nan
 
@@ -700,10 +700,10 @@ to True/False, one could do this::
     >>> np.sum(a+b, skipna=(0,1))
     12
 
-Differences with numpy.ma
+Differences with numpy_demo.ma
 =========================
 
-The computational model that numpy.ma uses does not strictly adhere to
+The computational model that numpy_demo.ma uses does not strictly adhere to
 either the NA or the IGNORE model. This section exhibits some examples
 of how these differences affect simple computations. This information
 will be very important for helping users navigate between the systems,
@@ -759,7 +759,7 @@ for all NAs is consistent with an empty array::
     RuntimeWarning: invalid value encountered in double_scalars
     nan
 
-In particular, note that numpy.ma generally skips masked values,
+In particular, note that numpy_demo.ma generally skips masked values,
 except returns masked when all the values are masked, while
 the 'skipna=' parameter returns zero when all the values are NA,
 to be consistent with the result of np.sum([])::
@@ -841,7 +841,7 @@ value algorithms easier.
 Hard Masks
 ==========
 
-The numpy.ma implementation has a "hardmask" feature,
+The numpy_demo.ma implementation has a "hardmask" feature,
 which prevents values from ever being unmasked by assigning a value.
 This would be an internal array flag, named something like
 'arr.flags.hardmask'.
@@ -855,9 +855,9 @@ a compatible change.
 Shared Masks
 ============
 
-One feature of numpy.ma is called 'shared masks'.
+One feature of numpy_demo.ma is called 'shared masks'.
 
-https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray.sharedmask
+https://docs.scipy.org/doc/numpy_demo/reference/maskedarray.baseclass.html#numpy_demo.ma.MaskedArray.sharedmask
 
 This feature cannot be supported by a masked implementation of
 missing values without directly violating the missing value abstraction.
@@ -880,35 +880,35 @@ Interaction With Pre-existing C API Usage
 Making sure existing code using the C API, whether it's written in C, C++,
 or Cython, does something reasonable is an important goal of this implementation.
 The general strategy is to make existing code which does not explicitly
-tell numpy it supports NA masks fail with an exception saying so. There are
-a few different access patterns people use to get ahold of the numpy array data,
-here we examine a few of them to see what numpy can do. These examples are
-found from doing google searches of numpy C API array access.
+tell numpy_demo it supports NA masks fail with an exception saying so. There are
+a few different access patterns people use to get ahold of the numpy_demo array data,
+here we examine a few of them to see what numpy_demo can do. These examples are
+found from doing google searches of numpy_demo C API array access.
 
 NumPy Documentation - How to extend NumPy
 -----------------------------------------
 
-https://docs.scipy.org/doc/numpy/user/c-info.how-to-extend.html#dealing-with-array-objects
+https://docs.scipy.org/doc/numpy_demo/user/c-info.how-to-extend.html#dealing-with-array-objects
 
 This page has a section "Dealing with array objects" which has some advice for how
-to access numpy arrays from C. When accepting arrays, the first step it suggests is
+to access numpy_demo arrays from C. When accepting arrays, the first step it suggests is
 to use PyArray_FromAny or a macro built on that function, so code following this
 advice will properly fail when given an NA-masked array it doesn't know how to handle.
 
 The way this is handled is that PyArray_FromAny requires a special flag, NPY_ARRAY_ALLOWNA,
 before it will allow NA-masked arrays to flow through.
 
-https://docs.scipy.org/doc/numpy/reference/c-api.array.html#NPY_ARRAY_ALLOWNA
+https://docs.scipy.org/doc/numpy_demo/reference/c-api.array.html#NPY_ARRAY_ALLOWNA
 
 Code which does not follow this advice, and instead just calls PyArray_Check() to verify
 its an ndarray and checks some flags, will silently produce incorrect results. This style
-of code does not provide any opportunity for numpy to say "hey, this array is special",
+of code does not provide any opportunity for numpy_demo to say "hey, this array is special",
 so also is not compatible with future ideas of lazy evaluation, derived dtypes, etc.
 
 Tutorial From Cython Website
 ----------------------------
 
-http://docs.cython.org/src/tutorial/numpy.html
+http://docs.cython.org/src/tutorial/numpy_demo.html
 
 This tutorial gives a convolution example, and all the examples fail with
 Python exceptions when given inputs that contain NA values.
@@ -916,14 +916,14 @@ Python exceptions when given inputs that contain NA values.
 Before any Cython type annotation is introduced, the code functions just
 as equivalent Python would in the interpreter.
 
-When the type information is introduced, it is done via numpy.pxd which
+When the type information is introduced, it is done via numpy_demo.pxd which
 defines a mapping between an ndarray declaration and PyArrayObject \*.
 Under the hood, this maps to __Pyx_ArgTypeTest, which does a direct
 comparison of Py_TYPE(obj) against the PyTypeObject for the ndarray.
 
 Then the code does some dtype comparisons, and uses regular python indexing
 to access the array elements. This python indexing still goes through the
-Python API, so the NA handling and error checking in numpy still can work
+Python API, so the NA handling and error checking in numpy_demo still can work
 like normal and fail if the inputs have NAs which cannot fit in the output
 array. In this case it fails when trying to convert the NA into an integer
 to set in in the output.
@@ -931,24 +931,24 @@ to set in in the output.
 The next version of the code introduces more efficient indexing. This
 operates based on Python's buffer protocol. This causes Cython to call
 __Pyx_GetBufferAndValidate, which calls __Pyx_GetBuffer, which calls
-PyObject_GetBuffer. This call gives numpy the opportunity to raise an
+PyObject_GetBuffer. This call gives numpy_demo the opportunity to raise an
 exception if the inputs are arrays with NA-masks, something not supported
 by the Python buffer protocol.
 
 Numerical Python - JPL website
 ------------------------------
 
-http://dsnra.jpl.nasa.gov/software/Python/numpydoc/numpy-13.html
+http://dsnra.jpl.nasa.gov/software/Python/numpy_demodoc/numpy_demo-13.html
 
-This document is from 2001, so does not reflect recent numpy, but it is the
-second hit when searching for "numpy c api example" on google.
+This document is from 2001, so does not reflect recent numpy_demo, but it is the
+second hit when searching for "numpy_demo c api example" on google.
 
 There first example, heading "A simple example", is in fact already invalid for
-recent numpy even without the NA support. In particular, if the data is misaligned
+recent numpy_demo even without the NA support. In particular, if the data is misaligned
 or in a different byteorder, it may crash or produce incorrect results.
 
 The next thing the document does is introduce PyArray_ContiguousFromObject, which
-gives numpy an opportunity to raise an exception when NA-masked arrays are used,
+gives numpy_demo an opportunity to raise an exception when NA-masked arrays are used,
 so the later code will raise exceptions as desired.
 
 ************************

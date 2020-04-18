@@ -2,4 +2,4 @@
 Constants
 *********
 
-.. automodule:: numpy.doc.constants
+.. automodule:: numpy_demo.doc.constants

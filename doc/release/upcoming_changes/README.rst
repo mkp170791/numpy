@@ -38,7 +38,7 @@ So for example: ``123.new_feature.rst`` would have the content::
 ``* This is a highlight``.
 
 Note the use of single-backticks to get an internal link (assuming
-``my_favorite_function`` is exported from the ``numpy`` namespace),
+``my_favorite_function`` is exported from the ``numpy_demo`` namespace),
 and double-backticks for code.
 
 If you are unsure what pull request type to use, don't hesitate to ask in your

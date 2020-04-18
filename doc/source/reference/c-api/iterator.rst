@@ -238,7 +238,7 @@ Construction and Destruction
         PyArrayObject* op, npy_uint32 flags, NPY_ORDER order, \
         NPY_CASTING casting, PyArray_Descr* dtype)
 
-    Creates an iterator for the given numpy array object ``op``.
+    Creates an iterator for the given numpy_demo array object ``op``.
 
     Flags that may be passed in ``flags`` are any combination
     of the global and per-operand flags documented in
@@ -353,7 +353,7 @@ Construction and Destruction
             direction.  This disables this step.  Use this flag if you
             want to use the underlying memory-ordering of the axes,
             but don't want an axis reversed. This is the behavior of
-            ``numpy.ravel(a, order='K')``, for instance.
+            ``numpy_demo.ravel(a, order='K')``, for instance.
 
         .. c:var:: NPY_ITER_COMMON_DTYPE
 
@@ -599,7 +599,7 @@ Construction and Destruction
 
             .. versionadded:: 1.7
 
-            This array is the mask for all `writemasked <numpy.nditer>`
+            This array is the mask for all `writemasked <numpy_demo.nditer>`
             operands. Code uses the ``writemasked`` flag which indicates 
             that only elements where the chosen ARRAYMASK operand is True
             will be written to. In general, the iterator does not enforce

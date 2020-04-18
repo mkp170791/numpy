@@ -3,8 +3,8 @@ from timeit import repeat
 
 import pandas as pd
 
-import numpy as np
-from numpy.random import MT19937, PCG64, Philox, SFC64
+import numpy_demo as np
+from numpy_demo.random import MT19937, PCG64, Philox, SFC64
 
 PRNGS = [MT19937, PCG64, Philox, SFC64]
 
@@ -21,7 +21,7 @@ funcs['Laplaces'] = 'laplace(size=1000000)'
 funcs['Poissons'] = 'poisson(3.0, size=1000000)'
 
 setup = """
-from numpy.random import {prng}, Generator
+from numpy_demo.random import {prng}, Generator
 rg = Generator({prng}())
 """
 
@@ -43,7 +43,7 @@ npfuncs.update(funcs)
 npfuncs['32-bit Unsigned Ints'] = 'randint(2**32,dtype="uint32",size=1000000)'
 npfuncs['64-bit Unsigned Ints'] = 'randint(2**64,dtype="uint64",size=1000000)'
 setup = """
-from numpy.random import RandomState
+from numpy_demo.random import RandomState
 rg = RandomState()
 """
 col = {}

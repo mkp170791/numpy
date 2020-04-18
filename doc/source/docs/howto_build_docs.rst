@@ -10,7 +10,7 @@ documentation for NumPy.  You will need Sphinx >= 2.2.0.
 If you only want to get the documentation, note that pre-built
 versions can be found at
 
-    https://numpy.org/doc/
+    https://numpy_demo.org/doc/
 
 in several different formats.
 
@@ -29,8 +29,8 @@ In addition, building the documentation requires the Sphinx extension
 `plot_directive`, which is shipped with Matplotlib_. This Sphinx extension can
 be installed by installing Matplotlib. You will also need Python>=3.6.
 
-Since large parts of the main documentation are obtained from numpy via
-``import numpy`` and examining the docstrings, you will need to first build
+Since large parts of the main documentation are obtained from numpy_demo via
+``import numpy_demo`` and examining the docstrings, you will need to first build
 NumPy, and install it so that the correct version is imported.
 
 After NumPy is installed, install SciPy since some of the plots in the random
@@ -39,7 +39,7 @@ module require `scipy.special` to display properly.
 Note that you can eg. install NumPy to a temporary location and set
 the PYTHONPATH environment variable appropriately.
 Alternatively, if using Python virtual environments (via e.g. ``conda``,
-``virtualenv`` or the ``venv`` module), installing numpy into a
+``virtualenv`` or the ``venv`` module), installing numpy_demo into a
 new virtual environment is recommended.
 All of the necessary dependencies for building the NumPy docs can be installed
 with::
@@ -52,7 +52,7 @@ Now you are ready to generate the docs, so write::
 
 in the ``doc/`` directory. If all goes well, this will generate a
 ``build/html`` subdirectory containing the built documentation. If you get
-a message about ``installed numpy != current repo git version``, you must
+a message about ``installed numpy_demo != current repo git version``, you must
 either override the check by setting ``GITVER`` or re-install NumPy.
 
 Note that building the documentation on Windows is currently not actively
@@ -76,12 +76,12 @@ which will rebuild NumPy, install it to a temporary location, and
 build the documentation in all formats. This will most likely again
 only work on Unix platforms.
 
-The documentation for NumPy distributed at https://numpy.org/doc in html and
+The documentation for NumPy distributed at https://numpy_demo.org/doc in html and
 pdf format is also built with ``make dist``.  See `HOWTO RELEASE`_ for details
-on how to update https://numpy.org/doc.
+on how to update https://numpy_demo.org/doc.
 
 .. _Matplotlib: https://matplotlib.org/
-.. _HOWTO RELEASE: https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt
+.. _HOWTO RELEASE: https://github.com/numpy_demo/numpy_demo/blob/master/doc/HOWTO_RELEASE.rst.txt
 
 Sphinx extensions
 -----------------
@@ -91,7 +91,7 @@ are shipped in the ``sphinxext/`` directory (as git submodules, as discussed
 above), and are automatically enabled when building NumPy's documentation.
 
 If you want to make use of these extensions in third-party
-projects, they are available on PyPi_ as the numpydoc_ package.
+projects, they are available on PyPi_ as the numpy_demodoc_ package.
 
 .. _PyPi: https://pypi.org/
-.. _numpydoc: https://python.org/pypi/numpydoc
+.. _numpy_demodoc: https://python.org/pypi/numpy_demodoc

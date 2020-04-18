@@ -1,6 +1,6 @@
 import perf
 import abc
-import numpy as np
+import numpy_demo as np
 
 class NotArray:
     pass

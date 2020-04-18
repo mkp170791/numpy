@@ -1,17 +1,17 @@
-.. module:: numpy.matlib
+.. module:: numpy_demo.matlib
 
-Matrix library (:mod:`numpy.matlib`)
+Matrix library (:mod:`numpy_demo.matlib`)
 ************************************
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
-This module contains all functions in the :mod:`numpy` namespace, with
+This module contains all functions in the :mod:`numpy_demo` namespace, with
 the following replacement functions that return :class:`matrices
 <matrix>` instead of :class:`ndarrays <ndarray>`.
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
-Functions that are also in the numpy namespace and return matrices
+Functions that are also in the numpy_demo namespace and return matrices
 
 .. autosummary::
 
@@ -23,7 +23,7 @@ Functions that are also in the numpy namespace and return matrices
 
 Replacement functions in `matlib`
 
-.. currentmodule:: numpy.matlib
+.. currentmodule:: numpy_demo.matlib
 
 .. autosummary::
    :toctree: generated/

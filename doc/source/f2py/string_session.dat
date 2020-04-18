@@ -11,7 +11,7 @@ b : in/output rank-0 array(string(len=5),'c')
 c : input string(len=-1)
 d : in/output rank-0 array(string(len=-1),'c')
 
->>> from numpy import array
+>>> from numpy_demo import array
 >>> a = array(b'123\0\0')
 >>> b = array(b'123\0\0')
 >>> c = array(b'123')

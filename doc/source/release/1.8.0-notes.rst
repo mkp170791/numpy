@@ -42,7 +42,7 @@ Multiple field selection from an array of structured type currently
 returns a new array and raises a FutureWarning. In 1.9 it will return a
 readonly view.
 
-The numpy/oldnumeric and numpy/numarray compatibility modules will be
+The numpy_demo/oldnumeric and numpy_demo/numarray compatibility modules will be
 removed in 1.9.
 
 
@@ -51,12 +51,12 @@ Compatibility notes
 
 
 The doc/sphinxext content has been moved into its own github repository,
-and is included in numpy as a submodule. See the instructions in
+and is included in numpy_demo as a submodule. See the instructions in
 doc/HOWTO_BUILD_DOCS.rst.txt for how to access the content.
 
-.. _numpydoc: https://github.com/numpy/numpydoc
+.. _numpy_demodoc: https://github.com/numpy_demo/numpy_demodoc
 
-The hash function of numpy.void scalars has been changed.  Previously the
+The hash function of numpy_demo.void scalars has been changed.  Previously the
 pointer to the data was hashed as an integer.  Now, the hash function uses
 the tuple-hash algorithm to combine the hash functions of the elements of
 the scalar, but only if the scalar is read-only.
@@ -64,7 +64,7 @@ the scalar, but only if the scalar is read-only.
 Numpy has switched its build system to using 'separate compilation' by
 default.  In previous releases this was supported, but not default. This
 should produce the same results as the old system, but if you're trying to
-do something complicated like link numpy statically or using an unusual
+do something complicated like link numpy_demo statically or using an unusual
 compiler, then it's possible you will encounter problems. If so, please
 file a bug and as a temporary workaround you can re-enable the old build
 system by exporting the shell variable NPY_SEPARATE_COMPILATION=0.
@@ -83,11 +83,11 @@ NPY_RELAXED_STRIDES_CHECKING
 ----------------------------
 There is a new compile time environment variable
 ``NPY_RELAXED_STRIDES_CHECKING``. If this variable is set to 1, then
-numpy will consider more arrays to be C- or F-contiguous -- for
+numpy_demo will consider more arrays to be C- or F-contiguous -- for
 example, it becomes possible to have a column vector which is
 considered both C- and F-contiguous simultaneously. The new definition
 is more accurate, allows for faster code that makes fewer unnecessary
-copies, and simplifies numpy's code internally. However, it may also
+copies, and simplifies numpy_demo's code internally. However, it may also
 break third-party libraries that make too-strong assumptions about the
 stride values of C- and F-contiguous arrays. (It is also currently
 known that this breaks Cython code using memoryviews, which will be
@@ -121,8 +121,8 @@ that of ``<array-or-subclass>`` will now unconditionally return
 operation.  Previously, `NotImplemented` would only be returned if
 ``<non-array-subclass>`` actually implemented the reversed operation, and after
 a (potentially expensive) array conversion of ``<non-array-subclass>`` had been
-attempted. (`bug <https://github.com/numpy/numpy/issues/3375>`_, `pull request
-<https://github.com/numpy/numpy/pull/3501>`_)
+attempted. (`bug <https://github.com/numpy_demo/numpy_demo/issues/3375>`_, `pull request
+<https://github.com/numpy_demo/numpy_demo/pull/3501>`_)
 
 Function `median` used with `overwrite_input` only partially sorts array
 ------------------------------------------------------------------------
@@ -175,7 +175,7 @@ In place fancy indexing for ufuncs
 The function ``at`` has been added to ufunc objects to allow in place
 ufuncs with no buffering when fancy indexing is used. For example, the
 following will increment the first and second items in the array, and will
-increment the third item twice: ``numpy.add.at(arr, [0, 1, 2, 2], 1)``
+increment the third item twice: ``numpy_demo.add.at(arr, [0, 1, 2, 2], 1)``
 
 This is what many have mistakenly thought ``arr[[0, 1, 2, 2]] += 1`` would do,
 but that does not work as the incremented value of ``arr[2]`` is simply copied
@@ -214,11 +214,11 @@ Large NPZ files >2GB can be loaded on 64-bit systems.
 
 Building against OpenBLAS
 -------------------------
-It is now possible to build numpy against OpenBLAS by editing site.cfg.
+It is now possible to build numpy_demo against OpenBLAS by editing site.cfg.
 
 New constant
 ------------
-Euler's constant is now exposed in numpy as euler_gamma.
+Euler's constant is now exposed in numpy_demo as euler_gamma.
 
 New modes for qr
 ----------------

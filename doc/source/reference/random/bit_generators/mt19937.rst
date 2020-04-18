@@ -1,7 +1,7 @@
 Mersenne Twister (MT19937)
 --------------------------
 
-.. currentmodule:: numpy.random
+.. currentmodule:: numpy_demo.random
 
 .. autoclass:: MT19937
 	:exclude-members:

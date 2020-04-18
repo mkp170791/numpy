@@ -11,4 +11,4 @@ the package, see the :ref:`API reference <reference>`.
 .. toctree::
    :maxdepth: 1
 
-   ionumpy
+   ionumpy_demo

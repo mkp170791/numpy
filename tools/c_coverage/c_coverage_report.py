@@ -152,7 +152,7 @@ if __name__ == '__main__':
         '-d', '--directory', default='coverage',
         help='Destination directory for output (default: %(default)s)')
     parser.add_argument(
-        '-p', '--pattern', default='numpy',
+        '-p', '--pattern', default='numpy_demo',
         help='Regex pattern to match against source file paths '
              '(default: %(default)s)')
     parser.add_argument(

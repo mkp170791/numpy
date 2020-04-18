@@ -313,7 +313,7 @@ a redesigned casting API.
 DType handling in Universal functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Universal functions are implemented as instances of the ``numpy.UFunc`` class
+Universal functions are implemented as instances of the ``numpy_demo.UFunc`` class
 with an ordered-list of datatype-specific
 (based on the dtype typecode character, not datatype instances) implementations,
 each with a signature and a function pointer.
@@ -340,7 +340,7 @@ By default the ``TypeResolver`` is implemented by searching all of the implement
 listed in ``ufunc.types`` in order and stopping if all inputs can be safely
 cast to fit the signature.
 This means that if long (``l``) and double (``d``) arrays are added,
-numpy will find that the ``'dd->d'`` definition works
+numpy_demo will find that the ``'dd->d'`` definition works
 (long can safely cast to double) and uses that.
 
 In some cases this is not desirable. For example the ``np.isnat`` universal
@@ -598,7 +598,7 @@ the following provides a subset for more recent ones:
   https://hackmd.io/UVOtgj1wRZSsoNQCjkhq1g (TODO: Reduce to the most important
   ones):
 
-  * https://github.com/numpy/numpy/pull/12630
+  * https://github.com/numpy_demo/numpy_demo/pull/12630
     Matti Picus draft NEP, discusses the technical side of subclassing  more from
     the side of ``ArrFunctions``
 
@@ -606,19 +606,19 @@ the following provides a subset for more recent ones:
     (2019-04-30) Proposals for subclassing implementation approach.
   
   * Discussion about the calling convention of ufuncs and need for more
-    powerful UFuncs: https://github.com/numpy/numpy/issues/12518
+    powerful UFuncs: https://github.com/numpy_demo/numpy_demo/issues/12518
 
   * 2018-11-30 developer meeting notes:
-    https://github.com/BIDS-numpy/docs/blob/master/meetings/2018-11-30-dev-meeting.md
+    https://github.com/BIDS-numpy_demo/docs/blob/master/meetings/2018-11-30-dev-meeting.md
     and subsequent draft for an NEP: https://hackmd.io/6YmDt_PgSVORRNRxHyPaNQ
 
     BIDS Meeting on November 30, 2018 and document by Stephan Hoyer about
-    what numpy should provide and thoughts of how to get there. Meeting with
+    what numpy_demo should provide and thoughts of how to get there. Meeting with
     Eric Wieser, Matti Picus, Charles Harris, Tyler Reddy, Stéfan van der
     Walt, and Travis Oliphant.
 
   * SciPy 2018 brainstorming session with summaries of use cases:
-    https://github.com/numpy/numpy/wiki/Dtype-Brainstorming
+    https://github.com/numpy_demo/numpy_demo/wiki/Dtype-Brainstorming
 
     Also lists some requirements and some ideas on implementations
 
@@ -627,8 +627,8 @@ the following provides a subset for more recent ones:
 References
 ----------
 
-.. _gh-12518: https://github.com/numpy/numpy/issues/12518
-.. [gh-15327] https://github.com/numpy/numpy/issues/12518
+.. _gh-12518: https://github.com/numpy_demo/numpy_demo/issues/12518
+.. [gh-15327] https://github.com/numpy_demo/numpy_demo/issues/12518
 
 .. [julia-types] https://docs.julialang.org/en/v1/manual/types/index.html#Abstract-Types-1
 

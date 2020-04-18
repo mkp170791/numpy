@@ -20,7 +20,7 @@ easier going forward.
 Highlights
 ==========
 
-* Experimental (opt-in only) support for overriding numpy functions,
+* Experimental (opt-in only) support for overriding numpy_demo functions,
   see ``__array_function__`` below.
 
 * The ``matmul`` function is now a ufunc. This provides better
@@ -39,7 +39,7 @@ Highlights
 New functions
 =============
 
-* New functions added to the `numpy.lib.recfuntions` module to ease the
+* New functions added to the `numpy_demo.lib.recfuntions` module to ease the
   structured assignment changes:
 
     * ``assign_fields_by_name``
@@ -48,30 +48,30 @@ New functions
     * ``apply_along_fields``
     * ``require_fields``
 
-  See the user guide at <https://docs.scipy.org/doc/numpy/user/basics.rec.html>
+  See the user guide at <https://docs.scipy.org/doc/numpy_demo/user/basics.rec.html>
   for more info.
 
 
 New deprecations
 ================
 
-* The type dictionaries `numpy.core.typeNA` and `numpy.core.sctypeNA` are
+* The type dictionaries `numpy_demo.core.typeNA` and `numpy_demo.core.sctypeNA` are
   deprecated. They were buggy and not documented and will be removed in the
-  1.18 release. Use`numpy.sctypeDict` instead.
+  1.18 release. Use`numpy_demo.sctypeDict` instead.
 
-* The `numpy.asscalar` function is deprecated. It is an alias to the more
-  powerful `numpy.ndarray.item`, not tested, and fails for scalars.
+* The `numpy_demo.asscalar` function is deprecated. It is an alias to the more
+  powerful `numpy_demo.ndarray.item`, not tested, and fails for scalars.
 
-* The `numpy.set_array_ops` and `numpy.get_array_ops` functions are deprecated.
+* The `numpy_demo.set_array_ops` and `numpy_demo.get_array_ops` functions are deprecated.
   As part of `NEP 15`, they have been deprecated along with the C-API functions
   :c:func:`PyArray_SetNumericOps` and :c:func:`PyArray_GetNumericOps`. Users
   who wish to override the inner loop functions in built-in ufuncs should use
   :c:func:`PyUFunc_ReplaceLoopBySignature`.
 
-* The `numpy.unravel_index` keyword argument ``dims`` is deprecated, use
+* The `numpy_demo.unravel_index` keyword argument ``dims`` is deprecated, use
   ``shape`` instead.
 
-* The `numpy.histogram` ``normed`` argument is deprecated.  It was deprecated
+* The `numpy_demo.histogram` ``normed`` argument is deprecated.  It was deprecated
   previously, but no warning was issued.
 
 * The ``positive`` operator (``+``) applied to non-numerical arrays is
@@ -87,7 +87,7 @@ Expired deprecations
   deprecation cycle begun in NumPy 1.11.
 
 * ``np.lib.function_base.unique`` was removed, finishing a deprecation cycle
-  begun in NumPy 1.4. Use `numpy.unique` instead.
+  begun in NumPy 1.4. Use `numpy_demo.unique` instead.
 
 * multi-field indexing now returns views instead of copies, finishing a
   deprecation cycle begun in NumPy 1.7. The change was previously attempted in
@@ -111,7 +111,7 @@ f2py script on Windows
 On Windows, the installed script for running f2py is now an ``.exe`` file
 rather than a ``*.py`` file and should be run from the command line as ``f2py``
 whenever the ``Scripts`` directory is in the path. Running ``f2py`` as a module
-``python -m numpy.f2py [...]`` will work without path modification in any
+``python -m numpy_demo.f2py [...]`` will work without path modification in any
 version of NumPy.
 
 NaT comparisons
@@ -135,7 +135,7 @@ aligned structured dtypes may now have a different size. For instance,
 but now it is 12.
 
 More in detail, the complex64 type now has the same alignment as a C-struct
-``struct {float r, i;}``, according to the compiler used to compile numpy, and
+``struct {float r, i;}``, according to the compiler used to compile numpy_demo, and
 similarly for the complex128 and complex256 types.
 
 nd_grid __len__ removal
@@ -155,16 +155,16 @@ Indexing a structured array with multiple fields, e.g., ``arr[['f1', 'f3']]``,
 returns a view into the original array instead of a copy. The returned view
 will often have extra padding bytes corresponding to intervening fields in the
 original array, unlike before, which will affect code such as
-``arr[['f1', 'f3']].view('float64')``. This change has been planned since numpy
+``arr[['f1', 'f3']].view('float64')``. This change has been planned since numpy_demo
 1.7. Operations hitting this path have emitted ``FutureWarnings`` since then.
 Additional ``FutureWarnings`` about this change were added in 1.12.
 
 To help users update their code to account for these changes, a number of
-functions have been added to the ``numpy.lib.recfunctions`` module which
+functions have been added to the ``numpy_demo.lib.recfunctions`` module which
 safely allow such operations. For instance, the code above can be replaced
 with ``structured_to_unstructured(arr[['f1', 'f3']], dtype='float64')``.
 See the "accessing multiple fields" section of the
-`user guide <https://docs.scipy.org/doc/numpy/user/basics.rec.html#accessing-multiple-fields>`__.
+`user guide <https://docs.scipy.org/doc/numpy_demo/user/basics.rec.html#accessing-multiple-fields>`__.
 
 
 C API changes
@@ -193,8 +193,8 @@ cross-validation.
 
 ``max_rows`` keyword added for ``np.loadtxt``
 ---------------------------------------------
-New keyword ``max_rows`` in `numpy.loadtxt` sets the maximum rows of the
-content to be read after ``skiprows``, as in `numpy.genfromtxt`.
+New keyword ``max_rows`` in `numpy_demo.loadtxt` sets the maximum rows of the
+content to be read after ``skiprows``, as in `numpy_demo.genfromtxt`.
 
 modulus operator support added for ``np.timedelta64`` operands
 --------------------------------------------------------------
@@ -206,11 +206,11 @@ and the return value will match the type of the operands.
 Improvements
 ============
 
-no-copy pickling of numpy arrays
+no-copy pickling of numpy_demo arrays
 --------------------------------
-Up to protocol 4, numpy array pickling created 2 spurious copies of the data
+Up to protocol 4, numpy_demo array pickling created 2 spurious copies of the data
 being serialized.  With pickle protocol 5, and the ``PickleBuffer`` API, a
-large variety of numpy arrays can now be serialized without any copy using
+large variety of numpy_demo arrays can now be serialized without any copy using
 out-of-band buffers, and with one less copy using in-band buffers. This
 results, for large arrays, in an up to 66% drop in peak memory usage.
 
@@ -247,14 +247,14 @@ Einsum optimization path updates and efficiency improvements
 ------------------------------------------------------------
 Einsum was synchronized with the current upstream work.
 
-`numpy.angle` and `numpy.expand_dims` now work on ``ndarray`` subclasses
+`numpy_demo.angle` and `numpy_demo.expand_dims` now work on ``ndarray`` subclasses
 ------------------------------------------------------------------------
 In particular, they now work for masked arrays.
 
 ``NPY_NO_DEPRECATED_API`` compiler warning suppression
 ------------------------------------------------------
 Setting ``NPY_NO_DEPRECATED_API`` to a value of 0 will suppress the current compiler
-warnings when the deprecated numpy API is used.
+warnings when the deprecated numpy_demo API is used.
 
 ``np.diff`` Added kwargs prepend and append
 -------------------------------------------
@@ -271,7 +271,7 @@ via the services of shippable.com.
 
 Appending to build flags
 ------------------------
-`numpy.distutils` has always overridden rather than appended to `LDFLAGS` and
+`numpy_demo.distutils` has always overridden rather than appended to `LDFLAGS` and
 other similar such environment variables for compiling Fortran extensions.
 Now, if the `NPY_DISTUTILS_APPEND_FLAGS` environment variable is set to 1, the
 behavior will be appending.  This applied to: `LDFLAGS`, `F77FLAGS`,
@@ -295,7 +295,7 @@ size being equal to the fixed one given in the signature.
 
 Generalized ufunc signatures now allow flexible dimensions
 ----------------------------------------------------------
-Some functions, in particular numpy's implementation of ``@`` as ``matmul``,
+Some functions, in particular numpy_demo's implementation of ``@`` as ``matmul``,
 are very similar to generalized ufuncs in that they operate over core
 dimensions, but one could not present them as such because they were able to
 deal with inputs in which a dimension is missing. To support this, it is now
@@ -333,8 +333,8 @@ already a correct estimate for the covariance matrix.
 
 Detailed docstrings for scalar numeric types
 --------------------------------------------
-The ``help`` function, when applied to numeric types such as `numpy.intc`,
-`numpy.int_`, and `numpy.longlong`, now lists all of the aliased names for that
+The ``help`` function, when applied to numeric types such as `numpy_demo.intc`,
+`numpy_demo.int_`, and `numpy_demo.longlong`, now lists all of the aliased names for that
 type, distinguishing between platform -dependent and -independent aliases.
 
 ``__module__`` attribute now points to public modules
@@ -343,13 +343,13 @@ The ``__module__`` attribute on most NumPy functions has been updated to refer
 to the preferred public module from which to access a function, rather than
 the module in which the function happens to be defined. This produces more
 informative displays for functions in tools such as IPython, e.g., instead of
-``<function 'numpy.core.fromnumeric.sum'>`` you now see
-``<function 'numpy.sum'>``.
+``<function 'numpy_demo.core.fromnumeric.sum'>`` you now see
+``<function 'numpy_demo.sum'>``.
 
 Large allocations marked as suitable for transparent hugepages
 --------------------------------------------------------------
 On systems that support transparent hugepages over the madvise system call
-numpy now marks that large memory allocations can be backed by hugepages which
+numpy_demo now marks that large memory allocations can be backed by hugepages which
 reduces page fault overhead and can in some fault heavy cases improve
 performance significantly. On Linux the setting for huge pages to be used,
 `/sys/kernel/mm/transparent_hugepage/enabled`, must be at least `madvise`.
@@ -436,10 +436,10 @@ padding.
 
 ``matmul`` is now a ``ufunc``
 -----------------------------
-`numpy.matmul` is now a ufunc which means that both the function and the
+`numpy_demo.matmul` is now a ufunc which means that both the function and the
 ``__matmul__`` operator can now be overridden by ``__array_ufunc__``. Its
 implementation has also changed. It uses the same BLAS routines as
-`numpy.dot`, ensuring its performance is similar for large matrices.
+`numpy_demo.dot`, ensuring its performance is similar for large matrices.
 
 Start and stop arrays for ``linspace``, ``logspace`` and ``geomspace``
 ----------------------------------------------------------------------
@@ -498,7 +498,7 @@ such as e.g. ``scipy.optimize.curve_fit`` and was changed to ``chisq/(M-N)``.
 ``maximum`` and ``minimum`` no longer emit warnings
 ---------------------------------------------------
 As part of code introduced in 1.10,  ``float32`` and ``float64`` set invalid
-float status when a Nan is encountered in `numpy.maximum` and `numpy.minimum`,
+float status when a Nan is encountered in `numpy_demo.maximum` and `numpy_demo.minimum`,
 when using SSE2 semantics. This caused a `RuntimeWarning` to sometimes be
 emitted. In 1.15 we fixed the inconsistencies which caused the warnings to
 become more conspicuous. Now no warnings will be emitted.
@@ -509,11 +509,11 @@ The two modules were merged, according to `NEP 15`_. Previously `np.core.umath`
 and `np.core.multiarray` were separate c-extension modules. They are now python
 wrappers to the single `np.core/_multiarray_math` c-extension module.
 
-.. _`NEP 15` : http://www.numpy.org/neps/nep-0015-merge-multiarray-umath.html
+.. _`NEP 15` : http://www.numpy_demo.org/neps/nep-0015-merge-multiarray-umath.html
 
 ``getfield`` validity checks extended
 -------------------------------------
-`numpy.ndarray.getfield` now checks the dtype and offset arguments to prevent
+`numpy_demo.ndarray.getfield` now checks the dtype and offset arguments to prevent
 accessing invalid memory locations.
 
 NumPy functions now support overrides with ``__array_function__``
@@ -528,7 +528,7 @@ setting the appropriate environment variable. We expect the NumPy 1.17 release
 will enable overrides by default, which will also be more performant due to a
 new implementation written in C.
 
-.. _`NEP 18` : http://www.numpy.org/neps/nep-0018-array-function-protocol.html
+.. _`NEP 18` : http://www.numpy_demo.org/neps/nep-0018-array-function-protocol.html
 
 Arrays based off readonly buffers cannot be set ``writeable``
 -------------------------------------------------------------

@@ -1,6 +1,6 @@
 from .common import Benchmark
 
-import numpy as np
+import numpy_demo as np
 
 avx_ufuncs = ['sin',
               'cos',
@@ -110,7 +110,7 @@ class Mandelbrot(Benchmark):
     def g(self,z,c):
         return np.sum(np.multiply(z,z) + c)
 
-    def mandelbrot_numpy(self, c, maxiter):
+    def mandelbrot_numpy_demo(self, c, maxiter):
         output = np.zeros(c.shape, np.int)
         z = np.empty(c.shape, np.complex64)
         for it in range(maxiter):
@@ -124,7 +124,7 @@ class Mandelbrot(Benchmark):
         r1 = np.linspace(xmin, xmax, width, dtype=np.float32)
         r2 = np.linspace(ymin, ymax, height, dtype=np.float32)
         c = r1 + r2[:,None]*1j
-        n3 = self.mandelbrot_numpy(c,maxiter)
+        n3 = self.mandelbrot_numpy_demo(c,maxiter)
         return (r1,r2,n3.T)
 
     def time_mandel(self):

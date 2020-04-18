@@ -20,7 +20,7 @@ Python, it is also designed to be general-purpose and satisfy a wide-
 variety of computational needs. As a result, if absolute speed is
 essential, there is no replacement for a well-crafted, compiled loop
 specific to your application and hardware. This is one of the reasons
-that numpy includes f2py so that an easy-to-use mechanisms for linking
+that numpy_demo includes f2py so that an easy-to-use mechanisms for linking
 (simple) C/C++ and (arbitrary) Fortran code directly into Python are
 available. You are encouraged to use and improve this mechanism. The
 purpose of this section is not to document this tool but to document
@@ -384,7 +384,7 @@ writeable). The syntax is
         so that data does not have to be copied. Objects that can be
         converted to an array include: 1) any nested sequence object,
         2) any object exposing the array interface, 3) any object with
-        an :obj:`~numpy.class.__array__` method (which should return an ndarray),
+        an :obj:`~numpy_demo.class.__array__` method (which should return an ndarray),
         and 4) any scalar object (becomes a zero-dimensional
         array). Sub-classes of the ndarray that otherwise fit the
         requirements will be passed through. If you want to ensure

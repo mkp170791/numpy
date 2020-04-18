@@ -23,9 +23,9 @@ test: all
 	python testFlat.py
 
 # Rule: %.i -> %_wrap.cxx
-%_wrap.cxx: %.i %.h ../numpy.i
+%_wrap.cxx: %.i %.h ../numpy_demo.i
 	swig -c++ -python $<
-%_wrap.cxx: %.i %1.h %2.h ../numpy.i
+%_wrap.cxx: %.i %1.h %2.h ../numpy_demo.i
 	swig -c++ -python $<
 
 # Clean target

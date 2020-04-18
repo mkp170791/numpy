@@ -10,7 +10,7 @@ supports Python 2.4 - 2.5.
 Issues fixed
 ============
 
-* gh-2973: Fix `1` is printed during numpy.test()
+* gh-2973: Fix `1` is printed during numpy_demo.test()
 * gh-2983: BUG: gh-2969: Backport memory leak fix 80b3a34.
 * gh-3007: Backport gh-3006
 * gh-2984: Backport fix complex polynomial fit

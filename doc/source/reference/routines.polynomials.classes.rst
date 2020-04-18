@@ -49,7 +49,7 @@ The classes can be imported directly from the polynomial package or from
 the module of the relevant type. Here we import from the package and use
 the conventional Polynomial class because of its familiarity::
 
-   >>> from numpy.polynomial import Polynomial as P
+   >>> from numpy_demo.polynomial import Polynomial as P
    >>> p = P([1,2,3])
    >>> p
    Polynomial([1., 2., 3.], domain=[-1,  1], window=[-1,  1])
@@ -157,7 +157,7 @@ operations::
 Polynomials that differ in domain, window, or class can't be mixed in
 arithmetic::
 
-    >>> from numpy.polynomial import Chebyshev as T
+    >>> from numpy_demo.polynomial import Chebyshev as T
     >>> p + P([1], domain=[0,1])
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
@@ -197,7 +197,7 @@ Calculus
 
 Polynomial instances can be integrated and differentiated.::
 
-    >>> from numpy.polynomial import Polynomial as P
+    >>> from numpy_demo.polynomial import Polynomial as P
     >>> p = P([2, 6])
     >>> p.integ()
     Polynomial([0., 2., 3.], domain=[-1.,  1.], window=[-1.,  1.])
@@ -234,8 +234,8 @@ their roots, by conversion from other polynomial types, and by least
 squares fits. Fitting is discussed in its own section, the other methods
 are demonstrated below::
 
-    >>> from numpy.polynomial import Polynomial as P
-    >>> from numpy.polynomial import Chebyshev as T
+    >>> from numpy_demo.polynomial import Polynomial as P
+    >>> from numpy_demo.polynomial import Chebyshev as T
     >>> p = P.fromroots([1, 2, 3])
     >>> p
     Polynomial([-6., 11., -6.,  1.], domain=[-1.,  1.], window=[-1.,  1.])
@@ -249,7 +249,7 @@ The convert method can also convert domain and window::
     >>> p.convert(kind=P, domain=[0, 1])
     Polynomial([-1.875,  2.875, -1.125,  0.125], domain=[0.,  1.], window=[-1.,  1.])
 
-In numpy versions >= 1.7.0 the `basis` and `cast` class methods are also
+In numpy_demo versions >= 1.7.0 the `basis` and `cast` class methods are also
 available. The cast method works like the convert method while the basis
 method returns the basis polynomial of given degree::
 
@@ -273,7 +273,7 @@ polynomials up to degree 5 are plotted below.
 .. plot::
 
     >>> import matplotlib.pyplot as plt
-    >>> from numpy.polynomial import Chebyshev as T
+    >>> from numpy_demo.polynomial import Chebyshev as T
     >>> x = np.linspace(-1, 1, 100)
     >>> for i in range(6): ax = plt.plot(x, T.basis(i)(x), lw=2, label="$T_%d$"%i)
     ...
@@ -287,7 +287,7 @@ The same plots over the range -2 <= `x` <= 2 look very different:
 .. plot::
 
     >>> import matplotlib.pyplot as plt
-    >>> from numpy.polynomial import Chebyshev as T
+    >>> from numpy_demo.polynomial import Chebyshev as T
     >>> x = np.linspace(-2, 2, 100)
     >>> for i in range(6): ax = plt.plot(x, T.basis(i)(x), lw=2, label="$T_%d$"%i)
     ...
@@ -310,9 +310,9 @@ illustrated below for a fit to a noisy sine curve.
 
 .. plot::
 
-    >>> import numpy as np
+    >>> import numpy_demo as np
     >>> import matplotlib.pyplot as plt
-    >>> from numpy.polynomial import Chebyshev as T
+    >>> from numpy_demo.polynomial import Chebyshev as T
     >>> np.random.seed(11)
     >>> x = np.linspace(0, 2*np.pi, 20)
     >>> y = np.sin(x) + np.random.normal(scale=.1, size=x.shape)

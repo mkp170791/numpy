@@ -60,7 +60,7 @@ values, (4) it is compatible with the common practice of using NaN to indicate
 missingness when working with floating point numbers, (5) the dtype is already
 a place where "weird things can happen" -- there are a wide variety of dtypes
 that don't act like ordinary numbers (including structs, Python objects,
-fixed-length strings, ...), so code that accepts arbitrary numpy arrays already
+fixed-length strings, ...), so code that accepts arbitrary numpy_demo arrays already
 has to be prepared to handle these (even if only by checking for them and
 raising an error). Therefore adding yet more new dtypes has less impact on
 extension authors than if we change the ndarray object itself.
@@ -125,7 +125,7 @@ Some example use cases:
      define called ``is_na_of_type(...)``, but otherwise takes advantage of the
      generic NA machinery for most operations.
 
-.. _categorical data: http://mail.scipy.org/pipermail/numpy-discussion/2010-August/052401.html
+.. _categorical data: http://mail.scipy.org/pipermail/numpy_demo-discussion/2010-August/052401.html
 
 dtype C-level API extensions
 ============================
@@ -136,7 +136,7 @@ The `PyArray_Descr`_ struct gains the following new fields::
   PyArray_Descr * NA_extends;
   int NA_extends_offset;
 
-.. _PyArray_Descr: http://docs.scipy.org/doc/numpy/reference/c-api.types-and-structures.html#PyArray_Descr
+.. _PyArray_Descr: http://docs.scipy.org/doc/numpy_demo/reference/c-api.types-and-structures.html#PyArray_Descr
 
 The following new flag values are defined::
 
@@ -151,7 +151,7 @@ The `PyArray_ArrFuncs`_ struct gains the following new fields::
   void (*isna)(void * src, void * dst, npy_intp n, void * arr);
   void (*clearna)(void * data, npy_intp n, void * arr);
 
-.. _PyArray_ArrFuncs: http://docs.scipy.org/doc/numpy/reference/c-api.types-and-structures.html#PyArray_ArrFuncs
+.. _PyArray_ArrFuncs: http://docs.scipy.org/doc/numpy_demo/reference/c-api.types-and-structures.html#PyArray_ArrFuncs
 
 We add at least one new convenience macro::
 
@@ -267,7 +267,7 @@ below.
 Casting
 -------
 
-FIXME: this really needs attention from an expert on numpy's casting rules. But
+FIXME: this really needs attention from an expert on numpy_demo's casting rules. But
 I can't seem to find the docs that explain how casting loops are looked up and
 decided between (e.g., if you're casting from dtype A to dtype B, which dtype's
 loops are used?), so I can't go into details. But those details are tricky and
@@ -334,7 +334,7 @@ Printing
 --------
 
 FIXME: There should be some sort of mechanism by which values which are NA are
-automatically repr'ed as NA, but I don't really understand how numpy printing
+automatically repr'ed as NA, but I don't really understand how numpy_demo printing
 works, so I'll let someone else fill in this section.
 
 Indexing
@@ -358,10 +358,10 @@ own global singleton.) So for now we stick to scalar indexing just returning
 Python API for generic NA support
 =================================
 
-NumPy will gain a global singleton called numpy.NA, similar to None, but with
+NumPy will gain a global singleton called numpy_demo.NA, similar to None, but with
 semantics reflecting its status as a missing value. In particular, trying to
 treat it as a boolean will raise an exception, and comparisons with it will
-produce numpy.NA instead of True or False. These basics are adopted from the
+produce numpy_demo.NA instead of True or False. These basics are adopted from the
 behavior of the NA value in the R project. To dig deeper into the ideas,
 http://en.wikipedia.org/wiki/Ternary_logic#Kleene_logic provides a starting
 point.
@@ -447,8 +447,8 @@ The NEP also contains a proposal for a somewhat elaborate
 domain-specific-language for describing NA dtypes. I'm not sure how great an
 idea that is. (I have a bias against using strings as data structures, and find
 the already existing strings confusing enough as it is -- also, apparently the
-NEP version of numpy uses strings like 'f8' when printing dtypes, while my
-numpy uses object names like 'float64', so I'm not sure what's going on there.
+NEP version of numpy_demo uses strings like 'f8' when printing dtypes, while my
+numpy_demo uses object names like 'float64', so I'm not sure what's going on there.
 ``withNA(float64, arg1=value1)`` seems like a more pleasant way to print a
 dtype than "NA[f8,value1]", at least to me.) But if people want it, then cool.
 

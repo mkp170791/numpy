@@ -1,4 +1,4 @@
-.. currentmodule:: numpy.random
+.. currentmodule:: numpy_demo.random
 
 .. _legacy:
 
@@ -28,8 +28,8 @@ using the state of the `RandomState`:
 
 .. code-block:: python
 
-   from numpy.random import MT19937
-   from numpy.random import RandomState
+   from numpy_demo.random import MT19937
+   from numpy_demo.random import RandomState
 
    rs = RandomState(12345)
    mt19937 = MT19937()
@@ -122,10 +122,10 @@ Distributions
    ~RandomState.weibull
    ~RandomState.zipf
 
-Functions in `numpy.random`
+Functions in `numpy_demo.random`
 ===========================
 Many of the RandomState methods above are exported as functions in
-`numpy.random` This usage is discouraged, as it is implemented via a global
+`numpy_demo.random` This usage is discouraged, as it is implemented via a global
 `RandomState` instance which is not advised on two counts:
 
 - It uses global state, which means results will change as the code changes

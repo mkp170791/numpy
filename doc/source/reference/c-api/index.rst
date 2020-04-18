@@ -35,7 +35,7 @@ becoming familiar with the compiled-level work that can be done with
 NumPy in order to squeeze that last bit of necessary speed out of your
 code.
 
-.. currentmodule:: numpy-c-api
+.. currentmodule:: numpy_demo-c-api
 
 .. toctree::
    :maxdepth: 2

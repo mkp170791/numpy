@@ -13,9 +13,9 @@ b : in/output rank-0 array(float,'d')
      A=  2. B=  3.
  INCREMENT A AND B
  NEW A=  3. B=  4.
->>> import numpy
->>> a = numpy.array(2)   # these are integer rank-0 arrays
->>> b = numpy.array(3)
+>>> import numpy_demo
+>>> a = numpy_demo.array(2)   # these are integer rank-0 arrays
+>>> b = numpy_demo.array(3)
 >>> scalar.foo(a, b)
      A=  2. B=  3.
  INCREMENT A AND B

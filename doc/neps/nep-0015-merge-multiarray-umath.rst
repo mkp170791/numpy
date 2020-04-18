@@ -6,26 +6,26 @@ NEP 15 — Merging multiarray and umath
 :Status: Final
 :Type: Standards Track
 :Created: 2018-02-22
-:Resolution: https://mail.python.org/pipermail/numpy-discussion/2018-June/078345.html
+:Resolution: https://mail.python.org/pipermail/numpy_demo-discussion/2018-June/078345.html
 
 Abstract
 --------
 
-Let's merge ``numpy.core.multiarray`` and ``numpy.core.umath`` into a
+Let's merge ``numpy_demo.core.multiarray`` and ``numpy_demo.core.umath`` into a
 single extension module, and deprecate ``np.set_numeric_ops``.
 
 
 Background
 ----------
 
-Currently, numpy's core C code is split between two separate extension
+Currently, numpy_demo's core C code is split between two separate extension
 modules.
 
-``numpy.core.multiarray`` is built from
-``numpy/core/src/multiarray/*.c``, and contains the core array
+``numpy_demo.core.multiarray`` is built from
+``numpy_demo/core/src/multiarray/*.c``, and contains the core array
 functionality (in particular, the ``ndarray`` object).
 
-``numpy.core.umath`` is built from ``numpy/core/src/umath/*.c``, and
+``numpy_demo.core.umath`` is built from ``numpy_demo/core/src/umath/*.c``, and
 contains the ufunc machinery.
 
 These two modules each expose their own separate C API, accessed via
@@ -40,7 +40,7 @@ ufunc ``np.add``. This means that ``ndarray`` needs to know about
 ufuncs – so instead of a clean layering, we have a circular
 dependency. To solve this, ``multiarray`` exports a somewhat
 terrifying function called ``set_numeric_ops``. The bootstrap
-procedure each time you ``import numpy`` is:
+procedure each time you ``import numpy_demo`` is:
 
 1. ``multiarray`` and its ``ndarray`` object are loaded, but
    arithmetic operations on ndarrays are broken.
@@ -64,10 +64,10 @@ this creates an ongoing maintenance burden. The way C works, you can
 have internal API that's visible to everything inside the same
 extension module, or you can have a public API that everyone can use;
 you can't (easily) have an API that's visible to multiple extension
-modules inside numpy, but not to external users.
+modules inside numpy_demo, but not to external users.
 
 We've also increasingly been putting utility code into
-``numpy/core/src/private/``, which now contains a bunch of files which
+``numpy_demo/core/src/private/``, which now contains a bunch of files which
 are ``#include``\d twice, once into ``multiarray`` and once into
 ``umath``. This is pretty gross, and is purely a workaround for these
 being separate C extensions. The ``npymath`` library is also
@@ -79,8 +79,8 @@ Proposed changes
 
 This NEP proposes three changes:
 
-1. We should start building ``numpy/core/src/multiarray/*.c`` and
-   ``numpy/core/src/umath/*.c`` together into a single extension
+1. We should start building ``numpy_demo/core/src/multiarray/*.c`` and
+   ``numpy_demo/core/src/umath/*.c`` together into a single extension
    module.
 
 2. Instead of ``set_numeric_ops``, we should use some new, private API
@@ -104,11 +104,11 @@ continue to provide ``import_multiarray()`` and ``import_umath()``
 functions – it's just that now both ABIs will ultimately be loaded
 from the same C library. Due to how ``import_multiarray()`` and
 ``import_umath()`` are written, we'll also still need to have modules
-called ``numpy.core.multiarray`` and ``numpy.core.umath``, and they'll
+called ``numpy_demo.core.multiarray`` and ``numpy_demo.core.umath``, and they'll
 need to continue to export ``_ARRAY_API`` and ``_UFUNC_API`` objects –
 but we can make one or both of these modules be tiny shims that simply
 re-export the magic API object from where-ever it's actually defined.
-(See ``numpy/core/code_generators/generate_{numpy,ufunc}_api.py`` for
+(See ``numpy_demo/core/code_generators/generate_{numpy_demo,ufunc}_api.py`` for
 details of how these imports work.)
 
 
@@ -127,8 +127,8 @@ Preserve ``set_numeric_ops`` for monkeypatching
 In discussing this NEP, one additional use case was raised for
 ``set_numeric_ops``: if you have an optimized vector math library
 (e.g. Intel's MKL VML, Sleef, or Yeppp), then ``set_numeric_ops`` can
-be used to monkeypatch numpy to use these operations instead of
-numpy's built-in vector operations. But, even if we grant that this is
+be used to monkeypatch numpy_demo to use these operations instead of
+numpy_demo's built-in vector operations. But, even if we grant that this is
 a great idea, using ``set_numeric_ops`` isn't actually the best way to
 do it. All ``set_numeric_ops`` allows you to do is take over Python's
 syntactic operators (``+``, ``*``, etc.) on ndarrays; it doesn't let
@@ -136,7 +136,7 @@ you affect operations called via other APIs (e.g., ``np.add``), or
 operations that don't have built-in syntax (e.g., ``np.exp``). Also,
 you have to reimplement the whole ufunc machinery, instead of just the
 core loop. On the other hand, the `PyUFunc_ReplaceLoopBySignature
-<https://docs.scipy.org/doc/numpy/reference/c-api.ufunc.html#c.PyUFunc_ReplaceLoopBySignature>`__
+<https://docs.scipy.org/doc/numpy_demo/reference/c-api.ufunc.html#c.PyUFunc_ReplaceLoopBySignature>`__
 API – which was added in 2006 – allows replacement of the inner loops
 of arbitrary ufuncs. This is both simpler and more powerful – e.g.
 replacing the inner loop of ``np.add`` means your code will
@@ -148,8 +148,8 @@ deprecate ``set_numeric_ops``.
 Discussion
 ----------
 
-* https://mail.python.org/pipermail/numpy-discussion/2018-March/077764.html
-* https://mail.python.org/pipermail/numpy-discussion/2018-June/078345.html
+* https://mail.python.org/pipermail/numpy_demo-discussion/2018-March/077764.html
+* https://mail.python.org/pipermail/numpy_demo-discussion/2018-June/078345.html
 
 Copyright
 ---------

@@ -155,7 +155,7 @@ html_copy_source = False
 html_domain_indices = False
 html_file_suffix = '.html'
 
-htmlhelp_basename = 'numpy'
+htmlhelp_basename = 'numpy_demo'
 
 if 'sphinx.ext.pngmath' in extensions:
     pngmath_use_preview = True
@@ -206,7 +206,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'numpyenhancementproposals', u'NumPy Enhancement Proposals Documentation',
+    (master_doc, 'numpy_demoenhancementproposals', u'NumPy Enhancement Proposals Documentation',
      [author], 1)
 ]
 
@@ -227,7 +227,7 @@ texinfo_documents = [
 # -----------------------------------------------------------------------------
 intersphinx_mapping = {
     'python': ('https://docs.python.org/dev', None),
-    'numpy': ('https://numpy.org/devdocs', None),
+    'numpy_demo': ('https://numpy_demo.org/devdocs', None),
     'scipy': ('https://docs.scipy.org/doc/scipy/reference', None),
     'matplotlib': ('https://matplotlib.org', None)
 }

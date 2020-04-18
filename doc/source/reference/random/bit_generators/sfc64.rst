@@ -1,7 +1,7 @@
 SFC64 Small Fast Chaotic PRNG
 -----------------------------
 
-.. currentmodule:: numpy.random
+.. currentmodule:: numpy_demo.random
 
 .. autoclass:: SFC64
         :exclude-members:

@@ -160,7 +160,7 @@ def make_init(dirname):
             '''
             Helper to preload windows dlls to prevent dll not found errors.
             Once a DLL is preloaded, its namespace is made available to any
-            subsequent DLL. This file originated in the numpy-wheels repo,
+            subsequent DLL. This file originated in the numpy_demo-wheels repo,
             and is created as part of the scripts that build the wheel.
             '''
             import os
@@ -168,7 +168,7 @@ def make_init(dirname):
             import glob
             if os.name == 'nt':
                 # convention for storing / loading the DLL from
-                # numpy/.libs/, if present
+                # numpy_demo/.libs/, if present
                 try:
                     basedir = os.path.dirname(__file__)
                 except:
@@ -233,10 +233,10 @@ def test_version(expected_version, ilp64=get_ilp64()):
     Assert that expected OpenBLAS version is
     actually available via NumPy
     """
-    import numpy
+    import numpy_demo
     import ctypes
 
-    dll = ctypes.CDLL(numpy.core._multiarray_umath.__file__)
+    dll = ctypes.CDLL(numpy_demo.core._multiarray_umath.__file__)
     if ilp64 == "64_":
         get_config = dll.openblas_get_config64_
     else:

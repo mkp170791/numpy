@@ -1,13 +1,13 @@
-.. module:: numpy.testing
+.. module:: numpy_demo.testing
 
-Test Support (:mod:`numpy.testing`)
+Test Support (:mod:`numpy_demo.testing`)
 ===================================
 
-.. currentmodule:: numpy.testing
+.. currentmodule:: numpy_demo.testing
 
-Common test support for all numpy test scripts.
+Common test support for all numpy_demo test scripts.
 
-This single module should provide all the common functionality for numpy
+This single module should provide all the common functionality for numpy_demo
 tests in a single location, so that :ref:`test scripts
 <development-environment>` can just import it and work right away. For
 background, see the :ref:`testing-guidelines`

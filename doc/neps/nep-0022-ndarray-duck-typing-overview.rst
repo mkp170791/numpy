@@ -6,7 +6,7 @@ NEP 22 — Duck typing for NumPy arrays – high level overview
 :Status: Final
 :Type: Informational
 :Created: 2018-03-22
-:Resolution: https://mail.python.org/pipermail/numpy-discussion/2018-September/078752.html
+:Resolution: https://mail.python.org/pipermail/numpy_demo-discussion/2018-September/078752.html
 
 Abstract
 --------
@@ -38,7 +38,7 @@ Arrow, and so forth – yet users still want to work with these arrays
 using the familiar NumPy APIs, and re-use existing code with minimal
 (ideally zero) porting overhead. As a working shorthand, we call these
 “duck arrays”, by analogy with Python’s “duck typing”: a “duck array”
-is a Python object which “quacks like” a numpy array in the sense that
+is a Python object which “quacks like” a numpy_demo array in the sense that
 it has the same or similar Python API, but doesn’t share the C-level
 implementation.
 
@@ -88,8 +88,8 @@ We can distinguish between two classes:
 Full duck arrays are, well, kind of boring. They have exactly the same
 semantics as ndarray, with differences being restricted to
 under-the-hood decisions about how the data is actually stored. The
-kind of people that are excited about making numpy more extensible are
-also, unsurprisingly, excited about changing or extending numpy’s
+kind of people that are excited about making numpy_demo more extensible are
+also, unsurprisingly, excited about changing or extending numpy_demo’s
 semantics. So there’s been a lot of discussion of how to best support
 partial duck arrays. We've been guilty of this ourself.
 
@@ -102,7 +102,7 @@ Why focus on full duck arrays? Several reasons:
 
 First, there are lots of very clear use cases. Potential consumers of
 the full duck array interface include almost every package that uses
-numpy (scipy, sklearn, astropy, ...), and in particular packages that
+numpy_demo (scipy, sklearn, astropy, ...), and in particular packages that
 provide array-wrapping-classes that handle multiple types of arrays,
 such as xarray and dask.array. Potential implementers of the full duck
 array interface include: distributed arrays, sparse arrays, masked
@@ -118,11 +118,11 @@ all alike, but every partial duck array is partial in its own way:
 * ``xarray.Dataset`` wraps multiple arrays in one object; it still
   implements some array interfaces like ``__array_ufunc__``, but
   certainly not all of them.
-* ``pandas.Series`` has methods with similar behavior to numpy, but
+* ``pandas.Series`` has methods with similar behavior to numpy_demo, but
   unique null-skipping behavior.
 * scipy’s ``LinearOperator``\s support matrix multiplication and nothing else
 * h5py and similar libraries for accessing array storage have objects
-  that support numpy-like slicing and conversion into a full array,
+  that support numpy_demo-like slicing and conversion into a full array,
   but not computation.
 * Some classes may be similar to ndarray, but without supporting the
   full indexing semantics.
@@ -134,7 +134,7 @@ slicing up the ndarray API into a hierarchy of related types that
 captures these distinctions; in fact, it’s unlikely that any single
 person even understands all the distinctions. And this is important,
 because we have a *lot* of APIs that we need to add duck array support
-to (both in numpy and in all the projects that depend on numpy!). By
+to (both in numpy_demo and in all the projects that depend on numpy_demo!). By
 definition, these already work for ``ndarray``, so hopefully getting
 them to work for full duck arrays shouldn’t be so hard, since by
 definition full duck arrays act like ``ndarray``. It’d be very
@@ -208,14 +208,14 @@ implementers and consumers below.
 Principle 3: Focus on protocols
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Historically, numpy has had lots of success at interoperating with
+Historically, numpy_demo has had lots of success at interoperating with
 third-party objects by defining *protocols*, like ``__array__`` (asks
 an arbitrary object to convert itself into an array),
 ``__array_interface__`` (a precursor to Python’s buffer protocol), and
 ``__array_ufunc__`` (allows third-party objects to support ufuncs like
 ``np.exp``).
 
-`NEP 16 <https://github.com/numpy/numpy/pull/10706>`_ took a
+`NEP 16 <https://github.com/numpy_demo/numpy_demo/pull/10706>`_ took a
 different approach: we need a duck-array equivalent of
 ``asarray``, and it proposed to do this by defining a version of
 ``asarray`` that would let through objects which implemented a new
@@ -255,7 +255,7 @@ with a more minimal interface to allow for easier implementation. For
 example, ``__array_reshape__`` could drop some of the strange
 arguments accepted by ``reshape`` and ``__array_basic_getitem__``
 could drop all the `strange edge cases
-<http://www.numpy.org/neps/nep-0021-advanced-indexing.html>`__ of
+<http://www.numpy_demo.org/neps/nep-0021-advanced-indexing.html>`__ of
 NumPy’s advanced indexing.
 
 But as discussed above, we don’t really know what APIs we need for
@@ -301,7 +301,7 @@ implement both.
 If you are trying to implement a duck array, then you should strive to
 implement everything. You certainly need ``.shape``, ``.ndim`` and
 ``.dtype``, but also your dtype attribute should actually be a
-``numpy.dtype`` object, weird fancy indexing edge cases should ideally
+``numpy_demo.dtype`` object, weird fancy indexing edge cases should ideally
 work, etc. Only details related to NumPy’s specific ``np.ndarray``
 implementation (e.g., ``strides``, ``data``, ``view``) are explicitly
 out of scope.

@@ -1,14 +1,14 @@
 Cython API for random
 ---------------------
 
-.. currentmodule:: numpy.random
+.. currentmodule:: numpy_demo.random
 
 Typed versions of many of the `Generator` and `BitGenerator` methods as well as
 the classes themselves can be accessed directly from Cython via
 
 .. code-block:: cython
 
-    cimport numpy.random
+    cimport numpy_demo.random
 
 C API for random
 ----------------

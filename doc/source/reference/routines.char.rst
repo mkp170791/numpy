@@ -1,12 +1,12 @@
 String operations
 *****************
 
-.. currentmodule:: numpy.char
+.. currentmodule:: numpy_demo.char
 
-.. module:: numpy.char
+.. module:: numpy_demo.char
 
-The `numpy.char` module provides a set of vectorized string
-operations for arrays of type `numpy.string_` or `numpy.unicode_`.
+The `numpy_demo.char` module provides a set of vectorized string
+operations for arrays of type `numpy_demo.string_` or `numpy_demo.unicode_`.
 All of them are based on the string methods in the Python standard library.
 
 String operations
@@ -45,7 +45,7 @@ String operations
 Comparison
 ----------
 
-Unlike the standard numpy comparison operators, the ones in the `char`
+Unlike the standard numpy_demo comparison operators, the ones in the `char`
 module strip trailing whitespace characters before performing the
 comparison.
 

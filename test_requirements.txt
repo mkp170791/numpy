@@ -5,5 +5,5 @@ pytz==2019.3
 pytest-cov==2.8.1
 pickle5; python_version == '3.7'
 pickle5; python_version == '3.6' and platform_python_implementation != 'PyPy'
-# for numpy.random.test.test_extending
+# for numpy_demo.random.test.test_extending
 cffi

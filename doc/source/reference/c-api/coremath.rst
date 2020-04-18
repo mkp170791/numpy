@@ -5,20 +5,20 @@ NumPy core libraries
 
 .. versionadded:: 1.3.0
 
-Starting from numpy 1.3.0, we are working on separating the pure C,
+Starting from numpy_demo 1.3.0, we are working on separating the pure C,
 "computational" code from the python dependent code. The goal is twofolds:
 making the code cleaner, and enabling code reuse by other extensions outside
-numpy (scipy, etc...).
+numpy_demo (scipy, etc...).
 
 NumPy core math library
 -----------------------
 
-The numpy core math library ('npymath') is a first step in this direction. This
+The numpy_demo core math library ('npymath') is a first step in this direction. This
 library contains most math-related C99 functionality, which can be used on
 platforms where C99 is not well supported. The core math functions have the
 same API as the C99 ones, except for the npy_* prefix.
 
-The available functions are defined in <numpy/npy_math.h> - please refer to this header when
+The available functions are defined in <numpy_demo/npy_math.h> - please refer to this header when
 in doubt.
 
 Floating point classification
@@ -250,11 +250,11 @@ To use the core math library in your own extension, you need to add the npymath
 compile and link options to your extension in your setup.py:
 
         .. hidden in a comment so as to be included in refguide but not rendered documentation
-                >>> import numpy.distutils.misc_util
+                >>> import numpy_demo.distutils.misc_util
                 >>> config = np.distutils.misc_util.Configuration(None, '', '.')
                 >>> with open('foo.c', 'w') as f: pass
 
-        >>> from numpy.distutils.misc_util import get_info
+        >>> from numpy_demo.distutils.misc_util import get_info
         >>> info = get_info('npymath')
         >>> _ = config.add_extension('foo', sources=['foo.c'], extra_info=info)
 
@@ -266,7 +266,7 @@ Half-precision functions
 
 .. versionadded:: 1.6.0
 
-The header file <numpy/halffloat.h> provides functions to work with
+The header file <numpy_demo/halffloat.h> provides functions to work with
 IEEE 754-2008 16-bit floating point values. While this format is
 not typically used for numerical computations, it is useful for
 storing values which require floating point but do not need much precision.
@@ -281,7 +281,7 @@ between the different signed zeros, you will get -0.0 != 0.0
 (0x8000 != 0x0000), which is incorrect.
 
 For these reasons, NumPy provides an API to work with npy_half values
-accessible by including <numpy/halffloat.h> and linking to 'npymath'.
+accessible by including <numpy_demo/halffloat.h> and linking to 'npymath'.
 For functions that are not provided directly, such as the arithmetic
 operations, the preferred method is to convert to float
 or double and back again, as in the following example.

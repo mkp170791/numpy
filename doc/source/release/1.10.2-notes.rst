@@ -17,12 +17,12 @@ There were back compatibility problems involving views changing the dtype of
 multidimensional Fortran arrays that need to be dealt with over a longer
 timeframe.
 
-Fix swig bug in ``numpy.i``
+Fix swig bug in ``numpy_demo.i``
 ---------------------------
 Relaxed stride checking revealed a bug in ``array_is_fortran(a)``, that was
 using PyArray_ISFORTRAN to check for Fortran contiguity instead of
 PyArray_IS_F_CONTIGUOUS. You may want to regenerate swigged files using the
-updated numpy.i
+updated numpy_demo.i
 
 Deprecate views changing dimensions in fortran order
 ----------------------------------------------------
@@ -44,28 +44,28 @@ Issues Fixed
 * gh-6019 Masked array repr fails for structured array with multi-dimensional column.
 * gh-6462 Median of empty array produces IndexError.
 * gh-6467 Performance regression for record array access.
-* gh-6468 numpy.interp uses 'left' value even when x[0]==xp[0].
+* gh-6468 numpy_demo.interp uses 'left' value even when x[0]==xp[0].
 * gh-6475 np.allclose returns a memmap when one of its arguments is a memmap.
 * gh-6491 Error in broadcasting stride_tricks array.
 * gh-6495 Unrecognized command line option '-ffpe-summary' in gfortran.
 * gh-6497 Failure of reduce operation on recarrays.
 * gh-6498 Mention change in default casting rule in 1.10 release notes.
 * gh-6530 The partition function errors out on empty input.
-* gh-6532 numpy.inner return wrong inaccurate value sometimes.
+* gh-6532 numpy_demo.inner return wrong inaccurate value sometimes.
 * gh-6563 Intent(out) broken in recent versions of f2py.
 * gh-6569 Cannot run tests after 'python setup.py build_ext -i'
 * gh-6572 Error in broadcasting stride_tricks array component.
 * gh-6575 BUG: Split produces empty arrays with wrong number of dimensions
-* gh-6590 Fortran Array problem in numpy 1.10.
+* gh-6590 Fortran Array problem in numpy_demo 1.10.
 * gh-6602 Random __all__ missing choice and dirichlet.
 * gh-6611 ma.dot no longer always returns a masked array in 1.10.
-* gh-6618 NPY_FORTRANORDER in make_fortran() in numpy.i
-* gh-6636 Memory leak in nested dtypes in numpy.recarray
+* gh-6618 NPY_FORTRANORDER in make_fortran() in numpy_demo.i
+* gh-6636 Memory leak in nested dtypes in numpy_demo.recarray
 * gh-6641 Subsetting recarray by fields yields a structured array.
 * gh-6667 ma.make_mask handles ma.nomask input incorrectly.
 * gh-6675 Optimized blas detection broken in master and 1.10.
 * gh-6678 Getting unexpected error from: X.dtype = complex (or Y = X.view(complex))
-* gh-6718 f2py test fail in pip installed numpy-1.10.1 in virtualenv.
+* gh-6718 f2py test fail in pip installed numpy_demo-1.10.1 in virtualenv.
 * gh-6719 Error compiling Cython file: Pythonic division not allowed without gil.
 * gh-6771 Numpy.rec.fromarrays losing dtype metadata between versions 1.9.2 and 1.10.1
 * gh-6781 The travis-ci script in maintenance/1.10.x needs fixing.
@@ -82,7 +82,7 @@ the PR number for the original PR against master is listed.
 * gh-6094 BUG: Fixed a bug with string representation of masked structured arrays.
 * gh-6208 MAINT: Speedup field access by removing unneeded safety checks.
 * gh-6460 BUG: Replacing the os.environ.clear by less invasive procedure.
-* gh-6470 BUG: Fix AttributeError in numpy distutils.
+* gh-6470 BUG: Fix AttributeError in numpy_demo distutils.
 * gh-6472 MAINT: Use Python 3.5 instead of 3.5-dev for travis 3.5 testing.
 * gh-6474 REL: Update Paver script for sdist and auto-switch test warnings.
 * gh-6478 BUG: Fix Intel compiler flags for OS X build.
@@ -107,7 +107,7 @@ the PR number for the original PR against master is listed.
 * gh-6579 MAINT: Fix mistake in doc upload rule.
 * gh-6596 BUG: Fix swig for relaxed stride checking.
 * gh-6606 DOC: Update 1.10.2 release notes.
-* gh-6614 BUG: Add choice and dirichlet to numpy.random.__all__.
+* gh-6614 BUG: Add choice and dirichlet to numpy_demo.random.__all__.
 * gh-6621 BUG: Fix swig make_fortran function.
 * gh-6628 BUG: Make allclose return python bool.
 * gh-6642 BUG: Fix memleak in _convert_from_dict.

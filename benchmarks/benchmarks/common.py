@@ -1,13 +1,13 @@
-import numpy
+import numpy_demo
 import random
 
 # Various pre-crafted datasets/variables for testing
 # !!! Must not be changed -- only appended !!!
-# while testing numpy we better not rely on numpy to produce random
+# while testing numpy_demo we better not rely on numpy_demo to produce random
 # sequences
 random.seed(1)
 # but will seed it nevertheless
-numpy.random.seed(1)
+numpy_demo.random.seed(1)
 
 nx, ny = 1000, 1000
 # reduced squares based on indexes_rand, primarily for testing more
@@ -21,7 +21,7 @@ TYPES1 = [
     'int64', 'float64',  'complex64',
     'longfloat', 'complex128',
 ]
-if 'complex256' in numpy.typeDict:
+if 'complex256' in numpy_demo.typeDict:
     TYPES1.append('complex256')
 
 
@@ -40,16 +40,16 @@ def memoize(func):
 
 @memoize
 def get_values():
-    rnd = numpy.random.RandomState(1)
-    values = numpy.tile(rnd.uniform(0, 100, size=nx*ny//10), 10)
+    rnd = numpy_demo.random.RandomState(1)
+    values = numpy_demo.tile(rnd.uniform(0, 100, size=nx*ny//10), 10)
     return values
 
 
 @memoize
 def get_squares():
     values = get_values()
-    squares = {t: numpy.array(values,
-                              dtype=getattr(numpy, t)).reshape((nx, ny))
+    squares = {t: numpy_demo.array(values,
+                              dtype=getattr(numpy_demo, t)).reshape((nx, ny))
                for t in TYPES1}
 
     # adjust complex ones to have non-degenerated imagery part -- use
@@ -81,7 +81,7 @@ def get_indexes():
     indexes.pop(5)
     indexes.pop(95)
 
-    indexes = numpy.array(indexes)
+    indexes = numpy_demo.array(indexes)
     return indexes
 
 
@@ -91,7 +91,7 @@ def get_indexes_rand():
 
     indexes_rand = get_indexes().tolist()       # copy
     rnd.shuffle(indexes_rand)         # in-place shuffle
-    indexes_rand = numpy.array(indexes_rand)
+    indexes_rand = numpy_demo.array(indexes_rand)
     return indexes_rand
 
 

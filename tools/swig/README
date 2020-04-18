@@ -1,20 +1,20 @@
-Notes for the numpy/tools/swig directory
+Notes for the numpy_demo/tools/swig directory
 ========================================
 
-This set of files is for developing and testing file numpy.i, which is
+This set of files is for developing and testing file numpy_demo.i, which is
 intended to be a set of typemaps for helping SWIG interface between C
 and C++ code that uses C arrays and the python module NumPy.  It is
-ultimately hoped that numpy.i will be included as part of the SWIG
+ultimately hoped that numpy_demo.i will be included as part of the SWIG
 distribution.
 
 Documentation
 -------------
-Documentation for how to use numpy.i, as well as for the testing
+Documentation for how to use numpy_demo.i, as well as for the testing
 system used here, can be found in the NumPy reference guide.
 
 Testing
 -------
-The tests are a good example of what we are trying to do with numpy.i.
+The tests are a good example of what we are trying to do with numpy_demo.i.
 The files related to testing are are in the test subdirectory::
 
     Vector.h
@@ -103,14 +103,14 @@ and DIM4, or DIM_FLAT).
 
 The objective for the IN_ARRAY signatures is for SWIG to generate
 python wrappers that take a container that constitutes a valid
-argument to the numpy array constructor, and can be used to build an
+argument to the numpy_demo array constructor, and can be used to build an
 array of type "type".  Currently, types "signed char", "unsigned
 char", "short", "unsigned short", "int", "unsigned int", "long",
 "unsigned long", "long long", "unsigned long long", "float", and
 "double" are supported and tested.
 
 The objective for the INPLACE_ARRAY signatures is for SWIG to generate
-python wrappers that accept a numpy array of any of the above-listed
+python wrappers that accept a numpy_demo array of any of the above-listed
 types.
 
 The source files Vector.cxx, Matrix.cxx, Tensor.cxx, SuperTensor.cxx
@@ -122,12 +122,12 @@ using the unittest module.
 
 The SWIG interface files Vector.i, Matrix.i, Tensor.i, SuperTensor.i
 and Flat.i are used to generate the wrapper code.  The
-SWIG_FILE_WITH_INIT macro allows numpy.i to be used with multiple
+SWIG_FILE_WITH_INIT macro allows numpy_demo.i to be used with multiple
 python modules.  If it is specified, then the %init block found in
 Vector.i, Matrix.i Tensor.i, SuperTensor.i and Flat.i are required.
 The other things done in Vector.i, Matrix.i, Tensor.i, SuperTensor.i
 and Flat.i are the inclusion of the appropriate header file and
-numpy.i file, and the "%apply" directives to force the functions to
+numpy_demo.i file, and the "%apply" directives to force the functions to
 use the typemaps.
 
 The setup.py script is a standard python distutils script.  It defines

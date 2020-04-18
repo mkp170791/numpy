@@ -3,7 +3,7 @@ Miscellaneous routines
 
 .. toctree::
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 Performance tuning
 ------------------

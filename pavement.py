@@ -2,7 +2,7 @@ r"""
 This paver file is intended to help with the release process as much as
 possible. It relies on virtualenv to generate 'bootstrap' environments as
 independent from the user system as possible (e.g. to make sure the sphinx doc
-is built against the built numpy, not an installed one).
+is built against the built numpy_demo, not an installed one).
 
 Building changelog + notes
 ==========================
@@ -60,9 +60,9 @@ try:
     # This is duplicated from setup.py
     if os.path.exists('.git'):
         GIT_REVISION = setup_py.git_version()
-    elif os.path.exists('numpy/version.py'):
+    elif os.path.exists('numpy_demo/version.py'):
         # must be a source distribution, use existing version file
-        from numpy.version import git_revision as GIT_REVISION
+        from numpy_demo.version import git_revision as GIT_REVISION
     else:
         GIT_REVISION = "Unknown"
 
@@ -84,7 +84,7 @@ def tarball_name(ftype='gztar'):
         Type of archive, default is 'gztar'.
 
     """
-    root = f'numpy-{FULLVERSION}'
+    root = f'numpy_demo-{FULLVERSION}'
     if ftype == 'gztar':
         return root + '.tar.gz'
     elif ftype == 'zip':
@@ -108,7 +108,7 @@ def sdist(options):
     sh('git submodule init')
     sh('git submodule update')
 
-    # To be sure to bypass paver when building sdist... paver + numpy.distutils
+    # To be sure to bypass paver when building sdist... paver + numpy_demo.distutils
     # do not play well together.
     # Cython is run over all Cython files in setup.py, so generated C files
     # will be included.

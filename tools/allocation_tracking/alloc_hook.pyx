@@ -1,7 +1,7 @@
 # A cython wrapper for using python functions as callbacks for
 # PyDataMem_SetEventHook.
 
-cimport numpy as np
+cimport numpy_demo as np
 
 cdef extern from "Python.h":
     object PyLong_FromVoidPtr(void *)
@@ -9,7 +9,7 @@ cdef extern from "Python.h":
 
 ctypedef void PyDataMem_EventHookFunc(void *inp, void *outp, size_t size,
                                       void *user_data)
-cdef extern from "numpy/arrayobject.h":
+cdef extern from "numpy_demo/arrayobject.h":
     PyDataMem_EventHookFunc * \
         PyDataMem_SetEventHook(PyDataMem_EventHookFunc *newhook,
                                void *user_data, void **old_data)

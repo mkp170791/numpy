@@ -62,9 +62,9 @@ Overview
 
 ::
 
-   git clone https://github.com/your-user-name/numpy.git
-   cd numpy
-   git remote add upstream https://github.com/numpy/numpy.git
+   git clone https://github.com/your-user-name/numpy_demo.git
+   cd numpy_demo
+   git remote add upstream https://github.com/numpy_demo/numpy_demo.git
 
 In detail
 =========
@@ -73,8 +73,8 @@ Clone your fork
 ---------------
 
 #. Clone your fork to the local computer with ``git clone
-   https://github.com/your-user-name/numpy.git``
-#. Investigate.  Change directory to your new repo: ``cd numpy``. Then
+   https://github.com/your-user-name/numpy_demo.git``
+#. Investigate.  Change directory to your new repo: ``cd numpy_demo``. Then
    ``git branch -a`` to show you all branches.  You'll get something
    like::
 
@@ -96,8 +96,8 @@ Linking your repository to the upstream repo
 
 ::
 
-   cd numpy
-   git remote add upstream https://github.com/numpy/numpy.git
+   cd numpy_demo
+   git remote add upstream https://github.com/numpy_demo/numpy_demo.git
 
 ``upstream`` here is just the arbitrary name we're using to refer to the
 main NumPy_ repository at `NumPy github`_.
@@ -105,10 +105,10 @@ main NumPy_ repository at `NumPy github`_.
 Just for your own satisfaction, show yourself that you now have a new
 'remote', with ``git remote -v show``, giving you something like::
 
-   upstream	https://github.com/numpy/numpy.git (fetch)
-   upstream	https://github.com/numpy/numpy.git (push)
-   origin	https://github.com/your-user-name/numpy.git (fetch)
-   origin	https://github.com/your-user-name/numpy.git (push)
+   upstream	https://github.com/numpy_demo/numpy_demo.git (fetch)
+   upstream	https://github.com/numpy_demo/numpy_demo.git (push)
+   origin	https://github.com/your-user-name/numpy_demo.git (fetch)
+   origin	https://github.com/your-user-name/numpy_demo.git (push)
 
 To keep in sync with changes in NumPy, you want to set up your repository
 so it pulls from ``upstream`` by default.  This can be done with::
@@ -132,10 +132,10 @@ Your config file should now look something like (from
            ignorecase = true
            precomposeunicode = false
    [remote "origin"]
-           url = https://github.com/your-user-name/numpy.git
+           url = https://github.com/your-user-name/numpy_demo.git
            fetch = +refs/heads/*:refs/remotes/origin/*
    [remote "upstream"]
-           url = https://github.com/numpy/numpy.git
+           url = https://github.com/numpy_demo/numpy_demo.git
            fetch = +refs/heads/*:refs/remotes/upstream/*
            fetch = +refs/pull/*/head:refs/remotes/upstream/pr/*
    [branch "master"]

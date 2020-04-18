@@ -63,7 +63,7 @@ and we'd like to preserve that simplicity.
 
 There has been dissatisfaction among several major groups of NumPy users
 about the existing status quo of missing data support. In particular,
-neither the numpy.ma component nor use of floating-point NaNs as a
+neither the numpy_demo.ma component nor use of floating-point NaNs as a
 missing data signal fully satisfy the performance requirements and
 ease of use for these users. The example of R, where missing data
 is treated via an NA placeholder and is deeply integrated into all
@@ -233,7 +233,7 @@ floating-point valued mask, or alpha channel, to indicate degrees of
 but it is an important use case, and ideally NumPy should support
 natural ways of manipulating such data.
 
-After R, numpy.ma is probably the most mature source of
+After R, numpy_demo.ma is probably the most mature source of
 experience on missing-data-related APIs. Its design is quite different
 from R; it uses different semantics -- reductions skip masked values
 by default and NaNs convert to masked -- and it uses a different
@@ -244,7 +244,7 @@ is fundamentally broken, or the API is great but the code should be
 faster, or what. We looked at some of those users to try and get a
 better idea.
 
-Matplotlib is perhaps the best known package to rely on numpy.ma. It
+Matplotlib is perhaps the best known package to rely on numpy_demo.ma. It
 seems to use it in two ways. One is as a way for users to indicate
 what data is missing when passing it to be graphed. (Other ways are
 also supported, e.g., passing in NaN values gives the same result.) In
@@ -253,17 +253,17 @@ that R's plotting routines handle NA and NaN values. For these purposes,
 matplotlib doesn't really care what semantics or storage strategy is
 used for missing data.
 
-Internally, matplotlib uses numpy.ma arrays to store and pass around
+Internally, matplotlib uses numpy_demo.ma arrays to store and pass around
 separately computed boolean masks containing 'validity' information
 for each input array in a cheap and non-destructive fashion. Mark's
 impression from some shallow code review is that mostly it works
 directly with the data and mask attributes of the masked arrays,
 not extensively using the particular computational semantics of
-numpy.ma. So, for this usage they do rely on the non-destructive
+numpy_demo.ma. So, for this usage they do rely on the non-destructive
 mask-based storage, but this doesn't say much about what semantics
 are needed.
 
-Paul Hobson `posted some code`__ on the list that uses numpy.ma for
+Paul Hobson `posted some code`__ on the list that uses numpy_demo.ma for
 storing arrays of contaminant concentration measurements. Here the
 mask indicates whether the corresponding number represents an actual
 measurement, or just the estimated detection limit for a concentration
@@ -272,7 +272,7 @@ through this code is that it also mostly uses the .data and .mask
 attributes in preference to performing operations on the MaskedArray
 directly.
 
-__ https://mail.scipy.org/pipermail/numpy-discussion/2012-April/061743.html
+__ https://mail.scipy.org/pipermail/numpy_demo-discussion/2012-April/061743.html
 
 So, these examples make it clear that there is demand for a convenient
 way to keep a data array and a mask array (or even a floating point
@@ -313,7 +313,7 @@ semantics*. These are somewhat underdefined::
   #  or
   1 + IGNORED = IGNORED
 
-The numpy.ma semantics are::
+The numpy_demo.ma semantics are::
 
   sum([1, 2, masked]) = 3
   1 + masked = masked
@@ -327,8 +327,8 @@ possibilities are:
 * Do the calculation with the values independently of the mask
   (perhaps the most useful option for Paul Hobson's use-case above).
 * Copy whatever value is stored behind the input missing value into
-  the output (this is what numpy.ma does. Even that is ambiguous in
-  the case of ``masked + masked`` -- in this case numpy.ma copies the
+  the output (this is what numpy_demo.ma does. Even that is ambiguous in
+  the case of ``masked + masked`` -- in this case numpy_demo.ma copies the
   value stored behind the leftmost masked value).
 
 When we talk about *storage*, we mean the debate about whether missing
@@ -346,7 +346,7 @@ Designs that have been proposed
 One option is to just copy R, by implementing a mechanism whereby
 dtypes can arrange for certain bitpatterns to be given NA semantics.
 
-One option is to copy numpy.ma closely, but with a more optimized
+One option is to copy numpy_demo.ma closely, but with a more optimized
 implementation. (Or to simply optimize the existing implementation.)
 
 One option is that described in `NEP 12`_, for which an implementation
@@ -431,7 +431,7 @@ What **Nathaniel** thinks, overall:
   casting machinery, but doesn't require any architectural changes or
   violations of NumPy's current orthogonality.
 * His impression from the mailing list discussion, esp. the `"what can
-  we agree on?" thread`__, is that many numpy.ma users specifically
+  we agree on?" thread`__, is that many numpy_demo.ma users specifically
   like the combination of masked storage, the mask being easily
   accessible through the API, and ignored semantics. He could be
   wrong, of course. But he cannot remember seeing anybody besides Mark
@@ -463,7 +463,7 @@ What **Nathaniel** thinks, overall:
   cases that require a mask-based implementation, and it doesn't seem
   like people will suffer too badly if they are forced for now to
   settle for using NumPy's excellent mask-based indexing, the new
-  where= support, and even numpy.ma.
+  where= support, and even numpy_demo.ma.
 * Therefore, bitpatterns with NA semantics seem to meet the criteria
   of making a large class of users happy, in an elegant way, that fits
   into the original design, and where we can have reasonable certainty
@@ -595,7 +595,7 @@ example supporting struct and array dtypes and with a fuller set of
 NumPy operations.
 
 I think the code should stay as it is, except to add a run-time global
-NumPy flag, perhaps numpy.experimental.maskna, which defaults to
+NumPy flag, perhaps numpy_demo.experimental.maskna, which defaults to
 False and can be toggled to True. In its default state, any NA feature
 usage would raise an "ExperimentalError" exception, a measure which
 would prevent it from being accidentally used and communicate its
@@ -610,7 +610,7 @@ I like best.
 __ http://thread.gmane.org/gmane.comp.python.numeric.general/49485>
 
 **Nathaniel** notes in response that he doesn't really have any
-objection to shipping experimental APIs in the main numpy distribution
+objection to shipping experimental APIs in the main numpy_demo distribution
 *if* we're careful to make sure that they don't "leak out" in a way
 that leaves us stuck with them. And in principle some sort of "this
 violates your warranty" global flag could be a way to do that. (In
@@ -633,14 +633,14 @@ looks forward to 2.0 too, but we're not there yet.) So maybe it would
 be better if they weren't present in the C API at all, and the hoops
 required for testers were instead something like, 'we have included a
 hacky pure-Python prototype accessible by typing "import
-numpy.experimental.donttrythisathome.NEP" and would welcome feedback'?
+numpy_demo.experimental.donttrythisathome.NEP" and would welcome feedback'?
 
 If so, then he should mention that he did implement a horribly klugy,
 pure Python implementation of the NEP API that works with NumPy
 1.6.1. This was mostly as an experiment to see how possible such
 prototyping was and to test out a possible ufunc override mechanism,
 but if there's interest, the module is available here:
-https://github.com/njsmith/numpyNEP
+https://github.com/njsmith/numpy_demoNEP
 
 It passes the maskna test-suite, with some minor issues described
 in a big comment at the top.
@@ -715,7 +715,7 @@ he would change about the proposal at this point.
 implementation strategy for NA dtypes.
 
 A further discussion overview page can be found at:
-https://github.com/njsmith/numpy/wiki/NA-discussion-status
+https://github.com/njsmith/numpy_demo/wiki/NA-discussion-status
 
 
 Copyright
@@ -723,8 +723,8 @@ Copyright
 
 This document has been placed in the public domain.
 
-.. _NEP 12: http://www.numpy.org/neps/nep-0012-missing-data.html
+.. _NEP 12: http://www.numpy_demo.org/neps/nep-0012-missing-data.html
 
-.. _NEP 24: http://www.numpy.org/neps/nep-0024-missing-data-2.html
+.. _NEP 24: http://www.numpy_demo.org/neps/nep-0024-missing-data-2.html
 
-.. _NEP 25: http://www.numpy.org/neps/nep-0025-missing-data-3.html
+.. _NEP 25: http://www.numpy_demo.org/neps/nep-0025-missing-data-3.html

@@ -1,7 +1,7 @@
 Logic functions
 ***************
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 Truth value testing
 -------------------

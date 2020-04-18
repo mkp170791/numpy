@@ -1,7 +1,7 @@
 Binary operations
 *****************
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 Elementwise bit operations
 --------------------------

@@ -4,4 +4,4 @@
 Subclassing ndarray
 *******************
 
-.. automodule:: numpy.doc.subclassing
+.. automodule:: numpy_demo.doc.subclassing

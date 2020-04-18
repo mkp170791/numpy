@@ -28,7 +28,7 @@ Build System Changes
 ====================
 
 * Numpy now uses ``setuptools`` for its builds instead of plain distutils.
-  This fixes usage of ``install_requires='numpy'`` in the ``setup.py`` files of
+  This fixes usage of ``install_requires='numpy_demo'`` in the ``setup.py`` files of
   projects that depend on Numpy (see gh-6551).  It potentially affects the way
   that build/install methods for Numpy itself behave though.  Please report any
   unexpected behavior on the Numpy issue tracker.
@@ -60,9 +60,9 @@ The following changes are scheduled for Numpy 1.12.0.
 
 In a future release the following changes will be made.
 
-* The ``rand`` function exposed in ``numpy.testing`` will be removed. That
+* The ``rand`` function exposed in ``numpy_demo.testing`` will be removed. That
   function is left over from early Numpy and was implemented using the
-  Python random module.  The random number generators from ``numpy.random``
+  Python random module.  The random number generators from ``numpy_demo.random``
   should be used instead.
 * The ``ndarray.view`` method will only allow c_contiguous arrays to be
   viewed using a dtype of different size causing the last dimension to
@@ -86,7 +86,7 @@ printing it would convert from or to local time::
 
     # old behavior
     >>> np.datetime64('2000-01-01T00:00:00')
-    numpy.datetime64('2000-01-01T00:00:00-0800')  # note the timezone offset -08:00
+    numpy_demo.datetime64('2000-01-01T00:00:00-0800')  # note the timezone offset -08:00
 
 
 A consensus of datetime64 users agreed that this behavior is undesirable
@@ -97,7 +97,7 @@ standard library. Accordingly, datetime64 no longer assumes that input is in
 local time, nor does it print local times::
 
     >>> np.datetime64('2000-01-01T00:00:00')
-    numpy.datetime64('2000-01-01T00:00:00')
+    numpy_demo.datetime64('2000-01-01T00:00:00')
 
 For backwards compatibility, datetime64 still parses timezone offsets, which
 it handles by converting to UTC. However, the resulting datetime is timezone
@@ -106,7 +106,7 @@ naive::
     >>> np.datetime64('2000-01-01T00:00:00-08')
     DeprecationWarning: parsing timezone aware datetimes is deprecated;
     this will raise an error in the future
-    numpy.datetime64('2000-01-01T08:00:00')
+    numpy_demo.datetime64('2000-01-01T08:00:00')
 
 As a corollary to this change, we no longer prohibit casting between datetimes
 with date units and datetimes with time units. With timezone naive datetimes,
@@ -119,7 +119,7 @@ exception.  Some of the norm types previously returned integers.
 
 polynomial fit changes
 ----------------------
-The various fit functions in the numpy polynomial package no longer accept
+The various fit functions in the numpy_demo polynomial package no longer accept
 non-integers for degree specification.
 
 *np.dot* now raises ``TypeError`` instead of ``ValueError``
@@ -189,7 +189,7 @@ New Features
   an option to spend more effort to reduce false positives.
 
 * ``SkipTest`` and ``KnownFailureException`` exception classes are exposed
-  in the ``numpy.testing`` namespace. Raise them in a test function to mark
+  in the ``numpy_demo.testing`` namespace. Raise them in a test function to mark
   the test to be skipped or mark it as a known failure, respectively.
 
 * ``f2py.compile`` has a new ``extension`` keyword parameter that allows the
@@ -210,7 +210,7 @@ New Features
   The specification is by precision rather than by C type. Hence, on some
   platforms ``np.int64`` may be a ``long`` instead of ``long long`` even if
   the specified dtype is ``long long`` because the two may have the same
-  precision. The resulting type depends on which C type numpy uses for the
+  precision. The resulting type depends on which C type numpy_demo uses for the
   given precision. The byteorder specification is also ignored, the
   generated arrays are always in native byte order.
 
@@ -219,7 +219,7 @@ New Features
   This function should be easier to use than the current ``rollaxis``
   function as well as providing more functionality.
 
-* The ``deg`` parameter of the various ``numpy.polynomial`` fits has been
+* The ``deg`` parameter of the various ``numpy_demo.polynomial`` fits has been
   extended to accept a list of the degrees of the terms to be included in
   the fit, the coefficients of all other terms being constrained to zero.
   The change is backward compatible, passing a scalar ``deg`` will behave
@@ -267,7 +267,7 @@ Optimizations for operations of the form ``A.T @ A`` and ``A @ A.T``
 Previously, ``gemm`` BLAS operations were used for all matrix products. Now,
 if the matrix product is between a matrix and its transpose, it will use
 ``syrk`` BLAS operations for a performance boost. This optimization has been
-extended to ``@``, ``numpy.dot``, ``numpy.inner``, and ``numpy.matmul``.
+extended to ``@``, ``numpy_demo.dot``, ``numpy_demo.inner``, and ``numpy_demo.matmul``.
 
 **Note:** Requires the transposed and non-transposed matrices to share data.
 
@@ -283,7 +283,7 @@ Speed improvement for np.random.shuffle
 Changes
 =======
 
-Pyrex support was removed from ``numpy.distutils``
+Pyrex support was removed from ``numpy_demo.distutils``
 --------------------------------------------------
 The method ``build_src.generate_a_pyrex_source`` will remain available; it
 has been monkeypatched by users to support Cython instead of Pyrex.  It's
@@ -353,7 +353,7 @@ Random number generator in the ``testing`` namespace
 The Python standard library random number generator was previously exposed
 in the ``testing`` namespace as ``testing.rand``. Using this generator is
 not recommended and it will be removed in a future release. Use generators
-from ``numpy.random`` namespace instead.
+from ``numpy_demo.random`` namespace instead.
 
 Random integer generation on a closed interval
 ----------------------------------------------
@@ -382,7 +382,7 @@ but the mask will be a copy-on-write view of ``mask``.
 
 In the future, these cases will be normalized so that the data and mask arrays
 are treated the same way and modifications to either will propagate between
-views. In 1.11, numpy will issue a ``MaskedArrayFutureWarning`` warning
+views. In 1.11, numpy_demo will issue a ``MaskedArrayFutureWarning`` warning
 whenever user code modifies the mask of a view that in the future may cause
 values to propagate back to the original.  To silence these warnings and make
 your code robust against the upcoming changes, you have two options: if you

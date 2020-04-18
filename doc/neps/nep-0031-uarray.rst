@@ -22,7 +22,7 @@ to NEP-18 [2]_. First experiences with ``__array_function__`` show that it
 is necessary to be able to override NumPy functions that *do not take an
 array-like argument*, and hence aren't overridable via
 ``__array_function__``. The most pressing need is array creation and coercion
-functions, such as ``numpy.zeros`` or ``numpy.asarray``; see e.g. NEP-30 [9]_.
+functions, such as ``numpy_demo.zeros`` or ``numpy_demo.asarray``; see e.g. NEP-30 [9]_.
 
 This NEP proposes to allow, in an opt-in fashion, overriding any part of the
 NumPy API. It is intended as a comprehensive resolution to NEP-22 [3]_, and
@@ -37,15 +37,15 @@ The primary end-goal of this NEP is to make the following possible:
 .. code:: python
 
     # On the library side
-    import numpy.overridable as unp
+    import numpy_demo.overridable as unp
 
     def library_function(array):
         array = unp.asarray(array)
-        # Code using unumpy as usual
+        # Code using unumpy_demo as usual
         return array
 
     # On the user side:
-    import numpy.overridable as unp
+    import numpy_demo.overridable as unp
     import uarray as ua
     import dask.array as da
 
@@ -74,7 +74,7 @@ provides a general framework and a mechanism to avoid a design of a new
 protocol each time this is required. This was the goal of ``uarray``: to
 allow for overrides in an API without needing the design of a new protocol.
 
-This NEP proposes the following: That ``unumpy`` [8]_  becomes the
+This NEP proposes the following: That ``unumpy_demo`` [8]_  becomes the
 recommended override mechanism for the parts of the NumPy API not yet covered
 by ``__array_function__`` or ``__array_ufunc__``, and that ``uarray`` is
 vendored into a new namespace within NumPy to give users and downstream
@@ -117,18 +117,18 @@ for ``np.linalg``, BLAS, and ``np.random``.
 
 .. code:: python
 
-    import numpy as np
+    import numpy_demo as np
     import pyfftw # Or mkl_fft
 
     # Makes pyfftw the default for FFT
     np.set_global_backend(pyfftw)
 
     # Uses pyfftw without monkeypatching
-    np.fft.fft(numpy_array)    
+    np.fft.fft(numpy_demo_array)    
 
-    with np.set_backend(pyfftw) # Or mkl_fft, or numpy
+    with np.set_backend(pyfftw) # Or mkl_fft, or numpy_demo
         # Uses the backend you specified
-        np.fft.fft(numpy_array)
+        np.fft.fft(numpy_demo_array)
 
 This will allow an official way for overrides to work with NumPy without
 monkeypatching or distributing a modified version of NumPy.
@@ -144,7 +144,7 @@ stated:
     result.to_zarr('output.zarr')
 
 This second one would work if ``magic_library`` was built
-on top of ``unumpy``.
+on top of ``unumpy_demo``.
 
 .. code:: python
 
@@ -157,7 +157,7 @@ on top of ``unumpy``.
     result.to_zarr('output.zarr')
 
 There are some backends which may depend on other backends, for example xarray
-depending on `numpy.fft`, and transforming a time axis into a frequency axis,
+depending on `numpy_demo.fft`, and transforming a time axis into a frequency axis,
 or Dask/xarray holding an array other than a NumPy array inside it. This would
 be handled in the following manner inside code::
 
@@ -175,35 +175,35 @@ Detailed description
 Proposals
 ~~~~~~~~~
 
-The only change this NEP proposes at its acceptance, is to make ``unumpy`` the
+The only change this NEP proposes at its acceptance, is to make ``unumpy_demo`` the
 officially recommended way to override NumPy, along with making some submodules
-overridable by default via ``uarray``. ``unumpy`` will remain a separate
+overridable by default via ``uarray``. ``unumpy_demo`` will remain a separate
 repository/package (which we propose to vendor to avoid a hard dependency, and
-use the separate ``unumpy`` package only if it is installed, rather than depend
-on for the time being). In concrete terms, ``numpy.overridable`` becomes an
-alias for ``unumpy``, if available with a fallback to the a vendored version if
-not. ``uarray`` and ``unumpy`` and will be developed primarily with the input
+use the separate ``unumpy_demo`` package only if it is installed, rather than depend
+on for the time being). In concrete terms, ``numpy_demo.overridable`` becomes an
+alias for ``unumpy_demo``, if available with a fallback to the a vendored version if
+not. ``uarray`` and ``unumpy_demo`` and will be developed primarily with the input
 of duck-array authors and secondarily, custom dtype authors, via the usual
 GitHub workflow. There are a few reasons for this:
 
 * Faster iteration in the case of bugs or issues.
 * Faster design changes, in the case of needed functionality.
-* ``unumpy`` will work with older versions of NumPy as well.
+* ``unumpy_demo`` will work with older versions of NumPy as well.
 * The user and library author opt-in to the override process,
   rather than breakages happening when it is least expected.
-  In simple terms, bugs in ``unumpy`` mean that ``numpy`` remains
+  In simple terms, bugs in ``unumpy_demo`` mean that ``numpy_demo`` remains
   unaffected.
-* For ``numpy.fft``, ``numpy.linalg`` and ``numpy.random``, the functions in
-  the main namespace will mirror those in the ``numpy.overridable`` namespace.
+* For ``numpy_demo.fft``, ``numpy_demo.linalg`` and ``numpy_demo.random``, the functions in
+  the main namespace will mirror those in the ``numpy_demo.overridable`` namespace.
   The reason for this is that there may exist functions in the in these
-  submodules that need backends, even for ``numpy.ndarray`` inputs.
+  submodules that need backends, even for ``numpy_demo.ndarray`` inputs.
 
-Advantanges of ``unumpy`` over other solutions
+Advantanges of ``unumpy_demo`` over other solutions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-``unumpy`` offers a number of advantanges over the approach of defining a new
+``unumpy_demo`` offers a number of advantanges over the approach of defining a new
 protocol for every problem encountered: Whenever there is something requiring
-an override, ``unumpy`` will be able to offer a unified API with very minor
+an override, ``unumpy_demo`` will be able to offer a unified API with very minor
 changes. For example:
 
 * ``ufunc`` objects can be overridden via their ``__call__``, ``reduce`` and
@@ -215,9 +215,9 @@ changes. For example:
   ``np.empty`` and so on.
 
 This also holds for the future: Making something overridable would require only
-minor changes to ``unumpy``.
+minor changes to ``unumpy_demo``.
 
-Another promise ``unumpy`` holds is one of default implementations. Default
+Another promise ``unumpy_demo`` holds is one of default implementations. Default
 implementations can be provided for any multimethod, in terms of others. This
 allows one to override a large part of the NumPy API by defining only a small
 part of it. This is to ease the creation of new duck-arrays, by providing
@@ -249,50 +249,50 @@ work with NumPy, much like third-party array implementations. These can provide
 features such as, for example, units, jagged arrays or other such features that
 are outside the scope of NumPy.
 
-Mixing NumPy and ``unumpy`` in the same file
+Mixing NumPy and ``unumpy_demo`` in the same file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Normally, one would only want to import only one of ``unumpy`` or ``numpy``,
+Normally, one would only want to import only one of ``unumpy_demo`` or ``numpy_demo``,
 you would import it as ``np`` for familiarity. However, there may be situations
 where one wishes to mix NumPy and the overrides, and there are a few ways to do
 this, depending on the user's style::
 
-    from numpy import overridable as unp
-    import numpy as np
+    from numpy_demo import overridable as unp
+    import numpy_demo as np
 
 or::
 
-    import numpy as np
+    import numpy_demo as np
 
-    # Use unumpy via np.overridable
+    # Use unumpy_demo via np.overridable
 
 Duck-array coercion
 ~~~~~~~~~~~~~~~~~~~
 
 There are inherent problems about returning objects that are not NumPy arrays
-from ``numpy.array`` or ``numpy.asarray``, particularly in the context of C/C++
+from ``numpy_demo.array`` or ``numpy_demo.asarray``, particularly in the context of C/C++
 or Cython code that may get an object with a different memory layout than the
 one it expects. However, we believe this problem may apply not only to these
 two functions but all functions that return NumPy arrays. For this reason,
-overrides are opt-in for the user, by using the submodule ``numpy.overridable``
-rather than ``numpy``. NumPy will continue to work unaffected by anything in
-``numpy.overridable``.
+overrides are opt-in for the user, by using the submodule ``numpy_demo.overridable``
+rather than ``numpy_demo``. NumPy will continue to work unaffected by anything in
+``numpy_demo.overridable``.
 
 If the user wishes to obtain a NumPy array, there are two ways of doing it:
 
-1. Use ``numpy.asarray`` (the non-overridable version).
-2. Use ``numpy.overridable.asarray`` with the NumPy backend set and coercion
+1. Use ``numpy_demo.asarray`` (the non-overridable version).
+2. Use ``numpy_demo.overridable.asarray`` with the NumPy backend set and coercion
    enabled
 
-Aliases outside of the ``numpy.overridable`` namespace
+Aliases outside of the ``numpy_demo.overridable`` namespace
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-All functionality in ``numpy.random``, ``numpy.linalg`` and ``numpy.fft``
+All functionality in ``numpy_demo.random``, ``numpy_demo.linalg`` and ``numpy_demo.fft``
 will be aliased to their respective overridable versions inside
-``numpy.overridable``. The reason for this is that there are alternative
+``numpy_demo.overridable``. The reason for this is that there are alternative
 implementations of RNGs (``mkl-random``), linear algebra routines (``eigen``,
 ``blis``) and FFT routines (``mkl-fft``, ``pyFFTW``) that need to operate on
-``numpy.ndarray`` inputs, but still need the ability to switch behaviour.
+``numpy_demo.ndarray`` inputs, but still need the ability to switch behaviour.
 
 This is different from monkeypatching in a few different ways:
 
@@ -300,11 +300,11 @@ This is different from monkeypatching in a few different ways:
   so there is at least the loose sense of an API contract. Monkeypatching
   does not provide this ability.
 * There is the ability of locally switching the backend.
-* It has been `suggested <http://numpy-discussion.10968.n7.nabble.com/NEP-31-Context-local-and-global-overrides-of-the-NumPy-API-tp47452p47472.html>`_
+* It has been `suggested <http://numpy_demo-discussion.10968.n7.nabble.com/NEP-31-Context-local-and-global-overrides-of-the-NumPy-API-tp47452p47472.html>`_
   that the reason that 1.17 hasn't landed in the Anaconda defaults channel is
   due to the incompatibility between monkeypatching and ``__array_function__``,
   as monkeypatching would bypass the protocol completely.
-* Statements of the form ``from numpy import x; x`` and ``np.x`` would have
+* Statements of the form ``from numpy_demo import x; x`` and ``np.x`` would have
   different results depending on whether the import was made before or
   after monkeypatching happened.
 
@@ -312,14 +312,14 @@ All this isn't possible at all with ``__array_function__`` or
 ``__array_ufunc__``.
 
 It has been formally realised (at least in part) that a backend system is
-needed for this, in the `NumPy roadmap <https://numpy.org/neps/roadmap.html#other-functionality>`_.
+needed for this, in the `NumPy roadmap <https://numpy_demo.org/neps/roadmap.html#other-functionality>`_.
 
-For ``numpy.random``, it's still necessary to make the C-API fit the one
-proposed in `NEP-19 <https://numpy.org/neps/nep-0019-rng-policy.html>`_.
+For ``numpy_demo.random``, it's still necessary to make the C-API fit the one
+proposed in `NEP-19 <https://numpy_demo.org/neps/nep-0019-rng-policy.html>`_.
 This is impossible for `mkl-random`, because then it would need to be
 rewritten to fit that framework. The guarantees on stream
 compatibility will be the same as before, but if there's a backend that affects
-``numpy.random`` set, we make no guarantees about stream compatibility, and it
+``numpy_demo.random`` set, we make no guarantees about stream compatibility, and it
 is up to the backend author to provide their own guarantees.
 
 Providing a way for implicit dispatch
@@ -332,8 +332,8 @@ As a concrete example, consider the following:
 
 .. code:: python
 
-    with unumpy.determine_backend(array_like, np.ndarray):
-        unumpy.arange(len(array_like))
+    with unumpy_demo.determine_backend(array_like, np.ndarray):
+        unumpy_demo.arange(len(array_like))
 
 While this does not exist yet in ``uarray``, it is trivial to add it. The need for
 this kind of code exists because one might want to have an alternative for the
@@ -347,7 +347,7 @@ The need for an opt-in module
 
 The need for an opt-in module is realised because of a few reasons:
 
-* There are parts of the API (like `numpy.asarray`) that simply cannot be
+* There are parts of the API (like `numpy_demo.asarray`) that simply cannot be
   overridden due to incompatibility concerns with C/Cython extensions, however,
   one may want to coerce to a duck-array using ``asarray`` with a backend set.
 * There are possible issues around an implicit option and monkeypatching, such
@@ -355,7 +355,7 @@ The need for an opt-in module is realised because of a few reasons:
 
 NEP 18 notes that this may require maintenance of two separate APIs. However,
 this burden may be lessened by, for example, parametrizing all tests over
-``numpy.overridable`` separately via a fixture. This also has the side-effect
+``numpy_demo.overridable`` separately via a fixture. This also has the side-effect
 of thoroughly testing it, unlike ``__array_function__``. We also feel that it
 provides an oppurtunity to separate the NumPy API contract properly from the
 implementation.
@@ -428,13 +428,13 @@ The implementation of this NEP will require the following steps:
 
 * Implementation of ``uarray`` multimethods corresponding to the
   NumPy API, including classes for overriding ``dtype``, ``ufunc``
-  and ``array`` objects, in the ``unumpy`` repository, which are usually
+  and ``array`` objects, in the ``unumpy_demo`` repository, which are usually
   very easy to create.
-* Moving backends from ``unumpy`` into the respective array libraries.
+* Moving backends from ``unumpy_demo`` into the respective array libraries.
 
-Maintenance can be eased by testing over ``{numpy, unumpy}`` via parameterized
+Maintenance can be eased by testing over ``{numpy_demo, unumpy_demo}`` via parameterized
 tests. If a new argument is added to a method, the corresponding argument
-extractor and replacer will need to be updated within ``unumpy``.
+extractor and replacer will need to be updated within ``unumpy_demo``.
 
 A lot of argument extractors can be re-used from the existing implementation
 of the ``__array_function__`` protocol, and the replacers can be usually
@@ -454,8 +454,8 @@ uarray, that is the purpose of the uarray documentation.* [1]_
 *However, the NumPy community will have input into the design of
 uarray, via the issue tracker.*
 
-``unumpy`` is the interface that defines a set of overridable functions
-(multimethods) compatible with the numpy API. To do this, it uses the
+``unumpy_demo`` is the interface that defines a set of overridable functions
+(multimethods) compatible with the numpy_demo API. To do this, it uses the
 ``uarray`` library. ``uarray`` is a general purpose tool for creating
 multimethods that dispatch to one of multiple different possible backend
 implementations. In this sense, it is similar to the ``__array_function__``
@@ -542,11 +542,11 @@ As an example, consider the following::
 
         return full(*args, **kwargs)
 
-    @ua.create_multimethod(full_argreplacer, domain="numpy")
+    @ua.create_multimethod(full_argreplacer, domain="numpy_demo")
     def full(shape, fill_value, dtype=None, order='C'):
         return (ua.Dispatchable(dtype, np.dtype),)
 
-A large set of examples can be found in the ``unumpy`` repository, [8]_.
+A large set of examples can be found in the ``unumpy_demo`` repository, [8]_.
 This simple act of overriding callables allows us to override:
 
 * Methods
@@ -559,10 +559,10 @@ Examples for NumPy
 A library that implements a NumPy-like API will use it in the following
 manner (as an example)::
 
-    import numpy.overridable as unp
+    import numpy_demo.overridable as unp
     _ua_implementations = {}
 
-    __ua_domain__ = "numpy"
+    __ua_domain__ = "numpy_demo"
 
     def __ua_function__(func, args, kwargs):
         fn = _ua_implementations.get(func, None)
@@ -595,12 +595,12 @@ NEP-13 [4]_ and NEP-30 [9]_ plus adding more protocols (not yet specified)
 in addition to it. Even then, some parts of the NumPy API will remain
 non-overridable, so it's a partial alternative.
 
-The main alternative to vendoring ``unumpy`` is to simply move it into NumPy
+The main alternative to vendoring ``unumpy_demo`` is to simply move it into NumPy
 completely and not distribute it as a separate package. This would also achieve
 the proposed goals, however we prefer to keep it a separate package for now,
 for reasons already stated above.
 
-The third alternative is to move ``unumpy`` into the NumPy organisation and
+The third alternative is to move ``unumpy_demo`` into the NumPy organisation and
 develop it as a NumPy project. This will also achieve the said goals, and is
 also a possibility that can be considered by this NEP. However, the act of
 doing an extra ``pip install`` or ``conda install`` may discourage some users
@@ -616,15 +616,15 @@ Discussion
 ----------
 
 * ``uarray`` blogpost: https://labs.quansight.org/blog/2019/07/uarray-update-api-changes-overhead-and-comparison-to-__array_function__/
-* The discussion section of NEP-18: https://numpy.org/neps/nep-0018-array-function-protocol.html#discussion
-* NEP-22: https://numpy.org/neps/nep-0022-ndarray-duck-typing-overview.html
+* The discussion section of NEP-18: https://numpy_demo.org/neps/nep-0018-array-function-protocol.html#discussion
+* NEP-22: https://numpy_demo.org/neps/nep-0022-ndarray-duck-typing-overview.html
 * Dask issue #4462: https://github.com/dask/dask/issues/4462
-* PR #13046: https://github.com/numpy/numpy/pull/13046
+* PR #13046: https://github.com/numpy_demo/numpy_demo/pull/13046
 * Dask issue #4883: https://github.com/dask/dask/issues/4883
-* Issue #13831: https://github.com/numpy/numpy/issues/13831
-* Discussion PR 1: https://github.com/hameerabbasi/numpy/pull/3
-* Discussion PR 2: https://github.com/hameerabbasi/numpy/pull/4
-* Discussion PR 3: https://github.com/numpy/numpy/pull/14389
+* Issue #13831: https://github.com/numpy_demo/numpy_demo/issues/13831
+* Discussion PR 1: https://github.com/hameerabbasi/numpy_demo/pull/3
+* Discussion PR 2: https://github.com/hameerabbasi/numpy_demo/pull/4
+* Discussion PR 3: https://github.com/numpy_demo/numpy_demo/pull/14389
 
 
 References and Footnotes
@@ -632,21 +632,21 @@ References and Footnotes
 
 .. [1] uarray, A general dispatch mechanism for Python: https://uarray.readthedocs.io
 
-.. [2] NEP 18 — A dispatch mechanism for NumPy’s high level array functions: https://numpy.org/neps/nep-0018-array-function-protocol.html
+.. [2] NEP 18 — A dispatch mechanism for NumPy’s high level array functions: https://numpy_demo.org/neps/nep-0018-array-function-protocol.html
 
-.. [3] NEP 22 — Duck typing for NumPy arrays – high level overview: https://numpy.org/neps/nep-0022-ndarray-duck-typing-overview.html
+.. [3] NEP 22 — Duck typing for NumPy arrays – high level overview: https://numpy_demo.org/neps/nep-0022-ndarray-duck-typing-overview.html
 
-.. [4] NEP 13 — A Mechanism for Overriding Ufuncs: https://numpy.org/neps/nep-0013-ufunc-overrides.html
+.. [4] NEP 13 — A Mechanism for Overriding Ufuncs: https://numpy_demo.org/neps/nep-0013-ufunc-overrides.html
 
-.. [5] Reply to Adding to the non-dispatched implementation of NumPy methods: http://numpy-discussion.10968.n7.nabble.com/Adding-to-the-non-dispatched-implementation-of-NumPy-methods-tp46816p46874.html
+.. [5] Reply to Adding to the non-dispatched implementation of NumPy methods: http://numpy_demo-discussion.10968.n7.nabble.com/Adding-to-the-non-dispatched-implementation-of-NumPy-methods-tp46816p46874.html
 
-.. [6] Custom Dtype/Units discussion: http://numpy-discussion.10968.n7.nabble.com/Custom-Dtype-Units-discussion-td43262.html
+.. [6] Custom Dtype/Units discussion: http://numpy_demo-discussion.10968.n7.nabble.com/Custom-Dtype-Units-discussion-td43262.html
 
-.. [7] The epic dtype cleanup plan: https://github.com/numpy/numpy/issues/2899
+.. [7] The epic dtype cleanup plan: https://github.com/numpy_demo/numpy_demo/issues/2899
 
-.. [8] unumpy: NumPy, but implementation-independent: https://unumpy.readthedocs.io
+.. [8] unumpy_demo: NumPy, but implementation-independent: https://unumpy_demo.readthedocs.io
 
-.. [9] NEP 30 — Duck Typing for NumPy Arrays - Implementation: https://www.numpy.org/neps/nep-0030-duck-array-protocol.html
+.. [9] NEP 30 — Duck Typing for NumPy Arrays - Implementation: https://www.numpy_demo.org/neps/nep-0030-duck-array-protocol.html
 
 .. [10] http://scipy.github.io/devdocs/fft.html#backend-control
 

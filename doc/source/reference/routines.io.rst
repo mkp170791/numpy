@@ -3,7 +3,7 @@
 Input and output
 ****************
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 NumPy binary files (NPY, NPZ)
 -----------------------------
@@ -16,7 +16,7 @@ NumPy binary files (NPY, NPZ)
    savez_compressed
 
 The format of these binary file types is documented in
-:py:mod:`numpy.lib.format`
+:py:mod:`numpy_demo.lib.format`
 
 Text files
 ----------

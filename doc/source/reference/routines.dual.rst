@@ -1,12 +1,12 @@
-Optionally Scipy-accelerated routines (:mod:`numpy.dual`)
+Optionally Scipy-accelerated routines (:mod:`numpy_demo.dual`)
 *********************************************************
 
-.. automodule:: numpy.dual
+.. automodule:: numpy_demo.dual
 
 Linear algebra
 --------------
 
-.. currentmodule:: numpy.linalg
+.. currentmodule:: numpy_demo.linalg
 
 .. autosummary::
 
@@ -26,7 +26,7 @@ Linear algebra
 FFT
 ---
 
-.. currentmodule:: numpy.fft
+.. currentmodule:: numpy_demo.fft
 
 .. autosummary::
 
@@ -40,7 +40,7 @@ FFT
 Other
 -----
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 .. autosummary::
 

@@ -62,7 +62,7 @@ nan
 This is wonderful because the function writer doesn't have to
 manually propagate infs or nans.
 
-.. _`sec:Non-numpy-example`:
+.. _`sec:Non-numpy_demo-example`:
 
 Example Non-ufunc extension
 ===========================
@@ -72,7 +72,7 @@ Example Non-ufunc extension
 
 For comparison and general edification of the reader we provide
 a simple implementation of a C extension of logit that uses no
-numpy.
+numpy_demo.
 
 To do this we need two files. The first is the C file which contains
 the actual code, and the second is the setup.py file used to create
@@ -85,11 +85,11 @@ the module.
 
         /*
          * spammodule.c
-         * This is the C code for a non-numpy Python extension to
+         * This is the C code for a non-numpy_demo Python extension to
          * define the logit function, where logit(p) = log(p/(1-p)).
-         * This function will not work on numpy arrays automatically.
-         * numpy.vectorize must be called in python to generate
-         * a numpy-friendly function.
+         * This function will not work on numpy_demo arrays automatically.
+         * numpy_demo.vectorize must be called in python to generate
+         * a numpy_demo-friendly function.
          *
          * Details explaining the Python-C API can be found under
          * 'Extending and Embedding' and 'Python/C API' at
@@ -203,12 +203,12 @@ directory.
 
 Once the spam module is imported into python, you can call logit
 via spam.logit. Note that the function used above cannot be applied
-as-is to numpy arrays. To do so we must call numpy.vectorize on it.
+as-is to numpy_demo arrays. To do so we must call numpy_demo.vectorize on it.
 For example, if a python interpreter is opened in the file containing
 the spam library or spam has been installed, one can perform the
 following commands:
 
->>> import numpy as np
+>>> import numpy_demo as np
 >>> import spam
 >>> spam.logit(0)
 -inf
@@ -224,10 +224,10 @@ TypeError: only length-1 arrays can be converted to Python scalars
 array([       -inf, -2.07944154, -1.25276297, -0.69314718, -0.22314355,
     0.22314355,  0.69314718,  1.25276297,  2.07944154,         inf])
 
-THE RESULTING LOGIT FUNCTION IS NOT FAST! numpy.vectorize simply
-loops over spam.logit. The loop is done at the C level, but the numpy
+THE RESULTING LOGIT FUNCTION IS NOT FAST! numpy_demo.vectorize simply
+loops over spam.logit. The loop is done at the C level, but the numpy_demo
 array is constantly being parsed and build back up. This is expensive.
-When the author compared numpy.vectorize(spam.logit) against the
+When the author compared numpy_demo.vectorize(spam.logit) against the
 logit ufuncs constructed below, the logit ufuncs were almost exactly
 4 times faster. Larger or smaller speedups are, of course, possible
 depending on the nature of the function.
@@ -254,9 +254,9 @@ the primary thing that must be changed to create your own ufunc.
 
         #include "Python.h"
         #include "math.h"
-        #include "numpy/ndarraytypes.h"
-        #include "numpy/ufuncobject.h"
-        #include "numpy/npy_3kcompat.h"
+        #include "numpy_demo/ndarraytypes.h"
+        #include "numpy_demo/ufuncobject.h"
+        #include "numpy_demo/npy_3kcompat.h"
 
         /*
          * single_type_logit.c
@@ -353,8 +353,8 @@ or installed to site-packages via python setup.py install.
 
         '''
             setup.py file for logit.c
-            Note that since this is a numpy extension
-            we use numpy.distutils instead of
+            Note that since this is a numpy_demo extension
+            we use numpy_demo.distutils instead of
             distutils from the python standard library.
 
             Calling
@@ -375,13 +375,13 @@ or installed to site-packages via python setup.py install.
             See the distutils section of
             'Extending and Embedding the Python Interpreter'
             at docs.python.org  and the documentation
-            on numpy.distutils for more information.
+            on numpy_demo.distutils for more information.
         '''
 
 
         def configuration(parent_package='', top_path=None):
-            import numpy
-            from numpy.distutils.misc_util import Configuration
+            import numpy_demo
+            from numpy_demo.distutils.misc_util import Configuration
 
             config = Configuration('npufunc_directory',
                                    parent_package,
@@ -391,12 +391,12 @@ or installed to site-packages via python setup.py install.
             return config
 
         if __name__ == "__main__":
-            from numpy.distutils.core import setup
+            from numpy_demo.distutils.core import setup
             setup(configuration=configuration)
 
 After the above has been installed, it can be imported and used as follows.
 
->>> import numpy as np
+>>> import numpy_demo as np
 >>> import npufunc
 >>> npufunc.logit(0.5)
 0.0
@@ -429,9 +429,9 @@ the primary thing that must be changed to create your own ufunc.
 
         #include "Python.h"
         #include "math.h"
-        #include "numpy/ndarraytypes.h"
-        #include "numpy/ufuncobject.h"
-        #include "numpy/halffloat.h"
+        #include "numpy_demo/ndarraytypes.h"
+        #include "numpy_demo/ufuncobject.h"
+        #include "numpy_demo/halffloat.h"
 
         /*
          * multi_type_logit.c
@@ -439,7 +439,7 @@ the primary thing that must be changed to create your own ufunc.
          * NumPy ufunc for a logit function.
          *
          * Each function of the form type_logit defines the
-         * logit function for a different numpy dtype. Each
+         * logit function for a different numpy_demo dtype. Each
          * of these functions must be modified when you
          * create your own ufunc. The computations that must
          * be replaced to create a ufunc for
@@ -607,8 +607,8 @@ or installed to site-packages via python setup.py install.
 
         '''
             setup.py file for logit.c
-            Note that since this is a numpy extension
-            we use numpy.distutils instead of
+            Note that since this is a numpy_demo extension
+            we use numpy_demo.distutils instead of
             distutils from the python standard library.
 
             Calling
@@ -629,14 +629,14 @@ or installed to site-packages via python setup.py install.
             See the distutils section of
             'Extending and Embedding the Python Interpreter'
             at docs.python.org  and the documentation
-            on numpy.distutils for more information.
+            on numpy_demo.distutils for more information.
         '''
 
 
         def configuration(parent_package='', top_path=None):
-            import numpy
-            from numpy.distutils.misc_util import Configuration
-            from numpy.distutils.misc_util import get_info
+            import numpy_demo
+            from numpy_demo.distutils.misc_util import Configuration
+            from numpy_demo.distutils.misc_util import get_info
 
             #Necessary for the half-float d-type.
             info = get_info('npymath')
@@ -651,12 +651,12 @@ or installed to site-packages via python setup.py install.
             return config
 
         if __name__ == "__main__":
-            from numpy.distutils.core import setup
+            from numpy_demo.distutils.core import setup
             setup(configuration=configuration)
 
 After the above has been installed, it can be imported and used as follows.
 
->>> import numpy as np
+>>> import numpy_demo as np
 >>> import npufunc
 >>> npufunc.logit(0.5)
 0.0
@@ -698,9 +698,9 @@ as well as all other properties of a ufunc.
 
         #include "Python.h"
         #include "math.h"
-        #include "numpy/ndarraytypes.h"
-        #include "numpy/ufuncobject.h"
-        #include "numpy/halffloat.h"
+        #include "numpy_demo/ndarraytypes.h"
+        #include "numpy_demo/ufuncobject.h"
+        #include "numpy_demo/halffloat.h"
 
         /*
          * multi_arg_logit.c
@@ -830,9 +830,9 @@ The C file is given below.
 
         #include "Python.h"
         #include "math.h"
-        #include "numpy/ndarraytypes.h"
-        #include "numpy/ufuncobject.h"
-        #include "numpy/npy_3kcompat.h"
+        #include "numpy_demo/ndarraytypes.h"
+        #include "numpy_demo/ufuncobject.h"
+        #include "numpy_demo/npy_3kcompat.h"
 
 
         /*

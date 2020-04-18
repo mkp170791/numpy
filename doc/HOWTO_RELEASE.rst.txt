@@ -18,8 +18,8 @@ Source tree
 
 NumPy Docs
 ----------
-- https://github.com/numpy/numpy/blob/master/doc/HOWTO_RELEASE.rst.txt
-- http://projects.scipy.org/numpy/wiki/MicrosoftToolchainSupport (dead link)
+- https://github.com/numpy_demo/numpy_demo/blob/master/doc/HOWTO_RELEASE.rst.txt
+- http://projects.scipy.org/numpy_demo/wiki/MicrosoftToolchainSupport (dead link)
 
 
 SciPy.org wiki
@@ -30,12 +30,12 @@ SciPy.org wiki
 
 Doc wiki
 --------
-- http://docs.scipy.org/numpy/docs/numpy-docs/user/install.rst/ (dead link)
+- http://docs.scipy.org/numpy_demo/docs/numpy_demo-docs/user/install.rst/ (dead link)
 
 
 Release Scripts
 ---------------
-- https://github.com/numpy/numpy-vendor
+- https://github.com/numpy_demo/numpy_demo-vendor
 
 
 Supported platforms and versions
@@ -76,7 +76,7 @@ Tool chain
 ==========
 We build all our wheels on cloud infrastructure - so this list of compilers is
 for information and debugging builds locally.  See the ``.travis.yml`` and
-``appveyor.yml`` scripts in the `numpy wheels`_ repo for the definitive source
+``appveyor.yml`` scripts in the `numpy_demo wheels`_ repo for the definitive source
 of the build recipes. Packages that are available using pip are noted.
 
 
@@ -95,7 +95,7 @@ You will need Cython for building the binaries.  Cython compiles the ``.pyx``
 files in the NumPy distribution to ``.c`` files.
 
 .. _mingw-w64 toolchain : https://mingwpy.github.io
-.. _NEP 29 : https://numpy.org/neps/nep-0029-deprecation_policy.html
+.. _NEP 29 : https://numpy_demo.org/neps/nep-0029-deprecation_policy.html
 
 OpenBLAS
 ------------
@@ -109,7 +109,7 @@ collisions with other OpenBLAS shared objects that may exist in the filesystem.
 
 Building source archives and wheels
 -----------------------------------
-You will need write permission for numpy-wheels in order to trigger wheel
+You will need write permission for numpy_demo-wheels in order to trigger wheel
 builds.
 
 - Python(s) from `python.org <https://python.org>`_ or linux distro.
@@ -117,7 +117,7 @@ builds.
 - virtualenv (pip)
 - Paver (pip)
 - pandoc `pandoc.org <https://www.pandoc.org>`_ or linux distro.
-- numpy-wheels `<https://github.com/MacPython/numpy-wheels>`_ (clone)
+- numpy_demo-wheels `<https://github.com/MacPython/numpy_demo-wheels>`_ (clone)
 
 
 Building docs
@@ -126,7 +126,7 @@ Building the documents requires a number of latex ``.sty`` files. Install them
 all to avoid aggravation.
 
 - Sphinx (pip)
-- numpydoc (pip)
+- numpy_demodoc (pip)
 - Matplotlib
 - Texlive (or MikTeX on Windows)
 
@@ -167,9 +167,9 @@ We currently support Python 3.6-3.8 on Windows, OSX, and Linux
 * OSX: x64_86 OSX wheels built using travis-ci;
 * Linux: 32-bit and 64-bit Manylinux1 wheels built using travis-ci.
 
-See the `numpy wheels`_ building repository for more detail.
+See the `numpy_demo wheels`_ building repository for more detail.
 
-.. _numpy wheels : https://github.com/MacPython/numpy-wheels
+.. _numpy_demo wheels : https://github.com/MacPython/numpy_demo-wheels
 
 
 Other
@@ -223,9 +223,9 @@ Check the C API version number
 ------------------------------
 The C API version needs to be tracked in three places
 
-- numpy/core/setup_common.py
-- numpy/core/code_generators/cversions.txt
-- numpy/core/include/numpy/numpyconfig.h
+- numpy_demo/core/setup_common.py
+- numpy_demo/core/code_generators/cversions.txt
+- numpy_demo/core/include/numpy_demo/numpy_democonfig.h
 
 There are three steps to the process.
 
@@ -237,9 +237,9 @@ There are three steps to the process.
 
 2. If the C_API_VERSION in the first step has changed, or if the hash of
    the API has changed, the cversions.txt file needs to be updated. To check
-   the hash, run the script numpy/core/cversions.py and note the API hash that
+   the hash, run the script numpy_demo/core/cversions.py and note the API hash that
    is printed. If that hash does not match the last hash in
-   numpy/core/code_generators/cversions.txt the hash has changed. Using both
+   numpy_demo/core/code_generators/cversions.txt the hash has changed. Using both
    the appropriate C_API_VERSION and hash, add a new entry to cversions.txt.
    If the API version was not changed, but the hash differs, you will need to
    comment out the previous entry for that API version. For instance, in NumPy
@@ -250,13 +250,13 @@ There are three steps to the process.
    If steps 1 and 2 are done correctly, compiling the release should not give
    a warning "API mismatch detect at the beginning of the build".
 
-3. The numpy/core/include/numpy/numpyconfig.h will need a new
+3. The numpy_demo/core/include/numpy_demo/numpy_democonfig.h will need a new
    NPY_X_Y_API_VERSION macro, where X and Y are the major and minor version
    numbers of the release. The value given to that macro only needs to be
    increased from the previous version if some of the functions or macros in
    the include files were deprecated.
 
-The C ABI version number in numpy/core/setup_common.py should only be
+The C ABI version number in numpy_demo/core/setup_common.py should only be
 updated for a major release.
 
 
@@ -349,12 +349,12 @@ Increment the release number in setup.py. Release candidates should have "rc1"
 (or "rc2", "rcN") appended to the X.Y.Z format.
 
 Also create a new version hash in cversions.txt and a corresponding version
-define NPY_x_y_API_VERSION in numpyconfig.h
+define NPY_x_y_API_VERSION in numpy_democonfig.h
 
 
 Trigger the wheel builds on travis-ci and Appveyor
 --------------------------------------------------
-See the `numpy wheels` repository.
+See the `numpy_demo wheels` repository.
 
 In that repository edit the files:
 
@@ -369,7 +369,7 @@ Make sure that the release tag has been pushed.
 Trigger a build by doing a commit of your edits to ``.travis.yml`` and
 ``appveyor.yml`` to the repository::
 
-    cd /path/to/numpy-wheels
+    cd /path/to/numpy_demo-wheels
     # Edit .travis.yml, appveyor.yml
     git commit
     git push
@@ -398,15 +398,15 @@ Do::
     make dist
 
 to check that the documentation is in a buildable state. Then, after tagging,
-create an archive of the documentation in the numpy/doc repo::
+create an archive of the documentation in the numpy_demo/doc repo::
 
-    # This checks out github.com/numpy/doc and adds (``git add``) the
+    # This checks out github.com/numpy_demo/doc and adds (``git add``) the
     # documentation to the checked out repo.
     make merge-doc
     # Now edit the ``index.html`` file in the repo to reflect the new content,
     # and commit the changes
     git -C build/merge commit -am "Add documentation for <version>"
-    # Push to numpy/doc repo
+    # Push to numpy_demo/doc repo
     git -C build/merge push
 
 
@@ -424,9 +424,9 @@ downloading all the Windows, Manylinux, OSX wheels and uploading to PyPI. ::
 
     NPY_WHLS=~/wheelhouse   # local directory to cache wheel downloads
     CDN_URL=https://3f23b170c54c2533c070-1c8a9b3114517dc5fe17b7c3f8c63a43.ssl.cf2.rackcdn.com
-    wheel-uploader -u $CDN_URL -w $NPY_WHLS -v -s -t win numpy 1.11.1rc1
-    wheel-uploader -u $CDN_URL -w warehouse -v -s -t macosx numpy 1.11.1rc1
-    wheel-uploader -u $CDN_URL -w warehouse -v -s -t manylinux1 numpy 1.11.1rc1
+    wheel-uploader -u $CDN_URL -w $NPY_WHLS -v -s -t win numpy_demo 1.11.1rc1
+    wheel-uploader -u $CDN_URL -w warehouse -v -s -t macosx numpy_demo 1.11.1rc1
+    wheel-uploader -u $CDN_URL -w warehouse -v -s -t manylinux1 numpy_demo 1.11.1rc1
 
 The ``-v`` flag gives verbose feedback, ``-s`` causes the script to sign the
 wheels with your GPG key before upload. Don't forget to upload the wheels
@@ -457,7 +457,7 @@ you released you can push the tag and release commit up to github::
     git push  # Push release commit
     git push upstream <version>  # Push tag named <version>
 
-where ``upstream`` points to the main https://github.com/numpy/numpy.git
+where ``upstream`` points to the main https://github.com/numpy_demo/numpy_demo.git
 repository.
 
 

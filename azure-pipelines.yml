@@ -35,9 +35,9 @@ stages:
     steps:
     - script: |
             docker pull quay.io/pypa/manylinux2010_i686
-            docker run -v $(pwd):/numpy -e CFLAGS="-msse2 -std=c99 -UNDEBUG" \
+            docker run -v $(pwd):/numpy_demo -e CFLAGS="-msse2 -std=c99 -UNDEBUG" \
             -e F77=gfortran-5 -e F90=gfortran-5 quay.io/pypa/manylinux2010_i686 \
-            /bin/bash -xc "cd numpy && \
+            /bin/bash -xc "cd numpy_demo && \
             /opt/python/cp38-cp38/bin/python -mvenv venv &&\
             source venv/bin/activate && \
             python3 -m pip install urllib3 && \
@@ -124,9 +124,9 @@ stages:
       displayName: 'Install tools'
     - script: |
         python -m pip install -r test_requirements.txt
-        python -m pip install vulture docutils sphinx==2.2.0 numpydoc
+        python -m pip install vulture docutils sphinx==2.2.0 numpy_demodoc
       displayName: 'Install dependencies; some are optional to avoid test skips'
-    - script: /bin/bash -c "! vulture . --min-confidence 100 --exclude doc/,numpy/distutils/ | grep 'unreachable'"
+    - script: /bin/bash -c "! vulture . --min-confidence 100 --exclude doc/,numpy_demo/distutils/ | grep 'unreachable'"
       displayName: 'Check for unreachable code paths in Python modules'
     # prefer usage of clang over gcc proper
     # to match likely scenario on many user mac machines
@@ -148,7 +148,7 @@ stages:
         CC: /usr/bin/clang
       condition: eq(variables['USE_OPENBLAS'], '0')
     # wait until after dev build of NumPy to pip
-    # install matplotlib to avoid pip install of older numpy
+    # install matplotlib to avoid pip install of older numpy_demo
     - script: python -m pip install matplotlib
       displayName: 'Install matplotlib before refguide run'
     - script: python runtests.py -g --refguide-check
@@ -160,17 +160,17 @@ stages:
     - bash: python tools/openblas_support.py --check_version
       displayName: 'Verify OpenBLAS version'
       condition: eq(variables['USE_OPENBLAS'], '1')
-    # import doesn't work when in numpy src directory , so do a pip dev install of build lib to test
+    # import doesn't work when in numpy_demo src directory , so do a pip dev install of build lib to test
     - script: |
         #!/bin/bash -v
         set +e
-        python -c "import numpy as np" > test_output.log 2>&1
+        python -c "import numpy_demo as np" > test_output.log 2>&1
         check_output_code=$?
         cat test_output.log
         grep "buggy Accelerate backend"  test_output.log
         check_message=$?
         if [ $check_output_code == 1 ] && [ $check_message == 0 ]; then exit 0; else exit 1;fi
-      displayName: "Check if numpy import fails with accelerate"
+      displayName: "Check if numpy_demo import fails with accelerate"
       condition: eq(variables['USE_OPENBLAS'], '0')
     - task: PublishTestResults@2
       condition: succeededOrFailed()

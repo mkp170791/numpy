@@ -1,6 +1,6 @@
 from scipy import misc
 import matplotlib.pyplot as plt
-import numpy as np
+import numpy_demo as np
 
 img = misc.face()
 img_array = img / 255

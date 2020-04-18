@@ -3,7 +3,7 @@
 Data type routines
 ==================
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 .. autosummary::
    :toctree: generated/

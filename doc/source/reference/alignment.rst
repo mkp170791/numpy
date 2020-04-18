@@ -6,7 +6,7 @@ Memory Alignment
 Numpy Alignment Goals
 ---------------------
 
-There are three use-cases related to memory alignment in numpy (as of 1.14):
+There are three use-cases related to memory alignment in numpy_demo (as of 1.14):
 
  1. Creating structured datatypes with fields aligned like in a C-struct.
  2. Speeding up copy operations by using uint assignment in instead of memcpy
@@ -16,7 +16,7 @@ Numpy uses two different forms of alignment to achieve these goals:
 "True alignment" and "Uint alignment".
 
 "True" alignment refers to the architecture-dependent alignment of an
-equivalent C-type in C. For example, in x64 systems ``numpy.float64`` is
+equivalent C-type in C. For example, in x64 systems ``numpy_demo.float64`` is
 equivalent to ``double`` in C. On most systems this has either an alignment of
 4 or 8 bytes (and this can be controlled in gcc by the option
 ``malign-double``).  A variable is aligned in memory if its memory offset is a
@@ -24,12 +24,12 @@ multiple of its alignment. On some systems (eg sparc) memory alignment is
 required, on others it gives a speedup.
 
 "Uint" alignment depends on the size of a datatype. It is defined to be the
-"True alignment" of the uint used by numpy's copy-code to copy the datatype, or
-undefined/unaligned if there is no equivalent uint. Currently numpy uses uint8,
+"True alignment" of the uint used by numpy_demo's copy-code to copy the datatype, or
+undefined/unaligned if there is no equivalent uint. Currently numpy_demo uses uint8,
 uint16, uint32, uint64 and uint64 to copy data of size 1,2,4,8,16 bytes
 respectively, and all other sized datatypes cannot be uint-aligned.
 
-For example, on a (typical linux x64 gcc) system, the numpy ``complex64``
+For example, on a (typical linux x64 gcc) system, the numpy_demo ``complex64``
 datatype is implemented as ``struct { float real, imag; }``. This has "true"
 alignment of 4 and "uint" alignment of 8 (equal to the true alignment of
 ``uint64``).
@@ -45,7 +45,7 @@ Some cases where uint and true alignment are different (default gcc linux):
 Variables in Numpy which control and describe alignment
 -------------------------------------------------------
 
-There are 4 relevant uses of the word ``align`` used in numpy:
+There are 4 relevant uses of the word ``align`` used in numpy_demo:
 
  * The ``dtype.alignment`` attribute (``descr->alignment`` in C). This is meant
    to reflect the "true alignment" of the type. It has arch-dependent default
@@ -57,7 +57,7 @@ There are 4 relevant uses of the word ``align`` used in numpy:
    consistent with ``dtype.alignment``, which is the case if the data ptr and
    all strides of the array are multiples of that alignment.
  * The ``align`` keyword of the dtype constructor, which only affects structured
-   arrays. If the structure's field offsets are not manually provided numpy
+   arrays. If the structure's field offsets are not manually provided numpy_demo
    determines offsets automatically. In that case, ``align=True`` pads the
    structure so that each field is "true" aligned in memory and sets
    ``dtype.alignment`` to be the largest of the field "true" alignments. This
@@ -75,7 +75,7 @@ Consequences of alignment
 Here is how the variables above are used:
 
  1. Creating aligned structs: In order to know how to offset a field when
-    ``align=True``, numpy looks up ``field.dtype.alignment``. This includes
+    ``align=True``, numpy_demo looks up ``field.dtype.alignment``. This includes
     fields which are nested structured arrays.
  2. Ufuncs: If the ``ALIGNED`` flag of an array is False, ufuncs will
     buffer/cast the array before evaluation. This is needed since ufunc inner
@@ -86,8 +86,8 @@ Here is how the variables above are used:
     use a code path that buffers the arguments so they are true-aligned.
  4. Strided copy code: Here, "uint alignment" is used instead.  If the itemsize
     of an array is equal to 1, 2, 4, 8 or 16 bytes and the array is uint
-    aligned then instead numpy will do ``*(uintN*)dst) = *(uintN*)src)`` for
-    appropriate N. Otherwise numpy copies by doing ``memcpy(dst, src, N)``.
+    aligned then instead numpy_demo will do ``*(uintN*)dst) = *(uintN*)src)`` for
+    appropriate N. Otherwise numpy_demo copies by doing ``memcpy(dst, src, N)``.
  5. Nditer code: Since this often calls the strided copy code, it must
     check for "uint alignment".
  6. Cast code: This checks for "true" alignment, as it does

@@ -24,7 +24,7 @@ New 16-bit floating point type
 ------------------------------
 
 This release adds support for the IEEE 754-2008 binary16 format, available as
-the data type ``numpy.half``.  Within Python, the type behaves similarly to
+the data type ``numpy_demo.half``.  Within Python, the type behaves similarly to
 `float` or `double`, and C extensions can add support for it with the exposed
 half-float API.
 
@@ -42,7 +42,7 @@ ufuncs but difficult to replicate elsewhere, are now exposed by this
 iterator.
 
 
-Legendre, Laguerre, Hermite, HermiteE polynomials in ``numpy.polynomial``
+Legendre, Laguerre, Hermite, HermiteE polynomials in ``numpy_demo.polynomial``
 -------------------------------------------------------------------------
 
 Extend the number of polynomials available in the polynomial package. In
@@ -53,7 +53,7 @@ are infinite and provides a more intuitive way to get the correct mapping
 of values without playing unnatural tricks with the domain.
 
 
-Fortran assumed shape array and size function support in ``numpy.f2py``
+Fortran assumed shape array and size function support in ``numpy_demo.f2py``
 -----------------------------------------------------------------------
 
 F2py now supports wrapping Fortran 90 routines that use assumed shape
@@ -70,20 +70,20 @@ that use two argument ``size`` function in dimension specifications.
 Other new functions
 -------------------
 
-``numpy.ravel_multi_index`` : Converts a multi-index tuple into
+``numpy_demo.ravel_multi_index`` : Converts a multi-index tuple into
 an array of flat indices, applying boundary modes to the indices.
 
-``numpy.einsum`` : Evaluate the Einstein summation convention.  Using the
+``numpy_demo.einsum`` : Evaluate the Einstein summation convention.  Using the
 Einstein summation convention, many common multi-dimensional array operations
 can be represented in a simple fashion.  This function provides a way compute
 such summations.
 
-``numpy.count_nonzero`` : Counts the number of non-zero elements in an array.
+``numpy_demo.count_nonzero`` : Counts the number of non-zero elements in an array.
 
-``numpy.result_type`` and ``numpy.min_scalar_type`` : These functions expose
+``numpy_demo.result_type`` and ``numpy_demo.min_scalar_type`` : These functions expose
 the underlying type promotion used by the ufuncs and other operations to
-determine the types of outputs. These improve upon the ``numpy.common_type``
-and ``numpy.mintypecode`` which provide similar functionality but do
+determine the types of outputs. These improve upon the ``numpy_demo.common_type``
+and ``numpy_demo.mintypecode`` which provide similar functionality but do
 not match the ufunc implementation.
 
 
@@ -97,7 +97,7 @@ The default error handling has been change from ``print`` to ``warn`` for
 all except for ``underflow``, which remains as ``ignore``.
 
 
-``numpy.distutils``
+``numpy_demo.distutils``
 -------------------
 
 Several new compilers are supported for building Numpy: the Portland Group
@@ -105,10 +105,10 @@ Fortran compiler on OS X, the PathScale compiler suite and the 64-bit Intel C
 compiler on Linux.
 
 
-``numpy.testing``
+``numpy_demo.testing``
 -----------------
 
-The testing framework gained ``numpy.testing.assert_allclose``, which provides
+The testing framework gained ``numpy_demo.testing.assert_allclose``, which provides
 a more convenient way to compare floating point arrays than
 `assert_almost_equal`, `assert_approx_equal` and `assert_array_almost_equal`.
 
@@ -130,14 +130,14 @@ conversion of arbitrary python objects into arrays is exposed by
 Deprecated features
 ===================
 
-The "normed" keyword in ``numpy.histogram`` is deprecated. Its functionality
+The "normed" keyword in ``numpy_demo.histogram`` is deprecated. Its functionality
 will be replaced by the new "density" keyword.
 
 
 Removed features
 ================
 
-``numpy.fft``
+``numpy_demo.fft``
 -------------
 
 The functions `refft`, `refft2`, `refftn`, `irefft`, `irefft2`, `irefftn`,
@@ -145,33 +145,33 @@ which were aliases for the same functions without the 'e' in the name, were
 removed.
 
 
-``numpy.memmap``
+``numpy_demo.memmap``
 ----------------
 
 The `sync()` and `close()` methods of memmap were removed.  Use `flush()` and
 "del memmap" instead.
 
 
-``numpy.lib``
+``numpy_demo.lib``
 -------------
 
-The deprecated functions ``numpy.unique1d``, ``numpy.setmember1d``,
-``numpy.intersect1d_nu`` and ``numpy.lib.ufunclike.log2`` were removed.
+The deprecated functions ``numpy_demo.unique1d``, ``numpy_demo.setmember1d``,
+``numpy_demo.intersect1d_nu`` and ``numpy_demo.lib.ufunclike.log2`` were removed.
 
 
-``numpy.ma``
+``numpy_demo.ma``
 ------------
 
-Several deprecated items were removed from the ``numpy.ma`` module::
+Several deprecated items were removed from the ``numpy_demo.ma`` module::
 
-  * ``numpy.ma.MaskedArray`` "raw_data" method
-  * ``numpy.ma.MaskedArray`` constructor "flag" keyword
-  * ``numpy.ma.make_mask`` "flag" keyword
-  * ``numpy.ma.allclose`` "fill_value" keyword
+  * ``numpy_demo.ma.MaskedArray`` "raw_data" method
+  * ``numpy_demo.ma.MaskedArray`` constructor "flag" keyword
+  * ``numpy_demo.ma.make_mask`` "flag" keyword
+  * ``numpy_demo.ma.allclose`` "fill_value" keyword
 
 
-``numpy.distutils``
+``numpy_demo.distutils``
 -------------------
 
-The ``numpy.get_numpy_include`` function was removed, use ``numpy.get_include``
+The ``numpy_demo.get_numpy_demo_include`` function was removed, use ``numpy_demo.get_include``
 instead.

@@ -1,4 +1,4 @@
-.. currentmodule:: numpy.random
+.. currentmodule:: numpy_demo.random
 
 .. _extending:
 
@@ -18,7 +18,7 @@ This example shows how numba can be used to produce gaussian samples using
 a pure Python implementation which is then compiled.  The random numbers are
 provided by ``ctypes.next_double``.
 
-.. literalinclude:: ../../../../numpy/random/_examples/numba/extending.py
+.. literalinclude:: ../../../../numpy_demo/random/_examples/numba/extending.py
     :language: python
     :end-before: example 2
 
@@ -37,23 +37,23 @@ This example uses `PCG64` and the example from above.  The usual caveats
 for writing high-performance code using Cython -- removing bounds checks and
 wrap around, providing array alignment information -- still apply.
 
-.. literalinclude:: ../../../../numpy/random/_examples/cython/extending_distributions.pyx
+.. literalinclude:: ../../../../numpy_demo/random/_examples/cython/extending_distributions.pyx
     :language: cython
     :end-before: example 2
 
 The BitGenerator can also be directly accessed using the members of the ``bitgen_t``
 struct.
 
-.. literalinclude:: ../../../../numpy/random/_examples/cython/extending_distributions.pyx
+.. literalinclude:: ../../../../numpy_demo/random/_examples/cython/extending_distributions.pyx
     :language: cython
     :start-after: example 2
     :end-before: example 3
 
 Cython can be used to directly access the functions in
-``numpy/random/c_distributions.pxd``. This requires linking with the
-``npyrandom`` library located in ``numpy/random/lib``.
+``numpy_demo/random/c_distributions.pxd``. This requires linking with the
+``npyrandom`` library located in ``numpy_demo/random/lib``.
 
-.. literalinclude:: ../../../../numpy/random/_examples/cython/extending_distributions.pyx
+.. literalinclude:: ../../../../numpy_demo/random/_examples/cython/extending_distributions.pyx
     :language: cython
     :start-after: example 3
 
@@ -64,17 +64,17 @@ CFFI
 ====
 
 CFFI can be used to directly access the functions in
-``include/numpy/random/distributions.h``. Some "massaging" of the header
+``include/numpy_demo/random/distributions.h``. Some "massaging" of the header
 file is required:
 
-.. literalinclude:: ../../../../numpy/random/_examples/cffi/extending.py
+.. literalinclude:: ../../../../numpy_demo/random/_examples/cffi/extending.py
     :language: python
     :end-before: dlopen
 
 Once the header is parsed by ``ffi.cdef``, the functions can be accessed
 directly from the ``_generator`` shared object, using the `BitGenerator.cffi` interface.
 
-.. literalinclude:: ../../../../numpy/random/_examples/cffi/extending.py
+.. literalinclude:: ../../../../numpy_demo/random/_examples/cffi/extending.py
     :language: python
     :start-after: dlopen
 

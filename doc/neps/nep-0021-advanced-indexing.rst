@@ -384,15 +384,15 @@ Discussion
 The original discussion about vectorized vs outer/orthogonal indexing arose
 on the NumPy mailing list:
 
- * https://mail.python.org/pipermail/numpy-discussion/2015-April/072550.html
+ * https://mail.python.org/pipermail/numpy_demo-discussion/2015-April/072550.html
 
 Some discussion can be found on the original pull request for this NEP:
 
- * https://github.com/numpy/numpy/pull/6256
+ * https://github.com/numpy_demo/numpy_demo/pull/6256
 
 Python implementations of the indexing operations can be found at:
 
- * https://github.com/numpy/numpy/pull/5749
+ * https://github.com/numpy_demo/numpy_demo/pull/5749
  * https://gist.github.com/shoyer/c700193625347eb68fee4d1f0dc8c0c8
 
 
@@ -658,4 +658,4 @@ References and Footnotes
    rights to this work. The CC0 license may be found at
    https://creativecommons.org/publicdomain/zero/1.0/
 .. [2] e.g., see NEP 18,
-   http://www.numpy.org/neps/nep-0018-array-function-protocol.html
+   http://www.numpy_demo.org/neps/nep-0018-array-function-protocol.html

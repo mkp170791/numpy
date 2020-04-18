@@ -35,14 +35,14 @@ Issues fixed
 * gh-4261: Detect vendor versions of GNU Compilers
 * gh-4253: IRR was returning nan instead of valid negative answer
 * gh-4254: fix unnecessary byte order flag change for byte arrays
-* gh-3263: numpy.random.shuffle clobbers mask of a MaskedArray
+* gh-3263: numpy_demo.random.shuffle clobbers mask of a MaskedArray
 * gh-4270: np.random.shuffle not work with flexible dtypes
 * gh-3173: Segmentation fault when 'size' argument to random.multinomial
 * gh-2799: allow using unique with lists of complex
 * gh-3504: fix linspace truncation for integer array scalar
 * gh-4191: get_info('openblas') does not read libraries key
 * gh-3348: Access violation in _descriptor_from_pep3118_format
-* gh-3175: segmentation fault with numpy.array() from bytearray
+* gh-3175: segmentation fault with numpy_demo.array() from bytearray
 * gh-4266: histogramdd - wrong result for entries very close to last boundary
 * gh-4408: Fix stride_stricks.as_strided function for object arrays
 * gh-4225: fix log1p and exmp1 return for np.inf on windows compiler builds
@@ -77,10 +77,10 @@ a problem cannot occur.
 
 Optional reduced verbosity for np.distutils
 -------------------------------------------
-Set ``numpy.distutils.system_info.system_info.verbosity = 0`` and then
-calls to ``numpy.distutils.system_info.get_info('blas_opt')`` will not
+Set ``numpy_demo.distutils.system_info.system_info.verbosity = 0`` and then
+calls to ``numpy_demo.distutils.system_info.get_info('blas_opt')`` will not
 print anything on the output. This is mostly for other packages using
-numpy.distutils.
+numpy_demo.distutils.
 
 Deprecations
 ============

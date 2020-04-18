@@ -34,11 +34,11 @@ def process_tex(lines):
     """
     new_lines = []
     for line in lines:
-        if (line.startswith(r'\section{numpy.')
-            or line.startswith(r'\subsection{numpy.')
-            or line.startswith(r'\subsubsection{numpy.')
-            or line.startswith(r'\paragraph{numpy.')
-            or line.startswith(r'\subparagraph{numpy.')
+        if (line.startswith(r'\section{numpy_demo.')
+            or line.startswith(r'\subsection{numpy_demo.')
+            or line.startswith(r'\subsubsection{numpy_demo.')
+            or line.startswith(r'\paragraph{numpy_demo.')
+            or line.startswith(r'\subparagraph{numpy_demo.')
             ):
             pass # skip!
         else:

@@ -16,7 +16,7 @@ installed versions of NumPy that pip did not delete becoming mixed with the
 current version, resulting in an ``ImportError``. That problem is particularly
 common on Debian derived distributions due to a modified pip.  The fix is to
 make sure all previous NumPy versions installed by pip have been removed. See
-`#12736 <https://github.com/numpy/numpy/issues/12736>`__ for discussion of the
+`#12736 <https://github.com/numpy_demo/numpy_demo/issues/12736>`__ for discussion of the
 issue. Note that previously this problem resulted in an ``AttributeError``.
 
 
@@ -47,12 +47,12 @@ names contributed a patch for the first time.
 Enhancements
 ============
 
-* `#12767 <https://github.com/numpy/numpy/pull/12767>`__: ENH: add mm->q floordiv
-* `#12768 <https://github.com/numpy/numpy/pull/12768>`__: ENH: port np.core.overrides to C for speed
-* `#12769 <https://github.com/numpy/numpy/pull/12769>`__: ENH: Add np.ctypeslib.as_ctypes_type(dtype), improve `np.ctypeslib.as_ctypes`
-* `#12773 <https://github.com/numpy/numpy/pull/12773>`__: ENH: add "max difference" messages to np.testing.assert_array_equal...
-* `#12820 <https://github.com/numpy/numpy/pull/12820>`__: ENH: Add mm->qm divmod
-* `#12890 <https://github.com/numpy/numpy/pull/12890>`__: ENH: add _dtype_ctype to namespace for freeze analysis
+* `#12767 <https://github.com/numpy_demo/numpy_demo/pull/12767>`__: ENH: add mm->q floordiv
+* `#12768 <https://github.com/numpy_demo/numpy_demo/pull/12768>`__: ENH: port np.core.overrides to C for speed
+* `#12769 <https://github.com/numpy_demo/numpy_demo/pull/12769>`__: ENH: Add np.ctypeslib.as_ctypes_type(dtype), improve `np.ctypeslib.as_ctypes`
+* `#12773 <https://github.com/numpy_demo/numpy_demo/pull/12773>`__: ENH: add "max difference" messages to np.testing.assert_array_equal...
+* `#12820 <https://github.com/numpy_demo/numpy_demo/pull/12820>`__: ENH: Add mm->qm divmod
+* `#12890 <https://github.com/numpy_demo/numpy_demo/pull/12890>`__: ENH: add _dtype_ctype to namespace for freeze analysis
 
 
 Compatibility notes
@@ -80,9 +80,9 @@ Improvements
 
 Further improvements to ``ctypes`` support in ``np.ctypeslib``
 --------------------------------------------------------------
-A new `numpy.ctypeslib.as_ctypes_type` function has been added, which can be
+A new `numpy_demo.ctypeslib.as_ctypes_type` function has been added, which can be
 used to converts a `dtype` into a best-guess `ctypes` type. Thanks to this
-new function, `numpy.ctypeslib.as_ctypes` now supports a much wider range of
+new function, `numpy_demo.ctypeslib.as_ctypes` now supports a much wider range of
 array types, including structures, booleans, and integers of non-native
 endianness.
 

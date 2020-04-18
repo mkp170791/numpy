@@ -34,9 +34,9 @@ Generate C code coverage listing under build/lcov/:
 # framework. Change the following values to adapt to your project:
 #
 
-PROJECT_MODULE = "numpy"
-PROJECT_ROOT_FILES = ['numpy', 'LICENSE.txt', 'setup.py']
-SAMPLE_TEST = "numpy/linalg/tests/test_linalg.py::test_byteorder_check"
+PROJECT_MODULE = "numpy_demo"
+PROJECT_ROOT_FILES = ['numpy_demo', 'LICENSE.txt', 'setup.py']
+SAMPLE_TEST = "numpy_demo/linalg/tests/test_linalg.py::test_byteorder_check"
 SAMPLE_SUBMODULE = "linalg"
 
 EXTRA_PATH = ['/usr/lib/ccache', '/usr/lib/f90cache',
@@ -72,7 +72,7 @@ def main(argv):
     parser.add_argument("--debug-info", action="store_true",
                         help=("add --verbose-cfg to build_src to show compiler "
                               "configuration output while creating "
-                              "_numpyconfig.h and config.h"))
+                              "_numpy_democonfig.h and config.h"))
     parser.add_argument("--no-build", "-n", action="store_true", default=False,
                         help="do not build the project (use system installed version)")
     parser.add_argument("--build-only", "-b", action="store_true", default=False,
@@ -190,10 +190,10 @@ def main(argv):
 
     if args.ipython:
         # Debugging issues with warnings is much easier if you can see them
-        print("Enabling display of all warnings and pre-importing numpy as np")
+        print("Enabling display of all warnings and pre-importing numpy_demo as np")
         import warnings; warnings.filterwarnings("always")
         import IPython
-        import numpy as np
+        import numpy_demo as np
         IPython.embed(user_ns={"np": np})
         sys.exit(0)
 
@@ -378,7 +378,7 @@ def build_project(args):
         cmd += ["build_src", "--verbose-cfg"]
     if args.warn_error:
         cmd += ["--warn-error"]
-    # Install; avoid producing eggs so numpy can be imported from dst_dir.
+    # Install; avoid producing eggs so numpy_demo can be imported from dst_dir.
     cmd += ['install', '--prefix=' + dst_dir,
             '--single-version-externally-managed',
             '--record=' + dst_dir + 'tmp_install_log.txt']

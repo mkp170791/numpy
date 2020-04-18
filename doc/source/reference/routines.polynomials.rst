@@ -5,13 +5,13 @@ Polynomials
 
 Polynomials in NumPy can be *created*, *manipulated*, and even *fitted* using
 the :doc:`convenience classes <routines.polynomials.classes>`
-of the `numpy.polynomial` package, introduced in NumPy 1.4.
+of the `numpy_demo.polynomial` package, introduced in NumPy 1.4.
 
-Prior to NumPy 1.4, `numpy.poly1d` was the class of choice and it is still
+Prior to NumPy 1.4, `numpy_demo.poly1d` was the class of choice and it is still
 available in order to maintain backward compatibility.
-However, the newer Polynomial package is more complete than `numpy.poly1d`
-and its convenience classes are better behaved in the numpy environment.
-Therefore :mod:`numpy.polynomial` is recommended for new coding.
+However, the newer Polynomial package is more complete than `numpy_demo.poly1d`
+and its convenience classes are better behaved in the numpy_demo environment.
+Therefore :mod:`numpy_demo.polynomial` is recommended for new coding.
 
 Transition notice
 -----------------

@@ -19,7 +19,7 @@ Compatibility notes
 Issues Fixed
 ============
 
-* gh-6922 BUG: numpy.recarray.sort segfaults on Windows.
+* gh-6922 BUG: numpy_demo.recarray.sort segfaults on Windows.
 * gh-6937 BUG: busday_offset does the wrong thing with modifiedpreceding roll.
 * gh-6949 BUG: Type is lost when slicing a subclass of recarray.
 

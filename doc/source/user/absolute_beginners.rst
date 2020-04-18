@@ -3,7 +3,7 @@
 NumPy: the absolute basics for beginners
 ****************************************
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 Welcome to the absolute beginner's guide to NumPy! If you have comments or
 suggestions, please don’t hesitate to reach out!
@@ -30,7 +30,7 @@ that guarantee efficient calculations with arrays and matrices and it supplies
 an enormous library of high-level mathematical functions that operate on these
 arrays and matrices.
 
-Learn more about :ref:`NumPy here <whatisnumpy>`!
+Learn more about :ref:`NumPy here <whatisnumpy_demo>`!
 
 Installing NumPy
 ----------------
@@ -44,11 +44,11 @@ operating system, you can `find all of the details here
 
 If you already have Python, you can install NumPy with::
 
-  conda install numpy
+  conda install numpy_demo
 
 or ::
 
-  pip install numpy
+  pip install numpy_demo
 
 If you don't have Python yet, you might want to consider using `Anaconda
 <https://www.anaconda.com/>`_. It's the easiest way to get started. The good
@@ -69,9 +69,9 @@ make it accessible.
 In order to start using NumPy and all of the functions available in NumPy,
 you'll need to import it. This can be easily done with this import statement::
 
-  import numpy as np
+  import numpy_demo as np
 
-(We shorten ``numpy`` to ``np`` in order to save time and also to keep code
+(We shorten ``numpy_demo`` to ``np`` in order to save time and also to keep code
 standardized so that anyone working with your code can easily understand and
 run it.)
 
@@ -207,7 +207,7 @@ All you need to do to create a simple array is pass a list to it. If you choose
 to, you can also specify the type of data in your list.
 :ref:`You can find more information about data types here <arrays.dtypes>`. ::
 
-    >>> import numpy as np
+    >>> import numpy_demo as np
     >>> a = np.array([1, 2, 3])
 
 You can visualize your array this way:
@@ -395,7 +395,7 @@ this array to an array with three rows and two columns::
 
 With ``np.reshape``, you can specify a few optional parameters::
 
-  >>> numpy.reshape(a, newshape=(1, 6), order='C')
+  >>> numpy_demo.reshape(a, newshape=(1, 6), order='C')
   array([[0, 1, 2, 3, 4, 5]])
 
 ``a`` is the array to be reshaped.
@@ -411,7 +411,7 @@ contiguous in memory, C-like order otherwise. (This is an optional parameter and
 doesn't need to be specified.)
 
 If you want to learn more about C and Fortran order, you can
-:ref:`read more about the internal organization of NumPy arrays here <numpy-internals>`.
+:ref:`read more about the internal organization of NumPy arrays here <numpy_demo-internals>`.
 Essentially, C and Fortran orders have to do with how indices correspond
 to the order the array is stored in memory. In Fortran, when moving through
 the elements of a two-dimensional array as it is stored in memory, the **first**
@@ -1011,7 +1011,7 @@ You can generate a 2 x 4 array of random integers between 0 and 4 with::
   array([[2, 1, 1, 0],
          [0, 0, 0, 4]])  # may vary
 
-:ref:`Read more about random number generation here <numpyrandom>`.
+:ref:`Read more about random number generation here <numpy_demorandom>`.
 
 
 How to get unique items and counts
@@ -1334,7 +1334,7 @@ followed by the docstring of ``ndarray`` of which ``a`` is an instance):
   Type:            ndarray
   String form:     [1 2 3 4 5 6]
   Length:          6
-  File:            ~/anaconda3/lib/python3.7/site-packages/numpy/__init__.py
+  File:            ~/anaconda3/lib/python3.7/site-packages/numpy_demo/__init__.py
   Docstring:       <no docstring>
   Class docstring:
   ndarray(shape, dtype=float, buffer=None, offset=0,
@@ -1350,7 +1350,7 @@ followed by the docstring of ``ndarray`` of which ``a`` is an instance):
   to the See Also section below).  The parameters given here refer to
   a low-level method (`ndarray(...)`) for instantiating an array.
 
-  For more information, refer to the `numpy` module and examine the
+  For more information, refer to the `numpy_demo` module and examine the
   methods and attributes of an array.
 
   Parameters

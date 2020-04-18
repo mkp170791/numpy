@@ -1,5 +1,5 @@
 =====================================================
-NEP 3 — Cleaning the math configuration of numpy.core
+NEP 3 — Cleaning the math configuration of numpy_demo.core
 =====================================================
 
 :Author: David Cournapeau
@@ -10,7 +10,7 @@ NEP 3 — Cleaning the math configuration of numpy.core
 Executive summary
 =================
 
-Before building numpy.core, we use some configuration tests to gather some
+Before building numpy_demo.core, we use some configuration tests to gather some
 information about available math functions. Over the years, the configuration
 became convoluted, to the point it became difficult to support new platforms
 easily.
@@ -22,7 +22,7 @@ Current problems
 ================
 
 Currently, the math configuration mainly test for some math functions, and
-configure numpy accordingly. But instead of testing each desired function
+configure numpy_demo accordingly. But instead of testing each desired function
 independently, the current system has been developed more as workarounds
 particular platform oddities, using platform implicit knowledge. This is
 against the normal philosophy of testing for capabilities only, which is the
@@ -30,7 +30,7 @@ autoconf philosophy, which showed the path toward portability (on Unix at
 least) [1] This causes problems because modifying or adding configuration on
 existing platforms break the implicit assumption, without a clear solution.
 
-For example, on windows, when numpy is built with mingw, it would be nice to
+For example, on windows, when numpy_demo is built with mingw, it would be nice to
 enforce the configuration sizeof(long double) == sizeof(double) because mingw
 uses the MS runtime, and the MS runtime does not support long double.
 Unfortunately, doing so breaks the mingw math function detection, because of

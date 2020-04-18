@@ -110,7 +110,7 @@ report to the Code of Conduct Committee directly, or ask the Committee for
 advice, in confidence.
 
 You can report issues to the NumPy Code of Conduct committee, at
-numpy-conduct@googlegroups.com. Currently, the committee consists of:
+numpy_demo-conduct@googlegroups.com. Currently, the committee consists of:
 
 - Stefan van der Walt
 - Nathaniel J. Smith

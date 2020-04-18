@@ -40,7 +40,7 @@ build:
     # for unit tests
     - python -m pip install pytest-xdist
 
-    # build and test numpy
+    # build and test numpy_demo
     - export PATH=$PATH:$SHIPPABLE_REPO_DIR
     # build first and adjust PATH so f2py is found in scripts dir
     # use > 1 core for build sometimes slows down a fair bit,

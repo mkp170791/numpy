@@ -23,7 +23,7 @@ Issues fixed
 * gh-5104: np.inner segfaults with SciPy's sparse matrices
 * gh-5251: Issue with fromarrays not using correct format for unicode arrays
 * gh-5136: Import dummy_threading if importing threading fails
-* gh-5148: Make numpy import when run with Python flag '-OO'
+* gh-5148: Make numpy_demo import when run with Python flag '-OO'
 * gh-5147: Einsum double contraction in particular order causes ValueError
 * gh-479: Make f2py work with intent(in out)
 * gh-5170: Make python2 .npy files readable in python3

@@ -10,19 +10,19 @@ The Array Interface
 
 .. note::
 
-   This page describes the numpy-specific API for accessing the contents of
-   a numpy array from other C extensions. :pep:`3118` --
+   This page describes the numpy_demo-specific API for accessing the contents of
+   a numpy_demo array from other C extensions. :pep:`3118` --
    :c:func:`The Revised Buffer Protocol <PyObject_GetBuffer>` introduces
    similar, standardized API to Python 2.6 and 3.0 for any extension
    module to use. Cython__'s buffer array support
-   uses the :pep:`3118` API; see the `Cython numpy
+   uses the :pep:`3118` API; see the `Cython numpy_demo
    tutorial`__. Cython provides a way to write code that supports the buffer
    protocol with Python versions older than 2.6 because it has a
    backward-compatible implementation utilizing the array interface
    described here.
 
 __ http://cython.org/
-__ https://github.com/cython/cython/wiki/tutorials-numpy
+__ https://github.com/cython/cython/wiki/tutorials-numpy_demo
 
 :version: 3
 
@@ -211,7 +211,7 @@ array using only one attribute lookup and a well-defined C-structure.
    must also not reallocate their memory if other objects are
    referencing them.
 
-The PyArrayInterface structure is defined in ``numpy/ndarrayobject.h``
+The PyArrayInterface structure is defined in ``numpy_demo/ndarrayobject.h``
 as::
 
   typedef struct {

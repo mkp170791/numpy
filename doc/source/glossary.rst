@@ -4,4 +4,4 @@ Glossary
 
 .. toctree::
 
-.. automodule:: numpy.doc.glossary
+.. automodule:: numpy_demo.doc.glossary

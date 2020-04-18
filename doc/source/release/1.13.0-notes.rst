@@ -43,7 +43,7 @@ Deprecations
 * ``np.ma.argsort``, ``np.ma.minimum.reduce``, and ``np.ma.maximum.reduce``
   should be called with an explicit `axis` argument when applied to arrays with
   more than 2 dimensions, as the default value of this argument (``None``) is
-  inconsistent with the rest of numpy (``-1``, ``0``, and ``0``, respectively).
+  inconsistent with the rest of numpy_demo (``-1``, ``0``, and ``0``, respectively).
 * ``np.ma.MaskedArray.mini`` is deprecated, as it almost duplicates the
   functionality of ``np.MaskedArray.min``. Exactly equivalent behaviour
   can be obtained with ``np.ma.minimum.reduce``.
@@ -63,7 +63,7 @@ Future Changes
 
 * Assignment between structured arrays with different field names will change
   in NumPy 1.14. Previously, fields in the dst would be set to the value of the
-  identically-named field in the src. In numpy 1.14 fields will instead be
+  identically-named field in the src. In numpy_demo 1.14 fields will instead be
   assigned 'by position': The n-th field of the dst will be set to the n-th
   field of the src array. Note that the ``FutureWarning`` raised in NumPy 1.12
   incorrectly reported this change as scheduled for NumPy 1.13 rather than
@@ -73,7 +73,7 @@ Future Changes
 Build System Changes
 ====================
 
-* ``numpy.distutils`` now automatically determines C-file dependencies with
+* ``numpy_demo.distutils`` now automatically determines C-file dependencies with
   GCC compatible compilers.
 
 
@@ -83,7 +83,7 @@ Compatibility notes
 Error type changes
 ------------------
 
-* ``numpy.hstack()`` now throws ``ValueError`` instead of ``IndexError`` when
+* ``numpy_demo.hstack()`` now throws ``ValueError`` instead of ``IndexError`` when
   input is empty.
 * Functions taking an axis argument, when that argument is out of range, now
   throw ``np.AxisError`` instead of a mixture of ``IndexError`` and
@@ -116,7 +116,7 @@ FutureWarning to changed behavior
 ---------------------------------
 See Changes section for more detail.
 
-* ``numpy.average`` preserves subclasses
+* ``numpy_demo.average`` preserves subclasses
 * ``array == None`` and ``array != None`` do element-wise comparison.
 * ``np.equal, np.not_equal``, object identity doesn't override comparison result.
 
@@ -177,7 +177,7 @@ New Features
 
 ``__array_ufunc__`` added
 -------------------------
-This is the renamed and redesigned ``__numpy_ufunc__``. Any class, ndarray
+This is the renamed and redesigned ``__numpy_demo_ufunc__``. Any class, ndarray
 subclass or not, can define this method or set it to ``None`` in order to
 override the behavior of NumPy's ufuncs. This works quite similarly to Python's
 ``__mul__`` and other binary operation routines. See the documentation for a
@@ -186,8 +186,8 @@ option. The API is provisional, we do not yet guarantee backward compatibility
 as modifications may be made pending feedback. See `NEP 13`_  and
 documentation_ for more details.
 
-.. _`NEP 13`: http://www.numpy.org/neps/nep-0013-ufunc-overrides.html
-.. _documentation: https://github.com/numpy/numpy/blob/master/doc/source/reference/arrays.classes.rst
+.. _`NEP 13`: http://www.numpy_demo.org/neps/nep-0013-ufunc-overrides.html
+.. _documentation: https://github.com/numpy_demo/numpy_demo/blob/master/doc/source/reference/arrays.classes.rst
 
 New ``positive`` ufunc
 ----------------------
@@ -197,7 +197,7 @@ an error if array values do not support numeric operations.
 New ``divmod`` ufunc
 --------------------
 This ufunc corresponds to the Python builtin `divmod`, and is used to implement
-`divmod` when called on numpy arrays. ``np.divmod(x, y)`` calculates a result
+`divmod` when called on numpy_demo arrays. ``np.divmod(x, y)`` calculates a result
 equivalent to ``(np.floor_divide(x, y), np.remainder(x, y))`` but is
 approximately twice as fast as calling the functions separately.
 
@@ -258,7 +258,7 @@ perform the operation.
 ``axes`` argument for ``unique``
 --------------------------------
 In an N-dimensional array, the user can now choose the axis along which to look
-for duplicate N-1-dimensional elements using ``numpy.unique``. The original
+for duplicate N-1-dimensional elements using ``numpy_demo.unique``. The original
 behaviour is recovered if ``axis=None`` (default).
 
 ``np.gradient`` now supports unevenly spaced data
@@ -298,7 +298,7 @@ Support for tracemalloc in Python 3.6
 -------------------------------------
 NumPy now supports memory tracing with tracemalloc_ module of Python 3.6 or
 newer. Memory allocations from NumPy are placed into the domain defined by
-``numpy.lib.tracemalloc_domain``.
+``numpy_demo.lib.tracemalloc_domain``.
 Note that NumPy allocation will not show up in tracemalloc_ of earlier Python
 versions.
 
@@ -383,7 +383,7 @@ programs with a PySide1/Qt4 front-end.
 
 Performance improvements for ``packbits`` and ``unpackbits``
 ------------------------------------------------------------
-The functions ``numpy.packbits`` with boolean input and ``numpy.unpackbits`` have
+The functions ``numpy_demo.packbits`` with boolean input and ``numpy_demo.unpackbits`` have
 been optimized to be a significantly faster for contiguous data.
 
 Fix for PPC long double floating point information
@@ -434,7 +434,7 @@ a lapack library installed, under the name of ``lapack_lite``. This has been
 upgraded from LAPACK 3.0.0 (June 30, 1999) to LAPACK 3.2.2 (June 30, 2010). See
 the `LAPACK changelogs`_ for details on the all the changes this entails.
 
-While no new features are exposed through ``numpy``, this fixes some bugs
+While no new features are exposed through ``numpy_demo``, this fixes some bugs
 regarding "workspace" sizes, and in some places may use faster algorithms.
 
 .. _`LAPACK changelogs`: http://www.netlib.org/lapack/release_notes.html#_4_history_of_lapack_releases
@@ -464,7 +464,7 @@ passed ``fill_value`` as a positional argument.
 
 ``average`` now preserves subclasses
 ------------------------------------
-For ndarray subclasses, ``numpy.average`` will now return an instance of the
+For ndarray subclasses, ``numpy_demo.average`` will now return an instance of the
 subclass, matching the behavior of most other NumPy functions such as ``mean``.
 As a consequence, also calls that returned a scalar may now return a subclass
 array scalar.

@@ -1,4 +1,4 @@
 Polyutils
 =========
 
-.. automodule:: numpy.polynomial.polyutils
+.. automodule:: numpy_demo.polynomial.polyutils

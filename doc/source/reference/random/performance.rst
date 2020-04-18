@@ -1,7 +1,7 @@
 Performance
 -----------
 
-.. currentmodule:: numpy.random
+.. currentmodule:: numpy_demo.random
 
 Recommendation
 **************

@@ -7,13 +7,13 @@
 %}
 
 // Get the NumPy typemaps
-%include "../numpy.i"
+%include "../numpy_demo.i"
 
 %init %{
   import_array();
 %}
 
-%define %apply_numpy_typemaps(TYPE)
+%define %apply_numpy_demo_typemaps(TYPE)
 
 %apply (TYPE IN_ARRAY4[ANY][ANY][ANY][ANY]) {(TYPE supertensor[ANY][ANY][ANY][ANY])};
 %apply (TYPE* IN_ARRAY4, int DIM1, int DIM2, int DIM3, int DIM4)
@@ -30,20 +30,20 @@
 %apply (TYPE ARGOUT_ARRAY4[ANY][ANY][ANY][ANY]) {(TYPE lower[2][2][2][2])};
 %apply (TYPE ARGOUT_ARRAY4[ANY][ANY][ANY][ANY]) {(TYPE upper[2][2][2][2])};
 
-%enddef    /* %apply_numpy_typemaps() macro */
+%enddef    /* %apply_numpy_demo_typemaps() macro */
 
-%apply_numpy_typemaps(signed char       )
-%apply_numpy_typemaps(unsigned char     )
-%apply_numpy_typemaps(short             )
-%apply_numpy_typemaps(unsigned short    )
-%apply_numpy_typemaps(int               )
-%apply_numpy_typemaps(unsigned int      )
-%apply_numpy_typemaps(long              )
-%apply_numpy_typemaps(unsigned long     )
-%apply_numpy_typemaps(long long         )
-%apply_numpy_typemaps(unsigned long long)
-%apply_numpy_typemaps(float             )
-%apply_numpy_typemaps(double            )
+%apply_numpy_demo_typemaps(signed char       )
+%apply_numpy_demo_typemaps(unsigned char     )
+%apply_numpy_demo_typemaps(short             )
+%apply_numpy_demo_typemaps(unsigned short    )
+%apply_numpy_demo_typemaps(int               )
+%apply_numpy_demo_typemaps(unsigned int      )
+%apply_numpy_demo_typemaps(long              )
+%apply_numpy_demo_typemaps(unsigned long     )
+%apply_numpy_demo_typemaps(long long         )
+%apply_numpy_demo_typemaps(unsigned long long)
+%apply_numpy_demo_typemaps(float             )
+%apply_numpy_demo_typemaps(double            )
 
 // Include the header file to be wrapped
 %include "SuperTensor.h"

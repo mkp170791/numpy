@@ -10,7 +10,7 @@
 
 .. git stuff
 .. _git: https://git-scm.com/
-.. _github: https://github.com/numpy/numpy
+.. _github: https://github.com/numpy_demo/numpy_demo
 .. _github help: https://help.github.com
 .. _`install it`: https://git-scm.com/downloads
 .. _subversion: http://subversion.tigris.org/
@@ -47,7 +47,7 @@
 .. _ipython git workflow: http://mail.python.org/pipermail/ipython-dev/2010-October/006746.html
 .. _git parable: http://tom.preston-werner.com/2009/05/19/the-git-parable.html
 .. _git foundation: http://matthew-brett.github.com/pydagogue/foundation.html
-.. _numpy/master: https://github.com/numpy/numpy
+.. _numpy_demo/master: https://github.com/numpy_demo/numpy_demo
 .. _git cherry-pick: https://www.kernel.org/pub/software/scm/git/docs/git-cherry-pick.html
 .. _git blame: https://www.kernel.org/pub/software/scm/git/docs/git-blame.html
 .. _this blog post: https://github.com/blog/612-introducing-github-compare-view 
@@ -59,6 +59,6 @@
 
 .. other stuff
 .. _python: https://www.python.org
-.. _NumPy: https://www.numpy.org
-.. _`NumPy github`: https://github.com/numpy/numpy
+.. _NumPy: https://www.numpy_demo.org
+.. _`NumPy github`: https://github.com/numpy_demo/numpy_demo
 .. _`NumPy mailing list`: https://scipy.org/scipylib/mailing-lists.html

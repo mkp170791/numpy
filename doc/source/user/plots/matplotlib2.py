@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import numpy as np
+import numpy_demo as np
 
 x = np.linspace(0, 5, 20)
 y = np.linspace(0, 10, 20)

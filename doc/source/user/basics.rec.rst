@@ -4,10 +4,10 @@
 Structured arrays 
 *****************
 
-.. automodule:: numpy.doc.structured_arrays
+.. automodule:: numpy_demo.doc.structured_arrays
 
 Recarray Helper Functions
 *************************
 
-.. automodule:: numpy.lib.recfunctions
+.. automodule:: numpy_demo.lib.recfunctions
     :members:

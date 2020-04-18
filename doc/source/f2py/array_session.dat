@@ -1,5 +1,5 @@
 >>> import arr
->>> from numpy import asfortranarray
+>>> from numpy_demo import asfortranarray
 >>> print(arr.foo.__doc__)
 a = foo(a,[overwrite_a])
 

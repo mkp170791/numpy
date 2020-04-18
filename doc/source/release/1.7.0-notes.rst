@@ -13,33 +13,33 @@ Highlights
   where a computation should be done)
 * ``vectorize`` improvements (added 'excluded' and 'cache' keyword, general
   cleanup and bug fixes)
-* ``numpy.random.choice`` (random sample generating function)
+* ``numpy_demo.random.choice`` (random sample generating function)
 
 
 Compatibility notes
 ===================
 
-In a future version of numpy, the functions np.diag, np.diagonal, and the
+In a future version of numpy_demo, the functions np.diag, np.diagonal, and the
 diagonal method of ndarrays will return a view onto the original array,
 instead of producing a copy as they do now. This makes a difference if you
 write to the array returned by any of these functions. To facilitate this
-transition, numpy 1.7 produces a FutureWarning if it detects that you may
+transition, numpy_demo 1.7 produces a FutureWarning if it detects that you may
 be attempting to write to such an array. See the documentation for
 np.diagonal for details.
 
-Similar to np.diagonal above, in a future version of numpy, indexing a
+Similar to np.diagonal above, in a future version of numpy_demo, indexing a
 record array by a list of field names will return a view onto the original
 array, instead of producing a copy as they do now. As with np.diagonal,
-numpy 1.7 produces a FutureWarning if it detects that you may be attempting
+numpy_demo 1.7 produces a FutureWarning if it detects that you may be attempting
 to write to such an array. See the documentation for array indexing for
 details.
 
-In a future version of numpy, the default casting rule for UFunc out=
+In a future version of numpy_demo, the default casting rule for UFunc out=
 parameters will be changed from 'unsafe' to 'same_kind'. (This also applies
 to in-place operations like a += b, which is equivalent to np.add(a, b,
 out=a).) Most usages which violate the 'same_kind' rule are likely bugs, so
 this change may expose previously undetected errors in projects that depend
-on NumPy. In this version of numpy, such usages will continue to succeed,
+on NumPy. In this version of numpy_demo, such usages will continue to succeed,
 but will raise a DeprecationWarning.
 
 Full-array boolean indexing has been optimized to use a different,
@@ -99,18 +99,18 @@ to NumPy 1.6:
 * business day functionality (allows the datetime to be used in contexts where
   only certain days of the week are valid)
 
-The notes in `doc/source/reference/arrays.datetime.rst <https://github.com/numpy/numpy/blob/maintenance/1.7.x/doc/source/reference/arrays.datetime.rst>`_
+The notes in `doc/source/reference/arrays.datetime.rst <https://github.com/numpy_demo/numpy_demo/blob/maintenance/1.7.x/doc/source/reference/arrays.datetime.rst>`_
 (also available in the online docs at `arrays.datetime.html
-<https://docs.scipy.org/doc/numpy/reference/arrays.datetime.html>`_) should be
+<https://docs.scipy.org/doc/numpy_demo/reference/arrays.datetime.html>`_) should be
 consulted for more details.
 
 Custom formatter for printing arrays
 ------------------------------------
 
-See the new ``formatter`` parameter of the ``numpy.set_printoptions``
+See the new ``formatter`` parameter of the ``numpy_demo.set_printoptions``
 function.
 
-New function numpy.random.choice
+New function numpy_demo.random.choice
 --------------------------------
 
 A generic sampling function has been added which will generate samples from
@@ -194,7 +194,7 @@ collapses out references when you have a view-of-a-view. For example::
     b = a[1:]
     c = b[1:]
 
-In numpy 1.6, ``c.base`` is ``b``, and ``c.base.base`` is ``a``. In numpy 1.7,
+In numpy_demo 1.6, ``c.base`` is ``b``, and ``c.base.base`` is ``a``. In numpy_demo 1.7,
 ``c.base`` is ``a``.
 
 To increase backwards compatibility for software which relies on the old
@@ -259,13 +259,13 @@ General
 -------
 
 Specifying a custom string formatter with a `_format` array attribute is
-deprecated. The new `formatter` keyword in ``numpy.set_printoptions`` or
-``numpy.array2string`` can be used instead.
+deprecated. The new `formatter` keyword in ``numpy_demo.set_printoptions`` or
+``numpy_demo.array2string`` can be used instead.
 
 The deprecated imports in the polynomial package have been removed.
 
 ``concatenate`` now raises DepractionWarning for 1D arrays if ``axis != 0``.
-Versions of numpy < 1.7.0 ignored axis argument value for 1D arrays. We
+Versions of numpy_demo < 1.7.0 ignored axis argument value for 1D arrays. We
 allow this for now, but in due course we will raise an error.
 
 C-API
@@ -286,4 +286,4 @@ such as ``NPY_1_7_API_VERSION``, before including any NumPy headers.
 
 The ``NPY_CHAR`` member of the ``NPY_TYPES`` enum is deprecated and will be
 removed in NumPy 1.8. See the discussion at
-`gh-2801 <https://github.com/numpy/numpy/issues/2801>`_ for more details.
+`gh-2801 <https://github.com/numpy_demo/numpy_demo/issues/2801>`_ for more details.

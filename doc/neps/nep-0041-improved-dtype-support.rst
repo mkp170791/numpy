@@ -190,7 +190,7 @@ However, we have identified a need for datatypes such as:
 * geometrical objects [pygeos]_
 
 Some of these are partially solved; for example unit capability is provided
-in ``astropy.units``, ``unyt``, or ``pint``, as `numpy.ndarray` subclasses.
+in ``astropy.units``, ``unyt``, or ``pint``, as `numpy_demo.ndarray` subclasses.
 Most of these datatypes, however, simply cannot be reasonably defined
 right now.
 An advantage of having such datatypes in NumPy is that they should integrate
@@ -224,7 +224,7 @@ only require ``np.result_type``::
 
     >>> np.add(arr1, arr2).dtype == np.result_type(arr1, arr2)
 
-and `~numpy.result_type` is largely identical to `~numpy.common_type`.
+and `~numpy_demo.result_type` is largely identical to `~numpy_demo.common_type`.
 
 
 Fixed, high precision math
@@ -406,13 +406,13 @@ multiple development stages are required:
 
     * Defining operations such as ``np.common_type``.
     * Allowing to define casting between datatypes.
-    * Add functionality necessary to create a numpy array from Python scalars
+    * Add functionality necessary to create a numpy_demo array from Python scalars
       (i.e. ``np.array(...)``).
     * …
 
   * Restructure how universal functions work (NEP 43), in order to:
 
-    * make it possible to allow a `~numpy.ufunc` such as ``np.add`` to be
+    * make it possible to allow a `~numpy_demo.ufunc` such as ``np.add`` to be
       extended by user-defined datatypes such as Units.
 
     * allow efficient lookup for the correct implementation for user-defined
@@ -705,11 +705,11 @@ References
 
 .. [pygeos] https://github.com/caspervdw/pygeos
 
-.. [new_sort] https://github.com/numpy/numpy/pull/12945
+.. [new_sort] https://github.com/numpy_demo/numpy_demo/pull/12945
 
 .. [PEP-384] https://www.python.org/dev/peps/pep-0384/
 
-.. [PR 15508] https://github.com/numpy/numpy/pull/15508
+.. [PR 15508] https://github.com/numpy_demo/numpy_demo/pull/15508
 
 
 Copyright

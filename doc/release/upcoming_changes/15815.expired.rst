@@ -1,4 +1,4 @@
-`numpy.delete` no longer casts boolean indices to integers
+`numpy_demo.delete` no longer casts boolean indices to integers
 ----------------------------------------------------------
 This concludes a deprecation from 1.8, where ``np.delete`` would cast boolean
 arrays and scalars passed as an index argument into integer indices. The

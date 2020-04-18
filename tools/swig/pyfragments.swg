@@ -2,16 +2,16 @@
 
 /**********************************************************************/
 
-/* For numpy versions prior to 1.0, the names of certain data types
+/* For numpy_demo versions prior to 1.0, the names of certain data types
  * are different than in later versions.  This fragment provides macro
  * substitutions that allow us to support old and new versions of
- * numpy.
+ * numpy_demo.
  */
 
 /**********************************************************************/
 
 /* Override the SWIG_AsVal_frag(long) fragment so that it also checks
- * for numpy scalar array types.  The code through the %#endif is
+ * for numpy_demo scalar array types.  The code through the %#endif is
  * essentially cut-and-paste from pyprimtype.swg
  */
 
@@ -64,7 +64,7 @@
 
 
 /* Override the SWIG_AsVal_frag(unsigned long) fragment so that it
- * also checks for numpy scalar array types.  The code through the
+ * also checks for numpy_demo scalar array types.  The code through the
  * %#endif is essentially cut-and-paste from pyprimtype.swg
  */
 

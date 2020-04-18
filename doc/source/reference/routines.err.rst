@@ -1,7 +1,7 @@
 Floating point error handling
 *****************************
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 Setting and getting error handling
 ----------------------------------

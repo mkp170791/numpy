@@ -190,7 +190,7 @@ The API would be expanded with a number of functions.
 
 The Python API would be expanded as follows.
 
- ``numpy.setdeferred(state)``
+ ``numpy_demo.setdeferred(state)``
 
     Enables or disables deferred evaluation. True means to always
     use deferred evaluation.  False means to never use deferred
@@ -200,14 +200,14 @@ The Python API would be expanded as follows.
 
     Returns the previous deferred state.
 
-``numpy.getdeferred()``
+``numpy_demo.getdeferred()``
 
     Returns the current deferred state.
 
-``numpy.deferredstate(state)``
+``numpy_demo.deferredstate(state)``
 
     A context manager for deferred state handling, similar to
-    ``numpy.errstate``.
+    ``numpy_demo.errstate``.
 
 
 Error Handling

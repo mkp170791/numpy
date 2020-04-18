@@ -26,7 +26,7 @@ jobs:
             sudo apt-get install -y graphviz texlive-fonts-recommended texlive-latex-recommended texlive-latex-extra texlive-generic-extra latexmk texlive-xetex
 
       - run:
-          name: build numpy
+          name: build numpy_demo
           command: |
             . venv/bin/activate
             pip install --upgrade pip setuptools
@@ -84,9 +84,9 @@ jobs:
               touch doc/build/html/.nojekyll
 
               ./tools/ci/push_docs_to_repo.py doc/build/html \
-                  git@github.com:numpy/devdocs.git \
-                  --committer "numpy-circleci-bot" \
-                  --email "numpy-circleci-bot@nomail" \
+                  git@github.com:numpy_demo/devdocs.git \
+                  --committer "numpy_demo-circleci-bot" \
+                  --email "numpy_demo-circleci-bot@nomail" \
                   --message "Docs build of $CIRCLE_SHA1" \
                   --force
             else
@@ -113,9 +113,9 @@ jobs:
               touch doc/neps/_build/html/.nojekyll
 
               ./tools/ci/push_docs_to_repo.py doc/neps/_build/html \
-                  git@github.com:numpy/neps.git \
-                  --committer "numpy-circleci-bot" \
-                  --email "numpy-circleci-bot@nomail" \
+                  git@github.com:numpy_demo/neps.git \
+                  --committer "numpy_demo-circleci-bot" \
+                  --email "numpy_demo-circleci-bot@nomail" \
                   --message "Docs build of $CIRCLE_SHA1" \
                   --force
             else

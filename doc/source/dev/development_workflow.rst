@@ -157,7 +157,7 @@ Writing the commit message
 
 Commit messages should be clear and follow a few basic rules.  Example::
 
-   ENH: add functionality X to numpy.<submodule>.
+   ENH: add functionality X to numpy_demo.<submodule>.
 
    The first line of the commit message starts with a capitalized acronym
    (options listed below) indicating what type of commit this is.  Then a blank
@@ -175,7 +175,7 @@ Standard acronyms to start the commit message with are::
 
    API: an (incompatible) API change
    BENCH: changes to the benchmark suite
-   BLD: change related to building numpy
+   BLD: change related to building numpy_demo
    BUG: bug fix
    DEP: deprecate something, or remove a deprecated object
    DEV: development tool or utility
@@ -185,7 +185,7 @@ Standard acronyms to start the commit message with are::
    REV: revert an earlier commit
    STY: style fix (whitespace, PEP8)
    TST: addition or modification of tests
-   REL: related to releasing numpy
+   REL: related to releasing numpy_demo
 
 
 .. _asking-for-merging:
@@ -393,7 +393,7 @@ share it via github_.
 First fork NumPy into your account, as from :ref:`forking`.
 
 Then, go to your forked repository github page, say
-``https://github.com/your-user-name/numpy``
+``https://github.com/your-user-name/numpy_demo``
 
 Click on the 'Admin' button, and add anyone else to the repo as a
 collaborator:
@@ -402,7 +402,7 @@ collaborator:
 
 Now all those people can do::
 
-    git clone git@github.com:your-user-name/numpy.git
+    git clone git@github.com:your-user-name/numpy_demo.git
 
 Remember that links starting with ``git@`` use the ssh protocol and are
 read-write; links starting with ``git://`` are read-only.
@@ -432,15 +432,15 @@ Backporting
 ===========
 
 Backporting is the process of copying new feature/fixes committed in
-`numpy/master`_ back to stable release branches. To do this you make a branch
+`numpy_demo/master`_ back to stable release branches. To do this you make a branch
 off the branch you are backporting to, cherry pick the commits you want from
-``numpy/master``, and then submit a pull request for the branch containing the
+``numpy_demo/master``, and then submit a pull request for the branch containing the
 backport.
 
 1. First, you need to make the branch you will work on. This needs to be
    based on the older version of NumPy (not master)::
 
-    # Make a new branch based on numpy/maintenance/1.8.x,
+    # Make a new branch based on numpy_demo/maintenance/1.8.x,
     # backport-3324 is our new name for the branch.
     git checkout -b backport-3324 upstream/maintenance/1.8.x
 

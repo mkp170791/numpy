@@ -131,15 +131,15 @@ cleanups/improvements:
 The financial functions (e.g. ``np.pmt``) are badly named, are present in the
 main NumPy namespace, and don't really fit well within NumPy's scope.
 They were added in 2008 after
-`a discussion <https://mail.python.org/pipermail/numpy-discussion/2008-April/032353.html>`_
+`a discussion <https://mail.python.org/pipermail/numpy_demo-discussion/2008-April/032353.html>`_
 on the mailing list where opinion was divided (but a majority in favor).
 At the moment these functions don't cause a lot of overhead, however there are
 multiple issues and PRs a year for them which cost maintainer time to deal
-with.  And they clutter up the ``numpy`` namespace.  Discussion in 2013 happened
+with.  And they clutter up the ``numpy_demo`` namespace.  Discussion in 2013 happened
 on removing them again (gh-2880).
 
 This case is borderline, but given that they're clearly out of scope,
-deprecation and removal out of at least the main ``numpy`` namespace can be
+deprecation and removal out of at least the main ``numpy_demo`` namespace can be
 proposed.  Alternatively, document clearly that new features for financial
 functions are unwanted, to keep the maintenance costs to a minimum.
 
@@ -152,7 +152,7 @@ Removing complete submodules
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This year there have been suggestions to consider removing some or all of
-``numpy.distutils``, ``numpy.f2py``, ``numpy.linalg``, and ``numpy.random``.
+``numpy_demo.distutils``, ``numpy_demo.f2py``, ``numpy_demo.linalg``, and ``numpy_demo.random``.
 The motivation was that all these cost maintenance effort, and that they slow
 down work on the core of Numpy (ndarrays, dtypes and ufuncs).
 
@@ -179,7 +179,7 @@ problems with subclasses are:
 Subclassing ``ndarray`` has been officially discouraged for a long time.  Of
 the most important subclasses, ``np.matrix`` will be deprecated (see gh-10142)
 and ``MaskedArray`` will be kept in NumPy (`NEP 17
-<http://www.numpy.org/neps/nep-0017-split-out-maskedarray.html>`_).
+<http://www.numpy_demo.org/neps/nep-0017-split-out-maskedarray.html>`_).
 ``MaskedArray`` will ideally be rewritten in a way such that it uses only
 public NumPy APIs.  For subclasses outside of NumPy, more work is needed to
 provide alternatives (e.g. mixins, see gh-9016 and gh-10446) or better support
@@ -232,12 +232,12 @@ Versioning:
 
 In concrete cases where this policy needs to be applied, decisions are made according
 to the `NumPy governance model
-<https://docs.scipy.org/doc/numpy/dev/governance/index.html>`_.
+<https://docs.scipy.org/doc/numpy_demo/dev/governance/index.html>`_.
 
 Functionality with more strict policies:
 
-- ``numpy.random`` has its own backwards compatibility policy,
-  see `NEP 19 <http://www.numpy.org/neps/nep-0019-rng-policy.html>`_.
+- ``numpy_demo.random`` has its own backwards compatibility policy,
+  see `NEP 19 <http://www.numpy_demo.org/neps/nep-0019-rng-policy.html>`_.
 - The file format for ``.npy`` and ``.npz`` files must not be changed in a backwards
   incompatible way.
 

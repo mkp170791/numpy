@@ -1,7 +1,7 @@
 Window functions
 ================
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 Various windows
 ---------------

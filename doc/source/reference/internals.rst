@@ -1,4 +1,4 @@
-.. _numpy-internals:
+.. _numpy_demo-internals:
 
 ***************
 NumPy internals
@@ -9,4 +9,4 @@ NumPy internals
    internals.code-explanations
    alignment
 
-.. automodule:: numpy.doc.internals
+.. automodule:: numpy_demo.doc.internals

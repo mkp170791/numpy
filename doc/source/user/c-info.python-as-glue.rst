@@ -352,7 +352,7 @@ to compile Fortran code at runtime, as follows:
 
 .. code-block:: python
 
-    from numpy import f2py
+    from numpy_demo import f2py
     with open("add.f") as sourcefile:
         sourcecode = sourcefile.read()
     f2py.compile(sourcecode, modulename='add')
@@ -376,13 +376,13 @@ distribution of the ``add.f`` module (as part of the package
 .. code-block:: python
 
     def configuration(parent_package='', top_path=None)
-        from numpy.distutils.misc_util import Configuration
+        from numpy_demo.distutils.misc_util import Configuration
         config = Configuration('f2py_examples',parent_package, top_path)
         config.add_extension('add', sources=['add.pyf','add.f'])
         return config
 
     if __name__ == '__main__':
-        from numpy.distutils.core import setup
+        from numpy_demo.distutils.core import setup
         setup(**configuration(top_path='').todict())
 
 Installation of the new package is easy using::
@@ -394,7 +394,7 @@ packages directory for the version of Python you are using. For the
 resulting package to work, you need to create a file named ``__init__.py``
 (in the same directory as ``add.pyf``). Notice the extension module is
 defined entirely in terms of the ``add.pyf`` and ``add.f`` files. The
-conversion of the .pyf file to a .c file is handled by `numpy.disutils`.
+conversion of the .pyf file to a .c file is handled by `numpy_demo.disutils`.
 
 
 Conclusion
@@ -402,7 +402,7 @@ Conclusion
 
 The interface definition file (.pyf) is how you can fine-tune the
 interface between Python and Fortran. There is decent documentation
-for f2py found in the numpy/f2py/docs directory where-ever NumPy is
+for f2py found in the numpy_demo/f2py/docs directory where-ever NumPy is
 installed on your system (usually under site-packages). There is also
 more information on using f2py (including how to use it to wrap C
 codes) at https://scipy-cookbook.readthedocs.io under the "Interfacing
@@ -454,11 +454,11 @@ write in a ``setup.py`` file:
     from Cython.Distutils import build_ext
     from distutils.extension import Extension
     from distutils.core import setup
-    import numpy
+    import numpy_demo
 
     setup(name='mine', description='Nothing',
           ext_modules=[Extension('filter', ['filter.pyx'],
-                                 include_dirs=[numpy.get_include()])],
+                                 include_dirs=[numpy_demo.get_include()])],
           cmdclass = {'build_ext':build_ext})
 
 Adding the NumPy include directory is, of course, only necessary if
@@ -489,8 +489,8 @@ complex addition functions we previously implemented using f2py:
 .. code-block:: none
 
     cimport cython
-    cimport numpy as np
-    import numpy as np
+    cimport numpy_demo as np
+    import numpy_demo as np
 
     # We need to initialize NumPy.
     np.import_array()
@@ -510,7 +510,7 @@ complex addition functions we previously implemented using f2py:
         return out
 
 This module shows use of the ``cimport`` statement to load the definitions
-from the ``numpy.pxd`` header that ships with Cython. It looks like NumPy is
+from the ``numpy_demo.pxd`` header that ships with Cython. It looks like NumPy is
 imported twice; ``cimport`` only makes the NumPy C-API available, while the
 regular ``import`` causes a Python-style import at runtime and makes it
 possible to call into the familiar NumPy Python API.
@@ -541,8 +541,8 @@ in Cython:
 
 .. code-block:: none
 
-    cimport numpy as np
-    import numpy as np
+    cimport numpy_demo as np
+    import numpy_demo as np
 
     np.import_array()
 
@@ -764,7 +764,7 @@ correct type, shape, and has the correct flags set or risk nasty
 crashes if the data-pointer to inappropriate arrays are passed in.
 
 To implement the second method, NumPy provides the class-factory
-function :func:`ndpointer` in the :mod:`numpy.ctypeslib` module. This
+function :func:`ndpointer` in the :mod:`numpy_demo.ctypeslib` module. This
 class-factory function produces an appropriate class that can be
 placed in an argtypes attribute entry of a ctypes function. The class
 will contain a from_param method which ctypes will use to convert any
@@ -806,7 +806,7 @@ shared-library. Thus, if ``./mylib.so`` has a function named
 
 .. code-block:: python
 
-    lib = numpy.ctypeslib.load_library('mylib','.')
+    lib = numpy_demo.ctypeslib.load_library('mylib','.')
     func1 = lib.cool_function1  # or equivalently
     func1 = lib['cool_function1']
 
@@ -954,7 +954,7 @@ following lines at the top:
 
     __all__ = ['add', 'filter2d']
 
-    import numpy as np
+    import numpy_demo as np
     import os
 
     _path = os.path.dirname('__file__')
@@ -1109,7 +1109,7 @@ Simplified Wrapper and Interface Generator (SWIG) is an old and fairly
 stable method for wrapping C/C++-libraries to a large variety of other
 languages. It does not specifically understand NumPy arrays but can be
 made useable with NumPy through the use of typemaps. There are some
-sample typemaps in the numpy/tools/swig directory under numpy.i together
+sample typemaps in the numpy_demo/tools/swig directory under numpy_demo.i together
 with an example module that makes use of them. SWIG excels at wrapping
 large C/C++ libraries because it can (almost) parse their headers and
 auto-produce an interface. Technically, you need to generate a ``.i``

@@ -5,9 +5,9 @@ Broadcasting
 ************
 
 .. seealso::
-    :class:`numpy.broadcast`
+    :class:`numpy_demo.broadcast`
 
-    :ref:`array-broadcasting-in-numpy`
+    :ref:`array-broadcasting-in-numpy_demo`
         An introduction to the concepts discussed here
 
-.. automodule:: numpy.doc.broadcasting
+.. automodule:: numpy_demo.doc.broadcasting

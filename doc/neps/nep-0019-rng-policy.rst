@@ -7,18 +7,18 @@ NEP 19 — Random Number Generator Policy
 :Type: Standards Track
 :Created: 2018-05-24
 :Updated: 2019-05-21
-:Resolution: https://mail.python.org/pipermail/numpy-discussion/2018-July/078380.html
+:Resolution: https://mail.python.org/pipermail/numpy_demo-discussion/2018-July/078380.html
 
 Abstract
 --------
 
 For the past decade, NumPy has had a strict backwards compatibility policy for
 the number stream of all of its random number distributions.  Unlike other
-numerical components in ``numpy``, which are usually allowed to return
+numerical components in ``numpy_demo``, which are usually allowed to return
 different when results when they are modified if they remain correct, we have
 obligated the random number distributions to always produce the exact same
 numbers in every version.  The objective of our stream-compatibility guarantee
-was to provide exact reproducibility for simulations across numpy versions in
+was to provide exact reproducibility for simulations across numpy_demo versions in
 order to promote reproducible research.  However, this policy has made it very
 difficult to enhance any of the distributions with faster or more accurate
 algorithms.  After a decade of experience and improvements in the surrounding
@@ -43,18 +43,18 @@ Our current policy, in full:
 This policy was first instated in Nov 2008 (in essence; the full set of weasel
 words grew over time) in response to a user wanting to be sure that the
 simulations that formed the basis of their scientific publication could be
-reproduced years later, exactly, with whatever version of ``numpy`` that was
+reproduced years later, exactly, with whatever version of ``numpy_demo`` that was
 current at the time.  We were keen to support reproducible research, and it was
-still early in the life of ``numpy.random``.  We had not seen much cause to
+still early in the life of ``numpy_demo.random``.  We had not seen much cause to
 change the distribution methods all that much.
 
 We also had not thought very thoroughly about the limits of what we really
 could promise (and by “we” in this section, we really mean Robert Kern, let’s
 be honest).  Despite all of the weasel words, our policy overpromises
-compatibility.  The same version of ``numpy`` built on different platforms, or
+compatibility.  The same version of ``numpy_demo`` built on different platforms, or
 just in a different way could cause changes in the stream, with varying degrees
 of rarity.  The biggest is that the ``.multivariate_normal()`` method relies on
-``numpy.linalg`` functions.  Even on the same platform, if one links ``numpy``
+``numpy_demo.linalg`` functions.  Even on the same platform, if one links ``numpy_demo``
 with a different LAPACK, ``.multivariate_normal()`` may well return completely
 different results.  More rarely, building on a different OS or CPU can cause
 differences in the stream.  We use C ``long`` integers internally for integer
@@ -67,7 +67,7 @@ And even if all of that is controlled, our policy still does not provide exact
 guarantees across versions.  We still do apply bug fixes when correctness is at
 stake.  And even if we didn’t do that, any nontrivial program does more than
 just draw random numbers.  They do computations on those numbers, transform
-those with numerical algorithms from the rest of ``numpy``, which is not
+those with numerical algorithms from the rest of ``numpy_demo``, which is not
 subject to so strict a policy.  Trying to maintain stream-compatibility for our
 random number distributions does not help reproducible research for these
 reasons.
@@ -77,11 +77,11 @@ of the versions of code of your software stack, possibly down to the OS itself.
 The landscape for accomplishing this is much easier today than it was in 2008.
 We now have ``pip``.  We now have virtual machines.  Those who need to
 reproduce simulations exactly now can (and ought to) do so by using the exact
-same version of ``numpy``.  We do not need to maintain stream-compatibility
-across ``numpy`` versions to help them.
+same version of ``numpy_demo``.  We do not need to maintain stream-compatibility
+across ``numpy_demo`` versions to help them.
 
 Our stream-compatibility guarantee has hindered our ability to make
-improvements to ``numpy.random``.  Several first-time contributors have
+improvements to ``numpy_demo.random``.  Several first-time contributors have
 submitted PRs to improve the distributions, usually by implementing a faster,
 or more accurate algorithm than the one that is currently there.
 Unfortunately, most of them would have required breaking the stream to do so.
@@ -101,7 +101,7 @@ requirements that such a new system must have to support the policy proposed in
 this NEP.
 
 First, we will maintain API source compatibility just as we do with the rest of
-``numpy``.  If we *must* make a breaking change, we will only do so with an
+``numpy_demo``.  If we *must* make a breaking change, we will only do so with an
 appropriate deprecation period and warnings.
 
 Second, breaking stream-compatibility in order to introduce new features or
@@ -163,51 +163,51 @@ rewritten to work with ``uint64`` numbers on all platforms.
 Supporting Unit Tests
 :::::::::::::::::::::
 
-Because we did make a strong stream-compatibility guarantee early in numpy’s
+Because we did make a strong stream-compatibility guarantee early in numpy_demo’s
 life, reliance on stream-compatibility has grown beyond reproducible
-simulations.  One use case that remains for stream-compatibility across numpy
+simulations.  One use case that remains for stream-compatibility across numpy_demo
 versions is to use pseudorandom streams to generate test data in unit tests.
 With care, many of the cross-platform instabilities can be avoided in the
 context of small unit tests.
 
 The new PRNG subsystem MUST provide a second, legacy distributions class that
 uses the same implementations of the distribution methods as the current
-version of ``numpy.random.RandomState``.  The methods of this class will have
+version of ``numpy_demo.random.RandomState``.  The methods of this class will have
 strict stream-compatibility guarantees, even stricter than the current policy.
 It is intended that this class will no longer be modified, except to keep it
-working when numpy internals change.  All new development should go into the
+working when numpy_demo internals change.  All new development should go into the
 primary distributions class.  Bug fixes that change the stream SHALL NOT be
 made to ``RandomState``; instead, buggy distributions should be made to warn
 when they are buggy.  The purpose of ``RandomState`` will be documented as
 providing certain fixed functionality for backwards compatibility and stable
 numbers for the limited purpose of unit testing, and not making whole programs
-reproducible across numpy versions.
+reproducible across numpy_demo versions.
 
 This legacy distributions class MUST be accessible under the name
-``numpy.random.RandomState`` for backwards compatibility.  All current ways of
-instantiating ``numpy.random.RandomState`` with a given state should
+``numpy_demo.random.RandomState`` for backwards compatibility.  All current ways of
+instantiating ``numpy_demo.random.RandomState`` with a given state should
 instantiate the Mersenne Twister BitGenerator with the same state.  The legacy
 distributions class MUST be capable of accepting other BitGenerators.  The
 purpose
 here is to ensure that one can write a program with a consistent BitGenerator
 state with a mixture of libraries that may or may not have upgraded from
 ``RandomState``.  Instances of the legacy distributions class MUST respond
-``True`` to ``isinstance(rg, numpy.random.RandomState)`` because there is
+``True`` to ``isinstance(rg, numpy_demo.random.RandomState)`` because there is
 current utility code that relies on that check.  Similarly, old pickles of
-``numpy.random.RandomState`` instances MUST unpickle correctly.
+``numpy_demo.random.RandomState`` instances MUST unpickle correctly.
 
 
-``numpy.random.*``
+``numpy_demo.random.*``
 ::::::::::::::::::
 
 The preferred best practice for getting reproducible pseudorandom numbers is to
 instantiate a generator object with a seed and pass it around.  The implicit
-global ``RandomState`` behind the ``numpy.random.*`` convenience functions can
+global ``RandomState`` behind the ``numpy_demo.random.*`` convenience functions can
 cause problems, especially when threads or other forms of concurrency are
 involved.  Global state is always problematic.  We categorically recommend
 avoiding using the convenience functions when reproducibility is involved.
 
-That said, people do use them and use ``numpy.random.seed()`` to control the
+That said, people do use them and use ``numpy_demo.random.seed()`` to control the
 state underneath them.  It can be hard to categorize and count API usages
 consistently and usefully, but a very common usage is in unit tests where many
 of the problems of global state are less likely.
@@ -219,17 +219,17 @@ might.
 Specifically, the initial release of the new PRNG subsystem SHALL leave these
 convenience functions as aliases to the methods on a global ``RandomState``
 that is initialized with a Mersenne Twister BitGenerator object.  A call to
-``numpy.random.seed()`` will be forwarded to that BitGenerator object.  In
+``numpy_demo.random.seed()`` will be forwarded to that BitGenerator object.  In
 addition, the global ``RandomState`` instance MUST be accessible in this
-initial release by the name ``numpy.random.mtrand._rand``: Robert Kern long ago
+initial release by the name ``numpy_demo.random.mtrand._rand``: Robert Kern long ago
 promised ``scikit-learn`` that this name would be stable.  Whoops.
 
 In order to allow certain workarounds, it MUST be possible to replace the
 BitGenerator underneath the global ``RandomState`` with any other BitGenerator
 object (we leave the precise API details up to the new subsystem).  Calling
-``numpy.random.seed()`` thereafter SHOULD just pass the given seed to the
+``numpy_demo.random.seed()`` thereafter SHOULD just pass the given seed to the
 current BitGenerator object and not attempt to reset the BitGenerator to the
-Mersenne Twister.  The set of ``numpy.random.*`` convenience functions SHALL
+Mersenne Twister.  The set of ``numpy_demo.random.*`` convenience functions SHALL
 remain the same as they currently are.  They SHALL be aliases to the
 ``RandomState`` methods and not the new less-stable distributions class
 (``Generator``, in the examples above). Users who want to get the fastest, best
@@ -249,12 +249,12 @@ Versioning
 For a long time, we considered that the way to allow algorithmic improvements
 while maintaining the stream was to apply some form of versioning.  That is,
 every time we make a stream change in one of the distributions, we increment
-some version number somewhere.  ``numpy.random`` would keep all past versions
+some version number somewhere.  ``numpy_demo.random`` would keep all past versions
 of the code, and there would be a way to get the old versions.
 
 We will not be doing this.  If one needs to get the exact bit-for-bit results
-from a given version of ``numpy``, whether one uses random numbers or not, one
-should use the exact version of ``numpy``.
+from a given version of ``numpy_demo``, whether one uses random numbers or not, one
+should use the exact version of ``numpy_demo``.
 
 Proposals of how to do RNG versioning varied widely, and we will not
 exhaustively list them here.  We spent years going back and forth on these
@@ -262,7 +262,7 @@ designs and were not able to find one that sufficed.  Let that time lost, and
 more importantly, the contributors that we lost while we dithered, serve as
 evidence against the notion.
 
-Concretely, adding in versioning makes maintenance of ``numpy.random``
+Concretely, adding in versioning makes maintenance of ``numpy_demo.random``
 difficult.  Necessarily, we would be keeping lots of versions of the same code
 around.  Adding a new algorithm safely would still be quite hard.
 
@@ -276,7 +276,7 @@ altered anyway to specify the specific version that one wants to replicate.
 Adding in versioning to maintain stream-compatibility would still only provide
 the same level of stream-compatibility that we currently do, with all of the
 limitations described earlier.  Given that the standard practice for such needs
-is to pin the release of ``numpy`` as a whole, versioning ``RandomState`` alone
+is to pin the release of ``numpy_demo`` as a whole, versioning ``RandomState`` alone
 is superfluous.
 
 
@@ -321,8 +321,8 @@ streams.
 Discussion
 ----------
 
-- `NEP discussion <https://mail.python.org/pipermail/numpy-discussion/2018-June/078126.html>`_
-- `Earlier discussion <https://mail.python.org/pipermail/numpy-discussion/2018-January/077608.html>`_
+- `NEP discussion <https://mail.python.org/pipermail/numpy_demo-discussion/2018-June/078126.html>`_
+- `Earlier discussion <https://mail.python.org/pipermail/numpy_demo-discussion/2018-January/077608.html>`_
 
 
 Copyright

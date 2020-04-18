@@ -180,7 +180,7 @@ Setting and getting values
 
 The objects with this dtype can be set in a series of ways::
 
-  t = numpy.ones(3, dtype='M8[s]')
+  t = numpy_demo.ones(3, dtype='M8[s]')
   t[0] = 1199164176    # assign to July 30th, 2008 at 17:31:00
   t[1] = datetime.datetime(2008, 7, 30, 17, 31, 01) # with datetime module
   t[2] = '2008-07-30T17:31:02'    # with ISO 8601
@@ -200,17 +200,17 @@ Comparisons
 
 The comparisons will be supported too::
 
-  numpy.array(['1980'], 'M8[Y]') == numpy.array(['1979'], 'M8[Y]')
+  numpy_demo.array(['1980'], 'M8[Y]') == numpy_demo.array(['1979'], 'M8[Y]')
   --> [False]
 
 including applying broadcasting::
 
-  numpy.array(['1979', '1980'], 'M8[Y]') == numpy.datetime64('1980', 'Y')
+  numpy_demo.array(['1979', '1980'], 'M8[Y]') == numpy_demo.datetime64('1980', 'Y')
   --> [False, True]
 
 The following should also work::
 
-  numpy.array(['1979', '1980'], 'M8[Y]') == '1980-01-01'
+  numpy_demo.array(['1979', '1980'], 'M8[Y]') == '1980-01-01'
   --> [False, True]
 
 because the right hand expression can be broadcasted into an array of 2
@@ -261,7 +261,7 @@ Setting and getting values
 
 The objects with this dtype can be set in a series of ways::
 
-  t = numpy.ones(3, dtype='m8[ms]')
+  t = numpy_demo.ones(3, dtype='m8[ms]')
   t[0] = 12    # assign to 12 ms
   t[1] = datetime.timedelta(0, 0, 13000)   # 13 ms
   t[2] = '0:00:00.014'    # 14 ms
@@ -280,17 +280,17 @@ Comparisons
 
 The comparisons will be supported too::
 
-  numpy.array([12, 13, 14], 'm8[ms]') == numpy.array([12, 13, 13], 'm8[ms]')
+  numpy_demo.array([12, 13, 14], 'm8[ms]') == numpy_demo.array([12, 13, 13], 'm8[ms]')
   --> [True, True, False]
 
 or by applying broadcasting::
 
-  numpy.array([12, 13, 14], 'm8[ms]') == numpy.timedelta64(13, 'ms')
+  numpy_demo.array([12, 13, 14], 'm8[ms]') == numpy_demo.timedelta64(13, 'ms')
   --> [False, True, False]
 
 The following should work too::
 
-  numpy.array([12, 13, 14], 'm8[ms]') == '0:00:00.012'
+  numpy_demo.array([12, 13, 14], 'm8[ms]') == '0:00:00.012'
   --> [True, False, False]
 
 because the right hand expression can be broadcasted into an array of 3
@@ -310,22 +310,22 @@ Examples of use
 
 Here is an example of use for the ``datetime64``::
 
-  In [5]: numpy.datetime64(42, 'us')
+  In [5]: numpy_demo.datetime64(42, 'us')
   Out[5]: datetime64(42, 'us')
 
-  In [6]: print numpy.datetime64(42, 'us')
+  In [6]: print numpy_demo.datetime64(42, 'us')
   1970-01-01T00:00:00.000042  # representation in ISO 8601 format
 
-  In [7]: print numpy.datetime64(367.7, 'D')  # decimal part is lost
+  In [7]: print numpy_demo.datetime64(367.7, 'D')  # decimal part is lost
   1971-01-02  # still ISO 8601 format
 
-  In [8]: numpy.datetime('2008-07-18T12:23:18', 'm')  # from ISO 8601
+  In [8]: numpy_demo.datetime('2008-07-18T12:23:18', 'm')  # from ISO 8601
   Out[8]: datetime64(20273063, 'm')
 
-  In [9]: print numpy.datetime('2008-07-18T12:23:18', 'm')
+  In [9]: print numpy_demo.datetime('2008-07-18T12:23:18', 'm')
   Out[9]: 2008-07-18T12:23
 
-  In [10]: t = numpy.zeros(5, dtype="datetime64[ms]")
+  In [10]: t = numpy_demo.zeros(5, dtype="datetime64[ms]")
 
   In [11]: t[0] = datetime.datetime.now()  # setter in action
 
@@ -345,18 +345,18 @@ Here is an example of use for the ``datetime64``::
 
 And here it goes an example of use for the ``timedelta64``::
 
-  In [5]: numpy.timedelta64(10, 'us')
+  In [5]: numpy_demo.timedelta64(10, 'us')
   Out[5]: timedelta64(10, 'us')
 
-  In [6]: print numpy.timedelta64(10, 'us')
+  In [6]: print numpy_demo.timedelta64(10, 'us')
   0:00:00.000010
 
-  In [7]: print numpy.timedelta64(3600.2, 'm')  # decimal part is lost
+  In [7]: print numpy_demo.timedelta64(3600.2, 'm')  # decimal part is lost
   2 days, 12:00
 
-  In [8]: t1 = numpy.zeros(5, dtype="datetime64[ms]")
+  In [8]: t1 = numpy_demo.zeros(5, dtype="datetime64[ms]")
 
-  In [9]: t2 = numpy.ones(5, dtype="datetime64[ms]")
+  In [9]: t2 = numpy_demo.ones(5, dtype="datetime64[ms]")
 
   In [10]: t = t2 - t1
 
@@ -384,13 +384,13 @@ Operating with date/time arrays
 The only arithmetic operation allowed between absolute dates is
 subtraction::
 
-  In [10]: numpy.ones(3, "M8[s]") - numpy.zeros(3, "M8[s]")
+  In [10]: numpy_demo.ones(3, "M8[s]") - numpy_demo.zeros(3, "M8[s]")
   Out[10]: array([1, 1, 1], dtype=timedelta64[s])
 
 But not other operations::
 
-  In [11]: numpy.ones(3, "M8[s]") + numpy.zeros(3, "M8[s]")
-  TypeError: unsupported operand type(s) for +: 'numpy.ndarray' and 'numpy.ndarray'
+  In [11]: numpy_demo.ones(3, "M8[s]") + numpy_demo.zeros(3, "M8[s]")
+  TypeError: unsupported operand type(s) for +: 'numpy_demo.ndarray' and 'numpy_demo.ndarray'
 
 Comparisons between absolute dates are allowed.
 
@@ -404,13 +404,13 @@ time units can be very different, and it is not clear at all what time
 unit will be preferred for the user.  For example, this should be
 allowed::
 
-  >>> numpy.ones(3, dtype="M8[Y]") - numpy.zeros(3, dtype="M8[Y]")
+  >>> numpy_demo.ones(3, dtype="M8[Y]") - numpy_demo.zeros(3, dtype="M8[Y]")
   array([1, 1, 1], dtype="timedelta64[Y]")
 
 But the next should not::
 
-  >>> numpy.ones(3, dtype="M8[Y]") - numpy.zeros(3, dtype="M8[ns]")
-  raise numpy.IncompatibleUnitError  # what unit to choose?
+  >>> numpy_demo.ones(3, dtype="M8[Y]") - numpy_demo.zeros(3, dtype="M8[ns]")
+  raise numpy_demo.IncompatibleUnitError  # what unit to choose?
 
 
 ``datetime64`` vs ``timedelta64``
@@ -419,16 +419,16 @@ But the next should not::
 It will be possible to add and subtract relative times from absolute
 dates::
 
-  In [10]: numpy.zeros(5, "M8[Y]") + numpy.ones(5, "m8[Y]")
+  In [10]: numpy_demo.zeros(5, "M8[Y]") + numpy_demo.ones(5, "m8[Y]")
   Out[10]: array([1971, 1971, 1971, 1971, 1971], dtype=datetime64[Y])
 
-  In [11]: numpy.ones(5, "M8[Y]") - 2 * numpy.ones(5, "m8[Y]")
+  In [11]: numpy_demo.ones(5, "M8[Y]") - 2 * numpy_demo.ones(5, "m8[Y]")
   Out[11]: array([1969, 1969, 1969, 1969, 1969], dtype=datetime64[Y])
 
 But not other operations::
 
-  In [12]: numpy.ones(5, "M8[Y]") * numpy.ones(5, "m8[Y]")
-  TypeError: unsupported operand type(s) for *: 'numpy.ndarray' and 'numpy.ndarray'
+  In [12]: numpy_demo.ones(5, "M8[Y]") * numpy_demo.ones(5, "m8[Y]")
+  TypeError: unsupported operand type(s) for *: 'numpy_demo.ndarray' and 'numpy_demo.ndarray'
 
 Casting rules
 ~~~~~~~~~~~~~
@@ -437,9 +437,9 @@ In this case the absolute time should have priority for determining the
 time unit of the outcome.  That would represent what the people wants to
 do most of the times.  For example, this would allow to do::
 
-  >>> series = numpy.array(['1970-01-01', '1970-02-01', '1970-09-01'],
+  >>> series = numpy_demo.array(['1970-01-01', '1970-02-01', '1970-09-01'],
   dtype='datetime64[D]')
-  >>> series2 = series + numpy.timedelta(1, 'Y')  # Add 2 relative years
+  >>> series2 = series + numpy_demo.timedelta(1, 'Y')  # Add 2 relative years
   >>> series2
   array(['1972-01-01', '1972-02-01', '1972-09-01'],
   dtype='datetime64[D]')  # the 'D'ay time unit has been chosen
@@ -452,15 +452,15 @@ Finally, it will be possible to operate with relative times as if they
 were regular int64 dtypes *as long as* the result can be converted back
 into a ``timedelta64``::
 
-  In [10]: numpy.ones(3, 'm8[us]')
+  In [10]: numpy_demo.ones(3, 'm8[us]')
   Out[10]: array([1, 1, 1], dtype="timedelta64[us]")
 
-  In [11]: (numpy.ones(3, 'm8[M]') + 2) ** 3
+  In [11]: (numpy_demo.ones(3, 'm8[M]') + 2) ** 3
   Out[11]: array([27, 27, 27], dtype="timedelta64[M]")
 
 But::
 
-  In [12]: numpy.ones(5, 'm8') + 1j
+  In [12]: numpy_demo.ones(5, 'm8') + 1j
   TypeError: the result cannot be converted into a ``timedelta64``
 
 Casting rules
@@ -470,15 +470,15 @@ When combining two ``timedelta64`` dtypes with different time units the
 outcome will be the shorter of both ("keep the precision" rule).  For
 example::
 
-  In [10]: numpy.ones(3, 'm8[s]') + numpy.ones(3, 'm8[m]')
+  In [10]: numpy_demo.ones(3, 'm8[s]') + numpy_demo.ones(3, 'm8[m]')
   Out[10]: array([61, 61, 61],  dtype="timedelta64[s]")
 
 However, due to the impossibility to know the exact duration of a
 relative year or a relative month, when these time units appear in one
 of the operands, the operation will not be allowed::
 
-  In [11]: numpy.ones(3, 'm8[Y]') + numpy.ones(3, 'm8[D]')
-  raise numpy.IncompatibleUnitError  # how to convert relative years to days?
+  In [11]: numpy_demo.ones(3, 'm8[Y]') + numpy_demo.ones(3, 'm8[D]')
+  raise numpy_demo.IncompatibleUnitError  # how to convert relative years to days?
 
 In order to being able to perform the above operation a new NumPy
 function, called ``change_timeunit`` is proposed.  Its signature will
@@ -495,11 +495,11 @@ days).
 
 With this, the above operation can be done as follows::
 
-  In [10]: t_years = numpy.ones(3, 'm8[Y]')
+  In [10]: t_years = numpy_demo.ones(3, 'm8[Y]')
 
-  In [11]: t_days = numpy.change_timeunit(t_years, 'D', '2001-01-01')
+  In [11]: t_days = numpy_demo.change_timeunit(t_years, 'D', '2001-01-01')
 
-  In [12]: t_days + numpy.ones(3, 'm8[D]')
+  In [12]: t_days + numpy_demo.ones(3, 'm8[D]')
   Out[12]: array([366, 366, 366],  dtype="timedelta64[D]")
 
 
@@ -512,7 +512,7 @@ units.
 
 For example, for absolute dates::
 
-  In[10]: t1 = numpy.zeros(5, dtype="datetime64[s]")
+  In[10]: t1 = numpy_demo.zeros(5, dtype="datetime64[s]")
 
   In[11]: print t1
   [1970-01-01T00:00:00  1970-01-01T00:00:00  1970-01-01T00:00:00
@@ -523,7 +523,7 @@ For example, for absolute dates::
 
 For relative times::
 
-  In[10]: t1 = numpy.ones(5, dtype="timedelta64[s]")
+  In[10]: t1 = numpy_demo.ones(5, dtype="timedelta64[s]")
 
   In[11]: print t1
   [1 1 1 1 1]
@@ -534,7 +534,7 @@ For relative times::
 Changing directly from/to relative to/from absolute dtypes will not be
 supported::
 
-  In[13]: numpy.zeros(5, dtype="datetime64[s]").astype('timedelta64')
+  In[13]: numpy_demo.zeros(5, dtype="datetime64[s]").astype('timedelta64')
   TypeError: data type cannot be converted to the desired type
 
 Business days have the peculiarity that they do not cover a continuous
@@ -543,7 +543,7 @@ any ordinary time to business days, it can happen that the original time
 is not representable.  In that case, the result of the conversion is
 *Not a Time* (*NaT*)::
 
-  In[10]: t1 = numpy.arange(5, dtype="datetime64[D]")
+  In[10]: t1 = numpy_demo.arange(5, dtype="datetime64[D]")
 
   In[11]: print t1
   [1970-01-01  1970-01-02  1970-01-03  1970-01-04  1970-01-05]

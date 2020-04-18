@@ -94,4 +94,4 @@ and the corresponding <C type>. <C type> can be one of the following::
     complex_long_double
     string
 
-For more information, see F2Py source code ``numpy/f2py/capi_maps.py``.
+For more information, see F2Py source code ``numpy_demo/f2py/capi_maps.py``.

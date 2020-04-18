@@ -1,7 +1,7 @@
 Set routines
 ============
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 Making proper sets
 ------------------

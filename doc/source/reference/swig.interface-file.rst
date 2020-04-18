@@ -1,4 +1,4 @@
-numpy.i: a SWIG Interface File for NumPy
+numpy_demo.i: a SWIG Interface File for NumPy
 ========================================
 
 Introduction
@@ -34,7 +34,7 @@ string)::
     def rms(seq):
         """
         rms: return the root mean square of a sequence
-        rms(numpy.ndarray) -> double
+        rms(numpy_demo.ndarray) -> double
         rms(list) -> double
         rms(tuple) -> double
         """
@@ -50,7 +50,7 @@ and length.
 
 `SWIG`_ allows these types of conversions to be defined via a
 mechanism called *typemaps*.  This document provides information on
-how to use ``numpy.i``, a `SWIG`_ interface file that defines a series
+how to use ``numpy_demo.i``, a `SWIG`_ interface file that defines a series
 of typemaps intended to make the type of array-related conversions
 described above relatively simple to implement.  For example, suppose
 that the ``rms`` function prototype defined above was in a header file
@@ -62,7 +62,7 @@ named ``rms.h``.  To obtain the Python interface discussed above, your
     #include "rms.h"
     %}
 
-    %include "numpy.i"
+    %include "numpy_demo.i"
 
     %init %{
     import_array();
@@ -73,7 +73,7 @@ named ``rms.h``.  To obtain the Python interface discussed above, your
 
 Typemaps are keyed off a list of one or more function arguments,
 either by type or by type and name.  We will refer to such lists as
-*signatures*.  One of the many typemaps defined by ``numpy.i`` is used
+*signatures*.  One of the many typemaps defined by ``numpy_demo.i`` is used
 above and has the signature ``(double* IN_ARRAY1, int DIM1)``.  The
 argument names are intended to suggest that the ``double*`` argument
 is an input array of one dimension and that the ``int`` represents the
@@ -84,7 +84,7 @@ Most likely, no actual prototypes to be wrapped will have the argument
 names ``IN_ARRAY1`` and ``DIM1``.  We use the `SWIG`_ ``%apply``
 directive to apply the typemap for one-dimensional input arrays of
 type ``double`` to the actual prototype used by ``rms``.  Using
-``numpy.i`` effectively, therefore, requires knowing what typemaps are
+``numpy_demo.i`` effectively, therefore, requires knowing what typemaps are
 available and what they do.
 
 A `SWIG`_ interface file that includes the `SWIG`_ directives given
@@ -124,12 +124,12 @@ above will produce wrapper code that looks something like::
     32   return NULL;
     33 }
 
-The typemaps from ``numpy.i`` are responsible for the following lines
+The typemaps from ``numpy_demo.i`` are responsible for the following lines
 of code: 12--20, 25 and 30.  Line 10 parses the input to the ``rms``
 function.  From the format string ``"O:rms"``, we can see that the
 argument list is expected to be a single Python object (specified
 by the ``O`` before the colon) and whose pointer is stored in
-``obj0``.  A number of functions, supplied by ``numpy.i``, are called
+``obj0``.  A number of functions, supplied by ``numpy_demo.i``, are called
 to make and check the (possible) conversion from a generic Python
 object to a NumPy array.  These functions are explained in the
 section `Helper Functions`_, but hopefully their names are
@@ -154,7 +154,7 @@ Note that if the C function signature was in a different order::
     double rms(int n, double* seq);
 
 that `SWIG`_ would not match the typemap signature given above with
-the argument list for ``rms``.  Fortunately, ``numpy.i`` has a set of
+the argument list for ``rms``.  Fortunately, ``numpy_demo.i`` has a set of
 typemaps with the data pointer given last::
 
     %apply (int DIM1, double* IN_ARRAY1) {(int n, double* seq)};
@@ -163,11 +163,11 @@ This simply has the effect of switching the definitions of ``arg1``
 and ``arg2`` in lines 3 and 4 of the generated code above, and their
 assignments in lines 19 and 20.
 
-Using numpy.i
+Using numpy_demo.i
 -------------
 
-The ``numpy.i`` file is currently located in the ``tools/swig``
-sub-directory under the ``numpy`` installation directory.  Typically,
+The ``numpy_demo.i`` file is currently located in the ``tools/swig``
+sub-directory under the ``numpy_demo`` installation directory.  Typically,
 you will want to copy it to the directory where you are developing
 your wrappers.
 
@@ -177,7 +177,7 @@ include the following::
     %{
     #define SWIG_FILE_WITH_INIT
     %}
-    %include "numpy.i"
+    %include "numpy_demo.i"
     %init %{
     import_array();
     %}
@@ -195,21 +195,21 @@ one `SWIG`_ interface file, then only one interface file should
 Available Typemaps
 ------------------
 
-The typemap directives provided by ``numpy.i`` for arrays of different
+The typemap directives provided by ``numpy_demo.i`` for arrays of different
 data types, say ``double`` and ``int``, and dimensions of different
 types, say ``int`` or ``long``, are identical to one another except
 for the C and NumPy type specifications.  The typemaps are
 therefore implemented (typically behind the scenes) via a macro::
 
-    %numpy_typemaps(DATA_TYPE, DATA_TYPECODE, DIM_TYPE)
+    %numpy_demo_typemaps(DATA_TYPE, DATA_TYPECODE, DIM_TYPE)
 
 that can be invoked for appropriate ``(DATA_TYPE, DATA_TYPECODE,
 DIM_TYPE)`` triplets.  For example::
 
-    %numpy_typemaps(double, NPY_DOUBLE, int)
-    %numpy_typemaps(int,    NPY_INT   , int)
+    %numpy_demo_typemaps(double, NPY_DOUBLE, int)
+    %numpy_demo_typemaps(int,    NPY_INT   , int)
 
-The ``numpy.i`` interface file uses the ``%numpy_typemaps`` macro to
+The ``numpy_demo.i`` interface file uses the ``%numpy_demo_typemaps`` macro to
 implement typemaps for the following C data types and ``int``
 dimension types:
 
@@ -426,9 +426,9 @@ cannot follow the double pointer signatures of these typemaps.
 Memory Managed Argout View Arrays
 `````````````````````````````````
 
-A recent addition to ``numpy.i`` are typemaps that permit argout
+A recent addition to ``numpy_demo.i`` are typemaps that permit argout
 arrays with views into memory that is managed.  See the discussion `here
-<http://blog.enthought.com/python/numpy-arrays-with-pre-allocated-memory>`_.
+<http://blog.enthought.com/python/numpy_demo-arrays-with-pre-allocated-memory>`_.
 
 1D:
 
@@ -460,7 +460,7 @@ arrays with views into memory that is managed.  See the discussion `here
 Output Arrays
 `````````````
 
-The ``numpy.i`` interface file does not support typemaps for output
+The ``numpy_demo.i`` interface file does not support typemaps for output
 arrays, for several reasons.  First, C/C++ return arguments are
 limited to a single value.  This prevents obtaining dimension
 information in a general way.  Second, arrays with hard-coded lengths
@@ -485,13 +485,13 @@ Note that C++ type ``bool`` is not supported in the list in the
 `Available Typemaps`_ section.  NumPy bools are a single byte, while
 the C++ ``bool`` is four bytes (at least on my system).  Therefore::
 
-    %numpy_typemaps(bool, NPY_BOOL, int)
+    %numpy_demo_typemaps(bool, NPY_BOOL, int)
 
 will result in typemaps that will produce code that reference
 improper data lengths.  You can implement the following macro
 expansion::
 
-    %numpy_typemaps(bool, NPY_UINT, int)
+    %numpy_demo_typemaps(bool, NPY_UINT, int)
 
 to fix the data length problem, and `Input Arrays`_ will work fine,
 but `In-Place Arrays`_ might fail type-checking.
@@ -514,9 +514,9 @@ Python and NumPy implement their own (essentially equivalent)
 
 We could have implemented::
 
-    %numpy_typemaps(Py_complex , NPY_CDOUBLE, int)
-    %numpy_typemaps(npy_cfloat , NPY_CFLOAT , int)
-    %numpy_typemaps(npy_cdouble, NPY_CDOUBLE, int)
+    %numpy_demo_typemaps(Py_complex , NPY_CDOUBLE, int)
+    %numpy_demo_typemaps(npy_cfloat , NPY_CFLOAT , int)
+    %numpy_demo_typemaps(npy_cdouble, NPY_CDOUBLE, int)
 
 which would have provided automatic type conversions for arrays of
 type ``Py_complex``, ``npy_cfloat`` and ``npy_cdouble``.  However, it
@@ -526,7 +526,7 @@ generate a Python interface to, that also used these definitions
 for complex types.  More likely, these application codes will define
 their own complex types, or in the case of C++, use ``std::complex``.
 Assuming these data structures are compatible with Python and
-NumPy complex types, ``%numpy_typemap`` expansions as above (with
+NumPy complex types, ``%numpy_demo_typemap`` expansions as above (with
 the user's complex type substituted for the first argument) should
 work.
 
@@ -585,12 +585,12 @@ system.  That is, we need to define the fragment for ``long``
 conversions prior to `SWIG`_ doing it internally.  `SWIG`_ allows us
 to do this by putting our fragment definitions in the file
 ``pyfragments.swg``.  If we were to put the new fragment definitions
-in ``numpy.i``, they would be ignored.
+in ``numpy_demo.i``, they would be ignored.
 
 Helper Functions
 ----------------
 
-The ``numpy.i`` file contains several macros and routines that it
+The ``numpy_demo.i`` file contains several macros and routines that it
 uses internally to build its typemaps.  However, these functions may
 be useful elsewhere in your interface file.  These macros and routines
 are implemented as fragments, which are described briefly in the
@@ -913,7 +913,7 @@ Beyond the Provided Typemaps
 ----------------------------
 
 There are many C or C++ array/NumPy array situations not covered by
-a simple ``%include "numpy.i"`` and subsequent ``%apply`` directives.
+a simple ``%include "numpy_demo.i"`` and subsequent ``%apply`` directives.
 
 A Common Example
 ````````````````
@@ -976,19 +976,19 @@ macro to perform this task.
 Other Situations
 ````````````````
 
-There are other wrapping situations in which ``numpy.i`` may be
+There are other wrapping situations in which ``numpy_demo.i`` may be
 helpful when you encounter them.
 
   * In some situations, it is possible that you could use the
-    ``%numpy_typemaps`` macro to implement typemaps for your own
+    ``%numpy_demo_typemaps`` macro to implement typemaps for your own
     types.  See the `Other Common Types: bool`_ or `Other Common
     Types: complex`_ sections for examples.  Another situation is if
     your dimensions are of a type other than ``int`` (say ``long`` for
     example)::
 
-        %numpy_typemaps(double, NPY_DOUBLE, long)
+        %numpy_demo_typemaps(double, NPY_DOUBLE, long)
 
-  * You can use the code in ``numpy.i`` to write your own typemaps.
+  * You can use the code in ``numpy_demo.i`` to write your own typemaps.
     For example, if you had a five-dimensional array as a function
     argument, you could cut-and-paste the appropriate four-dimensional
     typemaps into your interface file.  The modifications for the
@@ -998,11 +998,11 @@ helpful when you encounter them.
     to define new methods for your classes (or overload existing ones)
     that take a ``PyObject*`` (that either is or can be converted to a
     ``PyArrayObject*``) instead of a pointer to a buffer.  In this
-    case, the helper routines in ``numpy.i`` can be very useful.
+    case, the helper routines in ``numpy_demo.i`` can be very useful.
 
   * Writing typemaps can be a bit nonintuitive.  If you have specific
     questions about writing `SWIG`_ typemaps for NumPy, the
-    developers of ``numpy.i`` do monitor the
+    developers of ``numpy_demo.i`` do monitor the
     `Numpy-discussion <mailto:Numpy-discussion@python.org>`_ and
     `Swig-user <mailto:Swig-user@lists.sourceforge.net>`_ mail lists.
 
@@ -1010,7 +1010,7 @@ A Final Note
 ````````````
 
 When you use the ``%apply`` directive, as is usually necessary to use
-``numpy.i``, it will remain in effect until you tell `SWIG`_ that it
+``numpy_demo.i``, it will remain in effect until you tell `SWIG`_ that it
 shouldn't be.  If the arguments to the functions or methods that you
 are wrapping have common names, such as ``length`` or ``vector``,
 these typemaps may get applied in situations you do not expect or
@@ -1027,7 +1027,7 @@ where you want them, and then clear them after you are done.
 Summary
 -------
 
-Out of the box, ``numpy.i`` provides typemaps that support conversion
+Out of the box, ``numpy_demo.i`` provides typemaps that support conversion
 between NumPy arrays and C arrays:
 
   * That can be one of 12 different scalar types: ``signed char``,
@@ -1050,10 +1050,10 @@ between NumPy arrays and C arrays:
     + Both C-ordering ("last dimension fastest") or Fortran-ordering
       ("first dimension fastest") support for 2D, 3D and 4D arrays.
 
-The ``numpy.i`` interface file also provides additional tools for
+The ``numpy_demo.i`` interface file also provides additional tools for
 wrapper developers, including:
 
-  * A `SWIG`_ macro (``%numpy_typemaps``) with three arguments for
+  * A `SWIG`_ macro (``%numpy_demo_typemaps``) with three arguments for
     implementing the 74 argument signatures for the user's choice of
     (1) C data type, (2) NumPy data type (assuming they match), and
     (3) dimension type.

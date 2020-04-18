@@ -11,7 +11,7 @@ NEP 18 — A dispatch mechanism for NumPy's high level array functions
 :Type: Standards Track
 :Created: 2018-05-29
 :Updated: 2019-05-25
-:Resolution: https://mail.python.org/pipermail/numpy-discussion/2018-August/078493.html
+:Resolution: https://mail.python.org/pipermail/numpy_demo-discussion/2018-August/078493.html
 
 Abstact
 -------
@@ -20,7 +20,7 @@ We propose the ``__array_function__`` protocol, to allow arguments of NumPy
 functions to define how that function operates on them. This will allow
 using NumPy as a high level API for efficient multi-dimensional array
 operations, even with array implementations that differ greatly from
-``numpy.ndarray``.
+``numpy_demo.ndarray``.
 
 Detailed description
 --------------------
@@ -33,7 +33,7 @@ deep learning frameworks, like TensorFlow and PyTorch.
 
 Similarly there are many projects that build on top of the NumPy API
 for labeled and indexed arrays (XArray), automatic differentiation
-(Autograd, Tangent), masked arrays (numpy.ma), physical units (astropy.units,
+(Autograd, Tangent), masked arrays (numpy_demo.ma), physical units (astropy.units,
 pint, unyt), etc. that add additional functionality on top of the NumPy API.
 Most of these project also implement a close variation of NumPy's level high
 API.
@@ -139,7 +139,7 @@ The type of ``types`` is intentionally vague:
 instead for performance reasons. In any case, ``__array_function__``
 implementations should not rely on the iteration order of ``types``, which
 would violate a well-defined "Type casting hierarchy" (as described in
-`NEP-13 <https://www.numpy.org/neps/nep-0013-ufunc-overrides.html>`_).
+`NEP-13 <https://www.numpy_demo.org/neps/nep-0013-ufunc-overrides.html>`_).
 
 Example for a project implementing the NumPy API
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -182,10 +182,10 @@ for registering ``__array_function__`` implementations.
                 return NotImplemented
             return HANDLED_FUNCTIONS[func](*args, **kwargs)
 
-    def implements(numpy_function):
+    def implements(numpy_demo_function):
         """Register an __array_function__ implementation for MyArray objects."""
         def decorator(func):
-            HANDLED_FUNCTIONS[numpy_function] = func
+            HANDLED_FUNCTIONS[numpy_demo_function] = func
             return func
         return decorator
 
@@ -298,7 +298,7 @@ are valid then which has precedence?
 
 For the most part, the rules for dispatch with ``__array_function__``
 match those for ``__array_ufunc__`` (see
-`NEP-13 <https://www.numpy.org/neps/nep-0013-ufunc-overrides.html>`_).
+`NEP-13 <https://www.numpy_demo.org/neps/nep-0013-ufunc-overrides.html>`_).
 In particular:
 
 -  NumPy will gather implementations of ``__array_function__`` from all
@@ -326,14 +326,14 @@ type. This matches Python's
 and this ensures that checking overloads has acceptable performance even when
 there are a large number of overloaded arguments. To avoid long-term divergence
 between these two dispatch protocols, we should
-`also update <https://github.com/numpy/numpy/issues/11306>`_
+`also update <https://github.com/numpy_demo/numpy_demo/issues/11306>`_
 ``__array_ufunc__`` to match this behavior.
 
-The ``__array_function__`` method on ``numpy.ndarray``
+The ``__array_function__`` method on ``numpy_demo.ndarray``
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 The use cases for subclasses with ``__array_function__`` are the same as those
-with ``__array_ufunc__``, so ``numpy.ndarray`` also defines a
+with ``__array_ufunc__``, so ``numpy_demo.ndarray`` also defines a
 ``__array_function__`` method:
 
 .. code:: python
@@ -405,7 +405,7 @@ NumPy functions. The basic implementation is as follows:
     def _broadcast_to_dispatcher(array, shape, subok=None):
         return (array,)
 
-    @array_function_dispatch(_broadcast_to_dispatcher, module='numpy')
+    @array_function_dispatch(_broadcast_to_dispatcher, module='numpy_demo')
     def broadcast_to(array, shape, subok=False):
         ...  # existing definition of np.broadcast_to
 
@@ -434,7 +434,7 @@ relevant to NumPy contributors:
   attribute on the generated function. This is for the benefit of better error
   messages, here for errors raised internally by NumPy when no implementation
   is found, e.g.,
-  ``TypeError: no implementation found for 'numpy.broadcast_to'``. Setting
+  ``TypeError: no implementation found for 'numpy_demo.broadcast_to'``. Setting
   ``__module__`` to the canonical location in NumPy's public API encourages
   users to use NumPy's public API for identifying functions in
   ``__array_function__``.
@@ -463,7 +463,7 @@ relevant to NumPy contributors:
 
     The code for ``array_function_dispatch`` above has been updated from the
     original version of this NEP to match the actual
-    `implementation in NumPy <https://github.com/numpy/numpy/blob/e104f03ac8f65ae5b92a9b413b0fa639f39e6de2/numpy/core/overrides.py>`_.
+    `implementation in NumPy <https://github.com/numpy_demo/numpy_demo/blob/e104f03ac8f65ae5b92a9b413b0fa639f39e6de2/numpy_demo/core/overrides.py>`_.
 
 Extensibility
 ~~~~~~~~~~~~~
@@ -519,7 +519,7 @@ without any overloaded arguments. For context, typical NumPy functions on small
 arrays have a runtime of 1-10 microseconds, mostly determined by what fraction
 of the function's logic is written in C. For example, one microsecond is about
 the difference in speed between the ``ndarray.sum()`` method (1.6 us) and
-``numpy.sum()`` function (2.6 us).
+``numpy_demo.sum()`` function (2.6 us).
 
 Fortunately, we expect significantly less overhead with a C implementation of
 ``implement_array_function``, which is where the bulk of the
@@ -583,7 +583,7 @@ own protocols:
 
 -  universal functions, which already have their own protocol.
 -  ``array`` and ``asarray``, because they are explicitly intended for
-   coercion to actual ``numpy.ndarray`` object.
+   coercion to actual ``numpy_demo.ndarray`` object.
 -  dispatch for methods of any kind, e.g., methods on
    ``np.random.RandomState`` objects.
 
@@ -638,16 +638,16 @@ This has the advantage of alleviating any possible concerns about
 backwards compatibility and would provide the maximum freedom for quick
 experimentation. In the long term, it would provide a clean abstraction
 layer, separating NumPy's high level API from default implementations on
-``numpy.ndarray`` objects.
+``numpy_demo.ndarray`` objects.
 
 The downsides are that this would require an explicit opt-in from all
-existing code, e.g., ``import numpy.api as np``, and in the long term
+existing code, e.g., ``import numpy_demo.api as np``, and in the long term
 would result in the maintenance of two separate NumPy APIs. Also, many
-functions from ``numpy`` itself are already overloaded (but
+functions from ``numpy_demo`` itself are already overloaded (but
 inadequately), so confusion about high vs. low level APIs in NumPy would
 still persist.
 
-Alternatively, a separate namespace, e.g., ``numpy.array_only``, could be
+Alternatively, a separate namespace, e.g., ``numpy_demo.array_only``, could be
 created for a non-overloaded version of NumPy's high level API, for cases
 where performance with NumPy arrays is a critical concern. This has most
 of the same downsides as the separate namespace.
@@ -711,7 +711,7 @@ Given these concerns, we think it's valuable to support explicit overloading of
 nearly every public function in NumPy's API. This does not preclude the future
 possibility of rewriting NumPy functions in terms of simplified core
 functionality with ``__array_function__`` and a protocol and/or base class for
-ensuring that arrays expose methods and properties like ``numpy.ndarray``.
+ensuring that arrays expose methods and properties like ``numpy_demo.ndarray``.
 However, to work well this would require the possibility of implementing
 *some* but not all functions with ``__array_function__``, e.g., as described
 in the next section.
@@ -727,7 +727,7 @@ behavior of casting with ``np.asarray()`` for all other functions.
 
 This could present a backwards compatibility concern that would
 discourage libraries from adopting ``__array_function__`` in an
-incremental fashion. For example, currently most numpy functions will
+incremental fashion. For example, currently most numpy_demo functions will
 implicitly convert ``pandas.Series`` objects into NumPy arrays, behavior
 that assuredly many pandas users rely on. If pandas implemented
 ``__array_function__`` only for ``np.concatenate``, unrelated NumPy
@@ -736,12 +736,12 @@ raising TypeError.
 
 Even libraries that reimplement most of NumPy's public API sometimes rely upon
 using utility functions from NumPy without a wrapper. For example, both CuPy
-and JAX simply `use an alias <https://github.com/numpy/numpy/issues/12974>`_ to
+and JAX simply `use an alias <https://github.com/numpy_demo/numpy_demo/issues/12974>`_ to
 ``np.result_type``, which already supports duck-types with a ``dtype``
 attribute.
 
 With ``__array_ufunc__``, it's possible to alleviate this concern by
-casting all arguments to numpy arrays and re-calling the ufunc, but the
+casting all arguments to numpy_demo arrays and re-calling the ufunc, but the
 heterogeneous function signatures supported by ``__array_function__``
 make it impossible to implement this generic fallback behavior for
 ``__array_function__``.
@@ -786,7 +786,7 @@ entirely satisfactory:
    overhead of dispatching. However, it runs the risk of potentially exposing
    details of NumPy's implementations for NumPy functions that do not call
    ``np.asarray()`` internally. See
-   `this note <https://mail.python.org/pipermail/numpy-discussion/2019-May/079541.html>`_
+   `this note <https://mail.python.org/pipermail/numpy_demo-discussion/2019-May/079541.html>`_
    for a summary of the full discussion.
 
 These solutions would solve real use cases, but at the cost of additional
@@ -815,9 +815,9 @@ import time.
 We think this is an interesting possible extension to consider in the future. We
 don't think it makes sense to do so now, because code generation involves
 tradeoffs and NumPy's experience with type annotations is still
-`quite limited <https://github.com/numpy/numpy-stubs>`_. Even if NumPy
+`quite limited <https://github.com/numpy_demo/numpy_demo-stubs>`_. Even if NumPy
 was Python 3 only (which will happen
-`sometime in 2019 <http://www.numpy.org/neps/nep-0014-dropping-python2.7-proposal.html>`_),
+`sometime in 2019 <http://www.numpy_demo.org/neps/nep-0014-dropping-python2.7-proposal.html>`_),
 we aren't ready to annotate NumPy's codebase directly yet.
 
 Support for implementation-specific arguments
@@ -913,7 +913,7 @@ also be found in other core libraries in the scientific Python stack, e.g.,
 distribution objects in scipy.stats and model objects in scikit-learn. It would
 be nice to be able to write overloads for such callables, too. This presents a
 challenge for the ``__array_function__`` protocol, because unlike the case for
-functions there is no public object in the ``numpy`` namespace to pass into
+functions there is no public object in the ``numpy_demo`` namespace to pass into
 the ``func`` argument.
 
 We could potentially handle this by establishing an alternative convention
@@ -935,19 +935,19 @@ Discussion
 Various alternatives to this proposal were discussed in a few GitHub issues:
 
 1. `pydata/sparse #1 <https://github.com/pydata/sparse/issues/1>`_
-2. `numpy/numpy #11129 <https://github.com/numpy/numpy/issues/11129>`_
+2. `numpy_demo/numpy_demo #11129 <https://github.com/numpy_demo/numpy_demo/issues/11129>`_
 
 Additionally it was the subject of `a blogpost
-<http://matthewrocklin.com/blog/work/2018/05/27/beyond-numpy>`_. Following this
+<http://matthewrocklin.com/blog/work/2018/05/27/beyond-numpy_demo>`_. Following this
 it was discussed at a `NumPy developer sprint
-<https://scisprints.github.io/#may-numpy-developer-sprint>`_ at the `UC
+<https://scisprints.github.io/#may-numpy_demo-developer-sprint>`_ at the `UC
 Berkeley Institute for Data Science (BIDS) <https://bids.berkeley.edu/>`_.
 
 Detailed discussion of this proposal itself can be found on the
-`the mailing list <https://mail.python.org/pipermail/numpy-discussion/2018-June/078127.html>`_ and relevant pull requests
-(`1 <https://github.com/numpy/numpy/pull/11189>`_,
-`2 <https://github.com/numpy/numpy/pull/11303#issuecomment-396638175>`_,
-`3 <https://github.com/numpy/numpy/pull/11374>`_)
+`the mailing list <https://mail.python.org/pipermail/numpy_demo-discussion/2018-June/078127.html>`_ and relevant pull requests
+(`1 <https://github.com/numpy_demo/numpy_demo/pull/11189>`_,
+`2 <https://github.com/numpy_demo/numpy_demo/pull/11303#issuecomment-396638175>`_,
+`3 <https://github.com/numpy_demo/numpy_demo/pull/11374>`_)
 
 Copyright
 ---------

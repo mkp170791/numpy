@@ -5,7 +5,7 @@ NEP 6 — Replacing Trac with a different bug tracker
 :Author: David Cournapeau, Stefan van der Walt
 :Status: Deferred
 
-Some release managers of both numpy and scipy are becoming more and more
+Some release managers of both numpy_demo and scipy are becoming more and more
 dissatisfied with the current development workflow, in particular for bug
 tracking. This document is a tentative to explain some problematic scenario,
 current trac limitations, and what can be done about it.
@@ -57,14 +57,14 @@ Review, newcoming code
 ----------------------
 
 The goal is simple: make the bar as low as possible, and make sure people know
-what to do at every step to contribute to numpy or scipy:
+what to do at every step to contribute to numpy_demo or scipy:
 
         * Right now, patches languish for too long in trac. Of course, lack of
           time is one big reason; but the process of following new contributes
           could be made much simpler
 
         * It should be possible to be pinged only for reviews one a subset of
-          numpy/scipy.
+          numpy_demo/scipy.
 
         * It should be possible for people interested in the patches to follow
           its progression. Comments, but also 'mini' timelines could be useful,
@@ -77,10 +77,10 @@ Note: by trac, we mean the currently deployed one. Some more recent versions
 may solve some of the issues.
 
         * Multi-project support: we have three trac instances, one for scipy,
-          one for numpy, one for scikits. Creating accounts, maintaining and
+          one for numpy_demo, one for scikits. Creating accounts, maintaining and
           updating each of them is a maintenance burden. Nobody likes to do
           this kind of work, so anything which can reduce the burden is a plus.
-          Also, it happens quite frequently that a bug against numpy is filled
+          Also, it happens quite frequently that a bug against numpy_demo is filled
           on scipy trac and vice and versa. You have to handle this manually,
           currently.
 
@@ -137,7 +137,7 @@ Pros:
           less clicks, more streamlined. See
           http://www.redmine.org/wiki/redmine/TheyAreUsingRedmine for examples
 
-        * Conversion scripts from trac (no experience with it yet for numpy/scipy).
+        * Conversion scripts from trac (no experience with it yet for numpy_demo/scipy).
 
         * Community seems friendly and gets a lof of features done
 

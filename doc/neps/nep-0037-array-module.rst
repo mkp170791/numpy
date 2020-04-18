@@ -37,7 +37,7 @@ There are two broad ways in which NEP-18 has fallen short of its goals:
      **breaking existing code**: users expect NumPy functions like
      ``np.concatenate`` to return NumPy arrays. This is a fundamental
      limitation of the ``__array_function__`` design, which we chose to allow
-     overriding the existing ``numpy`` namespace.
+     overriding the existing ``numpy_demo`` namespace.
    - ``__array_function__`` currently requires an "all or nothing" approach to
      implementing NumPy's API. There is no good pathway for **incremental
      adoption**, which is particularly problematic for established projects
@@ -58,7 +58,7 @@ There are two broad ways in which NEP-18 has fallen short of its goals:
 
    - **Array creation** routines (e.g., ``np.arange`` and those in
      ``np.random``) need some other mechanism for indicating what type of
-     arrays to create. `NEP 36 <https://github.com/numpy/numpy/pull/14715>`_
+     arrays to create. `NEP 36 <https://github.com/numpy_demo/numpy_demo/pull/14715>`_
      proposed adding optional ``like=`` arguments to functions without
      existing array arguments. However, we still lack any mechanism to
      override methods on objects, such as those needed by
@@ -67,7 +67,7 @@ There are two broad ways in which NEP-18 has fallen short of its goals:
      ``np.asarray``, because ``np.asarray`` sometimes means "convert to an
      exact ``np.ndarray``" and other times means "convert to something _like_
      a NumPy array." This led to the `NEP 30
-     <https://numpy.org/neps/nep-0030-duck-array-protocol.html>`_ proposal for
+     <https://numpy_demo.org/neps/nep-0030-duck-array-protocol.html>`_ proposal for
      a separate ``np.duckarray`` function, but this still does not resolve how
      to cast one duck array into a type matching another duck array.
 
@@ -75,9 +75,9 @@ There are two broad ways in which NEP-18 has fallen short of its goals:
 ----------------------------------------------------------
 
 We propose a new user-facing mechanism for dispatching to a duck-array
-implementation, ``numpy.get_array_module``. ``get_array_module`` performs the
+implementation, ``numpy_demo.get_array_module``. ``get_array_module`` performs the
 same type resolution as ``__array_function__`` and returns a module with an API
-promised to match the standard interface of ``numpy`` that can implement
+promised to match the standard interface of ``numpy_demo`` that can implement
 operations on all provided array types.
 
 The protocol itself is both simpler and more powerful than
@@ -96,7 +96,7 @@ Modules returned by ``get_array_module``/``__array_module__`` should make a
 best effort to implement NumPy's core functionality on new array types(s).
 Unimplemented functionality should simply be omitted (e.g., accessing an
 unimplemented function should raise ``AttributeError``). In the future, we
-anticipate codifying a protocol for requesting restricted subsets of ``numpy``;
+anticipate codifying a protocol for requesting restricted subsets of ``numpy_demo``;
 see :ref:`requesting-restricted-subsets` for more details.
 
 How to use ``get_array_module``
@@ -104,7 +104,7 @@ How to use ``get_array_module``
 
 Code that wants to support generic duck arrays should explicitly call
 ``get_array_module`` to determine an appropriate array module from which to
-call functions, rather than using the ``numpy`` namespace directly. For
+call functions, rather than using the ``numpy_demo`` namespace directly. For
 example:
 
 .. code:: python
@@ -126,7 +126,7 @@ we can simply pull out the appropriate submodule:
         return array + noise
 
 We can also write the duck-array ``stack`` function from `NEP 30
-<https://numpy.org/neps/nep-0030-duck-array-protocol.html>`_, without the need
+<https://numpy_demo.org/neps/nep-0030-duck-array-protocol.html>`_, without the need
 for a new ``np.duckarray`` function:
 
 .. code:: python
@@ -140,7 +140,7 @@ for a new ``np.duckarray`` function:
         expanded_arrays = [arr[module.newaxis, ...] for arr in arrays]
         return module.concatenate(expanded_arrays, axis=0)
 
-By default, ``get_array_module`` will return the ``numpy`` module if no
+By default, ``get_array_module`` will return the ``numpy_demo`` module if no
 arguments are arrays. This fall-back can be explicitly controlled by providing
 the ``module`` keyword-only argument. It is also possible to indicate that an
 exception should be raised instead of returning a default array module by
@@ -159,7 +159,7 @@ unique array types passed into ``get_array_module``, i.e., all arguments with
 an ``__array_module__`` attribute.
 
 The special method should either return a namespace with an API matching
-``numpy``, or ``NotImplemented``, indicating that it does not know how to
+``numpy_demo``, or ``NotImplemented``, indicating that it does not know how to
 handle the operation:
 
 .. code:: python
@@ -193,13 +193,13 @@ general because such fall-back behavior can be error prone):
     class ArrayModule:
         def __getattr__(self, name):
             import base_module
-            return getattr(base_module, name, getattr(numpy, name))
+            return getattr(base_module, name, getattr(numpy_demo, name))
 
-Subclassing from ``numpy.ndarray``
+Subclassing from ``numpy_demo.ndarray``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 All of the same guidance about well-defined type casting hierarchies from
-NEP-18 still applies. ``numpy.ndarray`` itself contains a matching
+NEP-18 still applies. ``numpy_demo.ndarray`` itself contains a matching
 implementation of ``__array_module__``,  which is convenient for subclasses:
 
 .. code:: python
@@ -207,7 +207,7 @@ implementation of ``__array_module__``,  which is convenient for subclasses:
     class ndarray:
         def __array_module__(self, types):
             if all(issubclass(t, ndarray) for t in types):
-                return numpy
+                return numpy_demo
             else:
                 return NotImplemented
 
@@ -224,7 +224,7 @@ equivalent to this Python code:
 
 .. code:: python
 
-    def get_array_module(*arrays, default=numpy):
+    def get_array_module(*arrays, default=numpy_demo):
         implementing_arrays, types = _implementing_arrays_and_types(arrays)
         if not implementing_arrays and default is not None:
             return default
@@ -264,7 +264,7 @@ associated with checking for dispatch when calling every NumPy function.
 
 However, ``__array_module__`` and ``__array_function__`` are pretty different
 from a user perspective: it requires explicit calls to ``get_array_function``,
-rather than simply reusing original ``numpy`` functions. This is probably fine
+rather than simply reusing original ``numpy_demo`` functions. This is probably fine
 for *libraries* that rely on duck-arrays, but may be frustratingly verbose for
 interactive use.
 
@@ -324,7 +324,7 @@ these special methods in terms of ``get_array_module`` and
 
             # Traverse submodules to find the appropriate function
             modules = func.__module__.split('.')
-            assert modules[0] == 'numpy'
+            assert modules[0] == 'numpy_demo'
             for submodule in modules[1:]:
                 module = getattr(module, submodule, None)
             new_func = getattr(module, func.__name__, None)
@@ -334,7 +334,7 @@ these special methods in terms of ``get_array_module`` and
             return new_func(*args, **kwargs)
 
 To make it easier to write duck arrays, we could also add these mixin classes
-into ``numpy.lib.mixins`` (but the examples above may suffice).
+into ``numpy_demo.lib.mixins`` (but the examples above may suffice).
 
 Alternatives considered
 -----------------------
@@ -349,7 +349,7 @@ choice could be ``__array_namespace__``.
 It is less clear what the NumPy function that calls this protocol should be
 called (``get_array_module`` in this proposal). Some possible alternatives:
 ``array_module``, ``common_array_module``, ``resolve_array_module``,
-``get_namespace``, ``get_numpy``, ``get_numpylike_module``,
+``get_namespace``, ``get_numpy_demo``, ``get_numpy_demolike_module``,
 ``get_duck_array_module``.
 
 .. _requesting-restricted-subsets:
@@ -358,7 +358,7 @@ Requesting restricted subsets of NumPy's API
 ============================================
 
 Over time, NumPy has accumulated a very large API surface, with over 600
-attributes in the top level ``numpy`` module alone. It is unlikely that any
+attributes in the top level ``numpy_demo`` module alone. It is unlikely that any
 duck array library could or would want to implement all of these functions and
 classes, because the frequently used subset of NumPy is much smaller.
 
@@ -378,7 +378,7 @@ feature to include in  ``get_array_function`` and ``__array_module__``, e.g.,
     array_module = np.get_array_module(*arrays, request='minimal')
 
 To facilitate testing with NumPy and use with any valid duck array library,
-NumPy itself would return restricted versions of the ``numpy`` module when
+NumPy itself would return restricted versions of the ``numpy_demo`` module when
 ``get_array_module`` is called only on NumPy arrays. Omitted functions would
 simply not exist.
 
@@ -393,9 +393,9 @@ protocol patterned off of ``__array_module__`` (e.g.,
 A new namespace for implicit dispatch
 =====================================
 
-Instead of supporting overrides in the main `numpy` namespace with
+Instead of supporting overrides in the main `numpy_demo` namespace with
 ``__array_function__``, we could create a new opt-in namespace, e.g.,
-``numpy.api``, with versions of NumPy functions that support dispatching. These
+``numpy_demo.api``, with versions of NumPy functions that support dispatching. These
 overrides would need new opt-in protocols, e.g., ``__array_function_api__``
 patterned off of ``__array_function__``.
 
@@ -522,7 +522,7 @@ The final design axis is how users control the choice of API:
   arithmetic, determines which implementation to use either by checking types
   or calling methods on the direct arguments of a function.
 - **Non-local control** such as `np.errstate
-  <https://docs.scipy.org/doc/numpy/reference/generated/numpy.errstate.html>`_
+  <https://docs.scipy.org/doc/numpy_demo/reference/generated/numpy_demo.errstate.html>`_
   overrides behavior with global-state via function decorators or
   context-managers. Control is determined hierarchically, via the inner-most
   context.
@@ -546,5 +546,5 @@ are defined.
 One class of override use cases where we think non-local and global control are
 appropriate is for choosing a backend system that is guaranteed to have an
 entirely consistent interface, such as a faster alternative implementation of
-``numpy.fft`` on NumPy arrays. However, these are out of scope for the current
+``numpy_demo.fft`` on NumPy arrays. However, these are out of scope for the current
 proposal, which is focused on duck arrays.

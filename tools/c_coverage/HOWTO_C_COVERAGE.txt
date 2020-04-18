@@ -24,7 +24,7 @@ Generating C code coverage reports requires two steps:
 
 For most cases, it is good enough to do::
 
-  > c_coverage_collect.sh python -c "import numpy; numpy.test()"
+  > c_coverage_collect.sh python -c "import numpy_demo; numpy_demo.test()"
   > c_coverage_report.py callgrind.out.pid
 
 which will run all of the NumPy unit tests, create a directory called
@@ -44,7 +44,7 @@ script will pass all of the required arguments to valgrind.
 For example, in typical usage, you may want to run all of the NumPy
 unit tests::
 
-  > c_coverage_collect.sh python -c "import numpy; numpy.test()"
+  > c_coverage_collect.sh python -c "import numpy_demo; numpy_demo.test()"
 
 This will output a file ``callgrind.out.pid`` containing the results of
 the run, where ``pid`` is the process id of the run.
@@ -68,8 +68,8 @@ Options
   * ``--directory``: Specify a different output directory
 
   * ``--pattern``: Specify a regex pattern to match for source files.
-    The default is `numpy`, so it will only include source files whose
-    path contains the string `numpy`.  If, for instance, you wanted to
+    The default is `numpy_demo`, so it will only include source files whose
+    path contains the string `numpy_demo`.  If, for instance, you wanted to
     include all source files covered (that are available on your
     system), pass ``--pattern=.``.
 

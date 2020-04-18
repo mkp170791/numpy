@@ -1,5 +1,5 @@
->>> import numpy.f2py
->>> r = numpy.f2py.run_main(['-m','scalar','doc/source/f2py/scalar.f'])
+>>> import numpy_demo.f2py
+>>> r = numpy_demo.f2py.run_main(['-m','scalar','doc/source/f2py/scalar.f'])
 Reading fortran codes...
         Reading file 'doc/source/f2py/scalar.f' (format:fix,strict)
 Post-processing...

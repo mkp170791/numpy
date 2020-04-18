@@ -17,7 +17,7 @@ what the "core" dimensionality of the inputs is, as well as the
 corresponding dimensionality of the outputs (the element-wise ufuncs
 have zero core dimensions).  The list of the core dimensions for all
 arguments is called the "signature" of a ufunc.  For example, the
-ufunc numpy.add has signature ``(),()->()`` defining two scalar inputs
+ufunc numpy_demo.add has signature ``(),()->()`` defining two scalar inputs
 and one scalar output.
 
 Another example is the function ``inner1d(a, b)`` with a signature of

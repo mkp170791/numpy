@@ -133,11 +133,11 @@ Functions
 
     :param types:
        Length ``(nin + nout) * ntypes`` array of ``char`` encoding the
-       `numpy.dtype.num` (built-in only) that the corresponding
+       `numpy_demo.dtype.num` (built-in only) that the corresponding
        function in the ``func`` array accepts. For instance, for a comparison
        ufunc with three ``ntypes``, two ``nin`` and one ``nout``, where the
-       first function accepts `numpy.int32` and the the second
-       `numpy.int64`, with both returning `numpy.bool_`, ``types`` would
+       first function accepts `numpy_demo.int32` and the the second
+       `numpy_demo.int64`, with both returning `numpy_demo.bool_`, ``types`` would
        be ``(char[]) {5, 5, 0, 7, 7, 0}`` since ``NPY_INT32`` is 5,
        ``NPY_INT64`` is 7, and ``NPY_BOOL`` is 0.
 
@@ -170,9 +170,9 @@ Functions
         The name for the ufunc as a ``NULL`` terminated string.  Specifying
         a name of 'add' or 'multiply' enables a special behavior for
         integer-typed reductions when no dtype is given. If the input type is an
-        integer (or boolean) data type smaller than the size of the `numpy.int_`
-        data type, it will be internally upcast to the `numpy.int_` (or
-        `numpy.uint`) data type.
+        integer (or boolean) data type smaller than the size of the `numpy_demo.int_`
+        data type, it will be internally upcast to the `numpy_demo.int_` (or
+        `numpy_demo.uint`) data type.
 
     :param doc:
         Allows passing in a documentation string to be stored with the
@@ -224,7 +224,7 @@ Functions
     with any of its input arguments as the user-defined
     data-type. This is needed in order to make ufuncs work with
     built-in data-types. The data-type must have been previously
-    registered with the numpy system. The loop is passed in as
+    registered with the numpy_demo system. The loop is passed in as
     *function*. This loop can take arbitrary data which should be
     passed in as *data*. The data-types the loop requires are passed
     in as *arg_types* which must be a pointer to memory at least as

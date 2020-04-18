@@ -8,7 +8,7 @@ needed for scientific computing with Python. This package contains:
 - sophisticated :ref:`(broadcasting) functions <ufuncs>`
 - basic :ref:`linear algebra functions <routines.linalg>`
 - basic :ref:`Fourier transforms <routines.fft>`
-- sophisticated :ref:`random number capabilities <numpyrandom>`
+- sophisticated :ref:`random number capabilities <numpy_demorandom>`
 - tools for integrating Fortran code
 - tools for integrating C/C++ code
 
@@ -34,9 +34,9 @@ Our main means of communication are:
 
 - `Mailing lists <https://scipy.org/scipylib/mailing-lists.html>`__
 
-- `NumPy Issues <https://github.com/numpy/numpy/issues>`__ (bug reports go here)
+- `NumPy Issues <https://github.com/numpy_demo/numpy_demo/issues>`__ (bug reports go here)
 
-- `Old NumPy Trac <http://projects.scipy.org/numpy>`__ (dead link)
+- `Old NumPy Trac <http://projects.scipy.org/numpy_demo>`__ (dead link)
 
 More information about the development of NumPy can be found at our `Developer Zone <https://scipy.scipy.org/scipylib/dev-zone.html>`__.
 
@@ -57,6 +57,6 @@ This manual contains many examples of use, usually prefixed with the
 Python prompt ``>>>`` (which is not a part of the example code). The
 examples assume that you have first entered::
 
->>> import numpy as np
+>>> import numpy_demo as np
 
 before running the examples.

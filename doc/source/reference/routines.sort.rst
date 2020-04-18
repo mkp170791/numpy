@@ -1,7 +1,7 @@
 Sorting, searching, and counting
 ================================
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 Sorting
 -------

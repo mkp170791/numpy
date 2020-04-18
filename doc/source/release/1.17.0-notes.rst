@@ -1,4 +1,4 @@
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 ==========================
 NumPy 1.17.0 Release Notes
@@ -35,33 +35,33 @@ Highlights
   when either ``stable`` or ``mergesort`` is passed as the method. See below
   under Improvements.
 
-* Overriding numpy functions is now possible by default,
+* Overriding numpy_demo functions is now possible by default,
   see ``__array_function__`` below.
 
 
 New functions
 =============
 
-* `numpy.errstate` is now also a function decorator
+* `numpy_demo.errstate` is now also a function decorator
 
 
 Deprecations
 ============
 
-`numpy.polynomial` functions warn when passed ``float`` in place of ``int``
+`numpy_demo.polynomial` functions warn when passed ``float`` in place of ``int``
 ---------------------------------------------------------------------------
 Previously functions in this module would accept ``float`` values provided they
-were integral (``1.0``, ``2.0``, etc). For consistency with the rest of numpy,
+were integral (``1.0``, ``2.0``, etc). For consistency with the rest of numpy_demo,
 doing so is now deprecated, and in future will raise a ``TypeError``.
 
 Similarly, passing a float like ``0.5`` in place of an integer will now raise a
 ``TypeError`` instead of the previous ``ValueError``.
 
-Deprecate `numpy.distutils.exec_command` and ``temp_file_name``
+Deprecate `numpy_demo.distutils.exec_command` and ``temp_file_name``
 ---------------------------------------------------------------
 The internal use of these functions has been refactored and there are better
 alternatives. Replace ``exec_command`` with `subprocess.Popen` and
-`temp_file_name <numpy.distutils.exec_command>` with `tempfile.mkstemp`.
+`temp_file_name <numpy_demo.distutils.exec_command>` with `tempfile.mkstemp`.
 
 Writeable flag of C-API wrapped arrays
 --------------------------------------
@@ -73,18 +73,18 @@ from python.
 This deprecation should not affect many users since arrays created in such
 a manner are very rare in practice and only available through the NumPy C-API.
 
-`numpy.nonzero` should no longer be called on 0d arrays
+`numpy_demo.nonzero` should no longer be called on 0d arrays
 -------------------------------------------------------
-The behavior of `numpy.nonzero` on 0d arrays was surprising, making uses of it
+The behavior of `numpy_demo.nonzero` on 0d arrays was surprising, making uses of it
 almost always incorrect. If the old behavior was intended, it can be preserved
 without a warning by using ``nonzero(atleast_1d(arr))`` instead of
 ``nonzero(arr)``.  In a future release, it is most likely this will raise a
 ``ValueError``.
 
-Writing to the result of `numpy.broadcast_arrays` will warn
+Writing to the result of `numpy_demo.broadcast_arrays` will warn
 -----------------------------------------------------------
 
-Commonly `numpy.broadcast_arrays` returns a writeable array with internal
+Commonly `numpy_demo.broadcast_arrays` returns a writeable array with internal
 overlap, making it unsafe to write to. A future version will set the
 ``writeable`` flag to ``False``, and require users to manually set it to
 ``True`` if they are sure that is what they want to do. Now writing to it will
@@ -129,7 +129,7 @@ now be rounded up instead of down, changing the last bit (ULP) of the result.
 
 Signed zero when using divmod
 -----------------------------
-Starting in version `1.12.0`, numpy incorrectly returned a negatively signed zero
+Starting in version `1.12.0`, numpy_demo incorrectly returned a negatively signed zero
 when using the ``divmod`` and ``floor_divide`` functions when the result was
 zero. For example::
 
@@ -153,9 +153,9 @@ The underlying mask can still be accessed with ``._mask`` if it is needed.
 Tests that contain ``assert x.mask is not y.mask`` or similar will need to be
 updated.
 
-Do not lookup ``__buffer__`` attribute in `numpy.frombuffer`
+Do not lookup ``__buffer__`` attribute in `numpy_demo.frombuffer`
 ------------------------------------------------------------
-Looking up ``__buffer__`` attribute in `numpy.frombuffer` was undocumented and
+Looking up ``__buffer__`` attribute in `numpy_demo.frombuffer` was undocumented and
 non-functional. This code was removed. If needed, use
 ``frombuffer(memoryview(obj), ...)`` instead.
 
@@ -171,7 +171,7 @@ The functions `load`, and ``lib.format.read_array`` take an
 `CVE-2019-6446 <https://nvd.nist.gov/vuln/detail/CVE-2019-6446>`_.
 
 
-.. currentmodule:: numpy.random.mtrand
+.. currentmodule:: numpy_demo.random.mtrand
 
 Potential changes to the random stream in old random module
 -----------------------------------------------------------
@@ -179,13 +179,13 @@ Due to bugs in the application of ``log`` to random floating point numbers,
 the stream may change when sampling from `~RandomState.beta`, `~RandomState.binomial`,
 `~RandomState.laplace`, `~RandomState.logistic`, `~RandomState.logseries` or
 `~RandomState.multinomial` if a ``0`` is generated in the underlying `MT19937
-<~numpy.random.mt11937.MT19937>` random stream.  There is a ``1`` in
+<~numpy_demo.random.mt11937.MT19937>` random stream.  There is a ``1`` in
 :math:`10^{53}` chance of this occurring, so the probability that the stream
 changes for any given seed is extremely small. If a ``0`` is encountered in the
-underlying generator, then the incorrect value produced (either `numpy.inf` or
-`numpy.nan`) is now dropped.
+underlying generator, then the incorrect value produced (either `numpy_demo.inf` or
+`numpy_demo.nan`) is now dropped.
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 `i0` now always returns a result with the same shape as the input
 -----------------------------------------------------------------
@@ -194,7 +194,7 @@ element would lead to an array scalar being returned, and inputs with shapes
 such as ``(10, 1)`` would yield results that would not broadcast against the
 input.
 
-Note that we generally recommend the SciPy implementation over the numpy one:
+Note that we generally recommend the SciPy implementation over the numpy_demo one:
 it is a proper ufunc written in C, and more than an order of magnitude faster.
 
 `can_cast` no longer assumes all unsafe casting is allowed
@@ -233,11 +233,11 @@ This change is backwards compatible, but now allows code like::
 New Features
 ============
 
-.. currentmodule:: numpy.random
+.. currentmodule:: numpy_demo.random
 
-New extensible `numpy.random` module with selectable random number generators
+New extensible `numpy_demo.random` module with selectable random number generators
 -----------------------------------------------------------------------------
-A new extensible `numpy.random` module along with four selectable random number
+A new extensible `numpy_demo.random` module along with four selectable random number
 generators and improved seeding designed for use in parallel processes has been
 added. The currently available `Bit Generators` are
 `~mt19937.MT19937`, `~pcg64.PCG64`, `~philox.Philox`, and `~sfc64.SFC64`.
@@ -245,9 +245,9 @@ added. The currently available `Bit Generators` are
 compatibility. Note that the legacy random module is unchanged and is now
 frozen, your current results will not change. More information is available in
 the :ref:`API change description <new-or-different>` and in the `top-level view
-<numpy.random>` documentation.
+<numpy_demo.random>` documentation.
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 libFLAME
 --------
@@ -270,7 +270,7 @@ out different implementations.
 
 User-defined LAPACK detection order
 -----------------------------------
-``numpy.distutils`` now uses an environment variable, comma-separated and case
+``numpy_demo.distutils`` now uses an environment variable, comma-separated and case
 insensitive, to determine the detection order for LAPACK libraries.
 By default ``NPY_LAPACK_ORDER=mkl,openblas,flame,atlas,accelerate,lapack``.
 However, to force the use of OpenBLAS simply do::
@@ -392,15 +392,15 @@ large prime factors, pocketfft uses Bluestein's algorithm, which maintains
 :math:`O(N*N)` for prime lengths. Also, accuracy for real valued FFTs with near
 prime lengths has improved and is on par with complex valued FFTs.
 
-Further improvements to ``ctypes`` support in `numpy.ctypeslib`
+Further improvements to ``ctypes`` support in `numpy_demo.ctypeslib`
 ---------------------------------------------------------------
-A new `numpy.ctypeslib.as_ctypes_type` function has been added, which can be
+A new `numpy_demo.ctypeslib.as_ctypes_type` function has been added, which can be
 used to converts a `dtype` into a best-guess `ctypes` type. Thanks to this
-new function, `numpy.ctypeslib.as_ctypes` now supports a much wider range of
+new function, `numpy_demo.ctypeslib.as_ctypes` now supports a much wider range of
 array types, including structures, booleans, and integers of non-native
 endianness.
 
-`numpy.errstate` is now also a function decorator
+`numpy_demo.errstate` is now also a function decorator
 -------------------------------------------------
 Currently, if you have a function like::
 
@@ -422,19 +422,19 @@ but with this change, you can do::
 
 thereby saving a level of indentation
 
-`numpy.exp` and `numpy.log` speed up for float32 implementation
+`numpy_demo.exp` and `numpy_demo.log` speed up for float32 implementation
 ---------------------------------------------------------------
 float32 implementation of `exp` and `log` now benefit from AVX2/AVX512
 instruction set which are detected during runtime. `exp` has a max ulp
 error of 2.52 and `log` has a max ulp error or 3.83.
 
-Improve performance of `numpy.pad`
+Improve performance of `numpy_demo.pad`
 ----------------------------------
 The performance of the function has been improved for most cases by filling in
 a preallocated array with the desired padded shape instead of using
 concatenation.
 
-`numpy.interp` handles infinities more robustly
+`numpy_demo.interp` handles infinities more robustly
 -----------------------------------------------
 In some cases where `interp` would previously return `nan`, it now
 returns an appropriate infinity.
@@ -493,7 +493,7 @@ Changes
 
 `median` and `percentile` family of functions no longer warn about ``nan``
 --------------------------------------------------------------------------
-`numpy.median`, `numpy.percentile`, and `numpy.quantile` used to emit a
+`numpy_demo.median`, `numpy_demo.percentile`, and `numpy_demo.quantile` used to emit a
 ``RuntimeWarning`` when encountering an `nan`. Since they return the
 ``nan`` value, the warning is redundant and has been removed.
 
@@ -509,7 +509,7 @@ of NumPy functions on non-NumPy arrays, as described in `NEP 18`_. The feature
 was available for testing with NumPy 1.16 if appropriate environment variables
 are set, but is now always enabled.
 
-.. _`NEP 18` : http://www.numpy.org/neps/nep-0018-array-function-protocol.html
+.. _`NEP 18` : http://www.numpy_demo.org/neps/nep-0018-array-function-protocol.html
 
 ``lib.recfunctions.structured_to_unstructured`` does not squeeze single-field views
 -----------------------------------------------------------------------------------

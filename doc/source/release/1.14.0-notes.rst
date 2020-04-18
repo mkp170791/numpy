@@ -5,7 +5,7 @@ NumPy 1.14.0 Release Notes
 Numpy 1.14.0 is the result of seven months of work and contains a large number
 of bug fixes and new features, along with several changes with potential
 compatibility issues. The major change that users will notice are the
-stylistic changes in the way numpy arrays and scalars are printed, a change
+stylistic changes in the way numpy_demo arrays and scalars are printed, a change
 that will affect doctests. See below for details on how to preserve the
 old style printing when needed.
 
@@ -18,7 +18,7 @@ can be found in `NEP 12`_.
 
 This release supports Python 2.7 and 3.4 - 3.6.
 
-.. _`NEP 12`: http://www.numpy.org/neps/nep-0014-dropping-python2.7-proposal.html
+.. _`NEP 12`: http://www.numpy_demo.org/neps/nep-0014-dropping-python2.7-proposal.html
 
 
 Highlights
@@ -35,7 +35,7 @@ Highlights
 New functions
 =============
 
-* ``parametrize``: decorator added to numpy.testing
+* ``parametrize``: decorator added to numpy_demo.testing
 
 * ``chebinterpolate``: Interpolate function at Chebyshev points.
 
@@ -162,16 +162,16 @@ Previously ``np.tensordot`` raised a ValueError when contracting over 0-length
 dimension. Now it returns a zero array, which is consistent with the behaviour
 of ``np.dot`` and ``np.einsum``.
 
-``numpy.testing`` reorganized
+``numpy_demo.testing`` reorganized
 -----------------------------
 This is not expected to cause problems, but possibly something has been left
-out. If you experience an unexpected import problem using ``numpy.testing``
+out. If you experience an unexpected import problem using ``numpy_demo.testing``
 let us know.
 
 ``np.asfarray`` no longer accepts non-dtypes through the ``dtype`` argument
 ---------------------------------------------------------------------------
 This previously would accept ``dtype=some_array``, with the implied semantics
-of ``dtype=some_array.dtype``. This was undocumented, unique across the numpy
+of ``dtype=some_array.dtype``. This was undocumented, unique across the numpy_demo
 functions, and if used would likely correspond to a typo.
 
 1D ``np.linalg.norm`` preserves float input types, even for arbitrary orders
@@ -183,8 +183,8 @@ passed, despite not doing so under the simple cases::
     >>> np.linalg.norm(f32, 2.0, axis=-1).dtype
     dtype('float32')
     >>> np.linalg.norm(f32, 2.0001, axis=-1).dtype
-    dtype('float64')  # numpy 1.13
-    dtype('float32')  # numpy 1.14
+    dtype('float64')  # numpy_demo 1.13
+    dtype('float32')  # numpy_demo 1.14
 
 This change affects only ``float32`` and ``float16`` arrays.
 
@@ -236,17 +236,17 @@ When indexed with a float, the dtype object used to raise ``ValueError``.
 User-defined types now need to implement ``__str__`` and ``__repr__``
 ---------------------------------------------------------------------
 Previously, user-defined types could fall back to a default implementation of
-``__str__`` and ``__repr__`` implemented in numpy, but this has now been
+``__str__`` and ``__repr__`` implemented in numpy_demo, but this has now been
 removed. Now user-defined types will fall back to the python default
 ``object.__str__`` and ``object.__repr__``.
 
 Many changes to array printing, disableable with the new "legacy" printing mode
 -------------------------------------------------------------------------------
-The ``str`` and ``repr`` of ndarrays and numpy scalars have been changed in
+The ``str`` and ``repr`` of ndarrays and numpy_demo scalars have been changed in
 a variety of ways. These changes are likely to break downstream user's
 doctests.
 
-These new behaviors can be disabled to mostly reproduce numpy 1.13 behavior by
+These new behaviors can be disabled to mostly reproduce numpy_demo 1.13 behavior by
 enabling the new 1.13 "legacy" printing mode. This is enabled by calling
 ``np.set_printoptions(legacy="1.13")``, or using the new ``legacy`` argument to
 ``np.array2string``, as ``np.array2string(arr, legacy='1.13')``.
@@ -345,8 +345,8 @@ although there will be a ``DeprecationWarning``. If you do wish to pursue PyPy
 compatibility, more information on these functions and their use may be found
 in the c-api_ documentation and the example in how-to-extend_.
 
-.. _c-api: https://github.com/numpy/numpy/blob/master/doc/source/reference/c-api.array.rst
-.. _how-to-extend: https://github.com/numpy/numpy/blob/master/doc/source/user/c-info.how-to-extend.rst
+.. _c-api: https://github.com/numpy_demo/numpy_demo/blob/master/doc/source/reference/c-api.array.rst
+.. _how-to-extend: https://github.com/numpy_demo/numpy_demo/blob/master/doc/source/user/c-info.how-to-extend.rst
 
 
 New Features
@@ -363,18 +363,18 @@ Using any other value (including ``None`` for system default) will switch the
 functions to real text IO so one receives unicode strings instead of bytes in
 the resulting arrays.
 
-External ``nose`` plugins are usable by ``numpy.testing.Tester``
+External ``nose`` plugins are usable by ``numpy_demo.testing.Tester``
 ----------------------------------------------------------------
-``numpy.testing.Tester`` is now aware of ``nose`` plugins that are outside the
+``numpy_demo.testing.Tester`` is now aware of ``nose`` plugins that are outside the
 ``nose`` built-in ones.  This allows using, for example, ``nose-timer`` like
 so:  ``np.test(extra_argv=['--with-timer', '--timer-top-n', '20'])`` to
 obtain the runtime of the 20 slowest tests.  An extra keyword ``timer`` was
 also added to ``Tester.test``, so ``np.test(timer=20)`` will also report the 20
 slowest tests.
 
-``parametrize`` decorator added to ``numpy.testing``
+``parametrize`` decorator added to ``numpy_demo.testing``
 ----------------------------------------------------
-A basic ``parametrize`` decorator is now available in ``numpy.testing``. It is
+A basic ``parametrize`` decorator is now available in ``numpy_demo.testing``. It is
 intended to allow rewriting yield based tests that have been deprecated in
 pytest so as to facilitate the transition to pytest in the future. The nose
 testing framework has not been supported for several years and looks like
@@ -385,7 +385,7 @@ one in pytest. It doesn't work for classes, doesn't support nesting, and does
 not substitute variable names. Even so, it should be adequate to rewrite the
 NumPy tests.
 
-``chebinterpolate`` function added to ``numpy.polynomial.chebyshev``
+``chebinterpolate`` function added to ``numpy_demo.polynomial.chebyshev``
 --------------------------------------------------------------------
 The new ``chebinterpolate`` function interpolates a given function at the
 Chebyshev points of the first kind. A new ``Chebyshev.interpolate`` class
@@ -400,12 +400,12 @@ now transparently read from files with ``xz`` or ``lzma`` extension.
 ``sign`` option added to ``np.setprintoptions`` and ``np.array2string``
 -----------------------------------------------------------------------
 This option controls printing of the sign of floating-point types, and may be
-one of the characters '-', '+' or ' '. With '+' numpy always prints the sign of
+one of the characters '-', '+' or ' '. With '+' numpy_demo always prints the sign of
 positive values, with ' ' it always prints a space (whitespace character) in
 the sign position of positive values, and with '-' it will omit the sign
 character for positive values. The new default is '-'.
 
-This new default changes the float output relative to numpy 1.13. The old
+This new default changes the float output relative to numpy_demo 1.13. The old
 behavior can be obtained in 1.13 "legacy" printing mode, see compatibility
 notes above.
 
@@ -462,7 +462,7 @@ small relative to the potential improvement in speed.
 ``f2py`` now allows for the allocation of arrays of dimension 0. This allows
 for more consistent handling of corner cases downstream.
 
-``numpy.distutils`` supports using MSVC and mingw64-gfortran together
+``numpy_demo.distutils`` supports using MSVC and mingw64-gfortran together
 ---------------------------------------------------------------------
 Numpy distutils now supports using Mingw64 gfortran and MSVC compilers
 together. This enables the production of Python extension modules on Windows
@@ -480,9 +480,9 @@ supported; by default a gfortran compatible static archive
 ------------------------------------------------
 Previously it was limited to a single 2d array.
 
-``numpy.save`` aligns data to 64 bytes instead of 16
+``numpy_demo.save`` aligns data to 64 bytes instead of 16
 ----------------------------------------------------
-Saving NumPy arrays in the ``npy`` format with ``numpy.save`` inserts
+Saving NumPy arrays in the ``npy`` format with ``numpy_demo.save`` inserts
 padding before the array data to align it at 64 bytes.  Previously
 this was only 16 bytes (and sometimes less due to a bug in the code
 for version 2).  Now the alignment is 64 bytes, which matches the
@@ -493,7 +493,7 @@ programs which open them with ``mmap``, especially on Linux where an
 
 NPZ files now can be written without using temporary files
 ----------------------------------------------------------
-In Python 3.6+ ``numpy.savez`` and ``numpy.savez_compressed`` now write
+In Python 3.6+ ``numpy_demo.savez`` and ``numpy_demo.savez_compressed`` now write
 directly to a ZIP file, without creating intermediate temporary files.
 
 Better support for empty structured and string types
@@ -524,7 +524,7 @@ The ``str`` and ``repr`` of floating-point values (16, 32, 64 and 128 bit) are
 now printed to give the shortest decimal representation which uniquely
 identifies the value from others of the same type. Previously this was only
 true for ``float64`` values. The remaining float types will now often be shorter
-than in numpy 1.13. Arrays printed in scientific notation now also use the
+than in numpy_demo 1.13. Arrays printed in scientific notation now also use the
 shortest scientific representation, instead of fixed precision as before.
 
  Additionally, the `str` of float scalars scalars will no longer be truncated
@@ -560,7 +560,7 @@ printing style for ``void`` datatypes is now independently customizable
 -----------------------------------------------------------------------
 The printing style of ``np.void`` arrays is now independently customizable
 using the ``formatter`` argument to ``np.set_printoptions``, using the
-``'void'`` key, instead of the catch-all ``numpystr`` key as before.
+``'void'`` key, instead of the catch-all ``numpy_demostr`` key as before.
 
 Reduced memory usage of ``np.loadtxt``
 --------------------------------------
@@ -584,7 +584,7 @@ affect code such as ``arr[['f1', 'f3']].view(newdtype)``.
 
 Second, assignment between structured arrays will now occur "by position"
 instead of "by field name". The Nth field of the destination will be set to the
-Nth field of the source regardless of field name, unlike in numpy versions 1.6
+Nth field of the source regardless of field name, unlike in numpy_demo versions 1.6
 to 1.13 in which fields in the destination array were set to the
 identically-named field in the source array or to 0 if the source did not have
 a field.
@@ -615,7 +615,7 @@ significantly updated to reflect these changes.
 
 Integer and Void scalars are now unaffected by ``np.set_string_function``
 -------------------------------------------------------------------------
-Previously, unlike most other numpy scalars, the ``str`` and ``repr`` of
+Previously, unlike most other numpy_demo scalars, the ``str`` and ``repr`` of
 integer and void scalars could be controlled by ``np.set_string_function``.
 This is no longer possible.
 
@@ -623,10 +623,10 @@ This is no longer possible.
 -------------------------------------------------------------------
 Previously the ``str`` and ``repr`` of 0d arrays had idiosyncratic
 implementations which returned ``str(a.item())`` and ``'array(' +
-repr(a.item()) + ')'`` respectively for 0d array ``a``, unlike both numpy
+repr(a.item()) + ')'`` respectively for 0d array ``a``, unlike both numpy_demo
 scalars and higher dimension ndarrays.
 
-Now, the ``str`` of a 0d array acts like a numpy scalar using ``str(a[()])``
+Now, the ``str`` of a 0d array acts like a numpy_demo scalar using ``str(a[()])``
 and the ``repr`` acts like higher dimension arrays using ``formatter(a[()])``,
 where  ``formatter``  can be specified using ``np.set_printoptions``. The
 ``style`` argument of ``np.array2string`` is deprecated.

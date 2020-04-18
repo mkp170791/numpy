@@ -29,7 +29,7 @@ do one of::
 
     $ python runtests.py -v
     $ python runtests.py -v -s random
-    $ python runtests.py -v -t numpy/core/tests/test_nditer.py::test_iter_c_order
+    $ python runtests.py -v -t numpy_demo/core/tests/test_nditer.py::test_iter_c_order
     $ python runtests.py --ipython
     $ python runtests.py --python somescript.py
     $ python runtests.py --bench
@@ -44,12 +44,12 @@ arguments may be forwarded to the target embedded by ``runtests.py`` by passing
 the extra arguments after a bare ``--``. For example, to run a test method with
 the ``--pdb`` flag forwarded to the target, run the following::
 
-    $ python runtests.py -t numpy/tests/test_scripts.py::test_f2py -- --pdb
+    $ python runtests.py -t numpy_demo/tests/test_scripts.py::test_f2py -- --pdb
 
 When using pytest as a target (the default), you can
 `match test names using python operators`_ by passing the ``-k`` argument to pytest::
 
-    $ python runtests.py -v -t numpy/core/tests/test_multiarray.py -- -k "MatMul and not vector"
+    $ python runtests.py -v -t numpy_demo/core/tests/test_multiarray.py -- -k "MatMul and not vector"
 
 .. note::
 
@@ -88,7 +88,7 @@ directory.  Some IDEs (`Spyder`_ for example) have utilities to manage
 
 and on Windows::
 
-    $ set PYTHONPATH=/path/to/numpy
+    $ set PYTHONPATH=/path/to/numpy_demo
 
 Now editing a Python source file in NumPy allows you to immediately
 test and use your changes (in ``.py`` files), by simply restarting the
@@ -110,7 +110,7 @@ Build options can be discovered by running any of::
     $ python setup.py --help
     $ python setup.py --help-commands
 
-It's possible to do a parallel build with ``numpy.distutils`` with the ``-j`` option;
+It's possible to do a parallel build with ``numpy_demo.distutils`` with the ``-j`` option;
 see :ref:`parallel-builds` for more details.
 
 A similar approach to in-place builds and use of ``PYTHONPATH`` but outside the
@@ -121,10 +121,10 @@ source tree is to use::
 
 
 NumPy uses a series of tests to probe the compiler and libc libraries for
-funtions. The results are stored in ``_numpyconfig.h`` and ``config.h`` files
+funtions. The results are stored in ``_numpy_democonfig.h`` and ``config.h`` files
 using ``HAVE_XXX`` definitions. These tests are run during the ``build_src``
 phase of the ``_multiarray_umath`` module in the ``generate_config_h`` and
-``generate_numpyconfig_h`` functions. Since the output of these calls includes
+``generate_numpy_democonfig_h`` functions. Since the output of these calls includes
 many compiler warnings and errors, by default it is run quietly. If you wish
 to see this output, you can run the ``build_src`` stage verbosely::
 
@@ -140,12 +140,12 @@ One simple way to achieve this is to install the released version in
 site-packages, by using a binary installer or pip for example, and set
 up the development version in a virtualenv.  First install
 `virtualenv`_ (optionally use `virtualenvwrapper`_), then create your
-virtualenv (named numpy-dev here) with::
+virtualenv (named numpy_demo-dev here) with::
 
-    $ virtualenv numpy-dev
+    $ virtualenv numpy_demo-dev
 
 Now, whenever you want to switch to the virtual environment, you can use the
-command ``source numpy-dev/bin/activate``, and ``deactivate`` to exit from the
+command ``source numpy_demo-dev/bin/activate``, and ``deactivate`` to exit from the
 virtual environment and back to your previous shell.
 
 
@@ -164,9 +164,9 @@ the interpreter, tests can be run like this::
 
 Or a similar way from the command line::
 
-    $ python -c "import numpy as np; np.test()"
+    $ python -c "import numpy_demo as np; np.test()"
 
-Tests can also be run with ``pytest numpy``, however then the NumPy-specific
+Tests can also be run with ``pytest numpy_demo``, however then the NumPy-specific
 plugin is not found which causes strange side effects
 
 Running individual test files can be useful; it's much faster than running the
@@ -185,7 +185,7 @@ run the test suite with Python 3.7, use::
 
 For more extensive information, see :ref:`testing-guidelines`
 
-*Note: do not run the tests from the root directory of your numpy git repo without ``runtests.py``,
+*Note: do not run the tests from the root directory of your numpy_demo git repo without ``runtests.py``,
 that will result in strange test errors.*
 
 
@@ -214,7 +214,7 @@ Another frequently asked question is "How do I debug C code inside NumPy?".
 The easiest way to do this is to first write a Python script that invokes the C
 code whose execution you want to debug. For instance ``mytest.py``::
 
-    from numpy import linspace
+    from numpy_demo import linspace
     x = np.arange(5)
     np.empty_like(x)
 
@@ -259,7 +259,7 @@ pull requests aren't perfect, the community is always happy to help. As a
 volunteer project, things do sometimes get dropped and it's totally fine to
 ping us if something has sat without a response for about two to four weeks.
 
-So go ahead and pick something that annoys or confuses you about numpy,
+So go ahead and pick something that annoys or confuses you about numpy_demo,
 experiment with the code, hang around for discussions or go through the
 reference documents to try to fix it. Things will fall in place and soon
 you'll have a pretty good understanding of the project as a whole. Good Luck!

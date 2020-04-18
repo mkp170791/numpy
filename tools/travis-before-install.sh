@@ -13,7 +13,7 @@ mkdir builds
 pushd builds
 
 # Build into own virtualenv
-# We therefore control our own environment, avoid travis' numpy
+# We therefore control our own environment, avoid travis' numpy_demo
 pip install -U virtualenv
 
 if [ -n "$USE_DEBUG" ]
@@ -35,9 +35,9 @@ pip install --upgrade pip
 # is stored in pyproject.toml, but there is not yet a standard way to install
 # those dependencies with, say, a pip command, so we'll just hard-code their
 # installation here.  We only need to install them separately for the cases
-# where numpy is installed with setup.py, which is the case for the Travis jobs
+# where numpy_demo is installed with setup.py, which is the case for the Travis jobs
 # where the environment variables USE_DEBUG or USE_WHEEL are set. When pip is
-# used to install numpy, pip gets the build dependencies from pyproject.toml.
+# used to install numpy_demo, pip gets the build dependencies from pyproject.toml.
 # A specific version of cython is required, so we read the cython package
 # requirement using `grep cython test_requirements.txt` instead of simply
 # writing 'pip install setuptools wheel cython'.

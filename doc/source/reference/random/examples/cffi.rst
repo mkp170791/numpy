@@ -1,5 +1,5 @@
 Extending via CFFI
 ------------------
 
-.. literalinclude:: ../../../../../numpy/random/_examples/cffi/extending.py
+.. literalinclude:: ../../../../../numpy_demo/random/_examples/cffi/extending.py
     :language: python

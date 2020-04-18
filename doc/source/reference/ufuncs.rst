@@ -8,7 +8,7 @@ Universal functions (:class:`ufunc`)
 
 .. note: XXX: section might need to be made more reference-guideish...
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 .. index: ufunc, universal function, arithmetic, operation
 
@@ -21,7 +21,7 @@ takes a fixed number of specific inputs and produces a fixed number of
 specific outputs.
 
 In NumPy, universal functions are instances of the
-:class:`numpy.ufunc` class. Many of the built-in functions are
+:class:`numpy_demo.ufunc` class. Many of the built-in functions are
 implemented in compiled C code. The basic ufuncs operate on scalars, but
 there is also a generalized kind for which the basic elements are sub-arrays
 (vectors, matrices, etc.), and broadcasting is done over other dimensions.
@@ -325,7 +325,7 @@ advanced usage and will not typically be used.
     tuple holding a single array) is also valid.
 
     Passing a single array in the 'out' keyword argument to a ufunc with
-    multiple outputs is deprecated, and will raise a warning in numpy 1.10,
+    multiple outputs is deprecated, and will raise a warning in numpy_demo 1.10,
     and an error in a future release.
 
     If 'out' is None (the default), a uninitialized return array is created.
@@ -392,10 +392,10 @@ advanced usage and will not typically be used.
     See :func:`can_cast` for explanations of the parameter values.
 
     Provides a policy for what kind of casting is permitted. For compatibility
-    with previous versions of NumPy, this defaults to 'unsafe' for numpy < 1.7.
-    In numpy 1.7 a transition to 'same_kind' was begun where ufuncs produce a
+    with previous versions of NumPy, this defaults to 'unsafe' for numpy_demo < 1.7.
+    In numpy_demo 1.7 a transition to 'same_kind' was begun where ufuncs produce a
     DeprecationWarning for calls which are allowed under the 'unsafe'
-    rules, but not under the 'same_kind' rules. From numpy 1.10 and
+    rules, but not under the 'same_kind' rules. From numpy_demo 1.10 and
     onwards, the default is 'same_kind'.
 
 *order*
@@ -544,7 +544,7 @@ Available ufuncs
 ================
 
 There are currently more than 60 universal functions defined in
-:mod:`numpy` on one or more types, covering a wide variety of
+:mod:`numpy_demo` on one or more types, covering a wide variety of
 operations. Some of these ufuncs are called automatically on arrays
 when the relevant infix notation is used (*e.g.*, :func:`add(a, b) <add>`
 is called internally when ``a + b`` is written and *a* or *b* is an

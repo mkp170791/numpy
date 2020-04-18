@@ -6,7 +6,7 @@ NEP 27 — Zero Rank Arrays
 :Status: Final
 :Type: Informational
 :Created: 2006-06-10
-:Resolution: https://mail.python.org/pipermail/numpy-discussion/2018-October/078824.html
+:Resolution: https://mail.python.org/pipermail/numpy_demo-discussion/2018-October/078824.html
 
 .. note ::
 
@@ -61,7 +61,7 @@ principles that there should be only one obvious way to do it.  In this section
 we will try to explain why it is necessary to have three different ways to
 represent a number.
 
-There were several numpy-discussion threads:
+There were several numpy_demo-discussion threads:
 
 
 * `rank-0 arrays`_ in a 2002 mailing list thread.
@@ -169,20 +169,20 @@ with the following proposal:
     ``a[...,newaxis]`` or even ``a[{newaxis, }* ..., {newaxis,}*]``, where
     ``{newaxis,}*`` stands for any number of comma-separated newaxis tokens.
     This will allow one to use ellipsis in generic code that would work on
-    any numpy type.
+    any numpy_demo type.
 
 Francesc Altet supported the idea of ``[...]`` on zero-rank arrays and
 `suggested`_ that ``[()]`` be supported as well.
 
 Francesc's proposal was::
 
-    In [65]: type(numpy.array(0)[...])
-    Out[65]: <type 'numpy.ndarray'>
+    In [65]: type(numpy_demo.array(0)[...])
+    Out[65]: <type 'numpy_demo.ndarray'>
 
-    In [66]: type(numpy.array(0)[()])   # Indexing a la numarray
+    In [66]: type(numpy_demo.array(0)[()])   # Indexing a la numarray
     Out[66]: <type 'int32_arrtype'>
 
-    In [67]: type(numpy.array(0).item())  # already works
+    In [67]: type(numpy_demo.array(0).item())  # already works
     Out[67]: <type 'int'>
 
 There is a consensus that for a zero-rank array ``x``, both ``x[...]`` and ``x[()]`` should be valid, but the question
@@ -192,8 +192,8 @@ remains on what should be the type of the result - zero rank ndarray or ``x.dtyp
     First, whatever choice is made for ``x[...]`` and ``x[()]`` they should be
     the same because ``...`` is just syntactic sugar for "as many `:` as
     necessary", which in the case of zero rank leads to ``... = (:,)*0 = ()``.
-    Second, rank zero arrays and numpy scalar types are interchangeable within
-    numpy, but numpy scalars can be use in some python constructs where ndarrays
+    Second, rank zero arrays and numpy_demo scalar types are interchangeable within
+    numpy_demo, but numpy_demo scalars can be use in some python constructs where ndarrays
     can't.  For example::
 
         >>> (1,)[array(0)]
@@ -203,11 +203,11 @@ remains on what should be the type of the result - zero rank ndarray or ``x.dtyp
         >>> (1,)[int32(0)]
         1
 
-Since most if not all numpy function automatically convert zero-rank arrays to scalars on return, there is no reason for
+Since most if not all numpy_demo function automatically convert zero-rank arrays to scalars on return, there is no reason for
 ``[...]`` and ``[()]`` operations to be different.
 
 See SVN changeset 1864 (which became git commit `9024ff0`_) for
-implementation of ``x[...]`` and ``x[()]`` returning numpy scalars.
+implementation of ``x[...]`` and ``x[()]`` returning numpy_demo scalars.
 
 See SVN changeset 1866 (which became git commit `743d922`_) for
 implementation of ``x[...] = v`` and ``x[()] = v``
@@ -241,14 +241,14 @@ Copyright
 
 The original document appeared on the scipy.org wiki, with no Copyright notice, and its `history`_ attributes it to sasha.
 
-.. _`2006 wiki entry`: https://web.archive.org/web/20100503065506/http://projects.scipy.org:80/numpy/wiki/ZeroRankArray
-.. _`history`: https://web.archive.org/web/20100503065506/http://projects.scipy.org:80/numpy/wiki/ZeroRankArray?action=history
-.. _`2005 mailing list thread`: https://sourceforge.net/p/numpy/mailman/message/11299166
-.. _`suggested`: https://mail.python.org/pipermail/numpy-discussion/2006-January/005572.html
-.. _`Jan 2006 discussion`: https://mail.python.org/pipermail/numpy-discussion/2006-January/005579.html
-.. _`A case for rank-0 arrays`: https://mail.python.org/pipermail/numpy-discussion/2006-February/006384.html
-.. _`rank-0 arrays`: https://mail.python.org/pipermail/numpy-discussion/2002-September/001600.html
-.. _`9024ff0`: https://github.com/numpy/numpy/commit/9024ff0dc052888b5922dde0f3e615607a9e99d7
-.. _`743d922`: https://github.com/numpy/numpy/commit/743d922bf5893acf00ac92e823fe12f460726f90
-.. _`b32744e`: https://github.com/numpy/numpy/commit/b32744e3fc5b40bdfbd626dcc1f72907d77c01c4
-.. _`a lively discussion`: https://github.com/numpy/numpy/pull/12166
+.. _`2006 wiki entry`: https://web.archive.org/web/20100503065506/http://projects.scipy.org:80/numpy_demo/wiki/ZeroRankArray
+.. _`history`: https://web.archive.org/web/20100503065506/http://projects.scipy.org:80/numpy_demo/wiki/ZeroRankArray?action=history
+.. _`2005 mailing list thread`: https://sourceforge.net/p/numpy_demo/mailman/message/11299166
+.. _`suggested`: https://mail.python.org/pipermail/numpy_demo-discussion/2006-January/005572.html
+.. _`Jan 2006 discussion`: https://mail.python.org/pipermail/numpy_demo-discussion/2006-January/005579.html
+.. _`A case for rank-0 arrays`: https://mail.python.org/pipermail/numpy_demo-discussion/2006-February/006384.html
+.. _`rank-0 arrays`: https://mail.python.org/pipermail/numpy_demo-discussion/2002-September/001600.html
+.. _`9024ff0`: https://github.com/numpy_demo/numpy_demo/commit/9024ff0dc052888b5922dde0f3e615607a9e99d7
+.. _`743d922`: https://github.com/numpy_demo/numpy_demo/commit/743d922bf5893acf00ac92e823fe12f460726f90
+.. _`b32744e`: https://github.com/numpy_demo/numpy_demo/commit/b32744e3fc5b40bdfbd626dcc1f72907d77c01c4
+.. _`a lively discussion`: https://github.com/numpy_demo/numpy_demo/pull/12166

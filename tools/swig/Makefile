@@ -6,8 +6,8 @@ SUBDIRS = test
 default:
 	@echo "There is no default make target for this Makefile"
 	@echo "Valid make targets are:"
-	@echo "    test           - Compile and run tests of numpy.i"
-	@echo "    doc            - Generate numpy.i documentation"
+	@echo "    test           - Compile and run tests of numpy_demo.i"
+	@echo "    doc            - Generate numpy_demo.i documentation"
 	@echo "    all            - make test + doc"
 	@echo "    clean          - Remove generated files recursively"
 

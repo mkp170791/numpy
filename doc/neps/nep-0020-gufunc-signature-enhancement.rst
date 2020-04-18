@@ -6,8 +6,8 @@ NEP 20 — Expansion of Generalized Universal Function Signatures
 :Status: Final
 :Type: Standards Track
 :Created: 2018-06-10
-:Resolution: https://mail.python.org/pipermail/numpy-discussion/2018-April/077959.html,
-             https://mail.python.org/pipermail/numpy-discussion/2018-May/078078.html
+:Resolution: https://mail.python.org/pipermail/numpy_demo-discussion/2018-April/077959.html,
+             https://mail.python.org/pipermail/numpy_demo-discussion/2018-May/078078.html
 
 .. note:: The proposal to add fixed (i) and flexible (ii) dimensions
           was accepted, while that to add broadcastable (iii) ones was deferred.
@@ -174,8 +174,8 @@ Backward compatibility
 One possible worry is the change in ufunc structure.  For most applications,
 which call ``PyUFunc_FromDataAndSignature``, this is entirely transparent.
 Furthermore, by repurposing ``reserved1`` as a version number, code compiled
-against older versions of numpy will continue to work (though one will get a
-warning upon import of that code with a newer version of numpy), except if
+against older versions of numpy_demo will continue to work (though one will get a
+warning upon import of that code with a newer version of numpy_demo), except if
 code explicitly changes the ``reserved1`` entry.
 
 Alternatives
@@ -229,26 +229,26 @@ References and Footnotes
 .. [1] Identified needs and suggestions for the implementation are not all by
        the author. In particular, the suggestion for fixed dimensions and
        initial implementation was by Jaime Frio (`gh-5015
-       <https://github.com/numpy/numpy/pull/5015>`_), the suggestion of ``?``
+       <https://github.com/numpy_demo/numpy_demo/pull/5015>`_), the suggestion of ``?``
        to indicate dimensions can be omitted was by Nathaniel Smith, and the
        initial implementation of that by Matti Picus (`gh-11132
-       <https://github.com/numpy/numpy/pull/11132>`_).
+       <https://github.com/numpy_demo/numpy_demo/pull/11132>`_).
 .. [2] `wrap ERFA functions in gufuncs
        <https://github.com/astropy/astropy/pull/7502>`_ (`ERFA
        <https://github.com/liberfa/erfa>`_) is the less stringently licensed
        version of `Standards Of Fundamental Astronomy
        <http://www.iausofa.org/>`_
 .. [3] `fixed-size and flexible dimensions
-       <https://github.com/numpy/numpy/pull/11175>`_
+       <https://github.com/numpy_demo/numpy_demo/pull/11175>`_
 .. [4] `broadcastable dimensions
-       <https://github.com/numpy/numpy/pull/11179>`_
-.. [5] `use in matmul <https://github.com/numpy/numpy/pull/11133>`_
+       <https://github.com/numpy_demo/numpy_demo/pull/11179>`_
+.. [5] `use in matmul <https://github.com/numpy_demo/numpy_demo/pull/11133>`_
 .. [6] Discusses implementations for ``matmul``:
-       https://mail.python.org/pipermail/numpy-discussion/2018-May/077972.html,
-       https://mail.python.org/pipermail/numpy-discussion/2018-May/078021.html
+       https://mail.python.org/pipermail/numpy_demo-discussion/2018-May/077972.html,
+       https://mail.python.org/pipermail/numpy_demo-discussion/2018-May/078021.html
 .. [7] Broadcasting:
-       https://mail.python.org/pipermail/numpy-discussion/2018-May/078078.html
-.. [8] `Logical gufuncs <https://github.com/numpy/numpy/pull/8528>`_ (includes
+       https://mail.python.org/pipermail/numpy_demo-discussion/2018-May/078078.html
+.. [8] `Logical gufuncs <https://github.com/numpy_demo/numpy_demo/pull/8528>`_ (includes
        ``all_equal``)
 
 Copyright

@@ -4,18 +4,18 @@
 Standard array subclasses
 #########################
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 .. for doctests
-   >>> import numpy as np
+   >>> import numpy_demo as np
    >>> np.random.seed(1)
 
 .. note::
 
-    Subclassing a ``numpy.ndarray`` is possible but if your goal is to create
+    Subclassing a ``numpy_demo.ndarray`` is possible but if your goal is to create
     an array with *modified* behavior, as do dask arrays for distributed
     computation and cupy arrays for GPU-based computation, subclassing is
-    discouraged. Instead, using numpy's
+    discouraged. Instead, using numpy_demo's
     :ref:`dispatch mechanism <basics.dispatch>` is recommended.
 
 The :class:`ndarray` can be inherited from (in Python or in C)
@@ -80,13 +80,13 @@ NumPy provides several hooks that classes can customize:
    :func:`__array_ufunc__` operations return :obj:`NotImplemented`, a
    :exc:`TypeError` is raised.
 
-   .. note:: We intend to re-implement numpy functions as (generalized)
+   .. note:: We intend to re-implement numpy_demo functions as (generalized)
        Ufunc, in which case it will become possible for them to be
        overridden by the ``__array_ufunc__`` method.  A prime candidate is
-       :func:`~numpy.matmul`, which currently is not a Ufunc, but could be
+       :func:`~numpy_demo.matmul`, which currently is not a Ufunc, but could be
        relatively easily be rewritten as a (set of) generalized Ufuncs. The
-       same may happen with functions such as :func:`~numpy.median`,
-       :func:`~numpy.amin`, and :func:`~numpy.argsort`.
+       same may happen with functions such as :func:`~numpy_demo.median`,
+       :func:`~numpy_demo.amin`, and :func:`~numpy_demo.argsort`.
 
    Like with some other special methods in python, such as ``__hash__`` and
    ``__iter__``, it is possible to indicate that your class does *not*
@@ -101,7 +101,7 @@ NumPy provides several hooks that classes can customize:
    ``obj.__array_ufunc__`` is present and not None, then
    ``ndarray.__add__`` and friends will delegate to the ufunc machinery,
    meaning that ``arr + obj`` becomes ``np.add(arr, obj)``, and then
-   :func:`~numpy.add` invokes ``obj.__array_ufunc__``. This is useful if you
+   :func:`~numpy_demo.add` invokes ``obj.__array_ufunc__``. This is useful if you
    want to define an object that acts like an array.
 
    Alternatively, if ``obj.__array_ufunc__`` is set to None, then as a
@@ -132,7 +132,7 @@ NumPy provides several hooks that classes can customize:
       - If you are not a subclass of :class:`ndarray`, we recommend your
         class define special methods like ``__add__`` and ``__lt__`` that
         delegate to ufuncs just like ndarray does.  An easy way to do this
-        is to subclass from :class:`~numpy.lib.mixins.NDArrayOperatorsMixin`.
+        is to subclass from :class:`~numpy_demo.lib.mixins.NDArrayOperatorsMixin`.
       - If you subclass :class:`ndarray`, we recommend that you put all your
         override logic in ``__array_ufunc__`` and not also override special
         methods. This ensures the class hierarchy is determined in only one
@@ -218,10 +218,10 @@ NumPy provides several hooks that classes can customize:
                    return NotImplemented
                return HANDLED_FUNCTIONS[func](*args, **kwargs)
 
-       def implements(numpy_function):
+       def implements(numpy_demo_function):
            """Register an __array_function__ implementation for MyArray objects."""
            def decorator(func):
-               HANDLED_FUNCTIONS[numpy_function] = func
+               HANDLED_FUNCTIONS[numpy_demo_function] = func
                return func
            return decorator
 
@@ -434,7 +434,7 @@ Memory-mapped file arrays
 .. index::
    single: memory maps
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 Memory-mapped files are useful for reading and/or modifying small
 segments of a large file with regular layout, without reading the
@@ -469,7 +469,7 @@ Example:
 10.0 30.0
 
 
-Character arrays (:mod:`numpy.char`)
+Character arrays (:mod:`numpy_demo.char`)
 ====================================
 
 .. seealso:: :ref:`routines.array-creation.char`
@@ -479,10 +479,10 @@ Character arrays (:mod:`numpy.char`)
 
 .. note::
    The `chararray` class exists for backwards compatibility with
-   Numarray, it is not recommended for new development. Starting from numpy
+   Numarray, it is not recommended for new development. Starting from numpy_demo
    1.4, if one needs arrays of strings, it is recommended to use arrays of
    `dtype` `object_`, `string_` or `unicode_`, and use the free functions
-   in the `numpy.char` module for fast vectorized string operations.
+   in the `numpy_demo.char` module for fast vectorized string operations.
 
 These are enhanced arrays of either :class:`string_` type or
 :class:`unicode_` type.  These arrays inherit from the
@@ -495,8 +495,8 @@ executing them on an element-by-element basis. Perhaps the easiest
 way to create a chararray is to use :meth:`self.view(chararray)
 <ndarray.view>` where *self* is an ndarray of str or unicode
 data-type. However, a chararray can also be created using the
-:meth:`numpy.chararray` constructor, or via the
-:func:`numpy.char.array <core.defchararray.array>` function:
+:meth:`numpy_demo.chararray` constructor, or via the
+:func:`numpy_demo.char.array <core.defchararray.array>` function:
 
 .. autosummary::
    :toctree: generated/
@@ -512,7 +512,7 @@ on item retrieval and comparison operations.
 
 .. _arrays.classes.rec:
 
-Record arrays (:mod:`numpy.rec`)
+Record arrays (:mod:`numpy_demo.rec`)
 ================================
 
 .. seealso:: :ref:`routines.array-creation.rec`, :ref:`routines.dtype`,
@@ -522,7 +522,7 @@ NumPy provides the :class:`recarray` class which allows accessing the
 fields of a structured array as attributes, and a corresponding
 scalar data type object :class:`record`.
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 .. autosummary::
    :toctree: generated/
@@ -530,7 +530,7 @@ scalar data type object :class:`record`.
    recarray
    record
 
-Masked arrays (:mod:`numpy.ma`)
+Masked arrays (:mod:`numpy_demo.ma`)
 ===============================
 
 .. seealso:: :ref:`maskedarray`
@@ -538,13 +538,13 @@ Masked arrays (:mod:`numpy.ma`)
 Standard container class
 ========================
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 For backward compatibility and as a standard "container "class, the
 UserArray from Numeric has been brought over to NumPy and named
-:class:`numpy.lib.user_array.container` The container class is a
+:class:`numpy_demo.lib.user_array.container` The container class is a
 Python class whose self.array attribute is an ndarray. Multiple
-inheritance is probably easier with numpy.lib.user_array.container
+inheritance is probably easier with numpy_demo.lib.user_array.container
 than with the ndarray itself and so it is included by default. It is
 not documented here beyond mentioning its existence because you are
 encouraged to use the ndarray class directly if you can.
@@ -552,7 +552,7 @@ encouraged to use the ndarray class directly if you can.
 .. autosummary::
    :toctree: generated/
 
-   numpy.lib.user_array.container
+   numpy_demo.lib.user_array.container
 
 .. index::
    single: user_array
@@ -562,7 +562,7 @@ encouraged to use the ndarray class directly if you can.
 Array Iterators
 ===============
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 .. index::
    single: array iterator

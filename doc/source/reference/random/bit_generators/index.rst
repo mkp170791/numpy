@@ -1,4 +1,4 @@
-.. currentmodule:: numpy.random
+.. currentmodule:: numpy_demo.random
 
 Bit Generators
 --------------
@@ -54,13 +54,13 @@ reproducible streams, BitGenerators support setting their initial state via a
 seed. All of the provided BitGenerators will take an arbitrary-sized
 non-negative integer, or a list of such integers, as a seed. BitGenerators
 need to take those inputs and process them into a high-quality internal state
-for the BitGenerator. All of the BitGenerators in numpy delegate that task to
+for the BitGenerator. All of the BitGenerators in numpy_demo delegate that task to
 `SeedSequence`, which uses hashing techniques to ensure that even low-quality
 seeds generate high-quality initial states.
 
 .. code-block:: python
 
-    from numpy.random import PCG64
+    from numpy_demo.random import PCG64
 
     bg = PCG64(12345678903141592653589793)
 
@@ -77,7 +77,7 @@ user, which is up to you.
 
 .. code-block:: python
 
-    from numpy.random import PCG64, SeedSequence
+    from numpy_demo.random import PCG64, SeedSequence
 
     # Get the user's seed somehow, maybe through `argparse`.
     # If the user did not provide a seed, it should return `None`.
@@ -90,7 +90,7 @@ user, which is up to you.
 
 We default to using a 128-bit integer using entropy gathered from the OS. This
 is a good amount of entropy to initialize all of the generators that we have in
-numpy. We do not recommend using small seeds below 32 bits for general use.
+numpy_demo. We do not recommend using small seeds below 32 bits for general use.
 Using just a small set of seeds to instantiate larger state spaces means that
 there are some initial states that are impossible to reach. This creates some
 biases if everyone uses such values.

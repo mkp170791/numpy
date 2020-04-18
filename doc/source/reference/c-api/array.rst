@@ -81,7 +81,7 @@ and itssub-types).
     .. versionadded:: 1.7
 
     A synonym for :c:func:`PyArray_DIMS`, named to be consistent with the
-    `shape <numpy.ndarray.shape>` usage within Python.
+    `shape <numpy_demo.ndarray.shape>` usage within Python.
 
 .. c:function:: npy_intp *PyArray_STRIDES(PyArrayObject* arr)
 
@@ -149,7 +149,7 @@ and itssub-types).
     Get a Python object of a builtin type from the ndarray, *arr*,
     at the location pointed to by itemptr. Return ``NULL`` on failure.
 
-    `numpy.ndarray.item` is identical to PyArray_GETITEM.
+    `numpy_demo.ndarray.item` is identical to PyArray_GETITEM.
 
 
 Data access
@@ -218,7 +218,7 @@ From scratch
 
     If *subtype* is of an array subclass instead of the base
     :c:data:`&PyArray_Type<PyArray_Type>`, then *obj* is the object to pass to
-    the :obj:`~numpy.class.__array_finalize__` method of the subclass.
+    the :obj:`~numpy_demo.class.__array_finalize__` method of the subclass.
 
     If *data* is ``NULL``, then new unitinialized memory will be allocated and
     *flags* can be non-zero to indicate a Fortran-style contiguous array. Use
@@ -620,7 +620,7 @@ From other objects
         PyObject* op, PyArray_Descr* dtype, PyObject* context)
 
     Return an ndarray object from a Python object that exposes the
-    :obj:`~numpy.class.__array__` method. The :obj:`~numpy.class.__array__`
+    :obj:`~numpy_demo.class.__array__` method. The :obj:`~numpy_demo.class.__array__`
     method can take 0, or 1 argument ``([dtype])``. ``context`` is unused.
 
 .. c:function:: PyObject* PyArray_ContiguousFromAny( \
@@ -808,7 +808,7 @@ General check of Python Type
     conversion occurs. Otherwise, out will contain a borrowed
     reference to Py_NotImplemented and no error condition is set.
     This version allows setting of the dtype in the part of the array interface
-    that looks for the :obj:`~numpy.class.__array__` attribute. `context` is
+    that looks for the :obj:`~numpy_demo.class.__array__` attribute. `context` is
     unused.
 
 .. c:function:: PyArray_IsZeroDim(op)
@@ -1626,7 +1626,7 @@ Conversion
 .. c:function:: PyObject* PyArray_GetField( \
         PyArrayObject* self, PyArray_Descr* dtype, int offset)
 
-    Equivalent to :meth:`ndarray.getfield<numpy.ndarray.getfield>`
+    Equivalent to :meth:`ndarray.getfield<numpy_demo.ndarray.getfield>`
     (*self*, *dtype*, *offset*). This function `steals a reference
     <https://docs.python.org/3/c-api/intro.html?reference-count-details>`_
     to `PyArray_Descr` and returns a new array of the given `dtype` using
@@ -1641,7 +1641,7 @@ Conversion
 .. c:function:: int PyArray_SetField( \
         PyArrayObject* self, PyArray_Descr* dtype, int offset, PyObject* val)
 
-    Equivalent to :meth:`ndarray.setfield<numpy.ndarray.setfield>` (*self*, *val*, *dtype*, *offset*
+    Equivalent to :meth:`ndarray.setfield<numpy_demo.ndarray.setfield>` (*self*, *val*, *dtype*, *offset*
     ). Set the field starting at *offset* in bytes and of the given
     *dtype* to *val*. The *offset* plus *dtype* ->elsize must be less
     than *self* ->descr->elsize or an error is raised. Otherwise, the
@@ -1653,14 +1653,14 @@ Conversion
 
 .. c:function:: PyObject* PyArray_Byteswap(PyArrayObject* self, Bool inplace)
 
-    Equivalent to :meth:`ndarray.byteswap<numpy.ndarray.byteswap>` (*self*, *inplace*). Return an array
+    Equivalent to :meth:`ndarray.byteswap<numpy_demo.ndarray.byteswap>` (*self*, *inplace*). Return an array
     whose data area is byteswapped. If *inplace* is non-zero, then do
     the byteswap inplace and return a reference to self. Otherwise,
     create a byteswapped copy and leave self unchanged.
 
 .. c:function:: PyObject* PyArray_NewCopy(PyArrayObject* old, NPY_ORDER order)
 
-    Equivalent to :meth:`ndarray.copy<numpy.ndarray.copy>` (*self*, *fortran*). Make a copy of the
+    Equivalent to :meth:`ndarray.copy<numpy_demo.ndarray.copy>` (*self*, *fortran*). Make a copy of the
     *old* array. The returned array is always aligned and writeable
     with data interpreted the same as the old array. If *order* is
     :c:data:`NPY_CORDER`, then a C-style contiguous array is returned. If
@@ -1671,12 +1671,12 @@ Conversion
 
 .. c:function:: PyObject* PyArray_ToList(PyArrayObject* self)
 
-    Equivalent to :meth:`ndarray.tolist<numpy.ndarray.tolist>` (*self*). Return a nested Python list
+    Equivalent to :meth:`ndarray.tolist<numpy_demo.ndarray.tolist>` (*self*). Return a nested Python list
     from *self*.
 
 .. c:function:: PyObject* PyArray_ToString(PyArrayObject* self, NPY_ORDER order)
 
-    Equivalent to :meth:`ndarray.tobytes<numpy.ndarray.tobytes>` (*self*, *order*). Return the bytes
+    Equivalent to :meth:`ndarray.tobytes<numpy_demo.ndarray.tobytes>` (*self*, *order*). Return the bytes
     of this array in a Python string.
 
 .. c:function:: PyObject* PyArray_ToFile( \
@@ -1715,7 +1715,7 @@ Conversion
 .. c:function:: PyObject* PyArray_View( \
         PyArrayObject* self, PyArray_Descr* dtype, PyTypeObject *ptype)
 
-    Equivalent to :meth:`ndarray.view<numpy.ndarray.view>` (*self*, *dtype*). Return a new
+    Equivalent to :meth:`ndarray.view<numpy_demo.ndarray.view>` (*self*, *dtype*). Return a new
     view of the array *self* as possibly a different data-type, *dtype*,
     and different array subclass *ptype*.
 
@@ -1743,14 +1743,14 @@ Shape Manipulation
 
 .. c:function:: PyObject* PyArray_Reshape(PyArrayObject* self, PyObject* shape)
 
-    Equivalent to :meth:`ndarray.reshape<numpy.ndarray.reshape>` (*self*, *shape*) where *shape* is a
+    Equivalent to :meth:`ndarray.reshape<numpy_demo.ndarray.reshape>` (*self*, *shape*) where *shape* is a
     sequence. Converts *shape* to a :c:type:`PyArray_Dims` structure and
     calls :c:func:`PyArray_Newshape` internally.
     For back-ward compatibility -- Not recommended
 
 .. c:function:: PyObject* PyArray_Squeeze(PyArrayObject* self)
 
-    Equivalent to :meth:`ndarray.squeeze<numpy.ndarray.squeeze>` (*self*). Return a new view of *self*
+    Equivalent to :meth:`ndarray.squeeze<numpy_demo.ndarray.squeeze>` (*self*). Return a new view of *self*
     with all of the dimensions of length 1 removed from the shape.
 
 .. warning::
@@ -1760,7 +1760,7 @@ Shape Manipulation
 
 .. c:function:: PyObject* PyArray_SwapAxes(PyArrayObject* self, int a1, int a2)
 
-    Equivalent to :meth:`ndarray.swapaxes<numpy.ndarray.swapaxes>` (*self*, *a1*, *a2*). The returned
+    Equivalent to :meth:`ndarray.swapaxes<numpy_demo.ndarray.swapaxes>` (*self*, *a1*, *a2*). The returned
     array is a new view of the data in *self* with the given axes,
     *a1* and *a2*, swapped.
 
@@ -1768,7 +1768,7 @@ Shape Manipulation
         PyArrayObject* self, PyArray_Dims* newshape, int refcheck, \
         NPY_ORDER fortran)
 
-    Equivalent to :meth:`ndarray.resize<numpy.ndarray.resize>` (*self*, *newshape*, refcheck
+    Equivalent to :meth:`ndarray.resize<numpy_demo.ndarray.resize>` (*self*, *newshape*, refcheck
     ``=`` *refcheck*, order= fortran ). This function only works on
     single-segment arrays. It changes the shape of *self* inplace and
     will reallocate the memory for *self* if *newshape* has a
@@ -1785,7 +1785,7 @@ Shape Manipulation
 .. c:function:: PyObject* PyArray_Transpose( \
         PyArrayObject* self, PyArray_Dims* permute)
 
-    Equivalent to :meth:`ndarray.transpose<numpy.ndarray.transpose>` (*self*, *permute*). Permute the
+    Equivalent to :meth:`ndarray.transpose<numpy_demo.ndarray.transpose>` (*self*, *permute*). Permute the
     axes of the ndarray object *self* according to the data structure
     *permute* and return the result. If *permute* is ``NULL``, then
     the resulting array has its axes reversed. For example if *self*
@@ -1796,7 +1796,7 @@ Shape Manipulation
 
 .. c:function:: PyObject* PyArray_Flatten(PyArrayObject* self, NPY_ORDER order)
 
-    Equivalent to :meth:`ndarray.flatten<numpy.ndarray.flatten>` (*self*, *order*). Return a 1-d copy
+    Equivalent to :meth:`ndarray.flatten<numpy_demo.ndarray.flatten>` (*self*, *order*). Return a 1-d copy
     of the array. If *order* is :c:data:`NPY_FORTRANORDER` the elements are
     scanned out in Fortran order (first-dimension varies the
     fastest). If *order* is :c:data:`NPY_CORDER`, the elements of ``self``
@@ -1820,7 +1820,7 @@ Item selection and manipulation
         PyArrayObject* self, PyObject* indices, int axis, PyArrayObject* ret, \
         NPY_CLIPMODE clipmode)
 
-    Equivalent to :meth:`ndarray.take<numpy.ndarray.take>` (*self*, *indices*, *axis*, *ret*,
+    Equivalent to :meth:`ndarray.take<numpy_demo.ndarray.take>` (*self*, *indices*, *axis*, *ret*,
     *clipmode*) except *axis* =None in Python is obtained by setting
     *axis* = :c:data:`NPY_MAXDIMS` in C. Extract the items from self
     indicated by the integer-valued *indices* along the given *axis.*
@@ -1849,7 +1849,7 @@ Item selection and manipulation
 .. c:function:: PyObject* PyArray_Repeat( \
         PyArrayObject* self, PyObject* op, int axis)
 
-    Equivalent to :meth:`ndarray.repeat<numpy.ndarray.repeat>` (*self*, *op*, *axis*). Copy the
+    Equivalent to :meth:`ndarray.repeat<numpy_demo.ndarray.repeat>` (*self*, *op*, *axis*). Copy the
     elements of *self*, *op* times along the given *axis*. Either
     *op* is a scalar integer or a sequence of length *self*
     ->dimensions[ *axis* ] indicating how many times to repeat each
@@ -1859,7 +1859,7 @@ Item selection and manipulation
         PyArrayObject* self, PyObject* op, PyArrayObject* ret, \
         NPY_CLIPMODE clipmode)
 
-    Equivalent to :meth:`ndarray.choose<numpy.ndarray.choose>` (*self*, *op*, *ret*, *clipmode*).
+    Equivalent to :meth:`ndarray.choose<numpy_demo.ndarray.choose>` (*self*, *op*, *ret*, *clipmode*).
     Create a new array by selecting elements from the sequence of
     arrays in *op* based on the integer values in *self*. The arrays
     must all be broadcastable to the same shape and the entries in
@@ -1884,14 +1884,14 @@ Item selection and manipulation
 
 .. c:function:: PyObject* PyArray_Sort(PyArrayObject* self, int axis, NPY_SORTKIND kind)
 
-    Equivalent to :meth:`ndarray.sort<numpy.ndarray.sort>` (*self*, *axis*, *kind*).
+    Equivalent to :meth:`ndarray.sort<numpy_demo.ndarray.sort>` (*self*, *axis*, *kind*).
     Return an array with the items of *self* sorted along *axis*. The array
     is sorted using the algorithm denoted by *kind* , which is an integer/enum pointing
     to the type of sorting algorithms used.
 
 .. c:function:: PyObject* PyArray_ArgSort(PyArrayObject* self, int axis)
 
-    Equivalent to :meth:`ndarray.argsort<numpy.ndarray.argsort>` (*self*, *axis*).
+    Equivalent to :meth:`ndarray.argsort<numpy_demo.ndarray.argsort>` (*self*, *axis*).
     Return an array of indices such that selection of these indices
     along the given ``axis`` would return a sorted version of *self*. If *self* ->descr
     is a data-type with fields defined, then self->descr->names is used
@@ -1923,7 +1923,7 @@ Item selection and manipulation
         PyArrayObject* self, PyObject* values, NPY_SEARCHSIDE side, \
         PyObject* perm)
 
-    Equivalent to :meth:`ndarray.searchsorted<numpy.ndarray.searchsorted>` (*self*, *values*, *side*,
+    Equivalent to :meth:`ndarray.searchsorted<numpy_demo.ndarray.searchsorted>` (*self*, *values*, *side*,
     *perm*). Assuming *self* is a 1-d array in ascending order, then the
     output is an array of indices the same shape as *values* such that, if
     the elements in *values* were inserted before the indices, the order of
@@ -1943,7 +1943,7 @@ Item selection and manipulation
         PyArrayObject *self, PyArrayObject * ktharray, int axis, \
         NPY_SELECTKIND which)
 
-    Equivalent to :meth:`ndarray.partition<numpy.ndarray.partition>` (*self*, *ktharray*, *axis*,
+    Equivalent to :meth:`ndarray.partition<numpy_demo.ndarray.partition>` (*self*, *ktharray*, *axis*,
     *kind*). Partitions the array so that the values of the element indexed by
     *ktharray* are in the positions they would be if the array is fully sorted
     and places all elements smaller than the kth before and all elements equal
@@ -1960,14 +1960,14 @@ Item selection and manipulation
         PyArrayObject *op, PyArrayObject * ktharray, int axis, \
         NPY_SELECTKIND which)
 
-    Equivalent to :meth:`ndarray.argpartition<numpy.ndarray.argpartition>` (*self*, *ktharray*, *axis*,
+    Equivalent to :meth:`ndarray.argpartition<numpy_demo.ndarray.argpartition>` (*self*, *ktharray*, *axis*,
     *kind*). Return an array of indices such that selection of these indices
     along the given ``axis`` would return a partitioned version of *self*.
 
 .. c:function:: PyObject* PyArray_Diagonal( \
         PyArrayObject* self, int offset, int axis1, int axis2)
 
-    Equivalent to :meth:`ndarray.diagonal<numpy.ndarray.diagonal>` (*self*, *offset*, *axis1*, *axis2*
+    Equivalent to :meth:`ndarray.diagonal<numpy_demo.ndarray.diagonal>` (*self*, *offset*, *axis1*, *axis2*
     ). Return the *offset* diagonals of the 2-d arrays defined by
     *axis1* and *axis2*.
 
@@ -1979,7 +1979,7 @@ Item selection and manipulation
 
 .. c:function:: PyObject* PyArray_Nonzero(PyArrayObject* self)
 
-    Equivalent to :meth:`ndarray.nonzero<numpy.ndarray.nonzero>` (*self*). Returns a tuple of index
+    Equivalent to :meth:`ndarray.nonzero<numpy_demo.ndarray.nonzero>` (*self*). Returns a tuple of index
     arrays that select elements of *self* that are nonzero. If (nd=
     :c:func:`PyArray_NDIM` ( ``self`` ))==1, then a single index array is
     returned. The index arrays have data type :c:data:`NPY_INTP`. If a
@@ -1988,7 +1988,7 @@ Item selection and manipulation
 .. c:function:: PyObject* PyArray_Compress( \
         PyArrayObject* self, PyObject* condition, int axis, PyArrayObject* out)
 
-    Equivalent to :meth:`ndarray.compress<numpy.ndarray.compress>` (*self*, *condition*, *axis*
+    Equivalent to :meth:`ndarray.compress<numpy_demo.ndarray.compress>` (*self*, *condition*, *axis*
     ). Return the elements along *axis* corresponding to elements of
     *condition* that are true.
 
@@ -2016,37 +2016,37 @@ Calculation
 .. c:function:: PyObject* PyArray_ArgMax( \
         PyArrayObject* self, int axis, PyArrayObject* out)
 
-    Equivalent to :meth:`ndarray.argmax<numpy.ndarray.argmax>` (*self*, *axis*). Return the index of
+    Equivalent to :meth:`ndarray.argmax<numpy_demo.ndarray.argmax>` (*self*, *axis*). Return the index of
     the largest element of *self* along *axis*.
 
 .. c:function:: PyObject* PyArray_ArgMin( \
         PyArrayObject* self, int axis, PyArrayObject* out)
 
-    Equivalent to :meth:`ndarray.argmin<numpy.ndarray.argmin>` (*self*, *axis*). Return the index of
+    Equivalent to :meth:`ndarray.argmin<numpy_demo.ndarray.argmin>` (*self*, *axis*). Return the index of
     the smallest element of *self* along *axis*.
 
 .. c:function:: PyObject* PyArray_Max( \
         PyArrayObject* self, int axis, PyArrayObject* out)
 
-    Equivalent to :meth:`ndarray.max<numpy.ndarray.max>` (*self*, *axis*). Returns the largest
+    Equivalent to :meth:`ndarray.max<numpy_demo.ndarray.max>` (*self*, *axis*). Returns the largest
     element of *self* along the given *axis*. When the result is a single
-    element, returns a numpy scalar instead of an ndarray.
+    element, returns a numpy_demo scalar instead of an ndarray.
 
 .. c:function:: PyObject* PyArray_Min( \
         PyArrayObject* self, int axis, PyArrayObject* out)
 
-    Equivalent to :meth:`ndarray.min<numpy.ndarray.min>` (*self*, *axis*). Return the smallest
+    Equivalent to :meth:`ndarray.min<numpy_demo.ndarray.min>` (*self*, *axis*). Return the smallest
     element of *self* along the given *axis*. When the result is a single
-    element, returns a numpy scalar instead of an ndarray.
+    element, returns a numpy_demo scalar instead of an ndarray.
 
 
 .. c:function:: PyObject* PyArray_Ptp( \
         PyArrayObject* self, int axis, PyArrayObject* out)
 
-    Equivalent to :meth:`ndarray.ptp<numpy.ndarray.ptp>` (*self*, *axis*). Return the difference
+    Equivalent to :meth:`ndarray.ptp<numpy_demo.ndarray.ptp>` (*self*, *axis*). Return the difference
     between the largest element of *self* along *axis* and the
     smallest element of *self* along *axis*. When the result is a single
-    element, returns a numpy scalar instead of an ndarray.
+    element, returns a numpy_demo scalar instead of an ndarray.
 
 
 
@@ -2063,7 +2063,7 @@ Calculation
 .. c:function:: PyObject* PyArray_Mean( \
         PyArrayObject* self, int axis, int rtype, PyArrayObject* out)
 
-    Equivalent to :meth:`ndarray.mean<numpy.ndarray.mean>` (*self*, *axis*, *rtype*). Returns the
+    Equivalent to :meth:`ndarray.mean<numpy_demo.ndarray.mean>` (*self*, *axis*, *rtype*). Returns the
     mean of the elements along the given *axis*, using the enumerated
     type *rtype* as the data type to sum in. Default sum behavior is
     obtained using :c:data:`NPY_NOTYPE` for *rtype*.
@@ -2072,7 +2072,7 @@ Calculation
         PyArrayObject* self, int offset, int axis1, int axis2, int rtype, \
         PyArrayObject* out)
 
-    Equivalent to :meth:`ndarray.trace<numpy.ndarray.trace>` (*self*, *offset*, *axis1*, *axis2*,
+    Equivalent to :meth:`ndarray.trace<numpy_demo.ndarray.trace>` (*self*, *offset*, *axis1*, *axis2*,
     *rtype*). Return the sum (using *rtype* as the data type of
     summation) over the *offset* diagonal elements of the 2-d arrays
     defined by *axis1* and *axis2* variables. A positive offset
@@ -2082,20 +2082,20 @@ Calculation
 .. c:function:: PyObject* PyArray_Clip( \
         PyArrayObject* self, PyObject* min, PyObject* max)
 
-    Equivalent to :meth:`ndarray.clip<numpy.ndarray.clip>` (*self*, *min*, *max*). Clip an array,
+    Equivalent to :meth:`ndarray.clip<numpy_demo.ndarray.clip>` (*self*, *min*, *max*). Clip an array,
     *self*, so that values larger than *max* are fixed to *max* and
     values less than *min* are fixed to *min*.
 
 .. c:function:: PyObject* PyArray_Conjugate(PyArrayObject* self)
 
-    Equivalent to :meth:`ndarray.conjugate<numpy.ndarray.conjugate>` (*self*).
+    Equivalent to :meth:`ndarray.conjugate<numpy_demo.ndarray.conjugate>` (*self*).
     Return the complex conjugate of *self*. If *self* is not of
     complex data type, then return *self* with a reference.
 
 .. c:function:: PyObject* PyArray_Round( \
         PyArrayObject* self, int decimals, PyArrayObject* out)
 
-    Equivalent to :meth:`ndarray.round<numpy.ndarray.round>` (*self*, *decimals*, *out*). Returns
+    Equivalent to :meth:`ndarray.round<numpy_demo.ndarray.round>` (*self*, *decimals*, *out*). Returns
     the array with elements rounded to the nearest decimal place. The
     decimal place is defined as the :math:`10^{-\textrm{decimals}}`
     digit so that negative *decimals* cause rounding to the nearest 10's, 100's, etc. If out is ``NULL``, then the output array is created, otherwise the output is placed in *out* which must be the correct size and type.
@@ -2103,49 +2103,49 @@ Calculation
 .. c:function:: PyObject* PyArray_Std( \
         PyArrayObject* self, int axis, int rtype, PyArrayObject* out)
 
-    Equivalent to :meth:`ndarray.std<numpy.ndarray.std>` (*self*, *axis*, *rtype*). Return the
+    Equivalent to :meth:`ndarray.std<numpy_demo.ndarray.std>` (*self*, *axis*, *rtype*). Return the
     standard deviation using data along *axis* converted to data type
     *rtype*.
 
 .. c:function:: PyObject* PyArray_Sum( \
         PyArrayObject* self, int axis, int rtype, PyArrayObject* out)
 
-    Equivalent to :meth:`ndarray.sum<numpy.ndarray.sum>` (*self*, *axis*, *rtype*). Return 1-d
+    Equivalent to :meth:`ndarray.sum<numpy_demo.ndarray.sum>` (*self*, *axis*, *rtype*). Return 1-d
     vector sums of elements in *self* along *axis*. Perform the sum
     after converting data to data type *rtype*.
 
 .. c:function:: PyObject* PyArray_CumSum( \
         PyArrayObject* self, int axis, int rtype, PyArrayObject* out)
 
-    Equivalent to :meth:`ndarray.cumsum<numpy.ndarray.cumsum>` (*self*, *axis*, *rtype*). Return
+    Equivalent to :meth:`ndarray.cumsum<numpy_demo.ndarray.cumsum>` (*self*, *axis*, *rtype*). Return
     cumulative 1-d sums of elements in *self* along *axis*. Perform
     the sum after converting data to data type *rtype*.
 
 .. c:function:: PyObject* PyArray_Prod( \
         PyArrayObject* self, int axis, int rtype, PyArrayObject* out)
 
-    Equivalent to :meth:`ndarray.prod<numpy.ndarray.prod>` (*self*, *axis*, *rtype*). Return 1-d
+    Equivalent to :meth:`ndarray.prod<numpy_demo.ndarray.prod>` (*self*, *axis*, *rtype*). Return 1-d
     products of elements in *self* along *axis*. Perform the product
     after converting data to data type *rtype*.
 
 .. c:function:: PyObject* PyArray_CumProd( \
         PyArrayObject* self, int axis, int rtype, PyArrayObject* out)
 
-    Equivalent to :meth:`ndarray.cumprod<numpy.ndarray.cumprod>` (*self*, *axis*, *rtype*). Return
+    Equivalent to :meth:`ndarray.cumprod<numpy_demo.ndarray.cumprod>` (*self*, *axis*, *rtype*). Return
     1-d cumulative products of elements in ``self`` along ``axis``.
     Perform the product after converting data to data type ``rtype``.
 
 .. c:function:: PyObject* PyArray_All( \
         PyArrayObject* self, int axis, PyArrayObject* out)
 
-    Equivalent to :meth:`ndarray.all<numpy.ndarray.all>` (*self*, *axis*). Return an array with
+    Equivalent to :meth:`ndarray.all<numpy_demo.ndarray.all>` (*self*, *axis*). Return an array with
     True elements for every 1-d sub-array of ``self`` defined by
     ``axis`` in which all the elements are True.
 
 .. c:function:: PyObject* PyArray_Any( \
         PyArrayObject* self, int axis, PyArrayObject* out)
 
-    Equivalent to :meth:`ndarray.any<numpy.ndarray.any>` (*self*, *axis*). Return an array with
+    Equivalent to :meth:`ndarray.any<numpy_demo.ndarray.any>` (*self*, *axis*). Return an array with
     True elements for every 1-d sub-array of *self* defined by *axis*
     in which any of the elements are True.
 
@@ -2253,7 +2253,7 @@ Array Functions
     (:c:data:`NPY_KEEPORDER` is recommended), and when *dtype* is specified,
     *casting* indicates how permissive the data conversion should be.
 
-    See the :func:`~numpy.einsum` function for more details.
+    See the :func:`~numpy_demo.einsum` function for more details.
 
 .. c:function:: PyObject* PyArray_CopyAndTranspose(PyObject \* op)
 
@@ -3080,11 +3080,11 @@ the C-API is needed then some additional steps must be taken.
     single extension module. In each file you must define
     :c:macro:`PY_ARRAY_UNIQUE_SYMBOL` to some name that will hold the
     C-API (*e.g.* myextension_ARRAY_API). This must be done **before**
-    including the numpy/arrayobject.h file. In the module
+    including the numpy_demo/arrayobject.h file. In the module
     initialization routine you call :c:func:`import_array`. In addition,
     in the files that do not have the module initialization
     sub_routine define :c:macro:`NO_IMPORT_ARRAY` prior to including
-    numpy/arrayobject.h.
+    numpy_demo/arrayobject.h.
 
     Suppose I have two files coolmodule.c and coolhelper.c which need
     to be compiled and linked into a single extension module. Suppose
@@ -3095,7 +3095,7 @@ the C-API is needed then some additional steps must be taken.
     .. code-block:: c
 
         #define PY_ARRAY_UNIQUE_SYMBOL cool_ARRAY_API
-        #include numpy/arrayobject.h
+        #include numpy_demo/arrayobject.h
 
     On the other hand, coolhelper.c would contain at the top:
 
@@ -3103,7 +3103,7 @@ the C-API is needed then some additional steps must be taken.
 
         #define NO_IMPORT_ARRAY
         #define PY_ARRAY_UNIQUE_SYMBOL cool_ARRAY_API
-        #include numpy/arrayobject.h
+        #include numpy_demo/arrayobject.h
 
     You can also put the common two last lines into an extension-local
     header file as long as you make sure that NO_IMPORT_ARRAY is
@@ -3113,7 +3113,7 @@ the C-API is needed then some additional steps must be taken.
 
         * If neither is defined, the C-API is declared to be
           :c:type:`static void**`, so it is only visible within the
-          compilation unit that #includes numpy/arrayobject.h.
+          compilation unit that #includes numpy_demo/arrayobject.h.
         * If :c:macro:`PY_ARRAY_UNIQUE_SYMBOL` is #defined, but
           :c:macro:`NO_IMPORT_ARRAY` is not, the C-API is declared to
           be :c:type:`void**`, so that it will also be visible to other
@@ -3133,14 +3133,14 @@ Checking the API Version
 Because python extensions are not used in the same way as usual libraries on
 most platforms, some errors cannot be automatically detected at build time or
 even runtime. For example, if you build an extension using a function available
-only for numpy >= 1.3.0, and you import the extension later with numpy 1.2, you
+only for numpy_demo >= 1.3.0, and you import the extension later with numpy_demo 1.2, you
 will not get an import error (but almost certainly a segmentation fault when
 calling the function). That's why several functions are provided to check for
-numpy versions. The macros :c:data:`NPY_VERSION`  and
-:c:data:`NPY_FEATURE_VERSION` corresponds to the numpy version used to build the
+numpy_demo versions. The macros :c:data:`NPY_VERSION`  and
+:c:data:`NPY_FEATURE_VERSION` corresponds to the numpy_demo version used to build the
 extension, whereas the versions returned by the functions
 PyArray_GetNDArrayCVersion and PyArray_GetNDArrayCFeatureVersion corresponds to
-the runtime numpy's version.
+the runtime numpy_demo's version.
 
 The rules for ABI and API compatibilities can be summarized as follows:
 
@@ -3150,9 +3150,9 @@ The rules for ABI and API compatibilities can be summarized as follows:
       :c:data:`NPY_FEATURE_VERSION` <= PyArray_GetNDArrayCFeatureVersion means
       backward compatible changes.
 
-ABI incompatibility is automatically detected in every numpy's version. API
-incompatibility detection was added in numpy 1.4.0. If you want to supported
-many different numpy versions with one extension binary, you have to build your
+ABI incompatibility is automatically detected in every numpy_demo's version. API
+incompatibility detection was added in numpy_demo 1.4.0. If you want to supported
+many different numpy_demo versions with one extension binary, you have to build your
 extension with the lowest NPY_FEATURE_VERSION as possible.
 
 .. c:function:: unsigned int PyArray_GetNDArrayCVersion(void)
@@ -3394,7 +3394,7 @@ Priority
 
 .. c:function:: double PyArray_GetPriority(PyObject* obj, double def)
 
-    Return the :obj:`~numpy.class.__array_priority__` attribute (converted to a
+    Return the :obj:`~numpy_demo.class.__array_priority__` attribute (converted to a
     double) of *obj* or *def* if no attribute of that name
     exists. Fast returns that avoid the attribute lookup are provided
     for objects of type :c:data:`PyArray_Type`.
@@ -3434,7 +3434,7 @@ Other constants
 .. c:var:: NPY_VERSION
 
     The current version of the ndarray object (check to see if this
-    variable is defined to guarantee the numpy/arrayobject.h header is
+    variable is defined to guarantee the numpy_demo/arrayobject.h header is
     being used).
 
 .. c:var:: NPY_FALSE

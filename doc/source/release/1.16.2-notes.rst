@@ -20,7 +20,7 @@ installed versions of NumPy that pip did not delete becoming mixed with the
 current version, resulting in an ``ImportError``. That problem is particularly
 common on Debian derived distributions due to a modified pip.  The fix is to
 make sure all previous NumPy versions installed by pip have been removed. See
-`#12736 <https://github.com/numpy/numpy/issues/12736>`__ for discussion of the
+`#12736 <https://github.com/numpy_demo/numpy_demo/issues/12736>`__ for discussion of the
 issue.
 
 
@@ -29,7 +29,7 @@ Compatibility notes
 
 Signed zero when using divmod
 -----------------------------
-Starting in version 1.12.0, numpy incorrectly returned a negatively signed zero
+Starting in version 1.12.0, numpy_demo incorrectly returned a negatively signed zero
 when using the ``divmod`` and ``floor_divide`` functions when the result was
 zero. For example::
 
@@ -61,10 +61,10 @@ Pull requests merged
 
 A total of 7 pull requests were merged for this release.
 
-* `#12909 <https://github.com/numpy/numpy/pull/12909>`__: TST: fix vmImage dispatch in Azure
-* `#12923 <https://github.com/numpy/numpy/pull/12923>`__: MAINT: remove complicated test of multiarray import failure mode
-* `#13020 <https://github.com/numpy/numpy/pull/13020>`__: BUG: fix signed zero behavior in npy_divmod
-* `#13026 <https://github.com/numpy/numpy/pull/13026>`__: MAINT: Add functions to parse shell-strings in the platform-native...
-* `#13028 <https://github.com/numpy/numpy/pull/13028>`__: BUG: Fix regression in parsing of F90 and F77 environment variables
-* `#13038 <https://github.com/numpy/numpy/pull/13038>`__: BUG: parse shell escaping in extra_compile_args and extra_link_args
-* `#13041 <https://github.com/numpy/numpy/pull/13041>`__: BLD: Windows absolute path DLL loading
+* `#12909 <https://github.com/numpy_demo/numpy_demo/pull/12909>`__: TST: fix vmImage dispatch in Azure
+* `#12923 <https://github.com/numpy_demo/numpy_demo/pull/12923>`__: MAINT: remove complicated test of multiarray import failure mode
+* `#13020 <https://github.com/numpy_demo/numpy_demo/pull/13020>`__: BUG: fix signed zero behavior in npy_divmod
+* `#13026 <https://github.com/numpy_demo/numpy_demo/pull/13026>`__: MAINT: Add functions to parse shell-strings in the platform-native...
+* `#13028 <https://github.com/numpy_demo/numpy_demo/pull/13028>`__: BUG: Fix regression in parsing of F90 and F77 environment variables
+* `#13038 <https://github.com/numpy_demo/numpy_demo/pull/13038>`__: BUG: parse shell escaping in extra_compile_args and extra_link_args
+* `#13041 <https://github.com/numpy_demo/numpy_demo/pull/13041>`__: BLD: Windows absolute path DLL loading

@@ -1,7 +1,7 @@
 Array manipulation routines
 ***************************
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 Basic operations
 ================

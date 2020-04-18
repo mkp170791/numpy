@@ -1,10 +1,10 @@
-.. _numpyrandom:
+.. _numpy_demorandom:
 
-.. py:module:: numpy.random
+.. py:module:: numpy_demo.random
 
-.. currentmodule:: numpy.random
+.. currentmodule:: numpy_demo.random
 
-Random sampling (:mod:`numpy.random`)
+Random sampling (:mod:`numpy_demo.random`)
 =====================================
 
 Numpy's random number routines produce pseudo random numbers using
@@ -20,13 +20,13 @@ to use those sequences to sample from different statistical distributions:
 
 Since Numpy version 1.17.0 the Generator can be initialized with a
 number of different BitGenerators. It exposes many different probability
-distributions. See `NEP 19 <https://www.numpy.org/neps/
+distributions. See `NEP 19 <https://www.numpy_demo.org/neps/
 nep-0019-rng-policy.html>`_ for context on the updated random Numpy number
 routines. The legacy `RandomState` random number routines are still
 available, but limited to a single BitGenerator.
 
 For convenience and backward compatibility, a single `RandomState`
-instance's methods are imported into the numpy.random namespace, see
+instance's methods are imported into the numpy_demo.random namespace, see
 :ref:`legacy` for the complete list.
 
 .. _random-quick-start:
@@ -42,13 +42,13 @@ properties than the legacy `MT19937` used in `RandomState`.
 .. code-block:: python
 
   # Do this
-  from numpy.random import default_rng
+  from numpy_demo.random import default_rng
   rng = default_rng()
   vals = rng.standard_normal(10)
   more_vals = rng.standard_normal(10)
 
   # instead of this
-  from numpy import random
+  from numpy_demo import random
   vals = random.standard_normal(10)
   more_vals = random.standard_normal(10)
 
@@ -94,7 +94,7 @@ is wrapped with a `Generator`.
 
 .. code-block:: python
 
-  from numpy.random import Generator, PCG64
+  from numpy_demo.random import Generator, PCG64
   rg = Generator(PCG64(12345))
   rg.standard_normal()
 
@@ -119,7 +119,7 @@ The `Generator` is the user-facing object that is nearly identical to
 
 .. code-block:: python
 
-  from numpy.random import default_rng
+  from numpy_demo.random import default_rng
   rg = default_rng(12345)
   rg.random()
 
@@ -129,7 +129,7 @@ and pass it to `Generator`.
 
 .. code-block:: python
 
-  from numpy.random import Generator, MT19937
+  from numpy_demo.random import Generator, MT19937
   rg = Generator(MT19937(12345))
   rg.random()
 
@@ -166,7 +166,7 @@ What's New or Different
   random numbers, which replaces `RandomState.random_sample`,
   `RandomState.sample`, and `RandomState.ranf`. This is consistent with
   Python's `random.random`.
-* All BitGenerators in numpy use `SeedSequence` to convert seeds into
+* All BitGenerators in numpy_demo use `SeedSequence` to convert seeds into
   initialized states.
 
 See :ref:`new-or-different` for a complete list of improvements and

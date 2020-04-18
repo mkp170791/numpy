@@ -8,7 +8,7 @@ NumPy Reference
 :Date: |today|
 
 
-.. module:: numpy
+.. module:: numpy_demo
 
 This reference manual details functions, modules, and objects
 included in NumPy, describing what they are and what they do.

@@ -1,6 +1,6 @@
 from .common import Benchmark, get_squares
 
-import numpy as np
+import numpy_demo as np
 from io import StringIO
 
 

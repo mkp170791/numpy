@@ -1,9 +1,9 @@
 from .common import Benchmark
 
-import numpy as np
+import numpy_demo as np
 
 try:
-    from numpy.random import Generator
+    from numpy_demo.random import Generator
 except ImportError:
     pass
 
@@ -56,7 +56,7 @@ class Randint_dtype(Benchmark):
     params = ['bool', 'uint8', 'uint16', 'uint32', 'uint64']
 
     def setup(self, name):
-        from numpy.lib import NumpyVersion
+        from numpy_demo.lib import NumpyVersion
         if NumpyVersion(np.__version__) < '1.11.0.dev0':
             raise NotImplementedError
 
@@ -88,10 +88,10 @@ nom_size = 100000
 
 class RNG(Benchmark):
     param_names = ['rng']
-    params = ['PCG64', 'MT19937', 'Philox', 'SFC64', 'numpy']
+    params = ['PCG64', 'MT19937', 'Philox', 'SFC64', 'numpy_demo']
 
     def setup(self, bitgen):
-        if bitgen == 'numpy':
+        if bitgen == 'numpy_demo':
             self.rg = np.random.RandomState()
         else:
             self.rg = Generator(getattr(np.random, bitgen)())
@@ -101,21 +101,21 @@ class RNG(Benchmark):
         self.uint64info = np.iinfo(np.uint64)
 
     def time_raw(self, bitgen):
-        if bitgen == 'numpy':
+        if bitgen == 'numpy_demo':
             self.rg.random_integers(self.int32info.max, size=nom_size)
         else:
             self.rg.integers(self.int32info.max, size=nom_size, endpoint=True)
 
     def time_32bit(self, bitgen):
         min, max = self.uint32info.min, self.uint32info.max
-        if bitgen == 'numpy':
+        if bitgen == 'numpy_demo':
             self.rg.randint(min, max + 1, nom_size, dtype=np.uint32)
         else:
             self.rg.integers(min, max + 1, nom_size, dtype=np.uint32)
 
     def time_64bit(self, bitgen):
         min, max = self.uint64info.min, self.uint64info.max
-        if bitgen == 'numpy':
+        if bitgen == 'numpy_demo':
             self.rg.randint(min, max + 1, nom_size, dtype=np.uint64)
         else:
             self.rg.integers(min, max + 1, nom_size, dtype=np.uint64)
@@ -129,7 +129,7 @@ class Bounded(Benchmark):
     u32 = np.uint32
     u64 = np.uint64
     param_names = ['rng', 'dt_max']
-    params = [['PCG64', 'MT19937', 'Philox', 'SFC64', 'numpy'],
+    params = [['PCG64', 'MT19937', 'Philox', 'SFC64', 'numpy_demo'],
               [[u8,    95],
                [u8,    64],  # Worst case for legacy
                [u8,   127],  # Best case for legacy
@@ -147,7 +147,7 @@ class Bounded(Benchmark):
              ]]
 
     def setup(self, bitgen, args):
-        if bitgen == 'numpy':
+        if bitgen == 'numpy_demo':
             self.rg = np.random.RandomState()
         else:
             self.rg = Generator(getattr(np.random, bitgen)())
@@ -165,7 +165,7 @@ class Bounded(Benchmark):
                 Upper bound for range. Lower is always 0.  Must be <= 2**bits.
             """
             dt, max = args
-            if bitgen == 'numpy':
+            if bitgen == 'numpy_demo':
                 self.rg.randint(0, max + 1, nom_size, dtype=dt)
             else:
                 self.rg.integers(0, max + 1, nom_size, dtype=dt)

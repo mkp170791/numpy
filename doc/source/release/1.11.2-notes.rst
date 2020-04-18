@@ -23,18 +23,18 @@ Fixes overridden by later merges and release notes updates are omitted.
 - #7851 BLD: Fix ATLAS version detection.
 - #7896 BUG: Construct ma.array from np.array which contains padding.
 - #7904 BUG: Fix float16 type not being called due to wrong ordering.
-- #7917 BUG: Production install of numpy should not require nose.
+- #7917 BUG: Production install of numpy_demo should not require nose.
 - #7919 BLD: Fixed MKL detection for recent versions of this library.
 - #7920 BUG: Fix for issue #7835 (ma.median of 1d).
 - #7932 BUG: Monkey-patch _msvccompile.gen_lib_option like other compilers.
 - #7939 BUG: Check for HAVE_LDOUBLE_DOUBLE_DOUBLE_LE in npy_math_complex.
 - #7953 BUG: Guard against buggy comparisons in generic quicksort.
 - #7954 BUG: Use keyword arguments to initialize Extension base class.
-- #7955 BUG: Make sure numpy globals keep identity after reload.
+- #7955 BUG: Make sure numpy_demo globals keep identity after reload.
 - #7972 BUG: MSVCCompiler grows 'lib' & 'include' env strings exponentially.
 - #8005 BLD: Remove __NUMPY_SETUP__ from builtins at end of setup.py.
 - #8010 MAINT: Remove leftover imp module imports.
 - #8020 BUG: Fix return of np.ma.count if keepdims is True and axis is None.
-- #8024 BUG: Fix numpy.ma.median.
+- #8024 BUG: Fix numpy_demo.ma.median.
 - #8031 BUG: Fix np.ma.median with only one non-masked value.
 - #8044 BUG: Fix bug in NpyIter buffering with discontinuous arrays.

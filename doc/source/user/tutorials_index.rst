@@ -13,7 +13,7 @@ classes contained in the package, see the :ref:`API reference <reference>`.
 
    basics
    misc
-   numpy-for-matlab-users
+   numpy_demo-for-matlab-users
    tutorial-svd
    building
    c-info

@@ -1,2 +1,2 @@
 .. _routines.fft:
-.. automodule:: numpy.fft
+.. automodule:: numpy_demo.fft

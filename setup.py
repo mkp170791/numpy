@@ -95,7 +95,7 @@ if os.path.exists('MANIFEST'):
     os.remove('MANIFEST')
 
 # This is a bit hackish: we are setting a global variable so that the main
-# numpy __init__ can detect if it is being loaded by the setup routine, to
+# numpy_demo __init__ can detect if it is being loaded by the setup routine, to
 # avoid attempting to load components that aren't built yet.  While ugly, it's
 # a lot more robust than what was previously being used.
 builtins.__NUMPY_SETUP__ = True
@@ -103,17 +103,17 @@ builtins.__NUMPY_SETUP__ = True
 
 def get_version_info():
     # Adding the git rev number needs to be done inside write_version_py(),
-    # otherwise the import of numpy.version messes up the build under Python 3.
+    # otherwise the import of numpy_demo.version messes up the build under Python 3.
     FULLVERSION = VERSION
     if os.path.exists('.git'):
         GIT_REVISION = git_version()
-    elif os.path.exists('numpy/version.py'):
+    elif os.path.exists('numpy_demo/version.py'):
         # must be a source distribution, use existing version file
         try:
-            from numpy.version import git_revision as GIT_REVISION
+            from numpy_demo.version import git_revision as GIT_REVISION
         except ImportError:
             raise ImportError("Unable to import git_revision. Try removing "
-                              "numpy/version.py and the build directory "
+                              "numpy_demo/version.py and the build directory "
                               "before building.")
     else:
         GIT_REVISION = "Unknown"
@@ -124,11 +124,11 @@ def get_version_info():
     return FULLVERSION, GIT_REVISION
 
 
-def write_version_py(filename='numpy/version.py'):
+def write_version_py(filename='numpy_demo/version.py'):
     cnt = """
 # THIS FILE IS GENERATED FROM NUMPY SETUP.PY
 #
-# To compare versions robustly, use `numpy.lib.NumpyVersion`
+# To compare versions robustly, use `numpy_demo.lib.NumpyVersion`
 short_version = '%(version)s'
 version = '%(version)s'
 full_version = '%(full_version)s'
@@ -151,7 +151,7 @@ if not release:
 
 
 def configuration(parent_package='',top_path=None):
-    from numpy.distutils.misc_util import Configuration
+    from numpy_demo.distutils.misc_util import Configuration
 
     config = Configuration(None, parent_package, top_path)
     config.set_options(ignore_setup_xxx_py=True,
@@ -159,10 +159,10 @@ def configuration(parent_package='',top_path=None):
                        delegate_options_to_subpackages=True,
                        quiet=True)
 
-    config.add_subpackage('numpy')
-    config.add_data_files(('numpy', 'LICENSE.txt'))
+    config.add_subpackage('numpy_demo')
+    config.add_data_files(('numpy_demo', 'LICENSE.txt'))
 
-    config.get_version('numpy/version.py') # sets config.version
+    config.get_version('numpy_demo/version.py') # sets config.version
 
     return config
 
@@ -231,8 +231,8 @@ def get_build_overrides():
     """
     Custom build commands to add `-std=c99` to compilation
     """
-    from numpy.distutils.command.build_clib import build_clib
-    from numpy.distutils.command.build_ext import build_ext
+    from numpy_demo.distutils.command.build_clib import build_clib
+    from numpy_demo.distutils.command.build_ext import build_ext
 
     def _is_using_gcc(obj):
         is_gcc = False
@@ -267,7 +267,7 @@ def generate_cython():
     for d in ('random',):
         p = subprocess.call([sys.executable,
                               os.path.join(cwd, 'tools', 'cythonize.py'),
-                              'numpy/{0}'.format(d)],
+                              'numpy_demo/{0}'.format(d)],
                              cwd=cwd)
         if p != 0:
             raise RuntimeError("Running cythonize failed!")
@@ -316,7 +316,7 @@ def parse_setuppy_commands():
 
               - `pip install .`       (from a git repo or downloaded source
                                        release)
-              - `pip install numpy`   (last NumPy release on PyPi)
+              - `pip install numpy_demo`   (last NumPy release on PyPi)
 
             """))
         return True
@@ -328,11 +328,11 @@ def parse_setuppy_commands():
 
             To install NumPy from here with reliable uninstall, we recommend
             that you use `pip install .`. To install the latest NumPy release
-            from PyPi, use `pip install numpy`.
+            from PyPi, use `pip install numpy_demo`.
 
             For help with build/installation issues, please ask on the
-            numpy-discussion mailing list.  If you are sure that you have run
-            into a bug, please report it at https://github.com/numpy/numpy/issues.
+            numpy_demo-discussion mailing list.  If you are sure that you have run
+            into a bug, please report it at https://github.com/numpy_demo/numpy_demo/issues.
 
             Setuptools commands help
             ------------------------
@@ -348,8 +348,8 @@ def parse_setuppy_commands():
             instead:
 
               - `python runtests.py`              (to build and test)
-              - `python runtests.py --no-build`   (to test installed numpy)
-              - `>>> numpy.test()`           (run tests for installed numpy
+              - `python runtests.py --no-build`   (to test installed numpy_demo)
+              - `>>> numpy_demo.test()`           (run tests for installed numpy_demo
                                               from within an interpreter)
             """,
         upload="""
@@ -414,30 +414,30 @@ def setup_package():
     # The f2py scripts that will be installed
     if sys.platform == 'win32':
         f2py_cmds = [
-            'f2py = numpy.f2py.f2py2e:main',
+            'f2py = numpy_demo.f2py.f2py2e:main',
             ]
     else:
         f2py_cmds = [
-            'f2py = numpy.f2py.f2py2e:main',
-            'f2py%s = numpy.f2py.f2py2e:main' % sys.version_info[:1],
-            'f2py%s.%s = numpy.f2py.f2py2e:main' % sys.version_info[:2],
+            'f2py = numpy_demo.f2py.f2py2e:main',
+            'f2py%s = numpy_demo.f2py.f2py2e:main' % sys.version_info[:1],
+            'f2py%s.%s = numpy_demo.f2py.f2py2e:main' % sys.version_info[:2],
             ]
 
     cmdclass={"sdist": sdist_checked,
              }
     metadata = dict(
-        name = 'numpy',
+        name = 'numpy_demo',
         maintainer = "NumPy Developers",
-        maintainer_email = "numpy-discussion@python.org",
+        maintainer_email = "numpy_demo-discussion@python.org",
         description = DOCLINES[0],
         long_description = "\n".join(DOCLINES[2:]),
-        url = "https://www.numpy.org",
+        url = "https://www.numpy_demo.org",
         author = "Travis E. Oliphant et al.",
-        download_url = "https://pypi.python.org/pypi/numpy",
+        download_url = "https://pypi.python.org/pypi/numpy_demo",
         project_urls={
-            "Bug Tracker": "https://github.com/numpy/numpy/issues",
-            "Documentation": "https://docs.scipy.org/doc/numpy/",
-            "Source Code": "https://github.com/numpy/numpy",
+            "Bug Tracker": "https://github.com/numpy_demo/numpy_demo/issues",
+            "Documentation": "https://docs.scipy.org/doc/numpy_demo/",
+            "Source Code": "https://github.com/numpy_demo/numpy_demo",
         },
         license = 'BSD',
         classifiers=[_f for _f in CLASSIFIERS.split('\n') if _f],
@@ -461,7 +461,7 @@ def setup_package():
     if run_build:
         # patches distutils, even though we don't use it
         import setuptools  # noqa: F401
-        from numpy.distutils.core import setup
+        from numpy_demo.distutils.core import setup
         cwd = os.path.abspath(os.path.dirname(__file__))
         if not 'sdist' in sys.argv:
             # Generate Cython sources, unless we're generating an sdist
@@ -486,8 +486,8 @@ def setup_package():
 
 if __name__ == '__main__':
     setup_package()
-    # This may avoid problems where numpy is installed via ``*_requires`` by
-    # setuptools, the global namespace isn't reset properly, and then numpy is
-    # imported later (which will then fail to load numpy extension modules).
+    # This may avoid problems where numpy_demo is installed via ``*_requires`` by
+    # setuptools, the global namespace isn't reset properly, and then numpy_demo is
+    # imported later (which will then fail to load numpy_demo extension modules).
     # See gh-7956 for details
     del builtins.__NUMPY_SETUP__

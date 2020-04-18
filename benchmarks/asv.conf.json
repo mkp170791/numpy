@@ -4,10 +4,10 @@
     "version": 1,
 
     // The name of the project being benchmarked
-    "project": "numpy",
+    "project": "numpy_demo",
 
     // The project's homepage
-    "project_url": "https://www.numpy.org/",
+    "project_url": "https://www.numpy_demo.org/",
 
     // The URL or local path of the source code repository for the
     // project being benchmarked
@@ -31,7 +31,7 @@
     "environment_type": "virtualenv",
 
     // the base URL to show a commit for the project.
-    "show_commit_url": "https://github.com/numpy/numpy/commit/",
+    "show_commit_url": "https://github.com/numpy_demo/numpy_demo/commit/",
 
     // The Pythons you'd like to test against.  If not provided, defaults
     // to the current version of Python used to run `asv`.

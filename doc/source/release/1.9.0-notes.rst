@@ -18,15 +18,15 @@ Dropped Support
 
 * The oldnumeric and numarray modules have been removed.
 * The doc/pyrex and doc/cython directories have been removed.
-* The doc/numpybook directory has been removed.
-* The numpy/testing/numpytest.py file has been removed together with
+* The doc/numpy_demobook directory has been removed.
+* The numpy_demo/testing/numpy_demotest.py file has been removed together with
   the importall function it contained.
 
 
 Future Changes
 ==============
 
-* The numpy/polynomial/polytemplate.py file will be removed in NumPy 1.10.0.
+* The numpy_demo/polynomial/polytemplate.py file will be removed in NumPy 1.10.0.
 * Default casting for inplace operations will change to 'same_kind' in
   Numpy 1.10.0. This will certainly break some code that is currently
   ignoring the warning.
@@ -49,7 +49,7 @@ views.
 
 Special scalar float values don't cause upcast to double anymore
 ----------------------------------------------------------------
-In previous numpy versions operations involving floating point scalars
+In previous numpy_demo versions operations involving floating point scalars
 containing special values ``NaN``, ``Inf`` and ``-Inf`` caused the result
 type to be at least ``float64``.  As the special values can be represented
 in the smallest available floating point type, the upcast is not performed
@@ -64,7 +64,7 @@ Operations involving non-special values have not been changed.
 
 Percentile output changes
 -------------------------
-If given more than one percentile to compute numpy.percentile returns an
+If given more than one percentile to compute numpy_demo.percentile returns an
 array instead of a list. A single percentile still returns a scalar.  The
 array is equivalent to converting the list returned in older versions
 to an array via ``np.array``.
@@ -79,7 +79,7 @@ All ``tofile`` exceptions are now ``IOError``, some were previously
 
 Invalid fill value exceptions
 -----------------------------
-Two changes to numpy.ma.core._check_fill_value:
+Two changes to numpy_demo.ma.core._check_fill_value:
 
 * When the fill value is a string and the array type is not one of
   'OSUV', TypeError is raised instead of the default fill value being used.
@@ -95,7 +95,7 @@ base class ABCPolyBase. Strictly speaking, there should be a deprecation
 involved, but no external code making use of the old baseclass could be
 found.
 
-Using numpy.random.binomial may change the RNG state vs. numpy < 1.9
+Using numpy_demo.random.binomial may change the RNG state vs. numpy_demo < 1.9
 --------------------------------------------------------------------
 A bug in one of the algorithms to generate a binomial random variate has
 been fixed. This change will likely alter the number of random draws
@@ -218,7 +218,7 @@ The ``npy_3kcompat.h`` header changed
 -------------------------------------
 The unused ``simple_capsule_dtor`` function has been removed from
 ``npy_3kcompat.h``.  Note that this header is not meant to be used outside
-of numpy; other projects should be using their own copy of this file when
+of numpy_demo; other projects should be using their own copy of this file when
 needed.
 
 Negative indices in C-Api ``sq_item`` and ``sq_ass_item`` sequence methods
@@ -290,7 +290,7 @@ Added experimental support for the ppc64le and OpenRISC architecture.
 
 Compatibility to python ``numbers`` module
 ------------------------------------------
-All numerical numpy types are now registered with the type hierarchy in
+All numerical numpy_demo types are now registered with the type hierarchy in
 the python ``numbers`` module.
 
 ``increasing`` parameter added to ``np.vander``
@@ -310,16 +310,16 @@ the median and percentile functions except that NaNs are ignored.
 
 NumpyVersion class added
 ------------------------
-The class may be imported from numpy.lib and can be used for version
-comparison when the numpy version goes to 1.10.devel. For example::
+The class may be imported from numpy_demo.lib and can be used for version
+comparison when the numpy_demo version goes to 1.10.devel. For example::
 
-    >>> from numpy.lib import NumpyVersion
+    >>> from numpy_demo.lib import NumpyVersion
     >>> if NumpyVersion(np.__version__) < '1.10.0'):
     ...     print('Wow, that is an old NumPy version!')
 
 Allow saving arrays with large number of named columns
 ------------------------------------------------------
-The numpy storage format 1.0 only allowed the array header to have a total size
+The numpy_demo storage format 1.0 only allowed the array header to have a total size
 of 65535 bytes. This can be exceeded by structured arrays with a large number
 of columns. A new format 2.0 has been added which extends the header size to 4
 GiB. `np.save` will automatically save in 2.0 format if the data requires it,
@@ -362,10 +362,10 @@ inputs, this can result in performance improvements over 2x.
 
 Optional reduced verbosity for np.distutils
 -------------------------------------------
-Set ``numpy.distutils.system_info.system_info.verbosity = 0`` and then
-calls to ``numpy.distutils.system_info.get_info('blas_opt')`` will not
+Set ``numpy_demo.distutils.system_info.system_info.verbosity = 0`` and then
+calls to ``numpy_demo.distutils.system_info.get_info('blas_opt')`` will not
 print anything on the output. This is mostly for other packages using
-numpy.distutils.
+numpy_demo.distutils.
 
 Covariance check in ``np.random.multivariate_normal``
 -----------------------------------------------------
@@ -401,7 +401,7 @@ Deprecations
 
 Non-integer scalars for sequence repetition
 -------------------------------------------
-Using non-integer numpy scalars to repeat python sequences is deprecated.
+Using non-integer numpy_demo scalars to repeat python sequences is deprecated.
 For example ``np.float_(2) * [1]`` will be an error in the future.
 
 ``select`` input deprecations
@@ -413,7 +413,7 @@ considered an input error instead of returning the default.
 ``rank`` function
 -----------------
 The ``rank`` function has been deprecated to avoid confusion with
-``numpy.linalg.matrix_rank``.
+``numpy_demo.linalg.matrix_rank``.
 
 Object array equality comparisons
 ---------------------------------

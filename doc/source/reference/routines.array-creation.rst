@@ -5,7 +5,7 @@ Array creation routines
 
 .. seealso:: :ref:`Array creation <arrays.creation>`
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 Ones and zeros
 --------------
@@ -43,11 +43,11 @@ From existing data
 
 .. _routines.array-creation.rec:
 
-Creating record arrays (:mod:`numpy.rec`)
+Creating record arrays (:mod:`numpy_demo.rec`)
 -----------------------------------------
 
-.. note:: :mod:`numpy.rec` is the preferred alias for
-   :mod:`numpy.core.records`.
+.. note:: :mod:`numpy_demo.rec` is the preferred alias for
+   :mod:`numpy_demo.core.records`.
 
 .. autosummary::
    :toctree: generated/
@@ -60,11 +60,11 @@ Creating record arrays (:mod:`numpy.rec`)
 
 .. _routines.array-creation.char:
 
-Creating character arrays (:mod:`numpy.char`)
+Creating character arrays (:mod:`numpy_demo.char`)
 ---------------------------------------------
 
-.. note:: :mod:`numpy.char` is the preferred alias for
-   :mod:`numpy.core.defchararray`.
+.. note:: :mod:`numpy_demo.char` is the preferred alias for
+   :mod:`numpy_demo.core.defchararray`.
 
 .. autosummary::
    :toctree: generated/

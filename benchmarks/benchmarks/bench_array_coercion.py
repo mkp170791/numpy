@@ -2,7 +2,7 @@ from __future__ import absolute_import, division, print_function
 
 from .common import Benchmark
 
-import numpy as np
+import numpy_demo as np
 
 
 class ArrayCoercionSmall(Benchmark):

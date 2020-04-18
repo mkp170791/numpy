@@ -1,7 +1,7 @@
 Permuted Congruential Generator (64-bit, PCG64)
 -----------------------------------------------
 
-.. currentmodule:: numpy.random
+.. currentmodule:: numpy_demo.random
 
 .. autoclass:: PCG64
 	:exclude-members:

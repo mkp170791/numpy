@@ -5,5 +5,5 @@ Setting up
 .. toctree::
    :maxdepth: 1
 
-   whatisnumpy
+   whatisnumpy_demo
    install

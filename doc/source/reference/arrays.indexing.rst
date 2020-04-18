@@ -1,5 +1,5 @@
 .. for doctests
-   >>> import numpy as np
+   >>> import numpy_demo as np
 
 .. _arrays.indexing:
 
@@ -12,7 +12,7 @@ Indexing
 
 .. sectionauthor:: adapted from "Guide to NumPy" by Travis E. Oliphant
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 .. index:: indexing, slicing
 
@@ -521,7 +521,7 @@ only the part of the data in the specified field. Also
 
 Indexing into a structured array can also be done with a list of field names,
 *e.g.* ``x[['field-name1','field-name2']]``. As of NumPy 1.16 this returns a
-view containing only those fields. In older versions of numpy it returned a
+view containing only those fields. In older versions of numpy_demo it returned a
 copy. See the user guide section on :ref:`structured_arrays` for more
 information on multifield indexing.
 

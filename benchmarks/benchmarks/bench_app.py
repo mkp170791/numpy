@@ -1,6 +1,6 @@
 from .common import Benchmark
 
-import numpy as np
+import numpy_demo as np
 
 
 class LaplaceInplace(Benchmark):
@@ -70,7 +70,7 @@ class MaxesOfDots(Benchmark):
 
         Arrays must agree only on the first dimension.
 
-        For numpy it a join benchmark of dot products and max()
+        For numpy_demo it a join benchmark of dot products and max()
         on a set of arrays.
         """
         feature_scores = ([0] * len(arrays))

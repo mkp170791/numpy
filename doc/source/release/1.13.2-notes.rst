@@ -39,7 +39,7 @@ A total of 20 pull requests were merged for this release.
 * #9390 BUG: Return the poly1d coefficients array directly
 * #9555 BUG: Fix regression in 1.13.x in distutils.mingw32ccompiler.
 * #9556 BUG: Fix true_divide when dtype=np.float64 specified.
-* #9557 DOC: Fix some rst markup in numpy/doc/basics.py.
+* #9557 DOC: Fix some rst markup in numpy_demo/doc/basics.py.
 * #9558 BLD: Remove -xhost flag from IntelFCompiler.
 * #9559 DOC: Removes broken docstring example (source code, png, pdf)...
 * #9580 BUG: Add hypot and cabs functions to WIN32 blacklist.

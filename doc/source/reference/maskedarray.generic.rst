@@ -1,17 +1,17 @@
-.. currentmodule:: numpy.ma
+.. currentmodule:: numpy_demo.ma
 
 .. _maskedarray.generic:
 
-.. module:: numpy.ma
+.. module:: numpy_demo.ma
 
-The :mod:`numpy.ma` module
+The :mod:`numpy_demo.ma` module
 ==========================
 
 Rationale
 ---------
 
 Masked arrays are arrays that may have missing or invalid entries.
-The :mod:`numpy.ma` module provides a nearly work-alike replacement for numpy
+The :mod:`numpy_demo.ma` module provides a nearly work-alike replacement for numpy_demo
 that supports data arrays with masks.
 
 
@@ -21,10 +21,10 @@ What is a masked array?
 
 In many circumstances, datasets can be incomplete or tainted by the presence
 of invalid data. For example, a sensor may have failed to record a data, or
-recorded an invalid value. The :mod:`numpy.ma` module provides a convenient
+recorded an invalid value. The :mod:`numpy_demo.ma` module provides a convenient
 way to address this issue, by introducing masked arrays.
 
-A masked array is the combination of a standard :class:`numpy.ndarray` and a
+A masked array is the combination of a standard :class:`numpy_demo.ndarray` and a
 mask. A mask is either :attr:`nomask`, indicating that no value of the
 associated array is invalid, or an array of booleans that determines for each
 element of the associated array whether the value is valid or not. When an
@@ -37,8 +37,8 @@ The package ensures that masked entries are not used in computations.
 
 As an illustration, let's consider the following dataset::
 
-   >>> import numpy as np
-   >>> import numpy.ma as ma
+   >>> import numpy_demo as np
+   >>> import numpy_demo.ma as ma
    >>> x = np.array([1, 2, 3, -1, 5])
 
 We wish to mark the fourth entry as invalid. The easiest is to create a masked
@@ -53,19 +53,19 @@ into account::
    2.75
 
 
-The :mod:`numpy.ma` module
+The :mod:`numpy_demo.ma` module
 --------------------------
 
 
-The main feature of the :mod:`numpy.ma` module is the :class:`MaskedArray`
-class, which is a subclass of :class:`numpy.ndarray`. The class, its
+The main feature of the :mod:`numpy_demo.ma` module is the :class:`MaskedArray`
+class, which is a subclass of :class:`numpy_demo.ndarray`. The class, its
 attributes and methods are described in more details in the
 :ref:`MaskedArray class <maskedarray.baseclass>` section.
 
-The :mod:`numpy.ma` module can be used as an addition to :mod:`numpy`: ::
+The :mod:`numpy_demo.ma` module can be used as an addition to :mod:`numpy_demo`: ::
 
-   >>> import numpy as np
-   >>> import numpy.ma as ma
+   >>> import numpy_demo as np
+   >>> import numpy_demo.ma as ma
 
 To create an array with the second element invalid, we would do::
 
@@ -82,7 +82,7 @@ section :ref:`Constructing masked arrays <maskedarray.generic.constructing>`.
 
 
 
-Using numpy.ma
+Using numpy_demo.ma
 ==============
 
 .. _maskedarray.generic.constructing:
@@ -149,13 +149,13 @@ Accessing the data
 The underlying data of a masked array can be accessed in several ways:
 
 * through the :attr:`~MaskedArray.data` attribute. The output is a view of the
-  array as a :class:`numpy.ndarray` or one of its subclasses, depending on the
+  array as a :class:`numpy_demo.ndarray` or one of its subclasses, depending on the
   type of the underlying data at the masked array creation.
 
 * through the :meth:`~MaskedArray.__array__` method. The output is then a
-  :class:`numpy.ndarray`.
+  :class:`numpy_demo.ndarray`.
 
-* by directly taking a view of the masked array as a :class:`numpy.ndarray`
+* by directly taking a view of the masked array as a :class:`numpy_demo.ndarray`
   or one of its subclass (which is actually what using the
   :attr:`~MaskedArray.data` attribute does).
 
@@ -191,7 +191,7 @@ Accessing only the valid entries
 
 To retrieve only the valid entries, we can use the inverse of the mask as an
 index. The inverse of the mask can be calculated with the
-:func:`numpy.logical_not` function or simply with the ``~`` operator::
+:func:`numpy_demo.logical_not` function or simply with the ``~`` operator::
 
    >>> x = ma.array([[1, 2], [3, 4]], mask=[[0, 1], [1, 0]])
    >>> x[~x.mask]
@@ -200,7 +200,7 @@ index. The inverse of the mask can be calculated with the
           fill_value=999999)
 
 Another way to retrieve the valid data is to use the :meth:`compressed`
-method, which returns a one-dimensional :class:`~numpy.ndarray` (or one of its
+method, which returns a one-dimensional :class:`~numpy_demo.ndarray` (or one of its
 subclasses, depending on the value of the :attr:`~MaskedArray.baseclass`
 attribute)::
 
@@ -346,7 +346,7 @@ mask::
 Indexing and slicing
 --------------------
 
-As a :class:`MaskedArray` is a subclass of :class:`numpy.ndarray`, it inherits
+As a :class:`MaskedArray` is a subclass of :class:`numpy_demo.ndarray`, it inherits
 its mechanisms for indexing and slicing.
 
 When accessing a single entry of a masked array with no named fields, the
@@ -363,7 +363,7 @@ the mask is ``True``)::
    True
 
 If the masked array has named fields, accessing a single entry returns a
-:class:`numpy.void` object if none of the fields are masked, or a 0d masked
+:class:`numpy_demo.void` object if none of the fields are masked, or a 0d masked
 array with the same dtype as the initial array if at least one of the fields
 is masked.
 
@@ -414,9 +414,9 @@ before and after the operation.
    data may be affected by the operation in some cases and therefore users
    should not rely on this data remaining unchanged.
 
-The :mod:`numpy.ma` module comes with a specific implementation of most
+The :mod:`numpy_demo.ma` module comes with a specific implementation of most
 ufuncs. Unary and binary functions that have a validity domain (such as
-:func:`~numpy.log` or :func:`~numpy.divide`) return the :data:`masked`
+:func:`~numpy_demo.log` or :func:`~numpy_demo.divide`) return the :data:`masked`
 constant whenever the input is masked or falls outside the validity domain::
 
    >>> ma.log([-1, 0, 1, 2])
@@ -424,7 +424,7 @@ constant whenever the input is masked or falls outside the validity domain::
                 mask=[ True,  True, False, False],
           fill_value=1e+20)
 
-Masked arrays also support standard numpy ufuncs. The output is then a masked
+Masked arrays also support standard numpy_demo ufuncs. The output is then a masked
 array. The result of a unary ufunc is masked wherever the input is masked. The
 result of a binary ufunc is masked wherever any of the input is masked. If the
 ufunc also returns the optional context output (a 3-element tuple containing
@@ -449,7 +449,7 @@ Let's consider a list of elements, ``x``, where values of -9999. represent
 missing data. We wish to compute the average value of the data and the vector
 of anomalies (deviations from the average)::
 
-   >>> import numpy.ma as ma
+   >>> import numpy_demo.ma as ma
    >>> x = [0.,1.,-9999.,3.,4.]
    >>> mx = ma.masked_values (x, -9999.)
    >>> print(mx.mean())
@@ -476,7 +476,7 @@ Numerical operations
 Numerical operations can be easily performed without worrying about missing
 values, dividing by zero, square roots of negative numbers, etc.::
 
-   >>> import numpy.ma as ma
+   >>> import numpy_demo.ma as ma
    >>> x = ma.array([1., -1., 3., 4., 5., 6.], mask=[0,0,0,0,1,0])
    >>> y = ma.array([1., 2., 0., 4., 5., 6.], mask=[0,0,0,0,0,1])
    >>> print(ma.sqrt(x/y))

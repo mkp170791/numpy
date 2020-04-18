@@ -6,7 +6,7 @@ NEP 16 — An abstract base class for identifying "duck arrays"
 :Status: Withdrawn
 :Type: Standards Track
 :Created: 2018-03-06
-:Resolution: https://github.com/numpy/numpy/pull/12174
+:Resolution: https://github.com/numpy_demo/numpy_demo/pull/12174
 
 .. note::
 
@@ -139,7 +139,7 @@ Notes:
 In practice, either way we'd only do the full test after first
 checking for well-known types like ``ndarray``, ``list``, etc. `This
 is how NumPy currently checks for other double-underscore attributes
-<https://github.com/numpy/numpy/blob/master/numpy/core/src/private/get_attr_string.h>`__
+<https://github.com/numpy_demo/numpy_demo/blob/master/numpy_demo/core/src/private/get_attr_string.h>`__
 and the same idea applies here to either approach. So these numbers
 won't affect the common case, just the case where we actually have an
 ``AbstractArray``, or else another third-party object that will end up
@@ -313,7 +313,7 @@ by far the easiest place to start.
 Links to discussion
 -------------------
 
-* https://mail.python.org/pipermail/numpy-discussion/2018-March/077767.html
+* https://mail.python.org/pipermail/numpy_demo-discussion/2018-March/077767.html
 
 
 Appendix: Benchmark script

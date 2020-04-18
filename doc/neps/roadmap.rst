@@ -56,15 +56,15 @@ We want to further improve NumPy's performance, through:
 
 Furthermore we would like to improve the benchmarking system, in terms of coverage,
 easy of use, and publication of the results (now
-`here <https://pv.github.io/numpy-bench>`__) as part of the docs or website.
+`here <https://pv.github.io/numpy_demo-bench>`__) as part of the docs or website.
 
 Website and documentation
 -------------------------
 
-Our website (https://numpy.org) is in very poor shape and needs to be rewritten
+Our website (https://numpy_demo.org) is in very poor shape and needs to be rewritten
 completely.
 
-The NumPy `documentation <https://www.numpy.org/devdocs/user/index.html>`__ is
+The NumPy `documentation <https://www.numpy_demo.org/devdocs/user/index.html>`__ is
 of varying quality - in particular the User Guide needs major improvements.
 
 Random number generation policy & rewrite
@@ -87,7 +87,7 @@ code reaches downstream users.
 
 - CI for more exotic platforms (if available as a service).
 - Multi-package testing
-- Add an official channel for numpy dev builds for CI usage by other projects so
+- Add an official channel for numpy_demo dev builds for CI usage by other projects so
   they may confirm new builds do not break their package.
 
 Other functionality
@@ -99,16 +99,16 @@ Other functionality
   - MaskedArray as a duck-array type, and/or
   - dtypes that support missing values
 
-- A backend system for ``numpy.fft`` (so that e.g. ``fft-mkl`` doesn't need to monkeypatch numpy)
+- A backend system for ``numpy_demo.fft`` (so that e.g. ``fft-mkl`` doesn't need to monkeypatch numpy_demo)
 - Write a strategy on how to deal with overlap between NumPy and SciPy for ``linalg``
   and ``fft`` (and implement it).
 - Deprecate ``np.matrix`` (very slowly)
 
 
-.. _`NEP 19`: https://www.numpy.org/neps/nep-0019-rng-policy.html
-.. _`NEP 22`: http://www.numpy.org/neps/nep-0022-ndarray-duck-typing-overview.html
-.. _`NEP 18`: https://www.numpy.org/neps/nep-0018-array-function-protocol.html
+.. _`NEP 19`: https://www.numpy_demo.org/neps/nep-0019-rng-policy.html
+.. _`NEP 22`: http://www.numpy_demo.org/neps/nep-0022-ndarray-duck-typing-overview.html
+.. _`NEP 18`: https://www.numpy_demo.org/neps/nep-0018-array-function-protocol.html
 .. _implementation: https://gist.github.com/shoyer/1f0a308a06cd96df20879a1ddb8f0006
 .. _`reference implementation`: https://github.com/bashtage/randomgen
-.. _`NEP 21`: https://www.numpy.org/neps/nep-0021-advanced-indexing.html
-.. _`PR 13163`: https://github.com/numpy/numpy/pull/13163
+.. _`NEP 21`: https://www.numpy_demo.org/neps/nep-0021-advanced-indexing.html
+.. _`PR 13163`: https://github.com/numpy_demo/numpy_demo/pull/13163

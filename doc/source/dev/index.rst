@@ -21,12 +21,12 @@ The rest of this document discusses working on the NumPy code base and documenta
 We're in the process of updating our descriptions of other activities and roles.
 If you are interested in these other activities, please contact us!
 You can do this via
-the `numpy-discussion mailing list <https://scipy.org/scipylib/mailing-lists.html>`__,
+the `numpy_demo-discussion mailing list <https://scipy.org/scipylib/mailing-lists.html>`__,
 or on GitHub (open an issue or comment on a relevant issue). These are our preferred
 communication channels (open source is open by nature!), however if you prefer
 to discuss in private first, please reach out to our community coordinators
-at `numpy-team@googlegroups.com` or `numpy-team.slack.com` (send an email to
-`numpy-team@googlegroups.com` for an invite the first time).
+at `numpy_demo-team@googlegroups.com` or `numpy_demo-team.slack.com` (send an email to
+`numpy_demo-team@googlegroups.com` for an invite the first time).
 
 
 Development process - summary
@@ -36,25 +36,25 @@ Here's the short summary, complete TOC links are below:
 
 1. If you are a first-time contributor:
 
-   * Go to `https://github.com/numpy/numpy
-     <https://github.com/numpy/numpy>`_ and click the
+   * Go to `https://github.com/numpy_demo/numpy_demo
+     <https://github.com/numpy_demo/numpy_demo>`_ and click the
      "fork" button to create your own copy of the project.
 
    * Clone the project to your local computer::
 
-      git clone https://github.com/your-username/numpy.git
+      git clone https://github.com/your-username/numpy_demo.git
 
    * Change the directory::
 
-      cd numpy
+      cd numpy_demo
 
    * Add the upstream repository::
 
-      git remote add upstream https://github.com/numpy/numpy.git
+      git remote add upstream https://github.com/numpy_demo/numpy_demo.git
 
    * Now, `git remote -v` will show two remote repositories named:
 
-     - ``upstream``, which refers to the ``numpy`` repository
+     - ``upstream``, which refers to the ``numpy_demo`` repository
      - ``origin``, which refers to your personal fork
 
 2. Develop your contribution:
@@ -139,7 +139,7 @@ Here's the short summary, complete TOC links are below:
 
    If your change introduces a deprecation, make sure to discuss this first on
    GitHub or the mailing list first. If agreement on the deprecation is
-   reached, follow `NEP 23 deprecation policy <http://www.numpy.org/neps/
+   reached, follow `NEP 23 deprecation policy <http://www.numpy_demo.org/neps/
    nep-0023-backwards-compatibility.html>`_  to add the deprecation.
 
 6. Cross referencing issues
@@ -168,7 +168,7 @@ Guidelines
 ----------
 
 * All code should have tests (see `test coverage`_ below for more details).
-* All code should be `documented <https://numpydoc.readthedocs.io/
+* All code should be `documented <https://numpy_demodoc.readthedocs.io/
   en/latest/format.html#docstring-standard>`_.
 * No changes are ever committed without review and approval by a core
   team member.Please ask politely on the PR or on the `mailing list`_ if you
@@ -181,14 +181,14 @@ Stylistic Guidelines
   pep-0008/>`_ (remove trailing white space, no tabs, etc.).  Check code with
   pyflakes / flake8.
 
-* Use numpy data types instead of strings (``np.uint8`` instead of
+* Use numpy_demo data types instead of strings (``np.uint8`` instead of
   ``"uint8"``).
 
 * Use the following import conventions::
 
-   import numpy as np
+   import numpy_demo as np
 
-* For C code, see the :ref:`numpy-c-style-guide<style_guide>`
+* For C code, see the :ref:`numpy_demo-c-style-guide<style_guide>`
 
 
 Test coverage
@@ -230,7 +230,7 @@ all targets. For example, to build the HTML documentation, you can run:
 
 Then, all the HTML files will be generated in ``doc/build/html/``.
 Since the documentation is based on docstrings, the appropriate version of
-numpy must be installed in the host python used to run sphinx.
+numpy_demo must be installed in the host python used to run sphinx.
 
 Requirements
 ~~~~~~~~~~~~
@@ -243,8 +243,8 @@ These additional dependencies for building the documentation are listed in
 
     pip install -r doc_requirements.txt
 
-The numpy documentation also depends on the
-`numpydoc <https://numpydoc.readthedocs.io/en/latest/>`__ sphinx extension
+The numpy_demo documentation also depends on the
+`numpy_demodoc <https://numpy_demodoc.readthedocs.io/en/latest/>`__ sphinx extension
 as well as an external sphinx theme.
 These extensions are included as git submodules and must be initialized
 before building the docs.
@@ -286,7 +286,7 @@ The rest of the story
    releasing
    governance/index
 
-NumPy-specific workflow is in :ref:`numpy-development-workflow
+NumPy-specific workflow is in :ref:`numpy_demo-development-workflow
 <development-workflow>`.
 
-.. _`mailing list`: https://mail.python.org/mailman/listinfo/numpy-devel
+.. _`mailing list`: https://mail.python.org/mailman/listinfo/numpy_demo-devel

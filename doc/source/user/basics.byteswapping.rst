@@ -2,4 +2,4 @@
 Byte-swapping
 *************
 
-.. automodule:: numpy.doc.byteswapping
+.. automodule:: numpy_demo.doc.byteswapping

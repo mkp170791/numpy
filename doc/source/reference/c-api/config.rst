@@ -5,14 +5,14 @@ System configuration
 
 When NumPy is built, information about system configuration is
 recorded, and is made available for extension modules using NumPy's C
-API.  These are mostly defined in ``numpyconfig.h`` (included in
+API.  These are mostly defined in ``numpy_democonfig.h`` (included in
 ``ndarrayobject.h``). The public symbols are prefixed by ``NPY_*``.
 NumPy also offers some functions for querying information about the
 platform in use.
 
 For private use, NumPy also constructs a ``config.h`` in the NumPy
 include directory, which is not exported by NumPy (that is a python
-extension which use the numpy C API will not see those symbols), to
+extension which use the numpy_demo C API will not see those symbols), to
 avoid namespace pollution.
 
 
@@ -78,7 +78,7 @@ Platform information
     CPU architecture of the platform; only one of the above is
     defined.
 
-    Defined in ``numpy/npy_cpu.h``
+    Defined in ``numpy_demo/npy_cpu.h``
 
 .. c:var:: NPY_LITTLE_ENDIAN
 
@@ -92,7 +92,7 @@ Platform information
     If big endian, :c:data:`NPY_BYTE_ORDER` == :c:data:`NPY_BIG_ENDIAN`, and
     similarly for little endian architectures.
 
-    Defined in ``numpy/npy_endian.h``.
+    Defined in ``numpy_demo/npy_endian.h``.
 
 .. c:function:: PyArray_GetEndianness()
 

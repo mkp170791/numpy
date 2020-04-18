@@ -1,4 +1,4 @@
-``numpy.distutils.compat`` has been removed
+``numpy_demo.distutils.compat`` has been removed
 -------------------------------------------
 This module contained only the function ``get_exception()``, which was used as::
 

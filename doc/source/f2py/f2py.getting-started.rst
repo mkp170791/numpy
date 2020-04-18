@@ -20,7 +20,7 @@ following steps:
 
 * F2PY compiles all sources and builds an extension module containing
   the wrappers. In building extension modules, F2PY uses
-  ``numpy_distutils`` that supports a number of Fortran 77/90/95
+  ``numpy_demo_distutils`` that supports a number of Fortran 77/90/95
   compilers, including Gnu, Intel,
   Sun Fortre, SGI MIPSpro, Absoft, NAG, Compaq etc. compilers.
 
@@ -44,14 +44,14 @@ to run
 
 ::
 
-  python -m numpy.f2py -c fib1.f -m fib1
+  python -m numpy_demo.f2py -c fib1.f -m fib1
 
-This command builds (see ``-c`` flag, execute ``python -m numpy.f2py`` without
+This command builds (see ``-c`` flag, execute ``python -m numpy_demo.f2py`` without
 arguments to see the explanation of command line options) an extension
 module ``fib1.so`` (see ``-m`` flag) to the current directory. Now, in
 Python the Fortran subroutine ``FIB`` is accessible via ``fib1.fib``::
 
-  >>> import numpy
+  >>> import numpy_demo
   >>> import fib1
   >>> print(fib1.fib.__doc__)
   fib(a,[n])
@@ -67,7 +67,7 @@ Python the Fortran subroutine ``FIB`` is accessible via ``fib1.fib``::
   n : input int, optional
       Default: len(a)
 
-  >>> a = numpy.zeros(8, 'd')
+  >>> a = numpy_demo.zeros(8, 'd')
   >>> fib1.fib(a)
   >>> print(a)
   [  0.   1.   1.   2.   3.   5.   8.  13.]
@@ -81,7 +81,7 @@ Python the Fortran subroutine ``FIB`` is accessible via ``fib1.fib``::
 
   * One can use different values for optional ``n``::
 
-      >>> a1 = numpy.zeros(8, 'd')
+      >>> a1 = numpy_demo.zeros(8, 'd')
       >>> fib1.fib(a1, 6)
       >>> print(a1)
       [ 0.  1.  1.  2.  3.  5.  0.  0.]
@@ -108,7 +108,7 @@ Python the Fortran subroutine ``FIB`` is accessible via ``fib1.fib``::
     input array have no effect to the original argument, as
     demonstrated below::
 
-      >>> a = numpy.ones(8, 'i')
+      >>> a = numpy_demo.ones(8, 'i')
       >>> fib1.fib(a)
       >>> print(a)
       [1 1 1 1 1 1 1 1]
@@ -123,7 +123,7 @@ Python the Fortran subroutine ``FIB`` is accessible via ``fib1.fib``::
     if one specifies ``intent(inplace) a`` (see below, how), then
     the example above would read::
 
-      >>> a = numpy.ones(8, 'i')
+      >>> a = numpy_demo.ones(8, 'i')
       >>> fib1.fib(a)
       >>> print(a)
       [  0.   1.   1.   2.   3.   5.   8.  13.]
@@ -165,7 +165,7 @@ one.
 
   ::
 
-    python -m numpy.f2py fib1.f -m fib2 -h fib1.pyf
+    python -m numpy_demo.f2py fib1.f -m fib2 -h fib1.pyf
 
   The signature file is saved to ``fib1.pyf`` (see ``-h`` flag) and
   its contents is shown below.
@@ -191,7 +191,7 @@ one.
 
   ::
 
-    python -m numpy.f2py -c fib2.pyf fib1.f
+    python -m numpy_demo.f2py -c fib2.pyf fib1.f
 
 In Python::
 
@@ -249,7 +249,7 @@ as ``fib3.f``:
 
 Building the extension module can be now carried out in one command::
 
-  python -m numpy.f2py -c -m fib3 fib3.f
+  python -m numpy_demo.f2py -c -m fib3 fib3.f
 
 Notice that the resulting wrapper to ``FIB`` is as "smart" as in
 previous case::

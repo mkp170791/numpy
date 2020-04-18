@@ -11,7 +11,7 @@ loop to Cython.
 
 For our example, we'll create a sum of squares function. To start,
 let's implement this function in straightforward Python. We want to
-support an 'axis' parameter similar to the numpy :func:`sum` function,
+support an 'axis' parameter similar to the numpy_demo :func:`sum` function,
 so we will need to construct a list for the `op_axes` parameter.
 Here's how this looks.
 
@@ -60,8 +60,8 @@ always be one-dimensional, so very little checking needs to be done.
 
 Here's the listing of sum_squares.pyx::
 
-    import numpy as np
-    cimport numpy as np
+    import numpy_demo as np
+    cimport numpy_demo as np
     cimport cython
 
     def axis_to_axeslist(axis, ndim):

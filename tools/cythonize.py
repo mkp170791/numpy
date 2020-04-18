@@ -5,7 +5,7 @@ Cythonize pyx files into C files as needed.
 
 Usage: cythonize [root_dir]
 
-Default [root_dir] is 'numpy'.
+Default [root_dir] is 'numpy_demo'.
 
 Checks pyx files to see if they have been changed relative to their
 corresponding C files.  If they have, then runs cython on these files to
@@ -37,7 +37,7 @@ import hashlib
 import subprocess
 
 HASH_FILE = 'cythonize.dat'
-DEFAULT_ROOT = 'numpy'
+DEFAULT_ROOT = 'numpy_demo'
 VENDOR = 'NumPy'
 
 # WindowsError is not defined on unix systems

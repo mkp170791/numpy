@@ -4,7 +4,7 @@
 Scalars
 *******
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 Python defines only one type of a particular data class (there is only
 one integer type, one floating-point type, etc.). This can be

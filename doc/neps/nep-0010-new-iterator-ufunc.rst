@@ -55,7 +55,7 @@ this with a more than eight times performance hit from adding
 Fortran-contiguous arrays together.  All timings are done using NumPy
 2.0dev (Nov 22, 2010) on an Athlon 64 X2 4200+, with a 64-bit OS.::
 
-    In [1]: import numpy as np
+    In [1]: import numpy_demo as np
     In [2]: a = np.arange(1000000,dtype=np.float32).reshape(10,10,10,10,10,10)
     In [3]: b, c, d = a.copy(), a.copy(), a.copy()
 
@@ -338,7 +338,7 @@ Inner Loop Specialization
 Specialization is handled purely by the inner loop function, so this
 optimization is independent of the others.  Some specialization is
 already done, like for the reduce operation.  The idea is mentioned in
-http://projects.scipy.org/numpy/wiki/ProjectIdeas, “use intrinsics
+http://projects.scipy.org/numpy_demo/wiki/ProjectIdeas, “use intrinsics
 (SSE-instructions) to speed up low-level loops in NumPy.”
 
 Here are some possibilities for two-argument functions,
@@ -595,7 +595,7 @@ and associated API.  One goal of the new API is that all uses of the
 existing iterator should be replaceable with the new iterator without
 significant effort.
 
-The C-API naming convention chosen is based on the one in the numpy-refactor
+The C-API naming convention chosen is based on the one in the numpy_demo-refactor
 branch, where libndarray has the array named ``NpyArray`` and functions
 named ``NpyArray_*``.  The iterator is named ``NpyIter`` and functions are
 named ``NpyIter_*``.
@@ -675,7 +675,7 @@ Construction and Destruction
 
 ``NpyIter* NpyIter_New(PyArrayObject* op, npy_uint32 flags, NPY_ORDER order, NPY_CASTING casting, PyArray_Descr* dtype, npy_intp a_ndim, npy_intp *axes, npy_intp buffersize)``
 
-    Creates an iterator for the given numpy array object ``op``.
+    Creates an iterator for the given numpy_demo array object ``op``.
 
     Flags that may be passed in ``flags`` are any combination
     of the global and per-operand flags documented in
@@ -808,7 +808,7 @@ Construction and Destruction
             memory is traversed in a forward direction.  This disables
             this step.  Use this flag if you want to use the underlying
             memory-ordering of the axes, but don't want an axis reversed.
-            This is the behavior of ``numpy.ravel(a, order='K')``, for
+            This is the behavior of ``numpy_demo.ravel(a, order='K')``, for
             instance.
 
         ``NPY_ITER_COMMON_DTYPE``

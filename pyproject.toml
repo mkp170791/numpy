@@ -8,12 +8,12 @@ requires = [
 
 
 [tool.towncrier]
-    # Do no set this since it is hard to import numpy inside the source directory
+    # Do no set this since it is hard to import numpy_demo inside the source directory
     # the name is hardcoded. Use "--version 1.18.0" to set the version
     single_file = true
     filename = "doc/source/release/{version}-notes.rst"
     directory = "doc/release/upcoming_changes/"
-    issue_format = "`gh-{issue} <https://github.com/numpy/numpy/pull/{issue}>`__"
+    issue_format = "`gh-{issue} <https://github.com/numpy_demo/numpy_demo/pull/{issue}>`__"
     template = "doc/release/upcoming_changes/template.rst"
     underlines = "~="
     all_bullets = false

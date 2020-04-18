@@ -16,23 +16,23 @@ Get the local copy of the code
 
 From the command line::
 
-   git clone git://github.com/numpy/numpy.git
+   git clone git://github.com/numpy_demo/numpy_demo.git
 
-You now have a copy of the code tree in the new ``numpy`` directory.
+You now have a copy of the code tree in the new ``numpy_demo`` directory.
 If this doesn't work you can try the alternative read-only url::
 
-   git clone https://github.com/numpy/numpy.git
+   git clone https://github.com/numpy_demo/numpy_demo.git
 
 Updating the code
 =================
 
 From time to time you may want to pull down the latest code.  Do this with::
 
-   cd numpy
+   cd numpy_demo
    git fetch
    git merge --ff-only
 
-The tree in ``numpy`` will now have the latest changes from the initial
+The tree in ``numpy_demo`` will now have the latest changes from the initial
 repository.
 
-.. _Github: https://github.com/numpy
+.. _Github: https://github.com/numpy_demo

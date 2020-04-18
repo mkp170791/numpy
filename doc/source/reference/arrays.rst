@@ -4,7 +4,7 @@
 Array objects
 *************
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 NumPy provides an N-dimensional array type, the :ref:`ndarray
 <arrays.ndarray>`, which describes a collection of "items" of the same

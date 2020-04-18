@@ -1,7 +1,7 @@
 from scipy import misc
 import matplotlib.pyplot as plt
-import numpy as np
-from numpy import linalg
+import numpy_demo as np
+from numpy_demo import linalg
 
 img = misc.face()
 img_array = img / 255

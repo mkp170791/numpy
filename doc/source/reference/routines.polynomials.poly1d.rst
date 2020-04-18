@@ -1,7 +1,7 @@
 Poly1d
 ======
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 Basics
 ------

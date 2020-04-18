@@ -205,7 +205,7 @@ Function documentation
 ----------------------
 
 NumPy doesn't have a C function documentation standard at this time, but
-needs one. Most numpy functions are not documented in the code and that
+needs one. Most numpy_demo functions are not documented in the code and that
 should change. One possibility is Doxygen with a plugin so that the same
 NumPy style used for Python functions can also be used for documenting
 C functions, see the files in doc/cdoc/.

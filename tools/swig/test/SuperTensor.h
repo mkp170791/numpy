@@ -15,7 +15,7 @@
 // for any specified type TYPE (for example: short, unsigned int, long
 // long, etc.) with given short name SNAME (for example: short, uint,
 // longLong, etc.).  The macro is then expanded for the given
-// TYPE/SNAME pairs.  The resulting functions are for testing numpy
+// TYPE/SNAME pairs.  The resulting functions are for testing numpy_demo
 // interfaces, respectively, for:
 //
 //  * 4D input arrays, hard-coded lengths

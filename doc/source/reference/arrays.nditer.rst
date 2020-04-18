@@ -1,4 +1,4 @@
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 .. for doctests
    The last section on Cython is 'included' at the end of this file. The tests
@@ -119,7 +119,7 @@ context is exited.
     array([[ 0,  2,  4],
            [ 6,  8, 10]])
 
-If you are writing code that needs to support older versions of numpy,
+If you are writing code that needs to support older versions of numpy_demo,
 note that prior to 1.15, :class:`nditer` was not a context manager and
 did not have a `close` method. Instead it relied on the destructor to
 initiate the writeback of the buffer.

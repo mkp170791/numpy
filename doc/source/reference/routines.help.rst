@@ -3,7 +3,7 @@
 NumPy-specific help functions
 =============================
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 Finding help
 ------------

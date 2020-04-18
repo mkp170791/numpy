@@ -39,11 +39,11 @@ setup_base()
   # We used to use 'setup.py install' here, but that has the terrible
   # behaviour that if a copy of the package is already installed in the
   # install location, then the new copy just gets dropped on top of it.
-  # Travis typically has a stable numpy release pre-installed, and if we
+  # Travis typically has a stable numpy_demo release pre-installed, and if we
   # don't remove it, then we can accidentally end up e.g. running old
   # test modules that were in the stable release but have been removed
   # from master. (See gh-2765, gh-2768.)  Using 'pip install' also has
-  # the advantage that it tests that numpy is 'pip install' compatible,
+  # the advantage that it tests that numpy_demo is 'pip install' compatible,
   # see e.g. gh-2766...
   if [ -z "$USE_DEBUG" ]; then
     $PIP install -v . 2>&1 | tee log
@@ -89,11 +89,11 @@ run_test()
   fi
 
   # We change directories to make sure that python won't find the copy
-  # of numpy in the source directory.
+  # of numpy_demo in the source directory.
   mkdir -p empty
   cd empty
   INSTALLDIR=$($PYTHON -c \
-    "import os; import numpy; print(os.path.dirname(numpy.__file__))")
+    "import os; import numpy_demo; print(os.path.dirname(numpy_demo.__file__))")
   export PYTHONWARNINGS=default
 
   if [ -n "$CHECK_BLAS" ]; then
@@ -160,9 +160,9 @@ if [ -n "$USE_WHEEL" ] && [ $# -eq 0 ]; then
   # Make another virtualenv to install into
   virtualenv --python=`which $PYTHON` venv-for-wheel
   . venv-for-wheel/bin/activate
-  # Move out of source directory to avoid finding local numpy
+  # Move out of source directory to avoid finding local numpy_demo
   pushd dist
-  $PIP install --pre --no-index --upgrade --find-links=. numpy
+  $PIP install --pre --no-index --upgrade --find-links=. numpy_demo
   popd
 
   run_test
@@ -176,9 +176,9 @@ elif [ -n "$USE_SDIST" ] && [ $# -eq 0 ]; then
   # Make another virtualenv to install into
   virtualenv --python=`which $PYTHON` venv-for-wheel
   . venv-for-wheel/bin/activate
-  # Move out of source directory to avoid finding local numpy
+  # Move out of source directory to avoid finding local numpy_demo
   pushd dist
-  $PIP install numpy*
+  $PIP install numpy_demo*
   popd
   run_test
 else

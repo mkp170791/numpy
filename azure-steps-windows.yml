@@ -31,7 +31,7 @@ steps:
         $env:PATH = "C:\\tools\\mingw32\\bin;" + $env:PATH
         refreshenv
     }
-    python -c "from tools import openblas_support; openblas_support.make_init('numpy')"
+    python -c "from tools import openblas_support; openblas_support.make_init('numpy_demo')"
     pip wheel -v -v -v --wheel-dir=dist .
 
     ls dist -r | Foreach-Object {
@@ -39,13 +39,13 @@ steps:
     }
   displayName: 'Build NumPy'
 - bash: |
-    pushd . && cd .. && target=$(python -c "import numpy, os; print(os.path.abspath(os.path.join(os.path.dirname(numpy.__file__), '.libs')))") && popd
-    pip download -d destination --only-binary --no-deps numpy==1.14
-    cd destination && unzip numpy*.whl && cp numpy/.libs/*.dll $target
+    pushd . && cd .. && target=$(python -c "import numpy_demo, os; print(os.path.abspath(os.path.join(os.path.dirname(numpy_demo.__file__), '.libs')))") && popd
+    pip download -d destination --only-binary --no-deps numpy_demo==1.14
+    cd destination && unzip numpy_demo*.whl && cp numpy_demo/.libs/*.dll $target
     ls $target
-  displayName: 'Add extraneous & older DLL to numpy/.libs to probe DLL handling robustness'
+  displayName: 'Add extraneous & older DLL to numpy_demo/.libs to probe DLL handling robustness'
   condition: eq(variables['PYTHON_VERSION'], '3.6')
-- script: pushd . && cd .. && python -c "from ctypes import windll; windll.kernel32.SetDefaultDllDirectories(0x00000800); import numpy" && popd
+- script: pushd . && cd .. && python -c "from ctypes import windll; windll.kernel32.SetDefaultDllDirectories(0x00000800); import numpy_demo" && popd
   displayName: 'For gh-12667; Windows DLL resolution'
 - script: python runtests.py -n --show-build-log --mode=$(TEST_MODE) -- -rsx --junitxml=junit/test-results.xml
   displayName: 'Run NumPy Test Suite'

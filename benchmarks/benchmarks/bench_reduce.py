@@ -1,6 +1,6 @@
 from .common import Benchmark, TYPES1, get_squares
 
-import numpy as np
+import numpy_demo as np
 
 
 class AddReduce(Benchmark):

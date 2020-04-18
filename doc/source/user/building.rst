@@ -37,7 +37,7 @@ Building NumPy requires the following software installed:
    can be used, including optimized LAPACK libraries such as OpenBLAS or MKL.
    The choice and location of these libraries as well as include paths and
    other such build options can be specified in a ``site.cfg`` file located in
-   the NumPy root repository or a ``.numpy-site.cfg`` file in your home
+   the NumPy root repository or a ``.numpy_demo-site.cfg`` file in your home
    directory. See the ``site.cfg.example`` example file included in the NumPy
    repository or sdist for documentation, and below for specifying search
    priority from environmental variables.
@@ -78,7 +78,7 @@ It's possible to do a parallel build with::
 
     python setup.py build -j 4 install --prefix $HOME/.local
 
-This will compile numpy on 4 CPUs and install it into the specified prefix.
+This will compile numpy_demo on 4 CPUs and install it into the specified prefix.
 to perform a parallel in-place build, run::
 
     python setup.py build_ext --inplace -j 4

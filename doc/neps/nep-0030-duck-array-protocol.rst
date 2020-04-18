@@ -91,7 +91,7 @@ a complete implementation would look like the following:
             return self
 
         def __array__(self):
-            return TypeError("NumPyLikeArray can not be converted to a numpy array. "
+            return TypeError("NumPyLikeArray can not be converted to a numpy_demo array. "
                              "You may want to use np.duckarray.")
 
 The implementation above exemplifies the simplest case, but the overall idea
@@ -171,11 +171,11 @@ Previous proposals and discussion
 ---------------------------------
 
 The duck typing protocol proposed here was described in a high level in
-`NEP 22 <https://numpy.org/neps/nep-0022-ndarray-duck-typing-overview.html>`_.
+`NEP 22 <https://numpy_demo.org/neps/nep-0022-ndarray-duck-typing-overview.html>`_.
 
 Additionally, longer discussions about the protocol and related proposals
 took place in
-`numpy/numpy #13831 <https://github.com/numpy/numpy/issues/13831>`_
+`numpy_demo/numpy_demo #13831 <https://github.com/numpy_demo/numpy_demo/issues/13831>`_
 
 Copyright
 ---------

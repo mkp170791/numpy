@@ -1,7 +1,7 @@
 # Run svn log -l <some number>
 
 import re
-import numpy as np
+import numpy_demo as np
 import os
 
 names = re.compile(r'r\d+\s[|]\s(.*)\s[|]\s200')

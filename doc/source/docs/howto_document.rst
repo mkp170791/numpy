@@ -5,29 +5,29 @@ A Guide to NumPy/SciPy Documentation
 ====================================
 
 When using `Sphinx <http://www.sphinx-doc.org/>`__ in combination with the
-numpy conventions, you should use the ``numpydoc`` extension so that your
+numpy_demo conventions, you should use the ``numpy_demodoc`` extension so that your
 docstrings will be handled correctly. For example, Sphinx will extract the
 ``Parameters`` section from your docstring and convert it into a field
-list.  Using ``numpydoc`` will also avoid the reStructuredText errors produced
-by plain Sphinx when it encounters numpy docstring conventions like
+list.  Using ``numpy_demodoc`` will also avoid the reStructuredText errors produced
+by plain Sphinx when it encounters numpy_demo docstring conventions like
 section headers (e.g. ``-------------``) that sphinx does not expect to
 find in docstrings.
 
 Some features described in this document require a recent version of
-``numpydoc``. For example, the **Yields** section was added in
-``numpydoc`` 0.6.
+``numpy_demodoc``. For example, the **Yields** section was added in
+``numpy_demodoc`` 0.6.
 
 It is available from:
 
-* `numpydoc on PyPI <https://pypi.python.org/pypi/numpydoc>`_
-* `numpydoc on GitHub <https://github.com/numpy/numpydoc/>`_
+* `numpy_demodoc on PyPI <https://pypi.python.org/pypi/numpy_demodoc>`_
+* `numpy_demodoc on GitHub <https://github.com/numpy_demo/numpy_demodoc/>`_
 
-Note that for documentation within numpy, it is not necessary to do
-``import numpy as np`` at the beginning of an example.  However, some
+Note that for documentation within numpy_demo, it is not necessary to do
+``import numpy_demo as np`` at the beginning of an example.  However, some
 sub-modules, such as ``fft``, are not imported by default, and you have to
 include them explicitly::
 
-  import numpy.fft
+  import numpy_demo.fft
 
 after which you may use it::
 
@@ -58,4 +58,4 @@ Example Rendered
 .. automodule:: doc.example
     :members:
 
-.. _`formatting standard`: https://numpydoc.readthedocs.io/en/latest/format.html
+.. _`formatting standard`: https://numpy_demodoc.readthedocs.io/en/latest/format.html

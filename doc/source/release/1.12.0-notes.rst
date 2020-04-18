@@ -15,7 +15,7 @@ areas likely to have future consequences.
 * New ``signature`` argument to ``np.vectorize`` for vectorizing with core dimensions.
 * The ``keepdims`` argument was added to many functions.
 * New context manager for testing warnings
-* Support for BLIS in numpy.distutils
+* Support for BLIS in numpy_demo.distutils
 * Much improved support for PyPy (not yet finished)
 
 Dropped Support
@@ -68,7 +68,7 @@ Future Changes
 * In 1.13 NAT will always compare False except for ``NAT != NAT``,
   which will be True.  In short, NAT will behave like NaN
 * In 1.13 ``np.average`` will preserve subclasses, to match the behavior of most
-  other numpy functions such as np.mean. In particular, this means calls which
+  other numpy_demo functions such as np.mean. In particular, this means calls which
   returned a scalar may return a 0-d subclass object instead.
 
 Multiple-field manipulation of structured arrays
@@ -82,7 +82,7 @@ instead of a copy. Note the returned view will have extra padding bytes
 corresponding to intervening fields in the original array, unlike the copy in
 1.12, which will affect code such as ``arr[['f1', 'f3']].view(newdtype)``.
 
-Second, for numpy versions 1.6 to 1.12 assignment between structured arrays
+Second, for numpy_demo versions 1.6 to 1.12 assignment between structured arrays
 occurs "by field name": Fields in the destination array are set to the
 identically-named field in the source array or to 0 if the source does not have
 a field::
@@ -126,7 +126,7 @@ FutureWarning to changed behavior
 
 ``power`` and ``**`` raise errors for integer to negative integer powers
 ------------------------------------------------------------------------
-The previous behavior depended on whether numpy scalar integers or numpy
+The previous behavior depended on whether numpy_demo scalar integers or numpy_demo
 integer arrays were involved.
 
 For arrays
@@ -161,7 +161,7 @@ the two coincide. Previous behavior of 'lower' + 0.5 is fixed.
 
 ``keepdims`` kwarg is passed through to user-class methods
 ----------------------------------------------------------
-numpy functions that take a ``keepdims`` kwarg now pass the value
+numpy_demo functions that take a ``keepdims`` kwarg now pass the value
 through to the corresponding methods on ndarray sub-classes.  Previously the
 ``keepdims`` keyword would be silently dropped.  These functions now have
 the following behavior:
@@ -251,23 +251,23 @@ an array along any given axis.
   non-zero counts to be generated on more than just a flattened
   array object.
 
-BLIS support in ``numpy.distutils``
+BLIS support in ``numpy_demo.distutils``
 -----------------------------------
 Building against the BLAS implementation provided by the BLIS library is now
 supported.  See the ``[blis]`` section in ``site.cfg.example`` (in the root of
-the numpy repo or source distribution).
+the numpy_demo repo or source distribution).
 
-Hook in ``numpy/__init__.py`` to run distribution-specific checks
+Hook in ``numpy_demo/__init__.py`` to run distribution-specific checks
 -----------------------------------------------------------------
-Binary distributions of numpy may need to run specific hardware checks or load
-specific libraries during numpy initialization.  For example, if we are
-distributing numpy with a BLAS library that requires SSE2 instructions, we
-would like to check the machine on which numpy is running does have SSE2 in
+Binary distributions of numpy_demo may need to run specific hardware checks or load
+specific libraries during numpy_demo initialization.  For example, if we are
+distributing numpy_demo with a BLAS library that requires SSE2 instructions, we
+would like to check the machine on which numpy_demo is running does have SSE2 in
 order to give an informative error.
 
-Add a hook in ``numpy/__init__.py`` to import a ``numpy/_distributor_init.py``
-file that will remain empty (bar a docstring) in the standard numpy source,
-but that can be overwritten by people making binary distributions of numpy.
+Add a hook in ``numpy_demo/__init__.py`` to import a ``numpy_demo/_distributor_init.py``
+file that will remain empty (bar a docstring) in the standard numpy_demo source,
+but that can be overwritten by people making binary distributions of numpy_demo.
 
 New nanfunctions ``nancumsum`` and ``nancumprod`` added
 -------------------------------------------------------
@@ -319,7 +319,7 @@ New ``float_power`` ufunc
 -------------------------
 The new ``float_power`` ufunc is like the ``power`` function except all
 computation is done in a minimum precision of float64. There was a long
-discussion on the numpy mailing list of how to treat integers to negative
+discussion on the numpy_demo mailing list of how to treat integers to negative
 integer powers and a popular proposal was that the ``__pow__`` operator should
 always return results of at least float64 precision. The ``float_power``
 function implements that option. Note that it does not support object arrays.
@@ -377,14 +377,14 @@ One of its warnings is for integer division::
 
     -c:1: DeprecationWarning: classic int division
 
-In Python 3, the new integer division semantics also apply to numpy arrays.
-With this version, numpy will emit a similar warning::
+In Python 3, the new integer division semantics also apply to numpy_demo arrays.
+With this version, numpy_demo will emit a similar warning::
 
-    $ python -3 -c "import numpy as np; np.array(2)/np.array(3)"
+    $ python -3 -c "import numpy_demo as np; np.array(2)/np.array(3)"
 
-    -c:1: DeprecationWarning: numpy: classic int division
+    -c:1: DeprecationWarning: numpy_demo: classic int division
 
-numpy.sctypes now includes bytes on Python3 too
+numpy_demo.sctypes now includes bytes on Python3 too
 -----------------------------------------------
 Previously, it included str (bytes) and unicode on Python2, but only str
 (unicode) on Python3.
@@ -468,18 +468,18 @@ All array-like methods are now called with keyword arguments in fromnumeric.py
 Internally, many array-like methods in fromnumeric.py were being called with
 positional arguments instead of keyword arguments as their external signatures
 were doing. This caused a complication in the downstream 'pandas' library
-that encountered an issue with 'numpy' compatibility. Now, all array-like
+that encountered an issue with 'numpy_demo' compatibility. Now, all array-like
 methods in this module are called with keyword arguments instead.
 
-Operations on np.memmap objects return numpy arrays in most cases
+Operations on np.memmap objects return numpy_demo arrays in most cases
 -----------------------------------------------------------------
 Previously operations on a memmap object would misleadingly return a memmap
 instance even if the result was actually not memmapped.  For example,
 ``arr + 1`` or ``arr + arr`` would return memmap instances, although no memory
-from the output array is memmapped. Version 1.12 returns ordinary numpy arrays
+from the output array is memmapped. Version 1.12 returns ordinary numpy_demo arrays
 from these operations.
 
-Also, reduction of a memmap (e.g.  ``.sum(axis=None``) now returns a numpy
+Also, reduction of a memmap (e.g.  ``.sum(axis=None``) now returns a numpy_demo
 scalar instead of a 0d memmap.
 
 stacklevel of warnings increased

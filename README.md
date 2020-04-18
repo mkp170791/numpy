@@ -1,20 +1,20 @@
-# <img alt="NumPy" src="https://cdn.rawgit.com/numpy/numpy/master/branding/icons/numpylogo.svg" height="60">
+# <img alt="NumPy" src="https://cdn.rawgit.com/numpy_demo/numpy_demo/master/branding/icons/numpy_demologo.svg" height="60">
 
-[![Travis](https://img.shields.io/travis/numpy/numpy/master.svg?label=Travis%20CI)](
-    https://travis-ci.org/numpy/numpy)
-[![Azure](https://dev.azure.com/numpy/numpy/_apis/build/status/azure-pipeline%20numpy.numpy)](
-    https://dev.azure.com/numpy/numpy/_build/latest?definitionId=5)
-[![codecov](https://codecov.io/gh/numpy/numpy/branch/master/graph/badge.svg)](
-    https://codecov.io/gh/numpy/numpy)
+[![Travis](https://img.shields.io/travis/numpy_demo/numpy_demo/master.svg?label=Travis%20CI)](
+    https://travis-ci.org/numpy_demo/numpy_demo)
+[![Azure](https://dev.azure.com/numpy_demo/numpy_demo/_apis/build/status/azure-pipeline%20numpy_demo.numpy_demo)](
+    https://dev.azure.com/numpy_demo/numpy_demo/_build/latest?definitionId=5)
+[![codecov](https://codecov.io/gh/numpy_demo/numpy_demo/branch/master/graph/badge.svg)](
+    https://codecov.io/gh/numpy_demo/numpy_demo)
 
 NumPy is the fundamental package needed for scientific computing with Python.
 
-- **Website:** https://www.numpy.org
+- **Website:** https://www.numpy_demo.org
 - **Documentation:** https://docs.scipy.org/
-- **Mailing list:** https://mail.python.org/mailman/listinfo/numpy-discussion
-- **Source code:** https://github.com/numpy/numpy
-- **Contributing:** https://www.numpy.org/devdocs/dev/index.html
-- **Bug reports:** https://github.com/numpy/numpy/issues
+- **Mailing list:** https://mail.python.org/mailman/listinfo/numpy_demo-discussion
+- **Source code:** https://github.com/numpy_demo/numpy_demo
+- **Contributing:** https://www.numpy_demo.org/devdocs/dev/index.html
+- **Bug reports:** https://github.com/numpy_demo/numpy_demo/issues
 - **Report a security vulnerability:** https://tidelift.com/docs/security
 
 It provides:
@@ -31,7 +31,7 @@ Testing:
 
 Tests can then be run after installation with:
 
-    python -c 'import numpy; numpy.test()'
+    python -c 'import numpy_demo; numpy_demo.test()'
 
 
 Call for Contributions

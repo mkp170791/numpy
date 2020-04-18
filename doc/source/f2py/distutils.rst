@@ -1,8 +1,8 @@
 =============================
-Using via `numpy.distutils`
+Using via `numpy_demo.distutils`
 =============================
 
-:mod:`numpy.distutils` is part of NumPy extending standard Python ``distutils``
+:mod:`numpy_demo.distutils` is part of NumPy extending standard Python ``distutils``
 to deal with Fortran sources and F2PY signature files, e.g. compile Fortran
 sources, call F2PY to construct extension modules, etc.
 
@@ -24,7 +24,7 @@ sources, call F2PY to construct extension modules, etc.
 
   __ setup_example.py
 
-:mod:`numpy.distutils` extends ``distutils`` with the following features:
+:mod:`numpy_demo.distutils` extends ``distutils`` with the following features:
 
 * :class:`Extension` class argument ``sources`` may contain Fortran source
   files. In addition, the list ``sources`` may contain at most one
@@ -65,7 +65,7 @@ sources, call F2PY to construct extension modules, etc.
 
     absoft sun mips intel intelv intele intelev nag compaq compaqv gnu vast pg hpux
 
-  See ``numpy_distutils/fcompiler.py`` for up-to-date list of
+  See ``numpy_demo_distutils/fcompiler.py`` for up-to-date list of
   supported compilers or run
 
   ::

@@ -1,4 +1,4 @@
 extending.pyx
 -------------
 
-.. include:: ../../../../../../numpy/random/examples/extending.pyx
+.. include:: ../../../../../../numpy_demo/random/examples/extending.pyx

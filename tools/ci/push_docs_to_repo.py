@@ -15,9 +15,9 @@ parser.add_argument('dir', help='directory of which content will be uploaded')
 parser.add_argument('remote', help='remote to which content will be pushed')
 parser.add_argument('--message', default='Commit bot upload',
                     help='commit message to use')
-parser.add_argument('--committer', default='numpy-commit-bot',
+parser.add_argument('--committer', default='numpy_demo-commit-bot',
                     help='Name of the git committer')
-parser.add_argument('--email', default='numpy-commit-bot@nomail',
+parser.add_argument('--email', default='numpy_demo-commit-bot@nomail',
                     help='Email of the git committer')
 
 parser.add_argument(

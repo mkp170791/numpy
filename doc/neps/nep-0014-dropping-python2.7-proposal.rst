@@ -3,7 +3,7 @@ NEP 14 — Plan for dropping Python 2.7 support
 =============================================
 
 :Status: Accepted
-:Resolution: https://mail.python.org/pipermail/numpy-discussion/2017-November/077419.html
+:Resolution: https://mail.python.org/pipermail/numpy_demo-discussion/2017-November/077419.html
 
 The Python core team plans to stop supporting Python 2 in 2020. The NumPy
 project has supported both Python 2 and Python 3 in parallel since 2010, and
@@ -39,7 +39,7 @@ support NumPy on Python2 in 2020+, please get in touch; ideally we'd like you
 to get involved in maintaining the LTS before it actually hits end of life so
 that we can make a clean handoff.
 
-To minimize disruption, running ``pip install numpy`` on Python 2 will continue
+To minimize disruption, running ``pip install numpy_demo`` on Python 2 will continue
 to give the last working release in perpetuity, but after January 1, 2019 it
 may not contain the latest features, and after January 1, 2020 it may not
 contain the latest bug fixes.

@@ -1,5 +1,5 @@
 ===================================
-NEP 28 — numpy.org website redesign
+NEP 28 — numpy_demo.org website redesign
 ===================================
 
 :Author: Ralf Gommers <ralf.gommers@gmail.com>
@@ -8,7 +8,7 @@ NEP 28 — numpy.org website redesign
 :Status: Accepted
 :Type: Informational
 :Created: 2019-07-16
-:Resolution: https://mail.python.org/pipermail/numpy-discussion/2019-August/079889.html
+:Resolution: https://mail.python.org/pipermail/numpy_demo-discussion/2019-August/079889.html
 
 
 Abstract
@@ -16,7 +16,7 @@ Abstract
 
 NumPy is the fundamental library for numerical and scientific computing with
 Python. It is used by millions and has a large team of maintainers and
-contributors. Despite that, its `numpy.org <http://numpy.org>`_ website has
+contributors. Despite that, its `numpy_demo.org <http://numpy_demo.org>`_ website has
 never received the attention it needed and deserved. We hope and intend to
 change that soon. This document describes ideas and requirements for how to
 design a replacement for the current website, to better serve the needs of
@@ -34,7 +34,7 @@ This website serves a couple of roles:
 
 - it's the entry point to the project for new users
 - it should link to the documentation (which is hosted separately, now on
-  http://docs.scipy.org/ and in the near future on http://numpy.org/doc).
+  http://docs.scipy.org/ and in the near future on http://numpy_demo.org/doc).
 - it should address various aspects of the project (e.g. what NumPy is and
   why you'd want to use it, community, project organization, funding,
   relationship with NumFOCUS and possibly other organizations)
@@ -46,12 +46,12 @@ This website serves a couple of roles:
 Motivation and Scope
 --------------------
 
-The current numpy.org website has almost no content and its design is poor.
+The current numpy_demo.org website has almost no content and its design is poor.
 This affects many users, who come there looking for information. It also
 affects many other aspects of the NumPy project, from finding new contributors
 to fundraising.
 
-The scope of the proposed redesign is the top-level numpy.org site, which
+The scope of the proposed redesign is the top-level numpy_demo.org site, which
 now contains only a couple of pages and may contain on the order of ten
 pages after the redesign. Changing the documentation (user guide, reference
 guide, and some other pages in the NumPy Manual) is out of scope for
@@ -167,7 +167,7 @@ Analytics
 ~~~~~~~~~
 
 It's beneficial to maintainers to know how many visitors are coming to
-numpy.org. Google Analytics offers visitor counts and locations. This will
+numpy_demo.org. Google Analytics offers visitor counts and locations. This will
 help to support and deploy more strategically, and help maintainers
 understand where traffic is coming from.
 
@@ -293,7 +293,7 @@ Backward compatibility
 ----------------------
 
 Given a static site generator is chosen, we will migrate away from Sphinx for
-numpy.org (the website, *not including the docs*). The current deployment can
+numpy_demo.org (the website, *not including the docs*). The current deployment can
 be preserved until a future deprecation date is decided (potentially based on
 the comfort level of our new site).
 

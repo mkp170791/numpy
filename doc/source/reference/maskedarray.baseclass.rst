@@ -1,15 +1,15 @@
-.. currentmodule:: numpy.ma
+.. currentmodule:: numpy_demo.ma
 
 .. for doctests
-   >>> import numpy as np
-   >>> from numpy import ma
+   >>> import numpy_demo as np
+   >>> from numpy_demo import ma
 
-.. _numpy.ma.constants:
+.. _numpy_demo.ma.constants:
 
-Constants of the :mod:`numpy.ma` module
+Constants of the :mod:`numpy_demo.ma` module
 =======================================
 
-In addition to the :class:`MaskedArray` class, the :mod:`numpy.ma` module
+In addition to the :class:`MaskedArray` class, the :mod:`numpy_demo.ma` module
 defines several constants.
 
 .. data:: masked
@@ -52,16 +52,16 @@ The :class:`MaskedArray` class
 
 .. class:: MaskedArray
 
-A subclass of :class:`~numpy.ndarray` designed to manipulate numerical arrays with missing data.
+A subclass of :class:`~numpy_demo.ndarray` designed to manipulate numerical arrays with missing data.
 
 
 
 An instance of :class:`MaskedArray` can be thought as the combination of several elements:
 
-* The :attr:`~MaskedArray.data`, as a regular :class:`numpy.ndarray` of any shape or datatype (the data).
-* A boolean :attr:`~numpy.ma.MaskedArray.mask` with the same shape as the data, where a ``True`` value indicates that the corresponding element of the data is invalid.
+* The :attr:`~MaskedArray.data`, as a regular :class:`numpy_demo.ndarray` of any shape or datatype (the data).
+* A boolean :attr:`~numpy_demo.ma.MaskedArray.mask` with the same shape as the data, where a ``True`` value indicates that the corresponding element of the data is invalid.
   The special value :const:`nomask` is also acceptable for arrays without named fields, and indicates that no data is invalid.
-* A :attr:`~numpy.ma.MaskedArray.fill_value`, a value that may be used to replace the invalid entries in order to return a standard :class:`numpy.ndarray`.
+* A :attr:`~numpy_demo.ma.MaskedArray.fill_value`, a value that may be used to replace the invalid entries in order to return a standard :class:`numpy_demo.ndarray`.
 
 
 
@@ -86,7 +86,7 @@ Attributes and properties of masked arrays
 
 .. autoattribute:: MaskedArray.hardmask
 
-As :class:`MaskedArray` is a subclass of :class:`~numpy.ndarray`, a masked array also inherits all the attributes and properties of a  :class:`~numpy.ndarray` instance.
+As :class:`MaskedArray` is a subclass of :class:`~numpy_demo.ndarray`, a masked array also inherits all the attributes and properties of a  :class:`~numpy_demo.ndarray` instance.
 
 .. autosummary::
    :toctree: generated/

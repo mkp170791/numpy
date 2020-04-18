@@ -1,5 +1,5 @@
 =================================================================================
-NEP 2 — A proposal to build numpy without warning with a big set of warning flags
+NEP 2 — A proposal to build numpy_demo without warning with a big set of warning flags
 =================================================================================
 
 :Author: David Cournapeau
@@ -10,10 +10,10 @@ NEP 2 — A proposal to build numpy without warning with a big set of warning fl
 Executive summary
 =================
 
-When building numpy and scipy, we are limited to a quite restricted set of
+When building numpy_demo and scipy, we are limited to a quite restricted set of
 warning compilers, thus missing a large class of potential bugs which could be
 detected with stronger warning flags. The goal of this NEP is present the
-various methods used to clean the code and implement some policy to make numpy
+various methods used to clean the code and implement some policy to make numpy_demo
 buildable with a  bigger set of warning flags, while keeping the build warnings
 free.
 

@@ -96,11 +96,11 @@ For files that need special handling, add entries to
 
 
 
-numpy.compat.py3k
+numpy_demo.compat.py3k
 -----------------
 
 There are some utility functions needed for 3K compatibility in
-``numpy.compat.py3k`` -- they can be imported from ``numpy.compat``:
+``numpy_demo.compat.py3k`` -- they can be imported from ``numpy_demo.compat``:
 
 - bytes, unicode: bytes and unicode constructors
 - asbytes: convert string to bytes (no-op on Py2)
@@ -116,7 +116,7 @@ There are some utility functions needed for 3K compatibility in
 More can be added as needed.
 
 
-numpy.f2py
+numpy_demo.f2py
 ----------
 
 F2py is ported to Py3.
@@ -126,7 +126,7 @@ Bytes vs. strings
 -----------------
 
 At many points in NumPy, bytes literals are needed. These can be created via
-numpy.compat.asbytes and asbytes_nested.
+numpy_demo.compat.asbytes and asbytes_nested.
 
 
 Exception syntax
@@ -179,7 +179,7 @@ In ``numerictypes.py``, the "common" types were replaced by their
 plain equivalents, and `IntType` was dropped.
 
 
-numpy.core.numerictypes
+numpy_demo.core.numerictypes
 -----------------------
 
 In numerictypes, types on Python 3 were changed so that:
@@ -194,7 +194,7 @@ unicode_      str_ alias
 ===========   ============
 
 
-numpy.loadtxt et al
+numpy_demo.loadtxt et al
 -------------------
 
 These routines are difficult to duck-type to read both Unicode and
@@ -712,7 +712,7 @@ keep in mind.
    likely require modifications in the searchsorted functions and generic sorts
    that currently use the compare function.
 
-3) The previous numpy practice of initializing the COUNT_ALLOCS slots was
+3) The previous numpy_demo practice of initializing the COUNT_ALLOCS slots was
    bogus. They are not supposed to be explicitly initialized and were out of
    place in any case because an extra base slot was added in python 2.6.
 
@@ -732,7 +732,7 @@ The Py2/Py3 compatible TypeObject definition looks like::
 	PyObject_HEAD_INIT(0)
 	0,                                          /* ob_size */
     #endif
-	"numpy.foo"                                 /* tp_name */
+	"numpy_demo.foo"                                 /* tp_name */
 	0,                                          /* tp_basicsize */
 	0,                                          /* tp_itemsize */
 	/* methods */
@@ -860,7 +860,7 @@ obtained must be closed with fclose after use.
    Adapt all NumPy I/O to use the PyFile_* methods or the low-level
    IO routines. In any case, it's unlikely that C stdio can be used any more.
 
-   Perhaps using PyFile_* makes numpy.tofile e.g. to a gzip to work?
+   Perhaps using PyFile_* makes numpy_demo.tofile e.g. to a gzip to work?
 
 
 READONLY

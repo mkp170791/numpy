@@ -10,7 +10,7 @@
 %}
 
 // Get the NumPy typemaps
-%include "../numpy.i"
+%include "../numpy_demo.i"
 
  // Get the STL typemaps
 %include "stl.i"

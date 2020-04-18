@@ -15,7 +15,7 @@ Issues fixed
 * gh-442: Concatenate with axis=None now requires equal number of array elements
 * gh-2485: Fix for astype('S') string truncate issue
 * gh-3312: bug in count_nonzero
-* gh-2684: numpy.ma.average casts complex to float under certain conditions
+* gh-2684: numpy_demo.ma.average casts complex to float under certain conditions
 * gh-2403: masked array with named components does not behave as expected
 * gh-2495: np.ma.compress treated inputs in wrong order
 * gh-576: add __len__ method to ma.mvoid
@@ -46,7 +46,7 @@ Issues fixed
 * gh-2052: del scalar subscript causes segfault
 * gh-3832: fix a few uninitialized uses and memleaks
 * gh-3971: f2py changed string.lowercase to string.ascii_lowercase for python3
-* gh-3480: numpy.random.binomial raised ValueError for n == 0
+* gh-3480: numpy_demo.random.binomial raised ValueError for n == 0
 * gh-3992: hypot(inf, 0) shouldn't raise a warning, hypot(inf, inf) wrong result
 * gh-4018: Segmentation fault dealing with very large arrays
 * gh-4094: fix NaT handling in _strided_to_strided_string_to_datetime

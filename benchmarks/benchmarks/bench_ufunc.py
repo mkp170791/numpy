@@ -1,6 +1,6 @@
 from .common import Benchmark, get_squares_
 
-import numpy as np
+import numpy_demo as np
 
 
 ufuncs = ['abs', 'absolute', 'add', 'arccos', 'arccosh', 'arcsin', 'arcsinh',

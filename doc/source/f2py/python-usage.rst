@@ -143,7 +143,7 @@ the physical memory in your computer, then a care must be taken to use
 always proper-contiguous and proper type arguments.
 
 To transform input arrays to column major storage order before passing
-them to Fortran routines, use the function ``numpy.asfortranarray(<array>)``.
+them to Fortran routines, use the function ``numpy_demo.asfortranarray(<array>)``.
 
 Consider the following Fortran 77 code:
 

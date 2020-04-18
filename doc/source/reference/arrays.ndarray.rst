@@ -4,7 +4,7 @@
 The N-dimensional array (:class:`ndarray`)
 ******************************************
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 An :class:`ndarray` is a (usually fixed-size) multidimensional
 container of items of the same type and size. The number of dimensions
@@ -37,7 +37,7 @@ objects implementing the :class:`buffer` or :ref:`array
 
    >>> x = np.array([[1, 2, 3], [4, 5, 6]], np.int32)
    >>> type(x)
-   <class 'numpy.ndarray'>
+   <class 'numpy_demo.ndarray'>
    >>> x.shape
    (2, 3)
    >>> x.dtype
@@ -276,7 +276,7 @@ methods are briefly explained below. (Each method's docstring has a
 more complete description.)
 
 For the following methods there are also corresponding functions in
-:mod:`numpy`: :func:`all`, :func:`any`, :func:`argmax`,
+:mod:`numpy_demo`: :func:`all`, :func:`any`, :func:`argmax`,
 :func:`argmin`, :func:`argpartition`, :func:`argsort`, :func:`choose`,
 :func:`clip`, :func:`compress`, :func:`copy`, :func:`cumprod`,
 :func:`cumsum`, :func:`diagonal`, :func:`imag`, :func:`max <amax>`,
@@ -518,7 +518,7 @@ Arithmetic:
      ``__r{op}__`` special methods are not directly defined.
 
    - The functions called to implement many arithmetic special methods
-     for arrays can be modified using :class:`__array_ufunc__ <numpy.class.__array_ufunc__>`.
+     for arrays can be modified using :class:`__array_ufunc__ <numpy_demo.class.__array_ufunc__>`.
 
 Arithmetic, in-place:
 

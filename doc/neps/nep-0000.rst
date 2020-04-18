@@ -67,7 +67,7 @@ Each NEP must have a champion---someone who writes the NEP using the style
 and format described below, shepherds the discussions in the appropriate
 forums, and attempts to build community consensus around the idea.  The NEP
 champion (a.k.a. Author) should first attempt to ascertain whether the idea is
-suitable for a NEP. Posting to the numpy-discussion `mailing list`_ is the best
+suitable for a NEP. Posting to the numpy_demo-discussion `mailing list`_ is the best
 way to go about doing this.
 
 The proposal should be submitted as a draft NEP via a `GitHub pull
@@ -156,7 +156,7 @@ How a NEP becomes Accepted
 A NEP is ``Accepted`` by consensus of all interested contributors. We
 need a concrete way to tell whether consensus has been reached. When
 you think a NEP is ready to accept, send an email to the
-numpy-discussion mailing list with a subject like:
+numpy_demo-discussion mailing list with a subject like:
 
   Proposal to accept NEP #<number>: <title>
 
@@ -171,7 +171,7 @@ In the body of your email, you should:
   within 7 days from this email, then the NEP will be accepted; see
   NEP 0 for more details."
 
-For an example, see: https://mail.python.org/pipermail/numpy-discussion/2018-June/078345.html
+For an example, see: https://mail.python.org/pipermail/numpy_demo-discussion/2018-June/078345.html
 
 After you send the email, you should make sure to link to the email
 thread from the ``Discussion`` section of the NEP, so that people can
@@ -262,7 +262,7 @@ a separate line.
 Discussion
 ----------
 
-- https://mail.python.org/pipermail/numpy-discussion/2017-December/077481.html
+- https://mail.python.org/pipermail/numpy_demo-discussion/2017-December/077481.html
 
 
 References and Footnotes
@@ -270,21 +270,21 @@ References and Footnotes
 
 .. [1] This historical record is available by the normal git commands
    for retrieving older revisions, and can also be browsed on
-   `GitHub <https://github.com/numpy/numpy/tree/master/doc/neps>`_.
+   `GitHub <https://github.com/numpy_demo/numpy_demo/tree/master/doc/neps>`_.
 
 .. [2] The URL for viewing NEPs on the web is
-   https://www.numpy.org/neps/.
+   https://www.numpy_demo.org/neps/.
 
-.. _repo: https://github.com/numpy/numpy
+.. _repo: https://github.com/numpy_demo/numpy_demo
 
-.. _mailing list: https://mail.python.org/mailman/listinfo/numpy-discussion
+.. _mailing list: https://mail.python.org/mailman/listinfo/numpy_demo-discussion
 
-.. _issue tracker: https://github.com/numpy/numpy/issues
+.. _issue tracker: https://github.com/numpy_demo/numpy_demo/issues
 
 .. _NumPy Steering Council:
-   https://docs.scipy.org/doc/numpy/dev/governance/governance.html
+   https://docs.scipy.org/doc/numpy_demo/dev/governance/governance.html
 
-.. _`GitHub pull request`: https://github.com/numpy/numpy/pulls
+.. _`GitHub pull request`: https://github.com/numpy_demo/numpy_demo/pulls
 
 .. _reStructuredText: http://docutils.sourceforge.net/rst.html
 

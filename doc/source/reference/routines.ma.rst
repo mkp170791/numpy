@@ -3,7 +3,7 @@
 Masked array operations
 ***********************
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 
 Constants

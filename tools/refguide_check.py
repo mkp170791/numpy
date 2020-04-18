@@ -44,10 +44,10 @@ from docutils.parsers.rst import directives
 from pkg_resources import parse_version
 
 import sphinx
-import numpy as np
+import numpy_demo as np
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'doc', 'sphinxext'))
-from numpydoc.docscrape_sphinx import get_doc_object
+from numpy_demodoc.docscrape_sphinx import get_doc_object
 
 SKIPBLOCK = doctest.register_optionflag('SKIPBLOCK')
 
@@ -67,7 +67,7 @@ else:
     directives._directives.pop('toctree', None)
 
 
-BASE_MODULE = "numpy"
+BASE_MODULE = "numpy_demo"
 
 PUBLIC_SUBMODULES = [
     'core',
@@ -95,18 +95,18 @@ OTHER_MODULE_DOCS = {
 # e.g. sometimes pseudocode is acceptable etc
 DOCTEST_SKIPLIST = set([
     # cases where NumPy docstrings import things from SciPy:
-    'numpy.lib.vectorize',
-    'numpy.random.standard_gamma',
-    'numpy.random.gamma',
-    'numpy.random.vonmises',
-    'numpy.random.power',
-    'numpy.random.zipf',
+    'numpy_demo.lib.vectorize',
+    'numpy_demo.random.standard_gamma',
+    'numpy_demo.random.gamma',
+    'numpy_demo.random.vonmises',
+    'numpy_demo.random.power',
+    'numpy_demo.random.zipf',
     # remote / local file IO with DataSource is problematic in doctest:
-    'numpy.lib.DataSource',
-    'numpy.lib.Repository',
+    'numpy_demo.lib.DataSource',
+    'numpy_demo.lib.Repository',
 ])
 
-# Skip non-numpy RST files, historical release notes
+# Skip non-numpy_demo RST files, historical release notes
 # Any single-directory exact match will skip the directory and all subdirs.
 # Any exact match (like 'doc/release') will scan subdirs but skip files in
 # the matched directory.
@@ -139,7 +139,7 @@ REFGUIDE_AUTOSUMMARY_SKIPLIST = [
     # NOTE: should NumPy have a better match between autosummary
     # listings and __all__? For now, TR isn't convinced this is a
     # priority -- focus on just getting docstrings executed / correct
-    r'numpy\.*',
+    r'numpy_demo\.*',
 ]
 # deprecated windows in scipy.signal namespace
 for name in ('barthann', 'bartlett', 'blackmanharris', 'blackman', 'bohman',
@@ -598,10 +598,10 @@ DEFAULT_NAMESPACE = {'np': np}
 # the namespace to do checks in
 CHECK_NAMESPACE = {
       'np': np,
-      'numpy': np,
+      'numpy_demo': np,
       'assert_allclose': np.testing.assert_allclose,
       'assert_equal': np.testing.assert_equal,
-      # recognize numpy repr's
+      # recognize numpy_demo repr's
       'array': np.array,
       'matrix': np.matrix,
       'int64': np.int64,
@@ -710,7 +710,7 @@ class Checker(doctest.OutputChecker):
             a_want = eval(want, dict(self.ns))
             a_got = eval(got, dict(self.ns))
         except Exception:
-            # Maybe we're printing a numpy array? This produces invalid python
+            # Maybe we're printing a numpy_demo array? This produces invalid python
             # code: `print(np.arange(3))` produces "[0 1 2]" w/o commas between
             # values. So, reinsert commas and retry.
             # TODO: handle (1) abberivation (`print(np.arange(10000))`), and
@@ -744,7 +744,7 @@ class Checker(doctest.OutputChecker):
             except Exception:
                 return False
 
-        # ... and defer to numpy
+        # ... and defer to numpy_demo
         try:
             return self._do_check(a_want, a_got)
         except Exception:
@@ -756,7 +756,7 @@ class Checker(doctest.OutputChecker):
 
     def _do_check(self, want, got):
         # This should be done exactly as written to correctly handle all of
-        # numpy-comparable objects, strings, and heterogeneous tuples
+        # numpy_demo-comparable objects, strings, and heterogeneous tuples
         try:
             if want == got:
                 return True
@@ -949,7 +949,7 @@ def check_doctests_testfile(fname, verbose, ns=None,
 
     blah
     <BLANKLINE>
-    >>> from numpy import some_module   # pseudocode!
+    >>> from numpy_demo import some_module   # pseudocode!
     >>> func = some_module.some_function
     >>> func(42)                  # still pseudocode
     146

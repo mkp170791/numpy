@@ -78,11 +78,11 @@ use NaNs for integers, or strings, or booleans, so we need NA anyway, and
 once we have NA support for all these types, we might as well support it for
 floating point too for consistency.
 
-A masked array is, conceptually, an ordinary rectangular numpy array, which
+A masked array is, conceptually, an ordinary rectangular numpy_demo array, which
 has had an arbitrarily-shaped mask placed over it. The result is,
 essentially, a non-rectangular view of a rectangular array. In principle,
 anything you can accomplish with a masked array could also be accomplished by
-explicitly keeping a regular array and a boolean mask array and using numpy
+explicitly keeping a regular array and a boolean mask array and using numpy_demo
 indexing to combine them for each operation, but combining them into a single
 structure is much more convenient when you need to perform complex operations
 on the masked view of an array, while still being able to manipulate the mask
@@ -92,7 +92,7 @@ the array in the first place. (Maybe this is a good heuristic: a length-4
 array in which the last value has been masked out behaves just like an
 ordinary length-3 array, so long as you don't change the mask.) Except, of
 course, that you are free to manipulate the mask in arbitrary ways whenever
-you like; it's just a standard numpy array.
+you like; it's just a standard numpy_demo array.
 
 There are some simple situations where one could use either of these tools to
 get the job done -- or other tools entirely, like using designated surrogate

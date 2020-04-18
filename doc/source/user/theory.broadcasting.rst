@@ -1,6 +1,6 @@
 :orphan:
 
-.. _array-broadcasting-in-numpy:
+.. _array-broadcasting-in-numpy_demo:
 
 ===========================
 Array Broadcasting in Numpy
@@ -12,8 +12,8 @@ Array Broadcasting in Numpy
    `github repo
    <https://github.com/scipy/old-wiki/blob/gh-pages/pages/EricsBroadcastingDoc.html>`_
 
-Let's explore a more advanced concept in numpy called broadcasting. The
-term broadcasting describes how numpy treats arrays with different shapes
+Let's explore a more advanced concept in numpy_demo called broadcasting. The
+term broadcasting describes how numpy_demo treats arrays with different shapes
 during arithmetic operations. Subject to certain constraints, the smaller array
 is "broadcast" across the larger array so that they have compatible shapes.
 Broadcasting provides a means of vectorizing array operations so that looping
@@ -24,20 +24,20 @@ memory that slows computation. This article provides a gentle introduction to
 broadcasting with numerous examples ranging from simple to involved. It also
 provides hints on when and when not to use broadcasting.
 
-numpy operations are usually done element-by-element which requires two arrays
+numpy_demo operations are usually done element-by-element which requires two arrays
 to have exactly the same shape:
 
 .. code-block:: python
     :caption: Example 1
     :name: example-1
 
-    >>> from numpy import array
+    >>> from numpy_demo import array
     >>> a = array([1.0, 2.0, 3.0])
     >>> b = array([2.0, 2.0, 2.0])
     >>> a * b
     array([ 2.,  4.,  6.])
 
-numpy's broadcasting rule relaxes this constraint when the arrays' shapes meet
+numpy_demo's broadcasting rule relaxes this constraint when the arrays' shapes meet
 certain constraints. The simplest broadcasting example occurs when an array and
 a scalar value are combined in an operation:
 
@@ -45,7 +45,7 @@ a scalar value are combined in an operation:
     :caption: Example 2
     :name: example-2
 
-    >>> from numpy import array
+    >>> from numpy_demo import array
     >>> a = array([1.0,2.0,3.0])
     >>> b = 2.0
     >>> a * b
@@ -55,12 +55,12 @@ The result is equivalent to the previous example where ``b`` was an array. We
 can think of the scalar ``b`` being stretched during the arithmetic operation
 into an array with the same shape as ``a``. The new elements in ``b``, as shown
 in :ref:`figure-1`, are simply copies of the original scalar. The stretching
-analogy is only conceptual. numpy is smart enough to use the original scalar
+analogy is only conceptual. numpy_demo is smart enough to use the original scalar
 value without actually making copies so that broadcasting operations are as
 memory and computationally efficient as possible. Because :ref:`example-2`
 moves less memory, (``b`` is a scalar, not an array) around during the
 multiplication, it is about 10% faster than :ref:`example-1` using the standard
-numpy on Windows 2000 with one million element arrays.
+numpy_demo on Windows 2000 with one million element arrays.
 
 .. figure:: theory.broadcast_1.gif
     :alt: Vector-Scalar multiplication
@@ -119,7 +119,7 @@ to a two-dimensional array:
     :caption: Example 3
     :name: example-3
 
-    >>> from numpy import array
+    >>> from numpy_demo import array
     >>> a = array([[ 0.0,  0.0,  0.0],
     ...            [10.0, 10.0, 10.0],
     ...            [20.0, 20.0, 20.0],
@@ -164,7 +164,7 @@ addition operation of two 1-d arrays that produces the same result as
     :caption: Example 4
     :name: example-4
 
-    >>> from numpy import array, newaxis
+    >>> from numpy_demo import array, newaxis
     >>> a = array([0.0, 10.0, 20.0, 30.0])
     >>> b = array([1.0, 2.0, 3.0])
     >>> a[:,newaxis] + b

@@ -1,4 +1,4 @@
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 .. _arrays.dtypes:
 
@@ -6,7 +6,7 @@
 Data type objects (:class:`dtype`)
 **********************************
 
-A data type object (an instance of :class:`numpy.dtype` class)
+A data type object (an instance of :class:`numpy_demo.dtype` class)
 describes how the bytes in the fixed-size block of memory
 corresponding to an array item should be interpreted. It describes the
 following aspects of the data:
@@ -100,9 +100,9 @@ Sub-arrays always have a C-contiguous memory layout.
    >>> x[1]['grades']
    array([6.,  7.])
    >>> type(x[1])
-   <class 'numpy.void'>
+   <class 'numpy_demo.void'>
    >>> type(x[1]['grades'])
-   <class 'numpy.ndarray'>
+   <class 'numpy_demo.ndarray'>
 
 .. _arrays.dtypes.constructing:
 
@@ -311,7 +311,7 @@ String with comma-separated fields
 
 Type strings
 
-   Any string in :obj:`numpy.sctypeDict`.keys():
+   Any string in :obj:`numpy_demo.sctypeDict`.keys():
 
    .. admonition:: Example
 

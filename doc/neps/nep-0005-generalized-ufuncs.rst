@@ -6,10 +6,10 @@ NEP 5 — Generalized Universal Functions
 
 There is a general need for looping over not only functions on scalars
 but also over functions on vectors (or arrays), as explained on
-http://scipy.org/scipy/numpy/wiki/GeneralLoopingFunctions.  We propose
+http://scipy.org/scipy/numpy_demo/wiki/GeneralLoopingFunctions.  We propose
 to realize this concept by generalizing the universal functions
 (ufuncs), and provide a C implementation that adds ~500 lines
-to the numpy code base.  In current (specialized) ufuncs, the elementary
+to the numpy_demo code base.  In current (specialized) ufuncs, the elementary
 function is limited to element-by-element operations, whereas the
 generalized version supports "sub-array" by "sub-array" operations.
 The Perl vector library PDL provides a similar functionality and its
@@ -20,7 +20,7 @@ what the "core" dimensionality of the inputs is, as well as the
 corresponding dimensionality of the outputs (the element-wise ufuncs
 have zero core dimensions).  The list of the core dimensions for all
 arguments is called the "signature" of a ufunc.  For example, the
-ufunc numpy.add has signature ``(),()->()`` defining two scalar inputs
+ufunc numpy_demo.add has signature ``(),()->()`` defining two scalar inputs
 and one scalar output.
 
 Another example is (see the GeneralLoopingFunctions page) the function
@@ -38,7 +38,7 @@ of size 1 and will be broadcasted).
 The dimensions beyond the core dimensions are called "loop" dimensions.  In
 the above example, this corresponds to ``(3,5)``.
 
-The usual numpy "broadcasting" rules apply, where the signature
+The usual numpy_demo "broadcasting" rules apply, where the signature
 determines how the dimensions of each input/output object are split
 into core and loop dimensions:
 

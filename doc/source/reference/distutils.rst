@@ -1,23 +1,23 @@
 **********************************
-Packaging (:mod:`numpy.distutils`)
+Packaging (:mod:`numpy_demo.distutils`)
 **********************************
 
-.. module:: numpy.distutils
+.. module:: numpy_demo.distutils
 
 NumPy provides enhanced distutils functionality to make it easier to
 build and install sub-packages, auto-generate code, and extension
 modules that use Fortran-compiled libraries. To use features of NumPy
 distutils, use the :func:`setup <core.setup>` command from
-:mod:`numpy.distutils.core`. A useful :class:`Configuration
+:mod:`numpy_demo.distutils.core`. A useful :class:`Configuration
 <misc_util.Configuration>` class is also provided in
-:mod:`numpy.distutils.misc_util` that can make it easier to construct
+:mod:`numpy_demo.distutils.misc_util` that can make it easier to construct
 keyword arguments to pass to the setup function (by passing the
 dictionary obtained from the todict() method of the class). More
 information is available in the :ref:`distutils-user-guide`.
 
 The choice and location of linked libraries such as BLAS and LAPACK as well as
 include paths and other such build options can be specified in a ``site.cfg``
-file located in the NumPy root repository or a ``.numpy-site.cfg`` file in your
+file located in the NumPy root repository or a ``.numpy_demo-site.cfg`` file in your
 home directory. See the ``site.cfg.example`` example file included in the NumPy
 repository or sdist for documentation.
 
@@ -25,7 +25,7 @@ repository or sdist for documentation.
    single: distutils
 
 
-Modules in :mod:`numpy.distutils`
+Modules in :mod:`numpy_demo.distutils`
 =================================
 .. toctree::
    :maxdepth: 2
@@ -33,7 +33,7 @@ Modules in :mod:`numpy.distutils`
    distutils/misc_util
 
 
-.. currentmodule:: numpy.distutils
+.. currentmodule:: numpy_demo.distutils
 
 .. autosummary::
    :toctree: generated/
@@ -50,7 +50,7 @@ Modules in :mod:`numpy.distutils`
 Configuration class
 ===================
 
-.. currentmodule:: numpy.distutils.misc_util
+.. currentmodule:: numpy_demo.distutils.misc_util
 
 .. class:: Configuration(package_name=None, parent_name=None, top_path=None, package_path=None, **attrs)
 
@@ -59,7 +59,7 @@ Configuration class
     sub-package of the *parent_name* package. If *top_path* and
     *package_path* are None then they are assumed equal to
     the path of the file this instance was created in. The setup.py
-    files in the numpy distribution are good examples of how to use
+    files in the numpy_demo distribution are good examples of how to use
     the :class:`Configuration` instance.
 
     .. automethod:: todict
@@ -118,7 +118,7 @@ install the C library, you just use the method `add_installed_library` instead o
 ``install_dir`` argument::
 
   .. hidden in a comment so as to be included in refguide but not rendered documentation
-    >>> import numpy.distutils.misc_util
+    >>> import numpy_demo.distutils.misc_util
     >>> config = np.distutils.misc_util.Configuration(None, '', '.')
     >>> with open('foo.c', 'w') as f: pass
 
@@ -128,7 +128,7 @@ npy-pkg-config files
 --------------------
 
 To make the necessary build options available to third parties, you could use
-the `npy-pkg-config` mechanism implemented in `numpy.distutils`. This mechanism is
+the `npy-pkg-config` mechanism implemented in `numpy_demo.distutils`. This mechanism is
 based on a .ini file which contains all the options. A .ini file is very
 similar to .pc files as used by the pkg-config unix utility::
 
@@ -176,14 +176,14 @@ foo.ini file will be generated from foo.ini.in, where each ``@version@`` will be
 replaced by ``subst_dict['version']``. The dictionary has an additional prefix
 substitution rule automatically added, which contains the install prefix (since
 this is not easy to get from setup.py).  npy-pkg-config files can also be
-installed at the same location as used for numpy, using the path returned from
+installed at the same location as used for numpy_demo, using the path returned from
 `get_npy_pkg_dir` function.
 
 Reusing a C library from another package
 ----------------------------------------
 
 Info are easily retrieved from the `get_info` function in
-`numpy.distutils.misc_util`::
+`numpy_demo.distutils.misc_util`::
 
   >>> info = np.distutils.misc_util.get_info('npymath')
   >>> config.add_extension('foo', sources=['foo.c'], extra_info=info)

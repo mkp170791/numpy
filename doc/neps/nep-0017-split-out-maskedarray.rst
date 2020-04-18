@@ -6,7 +6,7 @@ NEP 17 — Split Out Masked Arrays
 :Status: Rejected
 :Type: Standards Track
 :Created: 2018-03-22
-:Resolution: https://mail.python.org/pipermail/numpy-discussion/2018-May/078026.html
+:Resolution: https://mail.python.org/pipermail/numpy_demo-discussion/2018-May/078026.html
 
 Abstract
 --------
@@ -45,7 +45,7 @@ Implementation
 
 Currently, a MaskedArray is created as follows::
 
-  from numpy import ma
+  from numpy_demo import ma
   ma.array([1, 2, 3], mask=[True, False, True])
 
 This will return an array where the values 1 and 3 are masked (no
@@ -90,8 +90,8 @@ Other appearances
 
 Explicit MaskedArray support will be removed from:
 
-- `numpygenfromtext`
-- `numpy.libmerge_arrays`, `numpy.lib.stack_arrays`
+- `numpy_demogenfromtext`
+- `numpy_demo.libmerge_arrays`, `numpy_demo.lib.stack_arrays`
 
 Backward compatibility
 ----------------------
@@ -120,7 +120,7 @@ References and Footnotes
 ------------------------
 
 .. [1] Subclassing ndarray,
-       https://docs.scipy.org/doc/numpy/user/basics.subclassing.html
+       https://docs.scipy.org/doc/numpy_demo/user/basics.subclassing.html
 .. [2] PyPi: maskedarray, https://pypi.org/project/maskedarray/
 
 Copyright

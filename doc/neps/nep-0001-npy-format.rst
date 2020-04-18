@@ -15,7 +15,7 @@ the shape and dtype information necessary to reconstruct the array
 correctly even on another machine with a different architecture.
 The format is designed to be as simple as possible while achieving
 its limited goals.  The implementation is intended to be pure
-Python and distributed as part of the main numpy package.
+Python and distributed as part of the main numpy_demo package.
 
 
 Rationale
@@ -30,13 +30,13 @@ NumPy arrays for many purposes, but it has a few drawbacks:
   data in memory.  For large arrays, this can be a showstopper.
 
 - The array data is not directly accessible through
-  memory-mapping.  Now that numpy has that capability, it has
+  memory-mapping.  Now that numpy_demo has that capability, it has
   proved very useful for loading large amounts of data (or more to
   the point: avoiding loading large amounts of data when you only
   need a small part).
 
 Both of these problems can be addressed by dumping the raw bytes
-to disk using ndarray.tofile() and numpy.fromfile().  However,
+to disk using ndarray.tofile() and numpy_demo.fromfile().  However,
 these have their own problems:
 
 - The data which is written has no information about the shape or
@@ -130,9 +130,9 @@ The format MUST be able to:
   read and write object arrays with the same generic interface as
   other arrays.
 
-- Be read and written using APIs provided in the numpy package
+- Be read and written using APIs provided in the numpy_demo package
   itself without any other libraries.  The implementation inside
-  numpy may be in C if necessary.
+  numpy_demo may be in C if necessary.
 
 The format explicitly *does not* need to:
 
@@ -140,11 +140,11 @@ The format explicitly *does not* need to:
   objects to be supported, one could use the API to build an ad
   hoc format that supported multiple arrays.  However, solving the
   general problem and use cases is beyond the scope of the format
-  and the API for numpy.
+  and the API for numpy_demo.
 
-- Fully handle arbitrary subclasses of numpy.ndarray.  Subclasses
+- Fully handle arbitrary subclasses of numpy_demo.ndarray.  Subclasses
   will be accepted for writing, but only the array data will be
-  written out.  A regular numpy.ndarray object will be created
+  written out.  A regular numpy_demo.ndarray object will be created
   upon reading the file.  The API can be used to build a format
   for a particular subclass, but that is out of scope for the
   general NPY format.
@@ -160,7 +160,7 @@ the file format, e.g. \x01.
 
 The next 1 byte is an unsigned byte: the minor version number of
 the file format, e.g. \x00.  Note: the version of the file format
-is not tied to the version of the numpy package.
+is not tied to the version of the numpy_demo package.
 
 The next 2 bytes form a little-endian unsigned short int: the
 length of the header data HEADER_LEN.
@@ -176,7 +176,7 @@ The dictionary contains three keys:
 
     "descr" : dtype.descr
         An object that can be passed as an argument to the
-        numpy.dtype() constructor to create the array's dtype.
+        numpy_demo.dtype() constructor to create the array's dtype.
 
     "fortran_order" : bool
         Whether the array data is Fortran-contiguous or not.
@@ -204,7 +204,7 @@ Format Specification: Version 2.0
 The version 1.0 format only allowed the array header to have a
 total size of 65535 bytes.  This can be exceeded by structured
 arrays with a large number of columns.  The version 2.0 format
-extends the header size to 4 GiB.  `numpy.save` will automatically
+extends the header size to 4 GiB.  `numpy_demo.save` will automatically
 save in 2.0 format if the data requires it, else it will always use
 the more compatible 1.0 format.
 
@@ -251,7 +251,7 @@ of this writing, there is no application or library that reads or
 writes even a subset of HDF5 files that does not use the canonical
 libhdf5 implementation.  This implementation is a large library
 that is not always easy to build.  It would be infeasible to
-include it in numpy.
+include it in numpy_demo.
 
 It might be feasible to target an extremely limited subset of
 HDF5.  Namely, there would be only one object in it: the array.
@@ -284,13 +284,13 @@ Implementation
 --------------
 
 The version 1.0 implementation was first included in the 1.0.5 release of
-numpy, and remains available.  The version 2.0 implementation was first
-included in the 1.9.0 release of numpy.
+numpy_demo, and remains available.  The version 2.0 implementation was first
+included in the 1.9.0 release of numpy_demo.
 
 Specifically, the file format.py in this directory implements the
 format as described here.
 
-    https://github.com/numpy/numpy/blob/master/numpy/lib/format.py
+    https://github.com/numpy_demo/numpy_demo/blob/master/numpy_demo/lib/format.py
 
 
 References

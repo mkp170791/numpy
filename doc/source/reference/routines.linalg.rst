@@ -1,8 +1,8 @@
 .. _routines.linalg:
 
-.. module:: numpy.linalg
+.. module:: numpy_demo.linalg
 
-Linear algebra (:mod:`numpy.linalg`)
+Linear algebra (:mod:`numpy_demo.linalg`)
 ************************************
 
 The NumPy linear algebra functions rely on BLAS and LAPACK to provide efficient
@@ -20,17 +20,17 @@ or specify the processor architecture.
 
 The SciPy library also contains a `~scipy.linalg` submodule, and there is
 overlap in the functionality provided by the SciPy and NumPy submodules.  SciPy
-contains functions not found in `numpy.linalg`, such as functions related to
+contains functions not found in `numpy_demo.linalg`, such as functions related to
 LU decomposition and the Schur decomposition, multiple ways of calculating the
 pseudoinverse, and matrix transcendentals such as the matrix logarithm.  Some
 functions that exist in both have augmented functionality in `scipy.linalg`.
 For example, `scipy.linalg.eig` can take a second matrix argument for solving
 generalized eigenvalue problems.  Some functions in NumPy, however, have more
-flexible broadcasting options.  For example, `numpy.linalg.solve` can handle
+flexible broadcasting options.  For example, `numpy_demo.linalg.solve` can handle
 "stacked" arrays, while `scipy.linalg.solve` accepts only a single square
 array as its first argument.
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 Matrix and vector products
 --------------------------

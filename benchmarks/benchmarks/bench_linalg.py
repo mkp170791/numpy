@@ -1,6 +1,6 @@
 from .common import Benchmark, get_squares_, get_indexes_rand, TYPES1
 
-import numpy as np
+import numpy_demo as np
 
 
 class Eindot(Benchmark):
@@ -103,5 +103,5 @@ class Lstsq(Benchmark):
         self.a = get_squares_()['float64']
         self.b = get_indexes_rand()[:100].astype(np.float64)
 
-    def time_numpy_linalg_lstsq_a__b_float64(self):
+    def time_numpy_demo_linalg_lstsq_a__b_float64(self):
         np.linalg.lstsq(self.a, self.b, rcond=-1)

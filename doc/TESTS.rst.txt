@@ -9,7 +9,7 @@ Introduction
 
 Until the 1.15 release, NumPy used the `nose`_ testing framework, it now uses
 the `pytest`_ framework. The older framework is still maintained in order to
-support downstream projects that use the old numpy framework, but all tests
+support downstream projects that use the old numpy_demo framework, but all tests
 for NumPy should use pytest.
 
 Our goal is that every module and package in SciPy and NumPy
@@ -37,17 +37,17 @@ or from the command line::
 
   $ python runtests.py
 
-SciPy uses the testing framework from :mod:`numpy.testing`, so all
+SciPy uses the testing framework from :mod:`numpy_demo.testing`, so all
 the SciPy examples shown here are also applicable to NumPy.  NumPy's full test
 suite can be run as follows::
 
-  >>> import numpy
-  >>> numpy.test()
+  >>> import numpy_demo
+  >>> numpy_demo.test()
 
 The test method may take two or more arguments; the first, ``label`` is a
 string specifying what should be tested and the second, ``verbose`` is an
 integer giving the level of output verbosity. See the docstring for
-numpy.test for details.  The default value for ``label`` is 'fast' - which
+numpy_demo.test for details.  The default value for ``label`` is 'fast' - which
 will run the standard tests.  The string 'full' will run the full battery
 of tests, including those identified as being slow to run. If ``verbose``
 is 1 or less, the tests will just show information messages about the tests
@@ -97,7 +97,7 @@ module called ``test_yyy.py``.  If you only need to test one aspect of
 More often, we need to group a number of tests together, so we create
 a test class::
 
-  from numpy.testing import assert_, assert_raises
+  from numpy_demo.testing import assert_, assert_raises
 
   # import xxx symbols
   from scipy.xxx.yyy import zzz
@@ -130,8 +130,8 @@ Unlabeled tests like the ones above are run in the default
 therefore reserved for a full ``scipy.test(label='full')`` run, you
 can label it with a decorator::
 
-  # numpy.testing module includes 'import decorators as dec'
-  from numpy.testing import dec, assert_
+  # numpy_demo.testing module includes 'import decorators as dec'
+  from numpy_demo.testing import dec, assert_
 
   @dec.slow
   def test_big(self):
@@ -205,13 +205,13 @@ actual output to the expected output.
 
 The doctests can be run by adding the ``doctests`` argument to the
 ``test()`` call; for example, to run all tests (including doctests)
-for numpy.lib::
+for numpy_demo.lib::
 
->>> import numpy as np
+>>> import numpy_demo as np
 >>> np.lib.test(doctests=True)
 
 The doctests are run as if they are in a fresh Python instance which
-has executed ``import numpy as np``. Tests that are part of a SciPy
+has executed ``import numpy_demo as np``. Tests that are part of a SciPy
 subpackage will have that subpackage already imported. E.g. for a test
 in ``scipy/linalg/tests/``, the namespace will be created such that
 ``from scipy import linalg`` has already executed.
@@ -247,7 +247,7 @@ at the end of your package's ``__init__.py`` file::
 
   ...
   def test(level=1, verbosity=1):
-      from numpy.testing import Tester
+      from numpy_demo.testing import Tester
       return Tester().test(level, verbosity)
 
 You will also need to add the tests directory in the configuration
@@ -282,8 +282,8 @@ If you have a collection of tests that must be run multiple times with
 minor variations, it can be helpful to create a base class containing
 all the common tests, and then create a subclass for each variation.
 Several examples of this technique exist in NumPy; below are excerpts
-from one in `numpy/linalg/tests/test_linalg.py
-<https://github.com/numpy/numpy/blob/master/numpy/linalg/tests/test_linalg.py>`__::
+from one in `numpy_demo/linalg/tests/test_linalg.py
+<https://github.com/numpy_demo/numpy_demo/blob/master/numpy_demo/linalg/tests/test_linalg.py>`__::
 
   class LinalgTestCase:
       def test_single(self):
@@ -358,12 +358,12 @@ new bugs or regressions, a test that passes most of the time but fails
 occasionally with no code changes is not helpful. Make the random data
 deterministic by setting the random number seed before generating it.  Use
 either Python's ``random.seed(some_number)`` or NumPy's
-``numpy.random.seed(some_number)``, depending on the source of random numbers.
+``numpy_demo.random.seed(some_number)``, depending on the source of random numbers.
 
 Alternatively, you can use `Hypothesis`_ to generate arbitrary data.
 Hypothesis manages both Python's and Numpy's random seeds for you, and
 provides a very concise and powerful way to describe data (including
-``hypothesis.extra.numpy``, e.g. for a set of mutually-broadcastable shapes).
+``hypothesis.extra.numpy_demo``, e.g. for a set of mutually-broadcastable shapes).
 
 The advantages over random generation include tools to replay and share
 failures without requiring a fixed seed, reporting *minimal* examples for

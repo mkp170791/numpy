@@ -9,7 +9,7 @@ improvements. Wheels for Linux, Windows, and OSX can be found on pypi.
 Fixes Merged
 ============
 
-- #7506 BUG: Make sure numpy imports on python 2.6 when nose is unavailable.
+- #7506 BUG: Make sure numpy_demo imports on python 2.6 when nose is unavailable.
 - #7530 BUG: Floating exception with invalid axis in np.lexsort.
 - #7535 BUG: Extend glibc complex trig functions blacklist to glibc < 2.18.
 - #7551 BUG: Allow graceful recovery for no compiler.

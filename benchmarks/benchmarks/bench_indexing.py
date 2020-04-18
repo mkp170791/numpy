@@ -2,8 +2,8 @@ from .common import Benchmark, get_squares_, get_indexes_, get_indexes_rand_
 
 from os.path import join as pjoin
 import shutil
-from numpy import memmap, float32, array
-import numpy as np
+from numpy_demo import memmap, float32, array
+import numpy_demo as np
 from tempfile import mkdtemp
 
 

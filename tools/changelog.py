@@ -104,7 +104,7 @@ def main(token, revision_range):
     lst_release, cur_release = [r.strip() for r in revision_range.split('..')]
 
     github = Github(token)
-    github_repo = github.get_repo('numpy/numpy')
+    github_repo = github.get_repo('numpy_demo/numpy_demo')
 
     # document authors
     authors = get_authors(revision_range)

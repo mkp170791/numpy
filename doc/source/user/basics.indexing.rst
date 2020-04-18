@@ -10,4 +10,4 @@ Indexing
 
    :ref:`Indexing routines <routines.indexing>`
 
-.. automodule:: numpy.doc.indexing
+.. automodule:: numpy_demo.doc.indexing

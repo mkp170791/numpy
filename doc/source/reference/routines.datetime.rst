@@ -3,7 +3,7 @@
 Datetime Support Functions
 **************************
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 .. autosummary::
    :toctree: generated/
@@ -15,7 +15,7 @@ Datetime Support Functions
 Business Day Functions
 ======================
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 .. autosummary::
    :toctree: generated/

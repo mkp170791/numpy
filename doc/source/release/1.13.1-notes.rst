@@ -23,7 +23,7 @@ A total of 19 pull requests were merged for this release.
 * #9240 DOC: BLD: fix lots of Sphinx warnings/errors.
 * #9255 Revert "DEP: Raise TypeError for subtract(bool, bool)."
 * #9261 BUG: don't elide into readonly and updateifcopy temporaries for...
-* #9262 BUG: fix missing keyword rename for common block in numpy.f2py
+* #9262 BUG: fix missing keyword rename for common block in numpy_demo.f2py
 * #9263 BUG: handle resize of 0d array
 * #9267 DOC: update f2py front page and some doc build metadata.
 * #9299 BUG: Fix Intel compilation on Unix.
@@ -32,8 +32,8 @@ A total of 19 pull requests were merged for this release.
 * #9339 BUG: Prevent crash if ufunc doc string is null
 * #9340 BUG: umath: un-break ufunc where= when no out= is given
 * #9371 DOC: Add isnat/positive ufunc to documentation
-* #9372 BUG: Fix error in fromstring function from numpy.core.records...
-* #9373 BUG: ')' is printed at the end pointer of the buffer in numpy.f2py.
+* #9372 BUG: Fix error in fromstring function from numpy_demo.core.records...
+* #9373 BUG: ')' is printed at the end pointer of the buffer in numpy_demo.f2py.
 * #9374 DOC: Create NumPy 1.13.1 release notes.
 * #9376 BUG: Prevent hang traversing ufunc userloop linked list
 * #9377 DOC: Use x1 and x2 in the heaviside docstring.

@@ -10,26 +10,26 @@ a line by itself, preferably preceded by a blank line.
 """
 import os # standard library imports first
 
-# Do NOT import using *, e.g. from numpy import *
+# Do NOT import using *, e.g. from numpy_demo import *
 #
 # Import the module using
 #
-#   import numpy
+#   import numpy_demo
 #
 # instead or import individual functions as needed, e.g
 #
-#  from numpy import array, zeros
+#  from numpy_demo import array, zeros
 #
 # If you prefer the use of abbreviated module names, we suggest the
 # convention used by NumPy itself::
 
-import numpy as np
+import numpy_demo as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 # These abbreviated names are not to be used in docstrings; users must
 # be able to paste and execute docstrings after importing only the
-# numpy module itself, unabbreviated.
+# numpy_demo module itself, unabbreviated.
 
 from my_module import my_func, other_func
 

@@ -2,11 +2,11 @@
 Quickstart tutorial
 ===================
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 .. testsetup::
 
-   >>> import numpy as np
+   >>> import numpy_demo as np
    >>> import sys
    >>> rg = np.random.default_rng(1)
 
@@ -60,7 +60,7 @@ axis has a length of 2, the second axis has a length of 3.
      [ 0., 1., 2.]]
 
 NumPy's array class is called ``ndarray``. It is also known by the alias
-``array``. Note that ``numpy.array`` is not the same as the Standard
+``array``. Note that ``numpy_demo.array`` is not the same as the Standard
 Python Library class ``array.array``, which only handles one-dimensional
 arrays and offers less functionality. The more important attributes of
 an ``ndarray`` object are:
@@ -78,8 +78,8 @@ ndarray.size
 ndarray.dtype
     an object describing the type of the elements in the array. One can
     create or specify dtype's using standard Python types. Additionally
-    NumPy provides types of its own. numpy.int32, numpy.int16, and
-    numpy.float64 are some examples.
+    NumPy provides types of its own. numpy_demo.int32, numpy_demo.int16, and
+    numpy_demo.float64 are some examples.
 ndarray.itemsize
     the size in bytes of each element of the array. For example, an
     array of elements of type ``float64`` has ``itemsize`` 8 (=64/8),
@@ -93,7 +93,7 @@ ndarray.data
 An example
 ----------
 
-    >>> import numpy as np
+    >>> import numpy_demo as np
     >>> a = np.arange(15).reshape(3, 5)
     >>> a
     array([[ 0,  1,  2,  3,  4],
@@ -110,12 +110,12 @@ An example
     >>> a.size
     15
     >>> type(a)
-    <class 'numpy.ndarray'>
+    <class 'numpy_demo.ndarray'>
     >>> b = np.array([6, 7, 8])
     >>> b
     array([6, 7, 8])
     >>> type(b)
-    <class 'numpy.ndarray'>
+    <class 'numpy_demo.ndarray'>
 
 .. _quickstart.array-creation:
 
@@ -130,7 +130,7 @@ from the type of the elements in the sequences.
 
 ::
 
-    >>> import numpy as np
+    >>> import numpy_demo as np
     >>> a = np.array([2,3,4])
     >>> a
     array([2, 3, 4])
@@ -217,7 +217,7 @@ finite floating point precision. For this reason, it is usually better
 to use the function ``linspace`` that receives as an argument the number
 of elements that we want, instead of the step::
 
-    >>> from numpy import pi
+    >>> from numpy_demo import pi
     >>> np.linspace( 0, 2, 9 )                 # 9 numbers from 0 to 2
     array([0.  , 0.25, 0.5 , 0.75, 1.  , 1.25, 1.5 , 1.75, 2.  ])
     >>> x = np.linspace( 0, 2*pi, 100 )        # useful to evaluate function at lots of points
@@ -233,8 +233,8 @@ of elements that we want, instead of the step::
     `empty_like`,
     `arange`,
     `linspace`,
-    `numpy.random.Generator.rand`,
-    `numpy.random.Generator.randn`,
+    `numpy_demo.random.Generator.rand`,
+    `numpy_demo.random.Generator.randn`,
     `fromfunction`,
     `fromfile`
 
@@ -361,7 +361,7 @@ existing array rather than create a new one.
     >>> a += b                  # b is not automatically converted to integer type
     Traceback (most recent call last):
         ...
-    numpy.core._exceptions.UFuncTypeError: Cannot cast ufunc 'add' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
+    numpy_demo.core._exceptions.UFuncTypeError: Cannot cast ufunc 'add' output from dtype('float64') to dtype('int64') with casting rule 'same_kind'
 
 When operating with arrays of different types, the type of the resulting
 array corresponds to the more general or precise one (a behavior known
@@ -749,7 +749,7 @@ The function `column_stack`
 stacks 1D arrays as columns into a 2D array. It is equivalent to
 `hstack` only for 2D arrays::
 
-    >>> from numpy import newaxis
+    >>> from numpy_demo import newaxis
     >>> np.column_stack((a,b))     # with 2D arrays
     array([[9., 7., 1., 9.],
            [5., 2., 5., 1.]])
@@ -1262,7 +1262,7 @@ set <https://en.wikipedia.org/wiki/Mandelbrot_set>`__:
 
 .. plot::
 
-    >>> import numpy as np
+    >>> import numpy_demo as np
     >>> import matplotlib.pyplot as plt
     >>> def mandelbrot( h,w, maxit=20 ):
     ...     """Returns an image of the Mandelbrot fractal of size (h,w)."""
@@ -1408,11 +1408,11 @@ Work in progress. Basic linear algebra to be included here.
 Simple Array Operations
 -----------------------
 
-See linalg.py in numpy folder for more.
+See linalg.py in numpy_demo folder for more.
 
 ::
 
-    >>> import numpy as np
+    >>> import numpy_demo as np
     >>> a = np.array([[1.0, 2.0], [3.0, 4.0]])
     >>> print(a)
     [[1. 2.]
@@ -1511,7 +1511,7 @@ strange.
 
 .. seealso::
 
-   :doc:`numpy-for-matlab-users`
+   :doc:`numpy_demo-for-matlab-users`
 
 Histograms
 ----------
@@ -1521,11 +1521,11 @@ vectors: the histogram of the array and a vector of the bin edges. Beware:
 ``matplotlib`` also has a function to build histograms (called ``hist``,
 as in Matlab) that differs from the one in NumPy. The main difference is
 that ``pylab.hist`` plots the histogram automatically, while
-``numpy.histogram`` only generates the data.
+``numpy_demo.histogram`` only generates the data.
 
 .. plot::
 
-    >>> import numpy as np
+    >>> import numpy_demo as np
     >>> rg = np.random.default_rng(1)
     >>> import matplotlib.pyplot as plt
     >>> # Build a vector of 10000 normal deviates with variance 0.5^2 and mean 2
@@ -1533,7 +1533,7 @@ that ``pylab.hist`` plots the histogram automatically, while
     >>> v = rg.normal(mu,sigma,10000)
     >>> # Plot a normalized histogram with 50 bins
     >>> plt.hist(v, bins=50, density=1)       # matplotlib version (plot)
-    >>> # Compute the histogram with numpy and then plot it
+    >>> # Compute the histogram with numpy_demo and then plot it
     >>> (n, bins) = np.histogram(v, bins=50, density=True)  # NumPy version (no plot)
     >>> plt.plot(.5*(bins[1:]+bins[:-1]), n)
 

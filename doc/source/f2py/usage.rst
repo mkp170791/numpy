@@ -3,15 +3,15 @@ Using F2PY
 ===========
 
 F2PY can be used either as a command line tool ``f2py`` or as a Python
-module ``numpy.f2py``. While we try to install the command line tool as part
-of the numpy setup, some platforms like Windows make it difficult to
+module ``numpy_demo.f2py``. While we try to install the command line tool as part
+of the numpy_demo setup, some platforms like Windows make it difficult to
 reliably put the executable on the ``PATH``. We will refer to ``f2py``
 in this document but you may have to run it as a module::
 
-   python -m numpy.f2py
+   python -m numpy_demo.f2py
 
-If you run ``f2py`` with no arguments, and the line ``numpy Version`` at the
-end matches the NumPy version printed from ``python -m numpy.f2py``, then you
+If you run ``f2py`` with no arguments, and the line ``numpy_demo Version`` at the
+end matches the NumPy version printed from ``python -m numpy_demo.f2py``, then you
 can use the shorter version. If not, or if you cannot run ``f2py``, you should
 replace all calls to ``f2py`` here with the longer version.
 
@@ -88,7 +88,7 @@ distinguished by the usage of ``-c`` and ``-h`` switches:
      Search include files from given directories.
 
    ``--help-link [<list of resources names>]``
-     List system resources found by ``numpy_distutils/system_info.py``.
+     List system resources found by ``numpy_demo_distutils/system_info.py``.
      For example, try ``f2py --help-link lapack_opt``.
 
 3. To build an extension module, use
@@ -158,7 +158,7 @@ distinguished by the usage of ``-c`` and ``-h`` switches:
  
    ``link-<resource>``
      Link extension module with <resource> as defined by
-     ``numpy_distutils/system_info.py``. E.g. to link with optimized
+     ``numpy_demo_distutils/system_info.py``. E.g. to link with optimized
      LAPACK libraries (vecLib on MacOSX, ATLAS elsewhere), use
      ``--link-lapack_opt``. See also ``--help-link`` switch.
 
@@ -219,7 +219,7 @@ Other options:
 Execute ``f2py`` without any options to get an up-to-date list of
 available options.
 
-Python module ``numpy.f2py``
+Python module ``numpy_demo.f2py``
 ============================
 
 .. warning::
@@ -228,6 +228,6 @@ Python module ``numpy.f2py``
   may change in the future.
 
 
-.. automodule:: numpy.f2py
+.. automodule:: numpy_demo.f2py
     :members:
 

@@ -5,7 +5,7 @@ There are three strategies implemented that can be used to produce
 repeatable pseudo-random numbers across multiple processes (local
 or distributed).
 
-.. currentmodule:: numpy.random
+.. currentmodule:: numpy_demo.random
 
 .. _seedsequence-spawn:
 
@@ -43,7 +43,7 @@ wrap this together into an API that is easy to use and difficult to misuse.
 
 .. code-block:: python
 
-  from numpy.random import SeedSequence, default_rng
+  from numpy_demo.random import SeedSequence, default_rng
 
   ss = SeedSequence(12345)
 
@@ -68,7 +68,7 @@ high probability) streams.
 This feature lets you make local decisions about when and how to split up
 streams without coordination between processes. You do not have to preallocate
 space to avoid overlapping or request streams from a common global service. This
-general "tree-hashing" scheme is `not unique to numpy`_ but not yet widespread.
+general "tree-hashing" scheme is `not unique to numpy_demo`_ but not yet widespread.
 Python has increasingly-flexible mechanisms for parallelization available, and
 this scheme fits in very well with that kind of use.
 
@@ -105,7 +105,7 @@ territory ([2]_).
 .. _`implements an algorithm`: http://www.pcg-random.org/posts/developing-a-seed_seq-alternative.html
 .. _`suffers if there are too many 0s`: http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/MT2002/emt19937ar.html
 .. _`avalanche properties`: https://en.wikipedia.org/wiki/Avalanche_effect
-.. _`not unique to numpy`: https://www.iro.umontreal.ca/~lecuyer/myftp/papers/parallel-rng-imacs.pdf
+.. _`not unique to numpy_demo`: https://www.iro.umontreal.ca/~lecuyer/myftp/papers/parallel-rng-imacs.pdf
 
 
 .. _independent-streams:
@@ -123,7 +123,7 @@ will still create independent streams.
 .. code-block:: python
 
   import secrets
-  from numpy.random import Philox
+  from numpy_demo.random import Philox
 
   # 128-bit number as a seed
   root_seed = secrets.getrandbits(128)
@@ -173,7 +173,7 @@ overlap.
 .. code-block:: python
 
   import secrets
-  from numpy.random import PCG64
+  from numpy_demo.random import PCG64
 
   seed = secrets.getrandbits(128)
   blocked_rng = []

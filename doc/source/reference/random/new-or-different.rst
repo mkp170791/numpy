@@ -1,6 +1,6 @@
 .. _new-or-different:
 
-.. currentmodule:: numpy.random
+.. currentmodule:: numpy_demo.random
 
 What's New or Different
 -----------------------
@@ -66,21 +66,21 @@ And in more detail:
 
 .. ipython:: python
 
-  from  numpy.random import Generator, PCG64
-  import numpy.random
+  from  numpy_demo.random import Generator, PCG64
+  import numpy_demo.random
   rg = Generator(PCG64())
   %timeit rg.standard_normal(100000)
-  %timeit numpy.random.standard_normal(100000)
+  %timeit numpy_demo.random.standard_normal(100000)
 
 .. ipython:: python
 
   %timeit rg.standard_exponential(100000)
-  %timeit numpy.random.standard_exponential(100000)
+  %timeit numpy_demo.random.standard_exponential(100000)
 
 .. ipython:: python
 
   %timeit rg.standard_gamma(3.0, 100000)
-  %timeit numpy.random.standard_gamma(3.0, 100000)
+  %timeit numpy_demo.random.standard_gamma(3.0, 100000)
 
 * Optional ``dtype`` argument that accepts ``np.float32`` or ``np.float64``
   to produce either single or double prevision uniform random variables for

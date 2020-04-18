@@ -1,22 +1,22 @@
-Testing the numpy.i Typemaps
+Testing the numpy_demo.i Typemaps
 ============================
 
 Introduction
 ------------
 
-Writing tests for the ``numpy.i`` `SWIG <http://www.swig.org>`_
+Writing tests for the ``numpy_demo.i`` `SWIG <http://www.swig.org>`_
 interface file is a combinatorial headache.  At present, 12 different
 data types are supported, each with 74 different argument signatures,
 for a total of 888 typemaps supported "out of the box".  Each of these
 typemaps, in turn, might require several unit tests in order to verify
 expected behavior for both proper and improper inputs.  Currently,
 this results in more than 1,000 individual unit tests executed when
-``make test`` is run in the ``numpy/tools/swig`` subdirectory.
+``make test`` is run in the ``numpy_demo/tools/swig`` subdirectory.
 
 To facilitate this many similar unit tests, some high-level
 programming techniques are employed, including C and `SWIG`_ macros,
 as well as Python inheritance.  The purpose of this document is to describe
-the testing infrastructure employed to verify that the ``numpy.i``
+the testing infrastructure employed to verify that the ``numpy_demo.i``
 typemaps are working as expected.
 
 Testing Organization
@@ -36,7 +36,7 @@ one-dimensional arrays as function arguments.  The file::
 
 is a `SWIG`_ interface file that defines a python module ``Vector``
 that wraps the functions in ``Vector.h`` while utilizing the typemaps
-in ``numpy.i`` to correctly handle the C arrays.
+in ``numpy_demo.i`` to correctly handle the C arrays.
 
 The ``Makefile`` calls ``swig`` to generate ``Vector.py`` and
 ``Vector_wrap.cxx``, and also executes the ``setup.py`` script that
@@ -79,7 +79,7 @@ macro defines several function prototypes that have the prefix
 ``TYPE`` value.
 
 ``TEST_FUNC_PROTOS`` is then implemented for all of the data types
-supported by ``numpy.i``:
+supported by ``numpy_demo.i``:
 
   * ``signed char``
   * ``unsigned char``
@@ -107,15 +107,15 @@ Testing SWIG Interface Files
 ----------------------------
 
 ``Vector.i`` is a `SWIG`_ interface file that defines python module
-``Vector``.  It follows the conventions for using ``numpy.i`` as
+``Vector``.  It follows the conventions for using ``numpy_demo.i`` as
 described in this chapter.  It defines a `SWIG`_ macro
-``%apply_numpy_typemaps`` that has a single argument ``TYPE``.
+``%apply_numpy_demo_typemaps`` that has a single argument ``TYPE``.
 It uses the `SWIG`_ directive ``%apply`` to apply the provided
 typemaps to the argument signatures found in ``Vector.h``.  This macro
 is then implemented for all of the data types supported by
-``numpy.i``.  It then does a ``%include "Vector.h"`` to wrap all of
+``numpy_demo.i``.  It then does a ``%include "Vector.h"`` to wrap all of
 the function prototypes in ``Vector.h`` using the typemaps in
-``numpy.i``.
+``numpy_demo.i``.
 
 Testing Python Scripts
 ----------------------
@@ -139,7 +139,7 @@ for typing information:
 
     **self.typeCode**
       A short (typically single-character) string that represents a
-      data type in numpy and corresponds to ``self.typeStr``.  For
+      data type in numpy_demo and corresponds to ``self.typeStr``.  For
       example, if ``self.typeStr`` is ``"double"``, then
       ``self.typeCode`` should be ``"d"``.
 

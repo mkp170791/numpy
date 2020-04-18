@@ -19,36 +19,36 @@ Highlights
 ==========
 
 * NumPy has switched to pytest for testing.
-* A new  `numpy.printoptions` context manager.
+* A new  `numpy_demo.printoptions` context manager.
 * Many improvements to the histogram functions.
 * Support for unicode field names in python 2.7.
 * Improved support for PyPy.
-* Fixes and improvements to `numpy.einsum`.
+* Fixes and improvements to `numpy_demo.einsum`.
 
 
 New functions
 =============
 
-* `numpy.gcd` and `numpy.lcm`, to compute the greatest common divisor and least
+* `numpy_demo.gcd` and `numpy_demo.lcm`, to compute the greatest common divisor and least
   common multiple.
 
-* `numpy.ma.stack`, the `numpy.stack` array-joining function generalized to
+* `numpy_demo.ma.stack`, the `numpy_demo.stack` array-joining function generalized to
   masked arrays.
 
-* `numpy.quantile` function, an interface to ``percentile`` without factors of
+* `numpy_demo.quantile` function, an interface to ``percentile`` without factors of
   100
 
-* `numpy.nanquantile` function, an interface to ``nanpercentile`` without
+* `numpy_demo.nanquantile` function, an interface to ``nanpercentile`` without
   factors of 100
 
-* `numpy.printoptions`, a context manager that sets print options temporarily
+* `numpy_demo.printoptions`, a context manager that sets print options temporarily
   for the scope of the ``with`` block::
 
     >>> with np.printoptions(precision=2):
     ...     print(np.array([2.0]) / 3)
     [0.67]
 
-* `numpy.histogram_bin_edges`, a function to get the edges of the bins used by a
+* `numpy_demo.histogram_bin_edges`, a function to get the edges of the bins used by a
   histogram without needing to calculate the histogram.
 
 * C functions `npy_get_floatstatus_barrier` and `npy_clear_floatstatus_barrier`
@@ -62,11 +62,11 @@ Deprecations
 * Aliases of builtin `pickle` functions are deprecated, in favor of their
   unaliased ``pickle.<func>`` names:
 
-  * `numpy.loads`
-  * `numpy.core.numeric.load`
-  * `numpy.core.numeric.loads`
-  * `numpy.ma.loads`, `numpy.ma.dumps`
-  * `numpy.ma.load`, `numpy.ma.dump` - these functions already failed on
+  * `numpy_demo.loads`
+  * `numpy_demo.core.numeric.load`
+  * `numpy_demo.core.numeric.loads`
+  * `numpy_demo.ma.loads`, `numpy_demo.ma.dumps`
+  * `numpy_demo.ma.load`, `numpy_demo.ma.dump` - these functions already failed on
     python 3 when called with a string.
 
 * Multidimensional indexing with anything but a tuple is deprecated. This means
@@ -80,13 +80,13 @@ Deprecations
 * Imports from the following sub-modules are deprecated, they will be removed
   at some future date.
 
-  * `numpy.testing.utils`
-  * `numpy.testing.decorators`
-  * `numpy.testing.nosetester`
-  * `numpy.testing.noseclasses`
-  * `numpy.core.umath_tests`
+  * `numpy_demo.testing.utils`
+  * `numpy_demo.testing.decorators`
+  * `numpy_demo.testing.nosetester`
+  * `numpy_demo.testing.noseclasses`
+  * `numpy_demo.core.umath_tests`
 
-* Giving a generator to `numpy.sum` is now deprecated. This was undocumented
+* Giving a generator to `numpy_demo.sum` is now deprecated. This was undocumented
   behavior, but worked. Previously, it would calculate the sum of the generator
   expression.  In the future, it might return a different result. Use
   ``np.sum(np.from_iter(generator))`` or the built-in Python ``sum`` instead.
@@ -97,7 +97,7 @@ Deprecations
   emitted if those calls are not used when needed.
 
 * Users of ``nditer`` should use the nditer object as a context manager
-  anytime one of the iterator operands is writeable, so that numpy can
+  anytime one of the iterator operands is writeable, so that numpy_demo can
   manage writeback semantics, or should call ``it.close()``. A
   `RuntimeWarning` may be emitted otherwise in these cases.
 
@@ -140,7 +140,7 @@ and python 3.
 
 Under certain conditions, ``nditer`` must be used in a context manager
 ----------------------------------------------------------------------
-When using an `numpy.nditer` with the ``"writeonly"`` or ``"readwrite"`` flags, there
+When using an `numpy_demo.nditer` with the ``"writeonly"`` or ``"readwrite"`` flags, there
 are some circumstances where nditer doesn't actually give you a view of the
 writable array. Instead, it gives you a copy, and if you make changes to the
 copy, nditer later writes those changes back into your actual array. Currently,
@@ -159,11 +159,11 @@ and nose tools that were previously used by some downstream projects remain
 available, but will not be maintained. The standard testing utilities,
 ``assert_almost_equal`` and such, are not be affected by this change except for
 the nose specific functions ``import_nose`` and ``raises``. Those functions are
-not used in numpy, but are kept for downstream compatibility.
+not used in numpy_demo, but are kept for downstream compatibility.
 
 Numpy no longer monkey-patches ``ctypes`` with ``__array_interface__``
 ----------------------------------------------------------------------
-Previously numpy added ``__array_interface__`` attributes to all the integer
+Previously numpy_demo added ``__array_interface__`` attributes to all the integer
 types from ``ctypes``.
 
 ``np.ma.notmasked_contiguous`` and ``np.ma.flatnotmasked_contiguous`` always return lists
@@ -177,7 +177,7 @@ continue to work as before.
 
 ``np.squeeze`` restores old behavior of objects that cannot handle an ``axis`` argument
 ---------------------------------------------------------------------------------------
-Prior to version ``1.7.0``, `numpy.squeeze` did not have an ``axis`` argument and
+Prior to version ``1.7.0``, `numpy_demo.squeeze` did not have an ``axis`` argument and
 all empty axes were removed by default. The incorporation of an ``axis``
 argument made it possible to selectively squeeze single or multiple empty axes,
 but the old API expectation was not respected because axes could still be
@@ -200,11 +200,11 @@ Multifield Indexing of Structured Arrays will still return a copy
 -----------------------------------------------------------------
 The change that multi-field indexing of structured arrays returns a view
 instead of a copy is pushed back to 1.16. A new method
-``numpy.lib.recfunctions.repack_fields`` has been introduced to help mitigate
+``numpy_demo.lib.recfunctions.repack_fields`` has been introduced to help mitigate
 the effects of this change, which can be used to write code compatible with
-both numpy 1.15 and 1.16. For more information on how to update code to account
+both numpy_demo 1.15 and 1.16. For more information on how to update code to account
 for this future change see the "accessing multiple fields" section of the
-`user guide <https://docs.scipy.org/doc/numpy/user/basics.rec.html>`__.
+`user guide <https://docs.scipy.org/doc/numpy_demo/user/basics.rec.html>`__.
 
 
 C API changes
@@ -218,7 +218,7 @@ have been added and should be used in place of the ``npy_get_floatstatus``and
 were rearranging the order of operations when the previous functions were used
 in the ufunc SIMD functions, resulting in the floatstatus flags being checked
 before the operation whose status we wanted to check was run.  See `#10339
-<https://github.com/numpy/numpy/issues/10370>`__.
+<https://github.com/numpy_demo/numpy_demo/issues/10370>`__.
 
 Changes to ``PyArray_GetDTypeTransferFunction``
 -----------------------------------------------
@@ -226,7 +226,7 @@ Changes to ``PyArray_GetDTypeTransferFunction``
 ``copyswapn`` / ``copyswap`` for user-defined dtypes. If this causes a
 significant performance hit, consider implementing ``copyswapn`` to reflect the
 implementation of ``PyArray_GetStridedCopyFn``.  See `#10898
-<https://github.com/numpy/numpy/pull/10898>`__.
+<https://github.com/numpy_demo/numpy_demo/pull/10898>`__.
 
 
 New Features
@@ -235,7 +235,7 @@ New Features
 ``np.gcd`` and ``np.lcm`` ufuncs added for integer and objects types
 --------------------------------------------------------------------
 These compute the greatest common divisor, and lowest common multiple,
-respectively. These work on all the numpy integer types, as well as the
+respectively. These work on all the numpy_demo integer types, as well as the
 builtin arbitrary-precision ``Decimal`` and ``long`` types.
 
 Support for cross-platform builds for iOS
@@ -272,7 +272,7 @@ Improvements
 
 ``np.einsum`` updates
 ---------------------
-Syncs einsum path optimization tech between `numpy` and `opt_einsum`. In
+Syncs einsum path optimization tech between `numpy_demo` and `opt_einsum`. In
 particular, the `greedy` path has received many enhancements by @jcmgray. A
 full list of issues fixed are:
 
@@ -335,7 +335,7 @@ produce ``float64`` bins no matter what the inputs.
 
 ``histogramdd`` allows explicit ranges to be given in a subset of axes
 ----------------------------------------------------------------------
-The ``range`` argument of `numpy.histogramdd` can now contain ``None`` values to
+The ``range`` argument of `numpy_demo.histogramdd` can now contain ``None`` values to
 indicate that the range for the corresponding axis should be computed from the
 data. Previously, this could not be specified on a per-axis basis.
 
@@ -349,7 +349,7 @@ preferred.
 -----------------------------------------------------------------------------
 0d arrays passed to the `r_` and `mr_` concatenation helpers are now treated as
 though they are arrays of length 1. Previously, passing these was an error.
-As a result, `numpy.ma.mr_` now works correctly on the ``masked`` constant.
+As a result, `numpy_demo.ma.mr_` now works correctly on the ``masked`` constant.
 
 ``np.ptp`` accepts a ``keepdims`` argument, and extended axis tuples
 --------------------------------------------------------------------
@@ -373,12 +373,12 @@ Previously an array was returned for integer scalar inputs, which is
 inconsistent with the behavior for float inputs, and that of ufuncs in general.
 For all types of scalar or 0d input, the result is now a scalar.
 
-``np.flatnonzero`` works on numpy-convertible types
+``np.flatnonzero`` works on numpy_demo-convertible types
 ---------------------------------------------------
 ``np.flatnonzero`` now uses ``np.ravel(a)`` instead of ``a.ravel()``, so it
 works for lists, tuples, etc.
 
-``np.interp`` returns numpy scalars rather than builtin scalars
+``np.interp`` returns numpy_demo scalars rather than builtin scalars
 ---------------------------------------------------------------
 Previously ``np.interp(0.5, [0, 1], [10, 20])`` would return a ``float``, but
 now it returns a ``np.float64`` object, which more closely matches the behavior
@@ -482,7 +482,7 @@ float128s now print with correct rounding and uniqueness.
 
 Warning to ppc users: You should upgrade glibc if it is version <=2.23,
 especially if using float128. On ppc, glibc's malloc in these version often
-misaligns allocated memory which can crash numpy when using float128 values.
+misaligns allocated memory which can crash numpy_demo when using float128 values.
 
 New ``np.take_along_axis`` and ``np.put_along_axis`` functions
 --------------------------------------------------------------

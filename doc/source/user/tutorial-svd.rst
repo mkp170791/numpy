@@ -2,11 +2,11 @@
 Tutorial: Linear algebra on n-dimensional arrays
 ================================================
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 .. testsetup::
 
-   import numpy as np
+   import numpy_demo as np
    np.random.seed(1)
 
 **Prerequisites**
@@ -56,13 +56,13 @@ image. We'll use the ``face`` image from the `scipy.misc` module:
    Alternatively, you can use the :func:`imageio.imread` function from the
    ``imageio`` library. Be aware that if you use your own image, you'll likely
    need to adapt the steps below. For more information on how images are treated
-   when converted to NumPy arrays, see :std:doc:`user_guide/numpy_images` from
+   when converted to NumPy arrays, see :std:doc:`user_guide/numpy_demo_images` from
    the ``scikit-image`` documentation.
 
 Now, ``img`` is a NumPy array, as we can see when using the ``type`` function::
 
     >>> type(img)
-    <class 'numpy.ndarray'>
+    <class 'numpy_demo.ndarray'>
 
 We can see the image using the `matplotlib.pyplot.imshow` function::
 
@@ -139,7 +139,7 @@ matrices to represent the RGB values. We can do that by setting
     >>> img_array = img / 255
 
 This operation, dividing an array by a scalar, works because of NumPy's
-:ref:`broadcasting rules <array-broadcasting-in-numpy>`). (Note that in
+:ref:`broadcasting rules <array-broadcasting-in-numpy_demo>`). (Note that in
 real-world applications, it would be better to use, for example, the
 :func:`img_as_float <skimage.img_as_float>` utility function from
 ``scikit-image``).
@@ -172,7 +172,7 @@ still retaining some of its features.
 
 .. note::
 
-    We will use NumPy's linear algebra module, `numpy.linalg`, to
+    We will use NumPy's linear algebra module, `numpy_demo.linalg`, to
     perform the operations in this tutorial. Most of the linear algebra
     functions in this module can also be found in `scipy.linalg`, and
     users are encouraged to use the `scipy` module for real-world
@@ -183,7 +183,7 @@ still retaining some of its features.
 
 To proceed, import the linear algebra submodule from NumPy::
 
-    >>> from numpy import linalg
+    >>> from numpy_demo import linalg
 
 In order to extract information from a given matrix, we can use the SVD to obtain
 3 arrays which can be multiplied to obtain the original matrix. From the theory
@@ -213,7 +213,7 @@ image if we apply the formula
 where :math:`Y` is the array representing the grayscale image, and :math:`R, G`
 and :math:`B` are the red, green and blue channel arrays we had originally.
 Notice we can use the ``@`` operator (the matrix multiplication operator for
-NumPy arrays, see `numpy.matmul`) for this:
+NumPy arrays, see `numpy_demo.matmul`) for this:
 
 ::
    
@@ -282,7 +282,7 @@ diagonal and with the appropriate dimensions for multiplying: in our case,
 
 ::
 
-    >>> import numpy as np
+    >>> import numpy_demo as np
     >>> Sigma = np.zeros((768, 1024))
     >>> for i in range(768):
     ...     Sigma[i, i] = s[i]
@@ -307,7 +307,7 @@ As expected, you should see something like
 architecture and linear algebra setup. Regardless, you should see a small
 number.)
 
-We could also have used the `numpy.allclose` function to make sure the
+We could also have used the `numpy_demo.allclose` function to make sure the
 reconstructed product is, in fact, *close* to our original matrix (the
 difference between the two arrays is small)::
 
@@ -380,7 +380,7 @@ In our case,
     (768, 1024, 3)
 
 so we need to permutate the axis on this array to get a shape like
-``(3, 768, 1024)``. Fortunately, the `numpy.transpose` function can do that for
+``(3, 768, 1024)``. Fortunately, the `numpy_demo.transpose` function can do that for
 us:
 
 ::
@@ -414,9 +414,9 @@ across different axes works.
 **Products with n-dimensional arrays**
 
 If you have worked before with only one- or two-dimensional arrays in NumPy,
-you might use `numpy.dot` and `numpy.matmul` (or the ``@`` operator)
+you might use `numpy_demo.dot` and `numpy_demo.matmul` (or the ``@`` operator)
 interchangeably. However, for n-dimensional arrays, they work in very different
-ways. For more details, check the documentation `numpy.matmul`.
+ways. For more details, check the documentation `numpy_demo.matmul`.
 
 Now, to build our approximation, we first need to make sure that our singular
 values are ready for multiplication, so we build our ``Sigma`` matrix similarly

@@ -1,13 +1,13 @@
-"""Benchmarks for `numpy.lib`."""
+"""Benchmarks for `numpy_demo.lib`."""
 
 
 from .common import Benchmark
 
-import numpy as np
+import numpy_demo as np
 
 
 class Pad(Benchmark):
-    """Benchmarks for `numpy.pad`.
+    """Benchmarks for `numpy_demo.pad`.
 
     When benchmarking the pad function it is useful to cover scenarios where
     the ratio between the size of the input array and the output array differs

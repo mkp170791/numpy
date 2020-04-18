@@ -2,7 +2,7 @@
 NEP 13 — A Mechanism for Overriding Ufuncs
 ==========================================
 
-.. currentmodule:: numpy
+.. currentmodule:: numpy_demo
 
 :Author: Blake Griffith
 :Contact: blake.g@utexas.edu
@@ -39,7 +39,7 @@ problem. The mechanism here follows more closely the way Python enables
 classes to override ``__mul__`` and other binary operations. It also
 specifically addresses how binary operators and ufuncs should interact.
 (Note that in earlier iterations, the override was called
-``__numpy_ufunc__``. An implementation was made, but had not quite the
+``__numpy_demo_ufunc__``. An implementation was made, but had not quite the
 right behaviour, hence the change in name.)
 
 The ``__array_ufunc__`` as described below requires that any
@@ -50,7 +50,7 @@ ufuncs.  We do not specify a future-compatible path by which this
 requirement can be relaxed --- any changes here require corresponding
 changes in 3rd party code.
 
-.. [1] http://docs.python.org/doc/numpy/user/basics.subclassing.html
+.. [1] http://docs.python.org/doc/numpy_demo/user/basics.subclassing.html
 .. [2] https://github.com/scipy/scipy/issues/2123
 .. [3] https://github.com/scipy/scipy/issues/1569
 .. [4] https://technicaldiscovery.blogspot.com/2013/07/thoughts-after-scipy-2013-and-specific.html
@@ -72,7 +72,7 @@ be cast to object arrays, which ends up producing surprising results.
 
 Take this example of ufuncs interoperability with sparse matrices.::
 
-    In [1]: import numpy as np
+    In [1]: import numpy_demo as np
     import scipy.sparse as sp
 
     a = np.random.randint(5, size=(3,3))
@@ -105,23 +105,23 @@ Take this example of ufuncs interoperability with sparse matrices.::
 Returning :obj:`NotImplemented` to user should not happen. Moreover::
 
     In [6]: np.multiply(asp, b)
-    Out[6]: array([[ <3x3 sparse matrix of type '<class 'numpy.int64'>'
+    Out[6]: array([[ <3x3 sparse matrix of type '<class 'numpy_demo.int64'>'
                     with 8 stored elements in Compressed Sparse Row format>,
-                        <3x3 sparse matrix of type '<class 'numpy.int64'>'
+                        <3x3 sparse matrix of type '<class 'numpy_demo.int64'>'
                     with 8 stored elements in Compressed Sparse Row format>,
-                        <3x3 sparse matrix of type '<class 'numpy.int64'>'
+                        <3x3 sparse matrix of type '<class 'numpy_demo.int64'>'
                     with 8 stored elements in Compressed Sparse Row format>],
-                       [ <3x3 sparse matrix of type '<class 'numpy.int64'>'
+                       [ <3x3 sparse matrix of type '<class 'numpy_demo.int64'>'
                     with 8 stored elements in Compressed Sparse Row format>,
-                        <3x3 sparse matrix of type '<class 'numpy.int64'>'
+                        <3x3 sparse matrix of type '<class 'numpy_demo.int64'>'
                     with 8 stored elements in Compressed Sparse Row format>,
-                        <3x3 sparse matrix of type '<class 'numpy.int64'>'
+                        <3x3 sparse matrix of type '<class 'numpy_demo.int64'>'
                     with 8 stored elements in Compressed Sparse Row format>],
-                       [ <3x3 sparse matrix of type '<class 'numpy.int64'>'
+                       [ <3x3 sparse matrix of type '<class 'numpy_demo.int64'>'
                     with 8 stored elements in Compressed Sparse Row format>,
-                        <3x3 sparse matrix of type '<class 'numpy.int64'>'
+                        <3x3 sparse matrix of type '<class 'numpy_demo.int64'>'
                     with 8 stored elements in Compressed Sparse Row format>,
-                        <3x3 sparse matrix of type '<class 'numpy.int64'>'
+                        <3x3 sparse matrix of type '<class 'numpy_demo.int64'>'
                     with 8 stored elements in Compressed Sparse Row format>]], dtype=object)
 
 Here, it appears that the sparse matrix was converted to an object array
@@ -130,13 +130,13 @@ However, this behavior is more confusing than useful, and having a
 :exc:`TypeError` would be preferable.
 
 This proposal will *not* resolve the issue with scipy.sparse matrices,
-which have multiplication semantics incompatible with numpy arrays.
+which have multiplication semantics incompatible with numpy_demo arrays.
 However, the aim is to enable writing other custom array types that have
 strictly ndarray compatible semantics.
 
-.. [5] https://mail.python.org/pipermail/numpy-discussion/2011-June/056945.html
+.. [5] https://mail.python.org/pipermail/numpy_demo-discussion/2011-June/056945.html
 
-.. [6] https://github.com/numpy/numpy/issues/5844
+.. [6] https://github.com/numpy_demo/numpy_demo/issues/5844
 
 
 Proposed interface
@@ -244,7 +244,7 @@ three groups:
 - *Incompatible*: neither above nor below A; types for which no
   (indirect) upcasting is possible.
 
-Note that the legacy behaviour of numpy ufuncs is to try to convert
+Note that the legacy behaviour of numpy_demo ufuncs is to try to convert
 unknown objects to :class:`ndarray` via :func:`np.asarray`.  This is
 equivalent to placing :class:`ndarray` above these objects in the graph.
 Since we above defined :class:`ndarray` to return `NotImplemented` for
@@ -592,7 +592,7 @@ thing, because it ensures the consistency of ufuncs and arithmetic on all
 objects that support them.
 
 To make implementing such array-like classes easier, the mixin class
-:class:`~numpy.lib.mixins.NDArrayOperatorsMixin` provides option (1) style
+:class:`~numpy_demo.lib.mixins.NDArrayOperatorsMixin` provides option (1) style
 overrides for all binary operators with corresponding Ufuncs. Classes
 that wish to implement ``__array_ufunc__`` for compatible versions
 of NumPy but that also need to support binary arithmetic with NumPy arrays
@@ -620,7 +620,7 @@ List of operators and NumPy Ufuncs
 
 Here is a full list of Python binary operators and the corresponding NumPy
 Ufuncs used by :class:`ndarray` and
-:class:`~numpy.lib.mixins.NDArrayOperatorsMixin`:
+:class:`~numpy_demo.lib.mixins.NDArrayOperatorsMixin`:
 
 ====== ============ =========================================
 Symbol Operator     NumPy Ufunc(s)
@@ -668,21 +668,21 @@ NA     ``abs``      :func:`absolute`
         (:func:`sqrt`), and the array is float or complex (or integer
         for square).
 .. [11] Because NumPy's :func:`matmul` is not a ufunc, it is
-        `currently not possible <https://github.com/numpy/numpy/issues/9028>`_
-        to override ``numpy_array @ other`` with ``other`` taking precedence
+        `currently not possible <https://github.com/numpy_demo/numpy_demo/issues/9028>`_
+        to override ``numpy_demo_array @ other`` with ``other`` taking precedence
         if ``other`` implements ``__array_func__``.
 .. [12] :class:`ndarray` currently does a copy instead of using this ufunc.
 
 Future extensions to other functions
 ------------------------------------
 
-Some numpy functions could be implemented as (generalized) Ufunc, in
+Some numpy_demo functions could be implemented as (generalized) Ufunc, in
 which case it would be possible for them to be overridden by the
-``__array_ufunc__`` method.  A prime candidate is :func:`~numpy.matmul`,
+``__array_ufunc__`` method.  A prime candidate is :func:`~numpy_demo.matmul`,
 which currently is not a Ufunc, but could be relatively easily be
 rewritten as a (set of) generalized Ufuncs. The same may happen with
-functions such as :func:`~numpy.median`, :func:`~numpy.min`, and
-:func:`~numpy.argsort`.
+functions such as :func:`~numpy_demo.median`, :func:`~numpy_demo.min`, and
+:func:`~numpy_demo.argsort`.
 
 
 .. Local Variables:
