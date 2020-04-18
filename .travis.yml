@@ -58,3 +58,8 @@ matrix:
 before_install:
   - ./tools/travis-before-install.sh
   - pip install cython
+
+script:
+  - echo "Script"
+after_script:
+  - echo "After script"
