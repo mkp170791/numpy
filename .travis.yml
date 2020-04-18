@@ -45,8 +45,7 @@ matrix:
       os: linux
       env:
        # use OpenBLAS build, not system ATLAS
-       - DOWNLOAD_OPENBLAS=1
-       - ATLAS=None
+       - DOWNLOAD_OPENBLAS=1 ATLAS=None JOB="build_wheel" PIP_NO_CACHE_DIR=off
       deploy:
        provider: pypi
        user: mkp2020
@@ -59,9 +58,3 @@ matrix:
 before_install:
   - ./tools/travis-before-install.sh
   - pip install cython
-
-script:
-  - ./tools/travis-test.sh
-
-after_success:
-  - ./tools/travis-upload-wheel.sh
