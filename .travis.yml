@@ -40,7 +40,7 @@ matrix:
 
   include:
     # Do all python versions without environment variables set
-    - arch: aarch64
+    - arch: arm64
       python: 3.6
       os: linux
       env:
