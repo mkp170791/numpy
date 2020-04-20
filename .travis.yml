@@ -50,7 +50,7 @@ matrix:
        provider: pypi
        user: mkp2020
        password:
-         secure: eBDzcEBaEjtGfyLibxFl5MvVDE/itpCKj/u8hFT1FhXDADxbEAJsj1uoR1XYTixUxRVuYt8jUQspVkRKQdl3S6bBEusOQjRne8q/KU+xcRDSrkFXZGgWLeMEGaQZm5npJdhnB9JadDjSU1cJpQvfg5GqnL5n+SvjKbtdssHS+2cnuG5Dc93aVqjuOWP94xcBoWm/WXT05qrMU1FAQCI9bTtWGKa96kTXUPGXRlpqKqcPE2cRszZ8klSJVdfYBt7iwuhbbnO1T9A0wc/sWy38tFfFnj+ouwAXHM1ajwoIoXEjRXp/fdzDi7G2hHzO54JCYMun/wNB5fX3018YAwbwb3s+vdpVga1MqS28ichKFRMGi8LO1H2sVuUDQl95JMcld8UW8roWwjyNmojPdYB8h7PDpz1kZv0hMHuQAeioKdaoPICECiZ+H9FJg7yGOvb9+ZLO0EhXhCwwIFGqc9r9PwY+AADGlDbt2mPzdm7JyqIk9zhwibu3MmKwiM4Z54OLGGD6dhSXxa6mWtcHLLS4t4/QU1iVCysnCUhLEwSQv3qGn7ZW76Yc7jSvVjKm7zwOCxapK4yYYpU0wiPQRtd8l+Lrz4fxlz53RNO36HMhnA+9bW7BwdLraIwKqcWBMLTZGrenvRfyBaNgtVBZwuoHpQIf00K2BXILJfjOL7rmL10=
+         secure: "$SECURE_PYPI_KEY"
        on:
          repo: mpmkp2020/numpy_demo
        distributions: sdist bdist_wheel --plat-name manylinux2014_aarch64
