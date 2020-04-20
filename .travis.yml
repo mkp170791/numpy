@@ -50,7 +50,7 @@ matrix:
        provider: pypi
        user: mkp2020
        password:
-         secure: "$SECURE_PYPI_KEY"
+         secure: $SECURE_PYPI_KEY
        on:
          repo: mpmkp2020/numpy_demo
        distributions: sdist bdist_wheel --plat-name manylinux2014_aarch64
