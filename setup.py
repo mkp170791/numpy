@@ -1,20 +1,16 @@
 #!/usr/bin/env python3
-""" NumPy is the fundamental package for array computing with Python.
+""" NumPy-demo is a test package and is a clone of numpy.
 
-It provides:
 
-- a powerful N-dimensional array object
-- sophisticated (broadcasting) functions
-- tools for integrating C/C++ and Fortran code
-- useful linear algebra, Fourier transform, and random number capabilities
-- and much more
+detailed description:
 
-Besides its obvious scientific uses, NumPy can also be used as an efficient
-multi-dimensional container of generic data. Arbitrary data-types can be
-defined. This allows NumPy to seamlessly and speedily integrate with a wide
-variety of databases.
+- I am working on a generatting aarch64 numpy wheel 
+- This project is where I am testing the things
+- You must not use this project to grab numpy features
+- I am expecting it to go away at some point in the future
+- Please visit https://pypi.org/project/numpy/ to install numpy
 
-All NumPy wheels distributed on PyPI are BSD licensed.
+
 
 """
 DOCLINES = (__doc__ or '').split("\n")
@@ -54,7 +50,7 @@ Operating System :: MacOS
 """
 
 MAJOR               = 1
-MINOR               = 20
+MINOR               = 19
 MICRO               = 0
 ISRELEASED          = True
 VERSION             = '%d.%d.%d' % (MAJOR, MINOR, MICRO)
